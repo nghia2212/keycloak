@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Keycloak Runtime Architecture",
+    "output": ".archify/architecture-keycloak-runtime-20261026-120000/keycloak-runtime.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": { "url": "https://github.com/keycloak/keycloak.git", "provider": "github", "link_mode": "web", "revision": "7e07aeecd7281e6cd90a0dcc46957d74332dd553" }
+  },
+  "components": [
+    { "id": "browser", "type": "external", "label": "User Browser", "sublabel": "end user / user agent", "pos": [40, 200], "size": [120, 64] },
+    { "id": "http", "type": "backend", "label": "HTTP + JAX-RS", "sublabel": "Quarkus · /realms/{realm}", "pos": [240, 200], "size": [150, 64],
+      "sources": [
+        { "path": "quarkus/runtime/src/main/java/org/keycloak/quarkus/runtime/KeycloakMain.java", "line": 108, "end_line": 144, "label": "Quarkus boot" },
+        { "path": "services/src/main/java/org/keycloak/services/resources/RealmsResource.java", "line": 68, "end_line": 110, "label": "realm/protocol routing" }
+      ] },
+    { "id": "oidc", "type": "security", "label": "OIDC Endpoints", "sublabel": "/auth · /token", "pos": [480, 200], "size": [150, 64],
+      "sources": [
+        { "path": "services/src/main/java/org/keycloak/protocol/oidc/endpoints/AuthorizationEndpoint.java", "line": 122, "end_line": 138, "label": "authorize request" },
+        { "path": "services/src/main/java/org/keycloak/protocol/oidc/endpoints/AuthorizationEndpoint.java", "line": 437, "end_line": 451, "label": "start browser flow" },
+        { "path": "services/src/main/java/org/keycloak/protocol/oidc/endpoints/TokenEndpoint.java", "line": 129, "end_line": 176, "label": "grant dispatch" }
+      ] },
+    { "id": "flow", "type": "security", "label": "Auth Flow Engine", "sublabel": "AuthenticationProcessor", "pos": [735, 200], "size": [160, 64], "tag": "login-actions",
+      "sources": [
+        { "path": "services/src/main/java/org/keycloak/services/resources/LoginActionsService.java", "line": 326, "end_line": 358, "label": "login-actions/authenticate" },
+        { "path": "services/src/main/java/org/keycloak/authentication/AuthenticationProcessor.java", "line": 958, "end_line": 960, "label": "authenticate()" },
+        { "path": "services/src/main/java/org/keycloak/authentication/AuthenticationProcessor.java", "line": 1150, "end_line": 1165, "label": "attachSession creates session" }
+      ] },
+    { "id": "users", "type": "backend", "label": "User Storage", "sublabel": "UserStorageManager", "pos": [1035, 200], "size": [150, 64],
+      "sources": [
+        { "path": "model/storage-private/src/main/java/org/keycloak/storage/UserStorageManager.java", "line": 96, "end_line": 107, "label": "local + federated providers" },
+        { "path": "model/jpa/src/main/java/org/keycloak/models/jpa/JpaUserProvider.java", "line": 103, "end_line": 116, "label": "JPA user provider" }
+      ] },
+    { "id": "sessions", "type": "database", "label": "Session Store", "sublabel": "Infinispan caches", "pos": [735, 360], "size": [160, 64],
+      "sources": [
+        { "path": "model/infinispan/src/main/java/org/keycloak/models/sessions/infinispan/InfinispanUserSessionProvider.java", "line": 137, "end_line": 181, "label": "session caches" },
+        { "path": "model/infinispan/src/main/java/org/keycloak/models/sessions/infinispan/PersistentUserSessionProvider.java", "line": 190, "end_line": 241, "label": "persistent sessions" }
+      ] },
+    { "id": "tokens", "type": "security", "label": "Token Manager", "sublabel": "sign via KeyManager", "pos": [480, 360], "size": [150, 64], "tag": "JWS / JWT",
+      "sources": [
+        { "path": "services/src/main/java/org/keycloak/protocol/oidc/TokenManager.java", "line": 1206, "end_line": 1206, "label": "response builder" },
+        { "path": "services/src/main/java/org/keycloak/protocol/oidc/TokenManager.java", "line": 1492, "end_line": 1518, "label": "encode access/refresh" },
+        { "path": "services/src/main/java/org/keycloak/keys/DefaultKeyManager.java", "line": 59, "end_line": 59, "label": "active realm key" }
+      ] },
+    { "id": "rp", "type": "external", "label": "Client App", "sublabel": "OIDC relying party", "pos": [40, 360], "size": [130, 64] },
+    { "id": "idp", "type": "external", "label": "External IdP", "sublabel": "OIDC / SAML / social", "pos": [745, 40], "size": [140, 64],
+      "sources": [
+        { "path": "services/src/main/java/org/keycloak/services/resources/IdentityBrokerService.java", "line": 408, "end_line": 437, "label": "broker login" },
+        { "path": "services/src/main/java/org/keycloak/broker/oidc/AbstractOAuth2IdentityProvider.java", "line": 210, "end_line": 210, "label": "performLogin" }
+      ] },
+    { "id": "ldap", "type": "external", "label": "LDAP / AD", "sublabel": "user federation", "pos": [1045, 40], "size": [130, 64],
+      "sources": [
+        { "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/LDAPStorageProvider.java", "line": 952, "end_line": 955, "label": "bind-validate password" }
+      ] },
+    { "id": "db", "type": "database", "label": "Relational DB", "sublabel": "JPA · Postgres/MySQL/…", "pos": [735, 540], "size": [160, 64],
+      "sources": [
+        { "path": "model/jpa/src/main/java/org/keycloak/models/jpa/JpaUserProvider.java", "line": 719, "end_line": 719, "label": "user lookup" },
+        { "path": "model/jpa/src/main/java/org/keycloak/models/jpa/session/JpaUserSessionPersisterProvider.java", "line": 86, "end_line": 105, "label": "persist session row" },
+        { "path": "model/jpa/src/main/java/org/keycloak/events/jpa/JpaEventStoreProvider.java", "line": 115, "end_line": 140, "label": "event store" }
+      ] }
+  ],
+  "boundaries": [
+    { "kind": "security-group", "label": "Keycloak server · Quarkus JVM (trusted)", "wraps": ["http", "oidc", "flow", "users", "sessions", "tokens"] },
+    { "kind": "region", "label": "Operator-managed data tier", "wraps": ["db"] }
+  ],
+  "connections": [
+    { "id": "c-browser-http", "from": "browser", "to": "http", "label": "HTTPS", "variant": "emphasis" },
+    { "id": "c-http-oidc", "from": "http", "to": "oidc", "label": "authorize", "variant": "emphasis" },
+    { "id": "c-oidc-flow", "from": "oidc", "to": "flow", "label": "browser flow", "variant": "emphasis" },
+    { "id": "c-flow-users", "from": "flow", "to": "users", "label": "verify credentials" },
+    { "id": "c-flow-idp", "from": "flow", "to": "idp", "label": "broker redirect", "variant": "dashed" },
+    { "id": "c-users-ldap", "from": "users", "to": "ldap", "label": "LDAP bind", "variant": "security" },
+    { "id": "c-users-db", "from": "users", "to": "db", "label": "JPA", "fromSide": "bottom", "toSide": "right" },
+    { "id": "c-flow-sessions", "from": "flow", "to": "sessions", "label": "create session", "variant": "emphasis" },
+    { "id": "c-sessions-db", "from": "sessions", "to": "db", "label": "persist" },
+    { "id": "c-sessions-tokens", "from": "sessions", "to": "tokens", "label": "claims", "variant": "emphasis" },
+    { "id": "c-tokens-rp", "from": "tokens", "to": "rp", "label": "signed tokens", "variant": "emphasis" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Primary path: authorization-code login", "items": [
+      "Browser hits /realms/{realm}/protocol/openid-connect/auth; AuthorizationEndpoint creates an auth session and starts the realm browser flow",
+      "Login forms are rendered by FreeMarker themes and posted back to /login-actions/authenticate",
+      "On success attachSession() creates the user session and the browser is redirected to the client with a code",
+      "The client exchanges the code back-channel at /token; TokenManager builds and signs ID, access and refresh tokens" ] },
+    { "dot": "rose", "title": "Trust boundaries", "items": [
+      "Browser and client apps are untrusted callers; confidential clients authenticate at /token",
+      "LDAP and external IdPs are separately operated trust domains reached over the network",
+      "The database and any remote Infinispan are operator-managed infrastructure" ] },
+    { "dot": "emerald", "title": "Storage and clustering", "items": [
+      "Realms, clients, users, credentials and events live in the relational DB via JPA",
+      "Sessions are held in Infinispan caches; persistent sessions also write rows through the JPA persister",
+      "Infinispan also carries realm/user caches and cluster invalidation" ] },
+    { "dot": "violet", "title": "Also on the same server", "items": [
+      "Admin REST (/admin) and admin console, authorized by bearer tokens via AdminRoot",
+      "Account console, SAML, client registration, SCIM and authorization services",
+      "EventBuilder fans out to event listeners and the JPA event store",
+      "Extensible through SPIs: authenticators, user storage, protocol mappers, themes" ] }
+  ]
+}

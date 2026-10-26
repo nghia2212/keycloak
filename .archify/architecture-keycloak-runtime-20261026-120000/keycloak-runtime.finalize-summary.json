@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "d:\\workspace1\\keycloak\\.archify\\architecture-keycloak-runtime-20261026-120000\\candidate.json",
+    "sha256": "501b402eb0a9674dc51a2ee9ea788530ac0a9b87b61f9a63835ebac9821f388e",
+    "bytes": 8889
+  },
+  "artifact": {
+    "path": "d:\\workspace1\\keycloak\\.archify\\architecture-keycloak-runtime-20261026-120000\\keycloak-runtime.html",
+    "sha256": "5c91f82575a87a3c4dbf1a5853fa60c38b2345eec2e1591a9e493109513769cd",
+    "bytes": 860018
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "D:\\workspace1\\keycloak\\.archify\\architecture-keycloak-runtime-20261026-120000\\keycloak-runtime.finalize.json",
+    "summaryReceipt": "D:\\workspace1\\keycloak\\.archify\\architecture-keycloak-runtime-20261026-120000\\keycloak-runtime.finalize-summary.json",
+    "browserCheckReceipt": "d:\\workspace1\\keycloak\\.archify\\architecture-keycloak-runtime-20261026-120000\\keycloak-runtime.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-26T02:14:15.730Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 2530,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  }
+}
