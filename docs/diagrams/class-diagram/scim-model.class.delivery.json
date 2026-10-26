@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "1af93d1e-5c21-429c-b1bf-516d2357964e",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\scim-model.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\scim-model.class.html",
+  "specification": {
+    "sha256": "f0d5c3903f937d36df9f22fcde0f51d6f685c240e49b52a09262285b6fa5fe52",
+    "bytes": 20554
+  },
+  "artifact": {
+    "sha256": "82d59bc133a21dd784dc82e7303e14c536671e74a65a34fe7f71389e10bd46c3",
+    "bytes": 910101
+  }
+}

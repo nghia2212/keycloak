@@ -1,0 +1,766 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "authz/client module types",
+    "output": "docs/diagrams/class-diagram/authz-client.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_ServerConfiguration",
+      "label": "ServerConfiguration",
+      "kind": "class",
+      "sublabel": "authorization.client.representation",
+      "row": 4,
+      "col": 0.5,
+      "attributes": [
+        {
+          "name": "issuer",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "authorizationEndpoint",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getIssuer",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getAuthorizationEndpoint",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getTokenEndpoint",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getIntrospectionEndpoint",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/representation/ServerConfiguration.java",
+          "line": 28,
+          "end_line": 123
+        }
+      ]
+    },
+    {
+      "id": "t_Configuration",
+      "label": "Configuration",
+      "kind": "class",
+      "sublabel": "authorization.client",
+      "row": 0,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "httpClient",
+          "type": "HttpClient",
+          "visibility": "private"
+        },
+        {
+          "name": "clientCredentialsProvider",
+          "type": "ClientCredentialsProvider",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getHttpClient",
+          "returns": "HttpClient",
+          "visibility": "public"
+        },
+        {
+          "name": "setHttpClient",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "httpClient"
+        },
+        {
+          "name": "setClientCredentialsProvider",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "clientCredentialsProvider"
+        },
+        {
+          "name": "getClientCredentialsProvider",
+          "returns": "ClientCredentialsProvider",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/Configuration.java",
+          "line": 33,
+          "end_line": 78
+        }
+      ]
+    },
+    {
+      "id": "t_Http",
+      "label": "Http",
+      "kind": "class",
+      "sublabel": "authorization.client.util",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "configuration",
+          "type": "Configuration",
+          "visibility": "private"
+        },
+        {
+          "name": "authenticator",
+          "type": "ClientCredentialsProvider",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "get",
+          "returns": "HttpMethod<R>",
+          "visibility": "public",
+          "parameters": "path"
+        },
+        {
+          "name": "post",
+          "returns": "HttpMethod<R>",
+          "visibility": "public",
+          "parameters": "path"
+        },
+        {
+          "name": "put",
+          "returns": "HttpMethod<R>",
+          "visibility": "public",
+          "parameters": "path"
+        },
+        {
+          "name": "delete",
+          "returns": "HttpMethod<R>",
+          "visibility": "public",
+          "parameters": "path"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/util/Http.java",
+          "line": 28,
+          "end_line": 50
+        }
+      ]
+    },
+    {
+      "id": "t_TokenCallable",
+      "label": "TokenCallable",
+      "kind": "class",
+      "sublabel": "authorization.client.util",
+      "row": 2,
+      "col": 0.5,
+      "attributes": [
+        {
+          "name": "userName",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "call",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "isTokenTimeToLiveSufficient",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "token"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/util/TokenCallable.java",
+          "line": 32,
+          "end_line": 109
+        }
+      ]
+    },
+    {
+      "id": "t_HttpMethod",
+      "label": "HttpMethod",
+      "kind": "class",
+      "sublabel": "authorization.client.util",
+      "row": 5,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "httpClient",
+          "type": "HttpClient",
+          "visibility": "private"
+        },
+        {
+          "name": "authenticator",
+          "type": "ClientCredentialsProvider",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "execute",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "authorizationBearer",
+          "returns": "HttpMethod<R>",
+          "visibility": "public",
+          "parameters": "bearer"
+        },
+        {
+          "name": "response",
+          "returns": "HttpMethodResponse<R>",
+          "visibility": "public"
+        },
+        {
+          "name": "authentication",
+          "returns": "HttpMethodAuthenticator<R>",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/util/HttpMethod.java",
+          "line": 45,
+          "end_line": 137
+        }
+      ]
+    },
+    {
+      "id": "t_HttpResponseProcessor",
+      "label": "HttpResponseProcessor",
+      "kind": "interface",
+      "sublabel": "authorization.client.util",
+      "row": 4,
+      "col": 3,
+      "methods": [
+        {
+          "name": "process",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "entity",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/util/HttpResponseProcessor.java",
+          "line": 23,
+          "end_line": 25
+        }
+      ]
+    },
+    {
+      "id": "t_Throwables",
+      "label": "Throwables",
+      "kind": "class",
+      "sublabel": "authorization.client.util",
+      "row": 3,
+      "col": 1,
+      "methods": [
+        {
+          "name": "handleWrapException",
+          "returns": "RuntimeException",
+          "visibility": "public",
+          "parameters": "message, cause",
+          "static": true
+        },
+        {
+          "name": "retryAndWrapExceptionIfNecessary",
+          "returns": "V",
+          "visibility": "public",
+          "parameters": "callable, token, message, c…",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/util/Throwables.java",
+          "line": 28,
+          "end_line": 64
+        }
+      ]
+    },
+    {
+      "id": "t_AuthzClient",
+      "label": "AuthzClient",
+      "kind": "class",
+      "sublabel": "This is class serves as an entry point…",
+      "row": 2,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "http",
+          "type": "Http",
+          "visibility": "private"
+        },
+        {
+          "name": "patSupplier",
+          "type": "TokenCallable",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "AuthzClient",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "protection",
+          "returns": "ProtectionResource",
+          "visibility": "public"
+        },
+        {
+          "name": "authorization",
+          "returns": "AuthorizationResource",
+          "visibility": "public"
+        },
+        {
+          "name": "obtainAccessToken",
+          "returns": "AccessTokenResponse",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/AuthzClient.java",
+          "line": 46,
+          "end_line": 195
+        }
+      ]
+    },
+    {
+      "id": "t_HttpMethodResponse",
+      "label": "HttpMethodResponse",
+      "kind": "class",
+      "sublabel": "authorization.client.util",
+      "row": 4,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "method",
+          "type": "HttpMethod<R>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "execute",
+          "returns": "R",
+          "visibility": "public"
+        },
+        {
+          "name": "json",
+          "returns": "HttpMethodResponse<R>",
+          "visibility": "public",
+          "parameters": "responseType"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/util/HttpMethodResponse.java",
+          "line": 30,
+          "end_line": 47
+        }
+      ]
+    },
+    {
+      "id": "t_ProtectedResource",
+      "label": "ProtectedResource",
+      "kind": "class",
+      "sublabel": "An entry point for managing resources u…",
+      "row": 2,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "http",
+          "type": "Http",
+          "visibility": "private"
+        },
+        {
+          "name": "serverConfiguration",
+          "type": "ServerConfiguration",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "ResourceRepresentation",
+          "visibility": "public",
+          "parameters": "resource"
+        },
+        {
+          "name": "update",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "resource"
+        },
+        {
+          "name": "findById",
+          "returns": "ResourceRepresentation",
+          "visibility": "public",
+          "parameters": "id"
+        },
+        {
+          "name": "findByName",
+          "returns": "ResourceRepresentation",
+          "visibility": "public",
+          "parameters": "name"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/resource/ProtectedResource.java",
+          "line": 41,
+          "end_line": 133
+        }
+      ]
+    },
+    {
+      "id": "t_PermissionResource",
+      "label": "PermissionResource",
+      "kind": "class",
+      "sublabel": "An entry point for managing permission…",
+      "row": 5,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "http",
+          "type": "Http",
+          "visibility": "private"
+        },
+        {
+          "name": "serverConfiguration",
+          "type": "ServerConfiguration",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "forResource",
+          "returns": "PermissionResponse",
+          "visibility": "public",
+          "parameters": "request"
+        },
+        {
+          "name": "count",
+          "returns": "Long",
+          "visibility": "public",
+          "parameters": "resourceId, scopeId, owner,…"
+        },
+        {
+          "name": "create",
+          "returns": "PermissionResponse",
+          "visibility": "public",
+          "parameters": "request"
+        },
+        {
+          "name": "findByScope",
+          "returns": "List",
+          "visibility": "public",
+          "parameters": "scopeId"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/resource/PermissionResource.java",
+          "line": 40,
+          "end_line": 166
+        }
+      ]
+    },
+    {
+      "id": "t_HttpMethodAuthenticator",
+      "label": "HttpMethodAuthenticator",
+      "kind": "class",
+      "sublabel": "authorization.client.util",
+      "row": 6,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "method",
+          "type": "HttpMethod<R>",
+          "visibility": "private"
+        },
+        {
+          "name": "clientCredentialProvider",
+          "type": "ClientCredentialsProvider",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "client",
+          "returns": "HttpMethod<R>",
+          "visibility": "public"
+        },
+        {
+          "name": "oauth2ResourceOwnerPassword",
+          "returns": "HttpMethod<R>",
+          "visibility": "public",
+          "parameters": "userName, password"
+        },
+        {
+          "name": "uma",
+          "returns": "HttpMethod<R>",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/util/HttpMethodAuthenticator.java",
+          "line": 40,
+          "end_line": 70
+        }
+      ]
+    },
+    {
+      "id": "t_PolicyResource",
+      "label": "PolicyResource",
+      "kind": "class",
+      "sublabel": "An entry point for managing user-manage…",
+      "row": 5,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "resourceId",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "http",
+          "type": "Http",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "UmaPermissionRepresentation",
+          "visibility": "public",
+          "parameters": "permission"
+        },
+        {
+          "name": "update",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "permission"
+        },
+        {
+          "name": "delete",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "id"
+        },
+        {
+          "name": "find",
+          "returns": "List",
+          "visibility": "public",
+          "parameters": "name, scope, firstResult, m…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/resource/PolicyResource.java",
+          "line": 38,
+          "end_line": 141
+        }
+      ]
+    },
+    {
+      "id": "t_ProtectionResource",
+      "label": "ProtectionResource",
+      "kind": "class",
+      "sublabel": "An entry point to access the Protection…",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "pat",
+          "type": "TokenCallable",
+          "visibility": "private"
+        },
+        {
+          "name": "http",
+          "type": "Http",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "resource",
+          "returns": "ProtectedResource",
+          "visibility": "public"
+        },
+        {
+          "name": "permission",
+          "returns": "PermissionResource",
+          "visibility": "public"
+        },
+        {
+          "name": "policy",
+          "returns": "PolicyResource",
+          "visibility": "public",
+          "parameters": "resourceId"
+        },
+        {
+          "name": "introspectRequestingPartyToken",
+          "returns": "TokenIntrospectionResponse",
+          "visibility": "public",
+          "parameters": "rpt"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/client/src/main/java/org/keycloak/authorization/client/resource/ProtectionResource.java",
+          "line": 31,
+          "end_line": 77
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_Http_Configuration",
+      "from": "t_Http",
+      "to": "t_Configuration",
+      "kind": "association"
+    },
+    {
+      "id": "r1_TokenCallable_Http",
+      "from": "t_TokenCallable",
+      "to": "t_Http",
+      "kind": "association"
+    },
+    {
+      "id": "r2_AuthzClient_Http",
+      "from": "t_AuthzClient",
+      "to": "t_Http",
+      "kind": "association"
+    },
+    {
+      "id": "r3_ProtectedResource_Http",
+      "from": "t_ProtectedResource",
+      "to": "t_Http",
+      "kind": "association"
+    },
+    {
+      "id": "r4_PermissionResource_ServerConfiguration",
+      "from": "t_PermissionResource",
+      "to": "t_ServerConfiguration",
+      "kind": "association"
+    },
+    {
+      "id": "r5_PolicyResource_ServerConfiguration",
+      "from": "t_PolicyResource",
+      "to": "t_ServerConfiguration",
+      "kind": "association"
+    },
+    {
+      "id": "r6_ProtectionResource_TokenCallable",
+      "from": "t_ProtectionResource",
+      "to": "t_TokenCallable",
+      "kind": "association"
+    },
+    {
+      "id": "r7_HttpMethod_HttpMethodResponse",
+      "from": "t_HttpMethod",
+      "to": "t_HttpMethodResponse",
+      "kind": "association"
+    },
+    {
+      "id": "r8_HttpMethodAuthenticator_HttpMethod",
+      "from": "t_HttpMethodAuthenticator",
+      "to": "t_HttpMethod",
+      "kind": "association"
+    },
+    {
+      "id": "r9_Throwables_TokenCallable",
+      "from": "t_Throwables",
+      "to": "t_TokenCallable",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module authz/client/ (keycloak-authz-client-tests): 21 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "authorization.client.util (8)",
+        "authorization.client (5)",
+        "authorization.client.resource (5)",
+        "authorization.client.representation (2)",
+        "authorization.client.util.crypto (1)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "TokenCallable has a Configuration",
+        "TokenCallable has a ServerConfiguration",
+        "AuthzClient has a TokenCallable",
+        "AuthzClient has a ServerConfiguration",
+        "AuthzClient has a Configuration",
+        "ProtectedResource has a ServerConfiguration",
+        "ProtectedResource has a Configuration",
+        "ProtectedResource has a TokenCallable",
+        "PermissionResource has a Http",
+        "PermissionResource has a TokenCallable",
+        "…and 11 more"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "HttpResponseException, TokenIntrospectionResponse, AuthzClientCryptoProvider, AuthorizationResource, AuthorizationDeniedException, ResourceNotFoundException, ClientAuthorizationContext"
+      ]
+    }
+  ]
+}

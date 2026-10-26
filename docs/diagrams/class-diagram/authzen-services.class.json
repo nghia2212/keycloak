@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "authzen/services module types",
+    "output": "docs/diagrams/class-diagram/authzen-services.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_AuthZen",
+      "label": "AuthZen",
+      "kind": "class",
+      "sublabel": "authorization.authzen",
+      "row": 0,
+      "col": 0,
+      "methods": [
+        {
+          "name": "Subject",
+          "returns": "record",
+          "visibility": "public",
+          "parameters": "true"
+        },
+        {
+          "name": "Resource",
+          "returns": "record",
+          "visibility": "public",
+          "parameters": "true"
+        },
+        {
+          "name": "Action",
+          "returns": "record",
+          "visibility": "public",
+          "parameters": "name"
+        },
+        {
+          "name": "EvaluationRequest",
+          "returns": "record",
+          "visibility": "public",
+          "parameters": "true"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authzen/services/src/main/java/org/keycloak/authorization/authzen/AuthZen.java",
+          "line": 29,
+          "end_line": 80
+        }
+      ]
+    },
+    {
+      "id": "t_AuthZenRealmResourceProviderFactory",
+      "label": "AuthZenRealmResourceProviderFactory",
+      "kind": "class",
+      "sublabel": "authorization.authzen",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "RealmResourceProvider",
+          "visibility": "public",
+          "parameters": "session"
+        },
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "config"
+        },
+        {
+          "name": "postInit",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "factory"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authzen/services/src/main/java/org/keycloak/authorization/authzen/AuthZenRealmResourceProviderFactory.java",
+          "line": 28,
+          "end_line": 46
+        }
+      ]
+    },
+    {
+      "id": "t_AuthZenWellKnownProvider",
+      "label": "AuthZenWellKnownProvider",
+      "kind": "class",
+      "sublabel": "authorization.authzen",
+      "row": 0,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getConfig",
+          "returns": "Object",
+          "visibility": "public"
+        },
+        {
+          "name": "accessEvaluationEndpoint",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "realmUri",
+          "static": true
+        },
+        {
+          "name": "accessEvaluationsEndpoint",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "realmUri",
+          "static": true
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authzen/services/src/main/java/org/keycloak/authorization/authzen/AuthZenWellKnownProvider.java",
+          "line": 27,
+          "end_line": 56
+        }
+      ]
+    },
+    {
+      "id": "t_AuthZenRealmResourceProvider",
+      "label": "AuthZenRealmResourceProvider",
+      "kind": "class",
+      "sublabel": "authorization.authzen",
+      "row": 0,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getResource",
+          "returns": "Object",
+          "visibility": "public"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authzen/services/src/main/java/org/keycloak/authorization/authzen/AuthZenRealmResourceProvider.java",
+          "line": 22,
+          "end_line": 36
+        }
+      ]
+    },
+    {
+      "id": "t_AuthZenResource",
+      "label": "AuthZenResource",
+      "kind": "class",
+      "sublabel": "authorization.authzen",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "evaluate",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "request"
+        },
+        {
+          "name": "evaluations",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "request"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authzen/services/src/main/java/org/keycloak/authorization/authzen/AuthZenResource.java",
+          "line": 61,
+          "end_line": 89
+        }
+      ]
+    },
+    {
+      "id": "t_AuthZenWellKnownProviderFactory",
+      "label": "AuthZenWellKnownProviderFactory",
+      "kind": "class",
+      "sublabel": "authorization.authzen",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "WellKnownProvider",
+          "visibility": "public",
+          "parameters": "session"
+        },
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "config"
+        },
+        {
+          "name": "postInit",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "factory"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authzen/services/src/main/java/org/keycloak/authorization/authzen/AuthZenWellKnownProviderFactory.java",
+          "line": 28,
+          "end_line": 46
+        }
+      ]
+    },
+    {
+      "id": "t_AuthZenRequestIdFilter",
+      "label": "AuthZenRequestIdFilter",
+      "kind": "class",
+      "sublabel": "Echoes the X-Request-ID request header…",
+      "row": 1,
+      "col": 2,
+      "methods": [
+        {
+          "name": "filter",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "requestContext, responseCon…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authzen/services/src/main/java/org/keycloak/authorization/authzen/AuthZenRequestIdFilter.java",
+          "line": 34,
+          "end_line": 40
+        }
+      ]
+    }
+  ],
+  "relationships": [],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module authzen/services/ (keycloak-authzen-services): 7 public types, 7 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "authorization.authzen (7)"
+      ]
+    }
+  ]
+}

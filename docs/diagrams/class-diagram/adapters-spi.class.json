@@ -1,0 +1,424 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "adapters/spi module types",
+    "output": "docs/diagrams/class-diagram/adapters-spi.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_SessionIdMapper",
+      "label": "SessionIdMapper",
+      "kind": "interface",
+      "sublabel": "adapters.spi",
+      "row": 0,
+      "col": 0.5,
+      "methods": [
+        {
+          "name": "hasSession",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "id",
+          "abstract": true
+        },
+        {
+          "name": "clear",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "map",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "sso, principal, session",
+          "abstract": true
+        },
+        {
+          "name": "removeSession",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/spi/adapter-spi/src/main/java/org/keycloak/adapters/spi/SessionIdMapper.java",
+          "line": 26,
+          "end_line": 65
+        }
+      ]
+    },
+    {
+      "id": "t_HttpFacade",
+      "label": "HttpFacade",
+      "kind": "interface",
+      "sublabel": "adapters.spi",
+      "row": 0,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getRequest",
+          "returns": "Request",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getResponse",
+          "returns": "Response",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getCertificateChain",
+          "returns": "X509Certificate[]",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/spi/adapter-spi/src/main/java/org/keycloak/adapters/spi/HttpFacade.java",
+          "line": 29,
+          "end_line": 34
+        }
+      ]
+    },
+    {
+      "id": "t_KeycloakAccount",
+      "label": "KeycloakAccount",
+      "kind": "interface",
+      "sublabel": "adapters.spi",
+      "row": 0,
+      "col": 3,
+      "methods": [
+        {
+          "name": "getPrincipal",
+          "returns": "Principal",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getRoles",
+          "returns": "Set<String>",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/spi/adapter-spi/src/main/java/org/keycloak/adapters/spi/KeycloakAccount.java",
+          "line": 27,
+          "end_line": 30
+        }
+      ]
+    },
+    {
+      "id": "t_AuthenticationError",
+      "label": "AuthenticationError",
+      "kind": "interface",
+      "sublabel": "Common marker interface used by keycloa…",
+      "row": 2,
+      "col": 0,
+      "sources": [
+        {
+          "path": "adapters/spi/adapter-spi/src/main/java/org/keycloak/adapters/spi/AuthenticationError.java",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "id": "t_LogoutError",
+      "label": "LogoutError",
+      "kind": "interface",
+      "sublabel": "Common marker interface used by keycloa…",
+      "row": 2,
+      "col": 1,
+      "sources": [
+        {
+          "path": "adapters/spi/adapter-spi/src/main/java/org/keycloak/adapters/spi/LogoutError.java",
+          "line": 28
+        }
+      ]
+    },
+    {
+      "id": "t_SessionIdMapperUpdater",
+      "label": "SessionIdMapperUpdater",
+      "kind": "interface",
+      "sublabel": "Classes implementing this interface rep…",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "clear",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "idMapper",
+          "abstract": true
+        },
+        {
+          "name": "map",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "idMapper, sso, principal, s…",
+          "abstract": true
+        },
+        {
+          "name": "removeSession",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "idMapper, session",
+          "abstract": true
+        },
+        {
+          "name": "refreshMapping",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "idMapper, httpSessionId",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/spi/adapter-spi/src/main/java/org/keycloak/adapters/spi/SessionIdMapperUpdater.java",
+          "line": 23,
+          "end_line": 88
+        }
+      ]
+    },
+    {
+      "id": "t_AdapterSessionStore",
+      "label": "AdapterSessionStore",
+      "kind": "interface",
+      "sublabel": "adapters.spi",
+      "row": 2,
+      "col": 2,
+      "methods": [
+        {
+          "name": "saveRequest",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "restoreRequest",
+          "returns": "boolean",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/spi/adapter-spi/src/main/java/org/keycloak/adapters/spi/AdapterSessionStore.java",
+          "line": 24,
+          "end_line": 26
+        }
+      ]
+    },
+    {
+      "id": "t_AuthChallenge",
+      "label": "AuthChallenge",
+      "kind": "interface",
+      "sublabel": "adapters.spi",
+      "row": 1,
+      "col": 2,
+      "methods": [
+        {
+          "name": "challenge",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "exchange",
+          "abstract": true
+        },
+        {
+          "name": "getResponseCode",
+          "returns": "int",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/spi/adapter-spi/src/main/java/org/keycloak/adapters/spi/AuthChallenge.java",
+          "line": 24,
+          "end_line": 37
+        }
+      ]
+    },
+    {
+      "id": "t_UserSessionManagement",
+      "label": "UserSessionManagement",
+      "kind": "interface",
+      "sublabel": "adapters.spi",
+      "row": 2,
+      "col": 3,
+      "methods": [
+        {
+          "name": "logoutAll",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "logoutHttpSessions",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "ids",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/spi/adapter-spi/src/main/java/org/keycloak/adapters/spi/UserSessionManagement.java",
+          "line": 26,
+          "end_line": 30
+        }
+      ]
+    },
+    {
+      "id": "t_InMemorySessionIdMapper",
+      "label": "InMemorySessionIdMapper",
+      "kind": "class",
+      "sublabel": "Maps external principal and SSO id to i…",
+      "row": 1,
+      "col": 0,
+      "methods": [
+        {
+          "name": "hasSession",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "id"
+        },
+        {
+          "name": "clear",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "map",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "sso, principal, session"
+        },
+        {
+          "name": "removeSession",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session"
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/spi/adapter-spi/src/main/java/org/keycloak/adapters/spi/InMemorySessionIdMapper.java",
+          "line": 33,
+          "end_line": 95
+        }
+      ]
+    },
+    {
+      "id": "t_KeycloakLoginModule",
+      "label": "KeycloakLoginModule",
+      "kind": "class",
+      "sublabel": "adapters.jboss",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "roleSet",
+          "type": "Set<String>",
+          "visibility": "protected"
+        },
+        {
+          "name": "identity",
+          "type": "Principal",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "login",
+          "returns": "boolean",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/spi/jboss-adapter-core/src/main/java/org/keycloak/adapters/jboss/KeycloakLoginModule.java",
+          "line": 40,
+          "end_line": 48
+        }
+      ]
+    },
+    {
+      "id": "t_AuthOutcome",
+      "label": "AuthOutcome",
+      "kind": "enum",
+      "sublabel": "adapters.spi",
+      "row": 3,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "NOT_ATTEMPTED",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/spi/adapter-spi/src/main/java/org/keycloak/adapters/spi/AuthOutcome.java",
+          "line": 24,
+          "end_line": 25
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_InMemorySessionIdMapper_SessionIdMapper",
+      "from": "t_InMemorySessionIdMapper",
+      "to": "t_SessionIdMapper",
+      "kind": "realization"
+    },
+    {
+      "id": "r1_SessionIdMapperUpdater_SessionIdMapper",
+      "from": "t_SessionIdMapperUpdater",
+      "to": "t_SessionIdMapper",
+      "kind": "dependency"
+    },
+    {
+      "id": "r2_AuthChallenge_HttpFacade",
+      "from": "t_AuthChallenge",
+      "to": "t_HttpFacade",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module adapters/spi/ (keycloak-client-adapter-spi-pom): 12 public types, 12 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "adapters.spi (11)",
+        "adapters.jboss (1)"
+      ]
+    }
+  ]
+}

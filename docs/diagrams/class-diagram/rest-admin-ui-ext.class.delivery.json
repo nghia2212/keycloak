@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "ffca99d3-ef58-4fc1-8013-c2a895b0572c",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\rest-admin-ui-ext.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\rest-admin-ui-ext.class.html",
+  "specification": {
+    "sha256": "2d1170b214df5f166a164efa2b590ff16abfc612b3f5ae96feada30d8484445a",
+    "bytes": 17342
+  },
+  "artifact": {
+    "sha256": "34c0e36d49b3587f8d823f46404f3d012048d7eda3e7addfac95999b2231ecb5",
+    "bytes": 899275
+  }
+}

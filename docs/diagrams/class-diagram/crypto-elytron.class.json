@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "crypto/elytron module types",
+    "output": "docs/diagrams/class-diagram/crypto-elytron.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_JWEAlgorithmProvider",
+      "label": "JWEAlgorithmProvider",
+      "kind": "interface",
+      "sublabel": "from core/",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "decodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encodedCek, encryptionKey,…",
+          "abstract": true
+        },
+        {
+          "name": "encodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encryptionProvider, keyStor…",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/jose/jwe/alg/JWEAlgorithmProvider.java",
+          "line": 30,
+          "end_line": 34
+        }
+      ]
+    },
+    {
+      "id": "t_ElytronRsaKeyEncryptionJWEAlgorithmProvider",
+      "label": "ElytronRsaKeyEncryptionJWEAlgorithmProvider",
+      "kind": "class",
+      "sublabel": "crypto.elytron",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "jcaAlgorithmName",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "decodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encodedCek, privateKey, hea…"
+        },
+        {
+          "name": "encodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encryptionProvider, keyStor…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/elytron/src/main/java/org/keycloak/crypto/elytron/ElytronRsaKeyEncryptionJWEAlgorithmProvider.java",
+          "line": 31,
+          "end_line": 47
+        }
+      ]
+    },
+    {
+      "id": "t_WildFlyElytronProvider",
+      "label": "WildFlyElytronProvider",
+      "kind": "class",
+      "sublabel": "crypto.elytron",
+      "row": 4,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "providers",
+          "type": "Map<String,Object>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getBouncyCastleProvider",
+          "returns": "Provider",
+          "visibility": "public"
+        },
+        {
+          "name": "order",
+          "returns": "int",
+          "visibility": "public"
+        },
+        {
+          "name": "createECParams",
+          "returns": "ECParameterSpec",
+          "visibility": "public",
+          "parameters": "curveName"
+        },
+        {
+          "name": "wrapFactoryForTruststore",
+          "returns": "SSLSocketFactory",
+          "visibility": "public",
+          "parameters": "delegate"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/elytron/src/main/java/org/keycloak/crypto/elytron/WildFlyElytronProvider.java",
+          "line": 55,
+          "end_line": 205
+        }
+      ]
+    },
+    {
+      "id": "t_ElytronCertificateUtilsProvider",
+      "label": "ElytronCertificateUtilsProvider",
+      "kind": "class",
+      "sublabel": "The Class CertificateUtils provides uti…",
+      "row": 3,
+      "col": 0,
+      "methods": [
+        {
+          "name": "generateV3Certificate",
+          "returns": "X509Certificate",
+          "visibility": "public",
+          "parameters": "keyPair, caPrivateKey, caCe…"
+        },
+        {
+          "name": "generateV1SelfSignedCertificate",
+          "returns": "X509Certificate",
+          "visibility": "public",
+          "parameters": "caKeyPair, subject"
+        },
+        {
+          "name": "getCertificatePolicyList",
+          "returns": "List<String>",
+          "visibility": "public",
+          "parameters": "cert"
+        },
+        {
+          "name": "createServicesTestCertificate",
+          "returns": "X509Certificate",
+          "visibility": "public",
+          "parameters": "dn, startDate, expiryDate,…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/elytron/src/main/java/org/keycloak/crypto/elytron/ElytronCertificateUtilsProvider.java",
+          "line": 65,
+          "end_line": 321
+        }
+      ]
+    },
+    {
+      "id": "t_ElytronEcdhEsAlgorithmProvider",
+      "label": "ElytronEcdhEsAlgorithmProvider",
+      "kind": "class",
+      "sublabel": "ECDH Ephemeral Static Algorithm Provider",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "decodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encodedCek, encryptionKey,…"
+        },
+        {
+          "name": "encodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encryptionProvider, keyStor…"
+        },
+        {
+          "name": "deriveKey",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "publicKey, privateKey, keyD…",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/elytron/src/main/java/org/keycloak/crypto/elytron/ElytronEcdhEsAlgorithmProvider.java",
+          "line": 64,
+          "end_line": 134
+        }
+      ]
+    },
+    {
+      "id": "t_ElytronECDSACryptoProvider",
+      "label": "ElytronECDSACryptoProvider",
+      "kind": "class",
+      "sublabel": "crypto.elytron",
+      "row": 3,
+      "col": 1,
+      "methods": [
+        {
+          "name": "concatenatedRSToASN1DER",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "signature, signLength"
+        },
+        {
+          "name": "asn1derToConcatenatedRS",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "derEncodedSignatureValue, s…"
+        },
+        {
+          "name": "getPublicFromPrivate",
+          "returns": "ECPublicKey",
+          "visibility": "public",
+          "parameters": "ecPrivateKey"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/elytron/src/main/java/org/keycloak/crypto/elytron/ElytronECDSACryptoProvider.java",
+          "line": 33,
+          "end_line": 78
+        }
+      ]
+    },
+    {
+      "id": "t_AesKeyWrapAlgorithmProvider",
+      "label": "AesKeyWrapAlgorithmProvider",
+      "kind": "class",
+      "sublabel": "crypto.elytron",
+      "row": 1,
+      "col": 2,
+      "methods": [
+        {
+          "name": "decodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encodedCek, encryptionKey,…"
+        },
+        {
+          "name": "encodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encryptionProvider, keyStor…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/elytron/src/main/java/org/keycloak/crypto/elytron/AesKeyWrapAlgorithmProvider.java",
+          "line": 32,
+          "end_line": 42
+        }
+      ]
+    },
+    {
+      "id": "t_ElytronUserIdentityExtractorProvider",
+      "label": "ElytronUserIdentityExtractorProvider",
+      "kind": "class",
+      "sublabel": "crypto.elytron",
+      "row": 3,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "log",
+          "type": "Logger",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getX500NameExtractor",
+          "returns": "UserIdentityExtractor",
+          "visibility": "public",
+          "parameters": "identifier, Function<X509Ce…"
+        },
+        {
+          "name": "getSubjectAltNameExtractor",
+          "returns": "SubjectAltNameExtractor",
+          "visibility": "public",
+          "parameters": "generalName"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/elytron/src/main/java/org/keycloak/crypto/elytron/ElytronUserIdentityExtractorProvider.java",
+          "line": 41,
+          "end_line": 200
+        }
+      ]
+    },
+    {
+      "id": "t_ElytronPEMUtilsProvider",
+      "label": "ElytronPEMUtilsProvider",
+      "kind": "class",
+      "sublabel": "crypto.elytron",
+      "row": 4,
+      "col": 0,
+      "methods": [
+        {
+          "name": "decodePrivateKey",
+          "returns": "PrivateKey",
+          "visibility": "public",
+          "parameters": "pem"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/elytron/src/main/java/org/keycloak/crypto/elytron/ElytronPEMUtilsProvider.java",
+          "line": 34,
+          "end_line": 58
+        }
+      ]
+    },
+    {
+      "id": "t_ElytronOCSPProvider",
+      "label": "ElytronOCSPProvider",
+      "kind": "class",
+      "sublabel": "crypto.elytron",
+      "row": 4,
+      "col": 1,
+      "sources": [
+        {
+          "path": "crypto/elytron/src/main/java/org/keycloak/crypto/elytron/ElytronOCSPProvider.java",
+          "line": 57
+        }
+      ]
+    },
+    {
+      "id": "t_ElytronRsaKeyEncryption256JWEAlgorithmProvider",
+      "label": "ElytronRsaKeyEncryption256JWEAlgorithmProvider",
+      "kind": "class",
+      "sublabel": "crypto.elytron",
+      "row": 2,
+      "col": 0,
+      "sources": [
+        {
+          "path": "crypto/elytron/src/main/java/org/keycloak/crypto/elytron/ElytronRsaKeyEncryption256JWEAlgorithmProvider.java",
+          "line": 30
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_ElytronRsaKeyEncryption256JWEAlgorithmProvider_ElytronRsaKeyEncryptionJWEAlgorithmProvider",
+      "from": "t_ElytronRsaKeyEncryption256JWEAlgorithmProvider",
+      "to": "t_ElytronRsaKeyEncryptionJWEAlgorithmProvider",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_ElytronRsaKeyEncryptionJWEAlgorithmProvider_JWEAlgorithmProvider",
+      "from": "t_ElytronRsaKeyEncryptionJWEAlgorithmProvider",
+      "to": "t_JWEAlgorithmProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r2_ElytronEcdhEsAlgorithmProvider_JWEAlgorithmProvider",
+      "from": "t_ElytronEcdhEsAlgorithmProvider",
+      "to": "t_JWEAlgorithmProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r3_AesKeyWrapAlgorithmProvider_JWEAlgorithmProvider",
+      "from": "t_AesKeyWrapAlgorithmProvider",
+      "to": "t_JWEAlgorithmProvider",
+      "kind": "realization"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module crypto/elytron/ (keycloak-crypto-elytron): 10 public types, 10 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection",
+        "JWEAlgorithmProvider: supertypes from other modules (sublabel \"from …\")"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "crypto.elytron (10)",
+        "jose.jwe.alg (1)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "ed79365f-243a-4a7d-a5e4-19fc462e1948",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\crypto-fips1402.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\crypto-fips1402.class.html",
+  "specification": {
+    "sha256": "0cc887df059eba9a7b399a745127966dca579c8e678970ad72c49062cd281257",
+    "bytes": 11452
+  },
+  "artifact": {
+    "sha256": "b9e4d91a21edd0f2903c590746f90f6bad9309754b8db8648a032a5770444bfd",
+    "bytes": 872545
+  }
+}

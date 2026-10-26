@@ -1,0 +1,783 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "scim/model module types",
+    "output": "docs/diagrams/class-diagram/scim-model.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_AbstractModelSchema",
+      "label": "AbstractModelSchema",
+      "kind": "abstract",
+      "sublabel": "from scim/core/",
+      "row": 0,
+      "col": 1.5,
+      "methods": [
+        {
+          "name": "populate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "model, representation"
+        },
+        {
+          "name": "validate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "representation"
+        },
+        {
+          "name": "add",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "model, rawPath, value"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/schema/AbstractModelSchema.java",
+          "line": 38,
+          "end_line": 89
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractScimResourceTypeProvider",
+      "label": "AbstractScimResourceTypeProvider",
+      "kind": "abstract",
+      "sublabel": "from scim/core/",
+      "row": 7,
+      "col": 2,
+      "methods": [
+        {
+          "name": "patch",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "existing, operations"
+        },
+        {
+          "name": "getSchema",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getSchemaExtensions",
+          "returns": "List<String>",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/spi/AbstractScimResourceTypeProvider.java",
+          "line": 22,
+          "end_line": 96
+        }
+      ]
+    },
+    {
+      "id": "t_ScimAttributeJpaExpressionResolver",
+      "label": "ScimAttributeJpaExpressionResolver",
+      "kind": "interface",
+      "sublabel": "A functional interface that defines a m…",
+      "row": 4,
+      "col": 0.5,
+      "methods": [
+        {
+          "name": "getAttributeExpression",
+          "returns": "Expression<?>",
+          "visibility": "public",
+          "parameters": "Attribute<?, attribute, cb,…",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/filter/ScimAttributeJpaExpressionResolver.java",
+          "line": 16,
+          "end_line": 41
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractUserModelSchema",
+      "label": "AbstractUserModelSchema",
+      "kind": "abstract",
+      "sublabel": "scim.model.user",
+      "row": 1,
+      "col": 0.5,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "private"
+        },
+        {
+          "name": "metadataProfile",
+          "type": "UserProfile",
+          "visibility": "private"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/user/AbstractUserModelSchema.java",
+          "line": 26,
+          "end_line": 30
+        }
+      ]
+    },
+    {
+      "id": "t_ScimJPAPredicateEvaluator",
+      "label": "ScimJPAPredicateEvaluator",
+      "kind": "class",
+      "sublabel": "Visitor that converts an SCIM filter AS…",
+      "row": 6,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "cb",
+          "type": "CriteriaBuilder",
+          "visibility": "private"
+        },
+        {
+          "name": "predicateProvider",
+          "type": "ScimJPAPredicateProvider",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "visitFilter",
+          "returns": "JPAFilterResult",
+          "visibility": "public",
+          "parameters": "ctx"
+        },
+        {
+          "name": "visitExpression",
+          "returns": "JPAFilterResult",
+          "visibility": "public",
+          "parameters": "ctx"
+        },
+        {
+          "name": "visitAndExpression",
+          "returns": "JPAFilterResult",
+          "visibility": "public",
+          "parameters": "ctx"
+        },
+        {
+          "name": "visitNotExpression",
+          "returns": "JPAFilterResult",
+          "visibility": "public",
+          "parameters": "ctx"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/filter/ScimJPAPredicateEvaluator.java",
+          "line": 20,
+          "end_line": 82
+        }
+      ]
+    },
+    {
+      "id": "t_UserExtensionModelSchema",
+      "label": "UserExtensionModelSchema",
+      "kind": "class",
+      "sublabel": "scim.model.user",
+      "row": 2,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getName",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getDescription",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "isCore",
+          "returns": "boolean",
+          "visibility": "public"
+        },
+        {
+          "name": "supports",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "schemas"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/user/UserExtensionModelSchema.java",
+          "line": 25,
+          "end_line": 58
+        }
+      ]
+    },
+    {
+      "id": "t_UserModelAttributeRecorder",
+      "label": "UserModelAttributeRecorder",
+      "kind": "class",
+      "sublabel": "scim.model.user",
+      "row": 7,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "attributes",
+          "type": "Map<String,List<String>>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "setSingleAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "name, value"
+        },
+        {
+          "name": "setAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "name, values"
+        },
+        {
+          "name": "removeAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "name"
+        },
+        {
+          "name": "setUsername",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "username"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/user/UserModelAttributeRecorder.java",
+          "line": 12,
+          "end_line": 37
+        }
+      ]
+    },
+    {
+      "id": "t_ServiceProviderConfigResourceTypeProvider",
+      "label": "ServiceProviderConfigResourceTypeProvider",
+      "kind": "class",
+      "sublabel": "scim.model.config",
+      "row": 7,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getSingleton",
+          "returns": "ServiceProviderConfig",
+          "visibility": "public"
+        },
+        {
+          "name": "getAll",
+          "returns": "Stream<ServiceProviderConfig>",
+          "visibility": "public",
+          "parameters": "searchOptions"
+        },
+        {
+          "name": "getResourceType",
+          "returns": "Class<ServiceProviderConfig>",
+          "visibility": "public"
+        },
+        {
+          "name": "getSchema",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/config/ServiceProviderConfigResourceTypeProvider.java",
+          "line": 20,
+          "end_line": 80
+        }
+      ]
+    },
+    {
+      "id": "t_JPAFilterResult",
+      "label": "JPAFilterResult",
+      "kind": "record",
+      "sublabel": "A record that encapsulates the result o…",
+      "row": 4,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "predicate",
+          "type": "Predicate",
+          "visibility": "private"
+        },
+        {
+          "name": "unsupported",
+          "type": "boolean",
+          "visibility": "private"
+        },
+        {
+          "name": "authzProtected",
+          "type": "boolean",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "valid",
+          "returns": "JPAFilterResult",
+          "visibility": "public",
+          "parameters": "p",
+          "static": true
+        },
+        {
+          "name": "unsupported",
+          "returns": "JPAFilterResult",
+          "visibility": "public",
+          "parameters": "p",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/filter/JPAFilterResult.java",
+          "line": 19,
+          "end_line": 29
+        }
+      ]
+    },
+    {
+      "id": "t_UserResourceTypeProvider",
+      "label": "UserResourceTypeProvider",
+      "kind": "class",
+      "sublabel": "scim.model.user",
+      "row": 5,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "schema",
+          "type": "UserCoreModelSchema",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "pollMembershipChanges",
+          "returns": "List<MembershipChange>",
+          "visibility": "public"
+        },
+        {
+          "name": "onCreate",
+          "returns": "User",
+          "visibility": "public",
+          "parameters": "resource"
+        },
+        {
+          "name": "update",
+          "returns": "User",
+          "visibility": "public",
+          "parameters": "resource"
+        },
+        {
+          "name": "patch",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "existing, operations"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/user/UserResourceTypeProvider.java",
+          "line": 58,
+          "end_line": 120
+        }
+      ]
+    },
+    {
+      "id": "t_GroupResourceTypeProvider",
+      "label": "GroupResourceTypeProvider",
+      "kind": "class",
+      "sublabel": "scim.model.group",
+      "row": 5,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "schema",
+          "type": "GroupCoreModelSchema",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "pollMembershipChanges",
+          "returns": "List<MembershipChange>",
+          "visibility": "public"
+        },
+        {
+          "name": "update",
+          "returns": "Group",
+          "visibility": "public",
+          "parameters": "resource"
+        },
+        {
+          "name": "count",
+          "returns": "Long",
+          "visibility": "public",
+          "parameters": "searchRequest, resourceSize"
+        },
+        {
+          "name": "onDelete",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "model"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/group/GroupResourceTypeProvider.java",
+          "line": 54,
+          "end_line": 183
+        }
+      ]
+    },
+    {
+      "id": "t_GroupCoreModelSchema",
+      "label": "GroupCoreModelSchema",
+      "kind": "class",
+      "sublabel": "scim.model.group",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "private"
+        },
+        {
+          "name": "membershipChanges",
+          "type": "List<MembershipChange>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getName",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "populate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "resource, model"
+        },
+        {
+          "name": "validate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "representation"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/group/GroupCoreModelSchema.java",
+          "line": 33,
+          "end_line": 203
+        }
+      ]
+    },
+    {
+      "id": "t_UserCoreModelSchema",
+      "label": "UserCoreModelSchema",
+      "kind": "class",
+      "sublabel": "scim.model.user",
+      "row": 2,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "membershipChanges",
+          "type": "List<MembershipChange>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getName",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getDescription",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "populate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "resource, model"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/user/UserCoreModelSchema.java",
+          "line": 33,
+          "end_line": 257
+        }
+      ]
+    },
+    {
+      "id": "t_UserEnterpriseModelSchema",
+      "label": "UserEnterpriseModelSchema",
+      "kind": "class",
+      "sublabel": "scim.model.user",
+      "row": 3,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getName",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getDescription",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "isInternal",
+          "returns": "boolean",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/user/UserEnterpriseModelSchema.java",
+          "line": 9,
+          "end_line": 31
+        }
+      ]
+    },
+    {
+      "id": "t_ScimJPAPredicateProvider",
+      "label": "ScimJPAPredicateProvider",
+      "kind": "class",
+      "sublabel": "Creates JPA predicates for SCIM filter…",
+      "row": 5,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "resourceTypeProvider",
+          "type": "ScimResourceTypeProvider",
+          "visibility": "private"
+        },
+        {
+          "name": "schemas",
+          "type": "List<ModelSchema<?,?>>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "createPredicate",
+          "returns": "JPAFilterResult",
+          "visibility": "public",
+          "parameters": "path, operator, value"
+        },
+        {
+          "name": "validateAndOperatorInValuePath",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "valuePathAttribute"
+        },
+        {
+          "name": "resolve",
+          "returns": "Attribute<?,?>",
+          "visibility": "public",
+          "parameters": "path"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/filter/ScimJPAPredicateProvider.java",
+          "line": 35,
+          "end_line": 335
+        }
+      ]
+    },
+    {
+      "id": "t_GroupResourceTypeProviderFactory",
+      "label": "GroupResourceTypeProviderFactory",
+      "kind": "class",
+      "sublabel": "scim.model.group",
+      "row": 6,
+      "col": 1,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "GroupResourceTypeProvider",
+          "visibility": "public",
+          "parameters": "session"
+        },
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "config"
+        },
+        {
+          "name": "postInit",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "factory"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/model/src/main/java/org/keycloak/scim/model/group/GroupResourceTypeProviderFactory.java",
+          "line": 18,
+          "end_line": 36
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_UserExtensionModelSchema_AbstractUserModelSchema",
+      "from": "t_UserExtensionModelSchema",
+      "to": "t_AbstractUserModelSchema",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_UserResourceTypeProvider_ScimAttributeJpaExpressionResolver",
+      "from": "t_UserResourceTypeProvider",
+      "to": "t_ScimAttributeJpaExpressionResolver",
+      "kind": "realization"
+    },
+    {
+      "id": "r2_GroupResourceTypeProvider_ScimAttributeJpaExpressionResolver",
+      "from": "t_GroupResourceTypeProvider",
+      "to": "t_ScimAttributeJpaExpressionResolver",
+      "kind": "realization"
+    },
+    {
+      "id": "r3_UserCoreModelSchema_AbstractUserModelSchema",
+      "from": "t_UserCoreModelSchema",
+      "to": "t_AbstractUserModelSchema",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r4_AbstractUserModelSchema_AbstractModelSchema",
+      "from": "t_AbstractUserModelSchema",
+      "to": "t_AbstractModelSchema",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r5_UserEnterpriseModelSchema_UserExtensionModelSchema",
+      "from": "t_UserEnterpriseModelSchema",
+      "to": "t_UserExtensionModelSchema",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r6_GroupCoreModelSchema_AbstractModelSchema",
+      "from": "t_GroupCoreModelSchema",
+      "to": "t_AbstractModelSchema",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r7_ScimJPAPredicateEvaluator_ScimJPAPredicateProvider",
+      "from": "t_ScimJPAPredicateEvaluator",
+      "to": "t_ScimJPAPredicateProvider",
+      "kind": "association"
+    },
+    {
+      "id": "r8_ScimJPAPredicateProvider_JPAFilterResult",
+      "from": "t_ScimJPAPredicateProvider",
+      "to": "t_JPAFilterResult",
+      "kind": "dependency"
+    },
+    {
+      "id": "r9_GroupResourceTypeProviderFactory_GroupResourceTypeProvider",
+      "from": "t_GroupResourceTypeProviderFactory",
+      "to": "t_GroupResourceTypeProvider",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module scim/model/ (keycloak-scim-model): 20 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection",
+        "AbstractModelSchema, AbstractScimResourceTypeProvider: supertypes from other modules (sublabel \"from …\")"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "scim.model.user (7)",
+        "scim.model.filter (4)",
+        "scim.model.group (3)",
+        "scim.model.config (2)",
+        "scim.model.resourcetype (2)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "UserResourceTypeProvider extends AbstractScimResourceTypeProvider",
+        "GroupResourceTypeProvider extends AbstractScimResourceTypeProvider",
+        "UserResourceTypeProvider has a UserCoreModelSchema",
+        "GroupResourceTypeProvider has a GroupCoreModelSchema",
+        "ScimJPAPredicateEvaluator uses JPAFilterResult"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "ResourceTypeProvider, SchemaResourceTypeProvider, ResourceTypeProviderFactory, SchemaResourceTypeProviderFactory, ServiceProviderConfigResourceTypeProviderFactory, UserResourceTypeProviderFactory"
+      ]
+    }
+  ]
+}

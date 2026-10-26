@@ -1,0 +1,573 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Keycloak Source Architecture",
+    "output": "docs/diagrams/architecture/module-layers.architecture.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "components": [
+    {
+      "id": "dist",
+      "type": "cloud",
+      "label": "quarkus/dist",
+      "sublabel": "+ server, deployment · kc.sh zip",
+      "pos": [
+        520,
+        40
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "quarkus/dist/pom.xml",
+          "line": 35,
+          "end_line": 40,
+          "label": "server app + deployment"
+        },
+        {
+          "path": "quarkus/server/pom.xml",
+          "line": 17,
+          "end_line": 22,
+          "label": "quarkus-server-app"
+        }
+      ]
+    },
+    {
+      "id": "operator",
+      "type": "backend",
+      "label": "operator",
+      "sublabel": "Kubernetes operator",
+      "pos": [
+        800,
+        40
+      ],
+      "size": [
+        170,
+        64
+      ],
+      "tag": "-Poperator",
+      "sources": [
+        {
+          "path": "operator/pom.xml",
+          "line": 81,
+          "label": "quarkus-operator-sdk"
+        },
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/controllers/KeycloakDeploymentDependentResource.java",
+          "line": 164,
+          "end_line": 345,
+          "label": "StatefulSet with server image"
+        }
+      ]
+    },
+    {
+      "id": "k8s",
+      "type": "external",
+      "label": "Kubernetes API",
+      "sublabel": "Keycloak CRs, StatefulSets",
+      "pos": [
+        1060,
+        40
+      ],
+      "size": [
+        140,
+        64
+      ]
+    },
+    {
+      "id": "ui",
+      "type": "frontend",
+      "label": "themes + js",
+      "sublabel": "admin-ui, account-ui, FreeMarker",
+      "pos": [
+        220,
+        190
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "themes/pom.xml",
+          "line": 10,
+          "end_line": 22,
+          "label": "bundles admin/account UI"
+        },
+        {
+          "path": "quarkus/runtime/pom.xml",
+          "line": 234,
+          "label": "runtime → keycloak-themes"
+        }
+      ]
+    },
+    {
+      "id": "runtime",
+      "type": "backend",
+      "label": "quarkus/runtime",
+      "sublabel": "startup, config, CLI, JDBC",
+      "pos": [
+        520,
+        190
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "quarkus/runtime/pom.xml",
+          "line": 64,
+          "end_line": 84,
+          "label": "JDBC drivers"
+        },
+        {
+          "path": "quarkus/runtime/pom.xml",
+          "line": 170,
+          "end_line": 274,
+          "label": "services, themes, model-jpa…"
+        },
+        {
+          "path": "quarkus/runtime/src/main/java/org/keycloak/quarkus/runtime/KeycloakMain.java",
+          "line": 108,
+          "end_line": 144,
+          "label": "entry point"
+        }
+      ]
+    },
+    {
+      "id": "features",
+      "type": "backend",
+      "label": "rest · scim · ssf",
+      "sublabel": "+ authzen, authz/policy",
+      "pos": [
+        220,
+        340
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/services/pom.xml",
+          "line": 27,
+          "label": "admin-v2 → services"
+        },
+        {
+          "path": "ssf/core/pom.xml",
+          "line": 33,
+          "label": "ssf → services"
+        }
+      ]
+    },
+    {
+      "id": "services",
+      "type": "backend",
+      "label": "services",
+      "sublabel": "REST, OIDC/SAML, auth flows",
+      "pos": [
+        520,
+        340
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "services/pom.xml",
+          "line": 77,
+          "label": "→ server-spi-private"
+        },
+        {
+          "path": "services/pom.xml",
+          "line": 212,
+          "label": "→ saml-core"
+        },
+        {
+          "path": "services/pom.xml",
+          "line": 286,
+          "label": "→ model-storage-private"
+        }
+      ]
+    },
+    {
+      "id": "jpa",
+      "type": "backend",
+      "label": "model/jpa",
+      "sublabel": "realms, users, Liquibase",
+      "pos": [
+        820,
+        340
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/pom.xml",
+          "line": 60,
+          "label": "→ services"
+        },
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/connections/jpa/JpaConnectionProvider.java",
+          "line": 27,
+          "end_line": 29,
+          "label": "EntityManager"
+        }
+      ]
+    },
+    {
+      "id": "db",
+      "type": "database",
+      "label": "Relational DB",
+      "sublabel": "Postgres, MySQL, MSSQL, …",
+      "pos": [
+        1050,
+        340
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "ldap",
+      "type": "external",
+      "label": "LDAP / AD",
+      "sublabel": "user directory",
+      "pos": [
+        20,
+        490
+      ],
+      "size": [
+        140,
+        64
+      ]
+    },
+    {
+      "id": "federation",
+      "type": "backend",
+      "label": "federation/*",
+      "sublabel": "ldap, kerberos, sssd, ipatuura",
+      "pos": [
+        220,
+        490
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/pom.xml",
+          "line": 91,
+          "end_line": 95,
+          "label": "→ storage-private, services"
+        },
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/idm/store/ldap/LDAPOperationManager.java",
+          "line": 568,
+          "label": "InitialLdapContext"
+        }
+      ]
+    },
+    {
+      "id": "storage",
+      "type": "backend",
+      "label": "model/storage*",
+      "sublabel": "storage managers, migration",
+      "pos": [
+        520,
+        490
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "model/storage/pom.xml",
+          "line": 25,
+          "label": "→ server-spi-private"
+        },
+        {
+          "path": "model/storage-private/pom.xml",
+          "line": 35,
+          "label": "→ model-storage"
+        }
+      ]
+    },
+    {
+      "id": "infinispan",
+      "type": "backend",
+      "label": "model/infinispan",
+      "sublabel": "sessions, caches, cluster",
+      "pos": [
+        820,
+        490
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/pom.xml",
+          "line": 48,
+          "label": "→ model-jpa"
+        },
+        {
+          "path": "model/infinispan/pom.xml",
+          "line": 71,
+          "label": "infinispan-core"
+        }
+      ]
+    },
+    {
+      "id": "spi_private",
+      "type": "security",
+      "label": "server-spi-private",
+      "sublabel": "internal SPIs (may change)",
+      "pos": [
+        520,
+        640
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/pom.xml",
+          "line": 36,
+          "label": "→ server-spi"
+        }
+      ]
+    },
+    {
+      "id": "spi",
+      "type": "security",
+      "label": "server-spi",
+      "sublabel": "public extension contracts",
+      "pos": [
+        520,
+        790
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "server-spi/pom.xml",
+          "line": 46,
+          "label": "→ core"
+        }
+      ]
+    },
+    {
+      "id": "core",
+      "type": "backend",
+      "label": "core + common",
+      "sublabel": "tokens, representations, utils",
+      "pos": [
+        520,
+        940
+      ],
+      "size": [
+        180,
+        64
+      ],
+      "sources": [
+        {
+          "path": "core/pom.xml",
+          "line": 44,
+          "label": "→ common"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Server assembly",
+      "wraps": [
+        "dist",
+        "runtime",
+        "ui"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "Implementations",
+      "wraps": [
+        "features",
+        "services",
+        "jpa",
+        "federation",
+        "storage",
+        "infinispan"
+      ]
+    },
+    {
+      "kind": "security-group",
+      "label": "Extension contracts (SPI)",
+      "wraps": [
+        "spi_private",
+        "spi",
+        "core"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "c-dist-runtime",
+      "from": "dist",
+      "to": "runtime",
+      "label": "packages",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-operator-dist",
+      "from": "operator",
+      "to": "dist",
+      "label": "deploys",
+      "variant": "dashed"
+    },
+    {
+      "id": "c-operator-k8s",
+      "from": "operator",
+      "to": "k8s",
+      "label": "reconciles"
+    },
+    {
+      "id": "c-runtime-ui",
+      "from": "runtime",
+      "to": "ui",
+      "label": "bundles"
+    },
+    {
+      "id": "c-runtime-services",
+      "from": "runtime",
+      "to": "services",
+      "label": "includes",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-features-services",
+      "from": "features",
+      "to": "services",
+      "label": "extends"
+    },
+    {
+      "id": "c-jpa-services",
+      "from": "jpa",
+      "to": "services",
+      "label": "depends on"
+    },
+    {
+      "id": "c-jpa-db",
+      "from": "jpa",
+      "to": "db",
+      "label": "JDBC"
+    },
+    {
+      "id": "c-services-storage",
+      "from": "services",
+      "to": "storage",
+      "label": "depends on",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-federation-storage",
+      "from": "federation",
+      "to": "storage",
+      "label": "depends on"
+    },
+    {
+      "id": "c-federation-ldap",
+      "from": "federation",
+      "to": "ldap",
+      "label": "LDAP",
+      "variant": "security"
+    },
+    {
+      "id": "c-infinispan-jpa",
+      "from": "infinispan",
+      "to": "jpa",
+      "label": "depends on"
+    },
+    {
+      "id": "c-storage-spi-private",
+      "from": "storage",
+      "to": "spi_private",
+      "label": "implements",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-spi-private-spi",
+      "from": "spi_private",
+      "to": "spi",
+      "label": "extends",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-spi-core",
+      "from": "spi",
+      "to": "core",
+      "label": "depends on",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Reading the arrows",
+      "items": [
+        "Arrows are Maven dependencies (dependent → dependency), taken from each module's pom.xml",
+        "The emphasised spine is the build chain from the distribution down to core/common",
+        "quarkus/runtime depends on every implementation module; only its main edges are drawn"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Layering facts",
+      "items": [
+        "server-spi is the public extension API; server-spi-private holds internal SPIs",
+        "Storage implementations (model/jpa, model/infinispan, federation/ldap) depend on services, not only on the SPIs",
+        "model/infinispan builds on model/jpa (persistent sessions use JPA)"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Merged into nodes",
+      "items": [
+        "quarkus/dist: also quarkus/server and quarkus/deployment (build-time augmentation)",
+        "model/storage*: storage, storage-private, storage-services (export/import)",
+        "rest/*: admin-ui-ext, admin-v2; plus scim/*, ssf/*, authzen, authz/policy, saml-core"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Not drawn",
+      "items": [
+        "crypto/* (default, elytron, fips1402) chosen via keycloak.crypto.artifactId",
+        "Clients: integration/* (admin client, kcadm/kcreg CLI), adapters/*",
+        "Test infrastructure: test-framework, tests, testsuite"
+      ]
+    }
+  ]
+}

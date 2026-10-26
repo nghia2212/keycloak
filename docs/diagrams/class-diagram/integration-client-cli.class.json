@@ -1,0 +1,595 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "integration/client-cli module types",
+    "output": "docs/diagrams/class-diagram/integration-client-cli.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_ConfigData",
+      "label": "ConfigData",
+      "kind": "class",
+      "sublabel": "client.cli.config",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "externalToken",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "serverUrl",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "sessionRealmConfigData",
+          "returns": "RealmConfigData",
+          "visibility": "public"
+        },
+        {
+          "name": "ensureRealmConfigData",
+          "returns": "RealmConfigData",
+          "visibility": "public",
+          "parameters": "endpoint, realm"
+        },
+        {
+          "name": "merge",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "source"
+        },
+        {
+          "name": "deepcopy",
+          "returns": "ConfigData",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/cli/config/ConfigData.java",
+          "line": 30,
+          "end_line": 168
+        }
+      ]
+    },
+    {
+      "id": "t_OsUtil",
+      "label": "OsUtil",
+      "kind": "class",
+      "sublabel": "client.cli.util",
+      "row": 3,
+      "col": 3,
+      "methods": [
+        {
+          "name": "determineOSAndArch",
+          "returns": "OsArch",
+          "visibility": "public",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/cli/util/OsUtil.java",
+          "line": 22,
+          "end_line": 31
+        }
+      ]
+    },
+    {
+      "id": "t_IoUtil",
+      "label": "IoUtil",
+      "kind": "class",
+      "sublabel": "client.cli.util",
+      "row": 6,
+      "col": 1,
+      "methods": [
+        {
+          "name": "readFileOrStdin",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "file",
+          "static": true
+        },
+        {
+          "name": "readFully",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "is",
+          "static": true
+        },
+        {
+          "name": "copyStream",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "is, os",
+          "static": true
+        },
+        {
+          "name": "ensureFile",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "path",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/cli/util/IoUtil.java",
+          "line": 51,
+          "end_line": 97
+        }
+      ]
+    },
+    {
+      "id": "t_KcAdmMain",
+      "label": "KcAdmMain",
+      "kind": "class",
+      "sublabel": "client.admin.cli",
+      "row": 6,
+      "col": 0,
+      "methods": [
+        {
+          "name": "main",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "args",
+          "static": true
+        },
+        {
+          "name": "showHelpForLeafCommand",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "v2Args",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/admin/cli/KcAdmMain.java",
+          "line": 34,
+          "end_line": 99
+        }
+      ]
+    },
+    {
+      "id": "t_HttpUtil",
+      "label": "HttpUtil",
+      "kind": "class",
+      "sublabel": "client.cli.util",
+      "row": 4,
+      "col": 2,
+      "methods": [
+        {
+          "name": "doGet",
+          "returns": "InputStream",
+          "visibility": "public",
+          "parameters": "url, acceptType, authorizat…",
+          "static": true
+        },
+        {
+          "name": "doPost",
+          "returns": "InputStream",
+          "visibility": "public",
+          "parameters": "url, contentType, acceptTyp…",
+          "static": true
+        },
+        {
+          "name": "doPut",
+          "returns": "InputStream",
+          "visibility": "public",
+          "parameters": "url, contentType, acceptTyp…",
+          "static": true
+        },
+        {
+          "name": "doDelete",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "url, authorization",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/cli/util/HttpUtil.java",
+          "line": 61,
+          "end_line": 98
+        }
+      ]
+    },
+    {
+      "id": "t_ConfigUtil",
+      "label": "ConfigUtil",
+      "kind": "class",
+      "sublabel": "client.cli.util",
+      "row": 2,
+      "col": 0,
+      "methods": [
+        {
+          "name": "saveTokens",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "tokens, endpoint, realm, cl…",
+          "static": true
+        },
+        {
+          "name": "checkServerInfo",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "config, cmd",
+          "static": true
+        },
+        {
+          "name": "credentialsAvailable",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "config",
+          "static": true
+        },
+        {
+          "name": "loadConfig",
+          "returns": "ConfigData",
+          "visibility": "public",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/cli/util/ConfigUtil.java",
+          "line": 30,
+          "end_line": 93
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractAuthOptionsCmd",
+      "label": "AbstractAuthOptionsCmd",
+      "kind": "abstract",
+      "sublabel": "client.admin.cli.commands",
+      "row": 4,
+      "col": 0.5,
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/admin/cli/commands/AbstractAuthOptionsCmd.java",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "id": "t_RealmConfigData",
+      "label": "RealmConfigData",
+      "kind": "class",
+      "sublabel": "client.cli.config",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "serverUrl",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "realm",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "serverUrl",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "realm",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "merge",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "source"
+        },
+        {
+          "name": "mergeRefreshTokens",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "source"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/cli/config/RealmConfigData.java",
+          "line": 30,
+          "end_line": 195
+        }
+      ]
+    },
+    {
+      "id": "t_ConfigHandler",
+      "label": "ConfigHandler",
+      "kind": "interface",
+      "sublabel": "client.cli.config",
+      "row": 2,
+      "col": 1,
+      "methods": [
+        {
+          "name": "saveMergeConfig",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "op",
+          "abstract": true
+        },
+        {
+          "name": "loadConfig",
+          "returns": "ConfigData",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/cli/config/ConfigHandler.java",
+          "line": 22,
+          "end_line": 26
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractTargetAuthOptionsCmd",
+      "label": "AbstractTargetAuthOptionsCmd",
+      "kind": "abstract",
+      "sublabel": "Extends BaseAuthOptionsCmd with token a…",
+      "row": 3,
+      "col": 0.5,
+      "attributes": [
+        {
+          "name": "targetRealm",
+          "type": "String",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "setToken",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "token"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/admin/cli/commands/AbstractTargetAuthOptionsCmd.java",
+          "line": 12,
+          "end_line": 18
+        }
+      ]
+    },
+    {
+      "id": "t_ConfigUpdateOperation",
+      "label": "ConfigUpdateOperation",
+      "kind": "interface",
+      "sublabel": "client.cli.config",
+      "row": 2,
+      "col": 2,
+      "methods": [
+        {
+          "name": "update",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "data",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/cli/config/ConfigUpdateOperation.java",
+          "line": 22,
+          "end_line": 24
+        }
+      ]
+    },
+    {
+      "id": "t_HeadersBody",
+      "label": "HeadersBody",
+      "kind": "class",
+      "sublabel": "client.cli.util",
+      "row": 3,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "headers",
+          "type": "Headers",
+          "visibility": "private"
+        },
+        {
+          "name": "body",
+          "type": "InputStream",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getHeaders",
+          "returns": "Headers",
+          "visibility": "public"
+        },
+        {
+          "name": "getBody",
+          "returns": "InputStream",
+          "visibility": "public"
+        },
+        {
+          "name": "readBodyString",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "readBodyBytes",
+          "returns": "byte[]",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/cli/util/HeadersBody.java",
+          "line": 30,
+          "end_line": 58
+        }
+      ]
+    },
+    {
+      "id": "t_ConfigCmd",
+      "label": "ConfigCmd",
+      "kind": "class",
+      "sublabel": "client.admin.cli.commands",
+      "row": 5,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "v2",
+          "type": "boolean",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "help",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "usage",
+          "returns": "String",
+          "visibility": "public",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/admin/cli/commands/ConfigCmd.java",
+          "line": 36,
+          "end_line": 65
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractRequestCmd",
+      "label": "AbstractRequestCmd",
+      "kind": "abstract",
+      "sublabel": "client.admin.cli.commands",
+      "row": 5,
+      "col": 1,
+      "sources": [
+        {
+          "path": "integration/client-cli/admin-cli/src/main/java/org/keycloak/client/admin/cli/commands/AbstractRequestCmd.java",
+          "line": 72
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_ConfigCmd_AbstractAuthOptionsCmd",
+      "from": "t_ConfigCmd",
+      "to": "t_AbstractAuthOptionsCmd",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_AbstractAuthOptionsCmd_AbstractTargetAuthOptionsCmd",
+      "from": "t_AbstractAuthOptionsCmd",
+      "to": "t_AbstractTargetAuthOptionsCmd",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_AbstractRequestCmd_AbstractAuthOptionsCmd",
+      "from": "t_AbstractRequestCmd",
+      "to": "t_AbstractAuthOptionsCmd",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r3_ConfigUtil_ConfigData",
+      "from": "t_ConfigUtil",
+      "to": "t_ConfigData",
+      "kind": "dependency"
+    },
+    {
+      "id": "r4_ConfigData_RealmConfigData",
+      "from": "t_ConfigData",
+      "to": "t_RealmConfigData",
+      "kind": "dependency"
+    },
+    {
+      "id": "r5_ConfigHandler_ConfigData",
+      "from": "t_ConfigHandler",
+      "to": "t_ConfigData",
+      "kind": "dependency"
+    },
+    {
+      "id": "r6_ConfigUpdateOperation_ConfigData",
+      "from": "t_ConfigUpdateOperation",
+      "to": "t_ConfigData",
+      "kind": "dependency"
+    },
+    {
+      "id": "r7_HttpUtil_HeadersBody",
+      "from": "t_HttpUtil",
+      "to": "t_HeadersBody",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module integration/client-cli/ (keycloak-client-cli-parent): 77 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "client.cli.util (20)",
+        "client.admin.cli.commands (18)",
+        "client.cli.common (10)",
+        "client.admin.cli.operations (6)",
+        "client.admin.cli.v2 (6)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "ConfigUtil uses RealmConfigData",
+        "ConfigUtil uses ConfigHandler",
+        "ConfigUtil uses ConfigUpdateOperation",
+        "ConfigHandler uses ConfigUpdateOperation"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "KcRegMain, BaseGlobalOptionsCmd, BaseAuthOptionsCmd, CmdStdinContext, OutputUtil, KcAdmV2CommandDescriptor, AttributeOperation, CommandState"
+      ]
+    }
+  ]
+}

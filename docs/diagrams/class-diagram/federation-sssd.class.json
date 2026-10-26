@@ -1,0 +1,593 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "federation/sssd module types",
+    "output": "docs/diagrams/class-diagram/federation-sssd.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_CLibrary",
+      "label": "CLibrary",
+      "kind": "interface",
+      "sublabel": "org.jvnet.libpam.impl",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "calloc",
+          "returns": "Pointer",
+          "visibility": "public",
+          "parameters": "count, size",
+          "abstract": true
+        },
+        {
+          "name": "strdup",
+          "returns": "Pointer",
+          "visibility": "public",
+          "parameters": "s",
+          "abstract": true
+        },
+        {
+          "name": "getpwnam",
+          "returns": "passwd",
+          "visibility": "public",
+          "parameters": "username",
+          "abstract": true
+        },
+        {
+          "name": "getgrouplist",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "user, group, groups, ngroups",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/jvnet/libpam/impl/CLibrary.java",
+          "line": 41,
+          "end_line": 121
+        }
+      ]
+    },
+    {
+      "id": "t_InfoPipe",
+      "label": "InfoPipe",
+      "kind": "interface",
+      "sublabel": "org.freedesktop.sssd.infopipe",
+      "row": 2,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getUserAttributes",
+          "returns": "Map<String,Variant>",
+          "visibility": "public",
+          "parameters": "user, attr",
+          "abstract": true
+        },
+        {
+          "name": "getUserGroups",
+          "returns": "List<String>",
+          "visibility": "public",
+          "parameters": "user",
+          "abstract": true
+        },
+        {
+          "name": "ping",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "ping",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/freedesktop/sssd/infopipe/InfoPipe.java",
+          "line": 32,
+          "end_line": 44
+        }
+      ]
+    },
+    {
+      "id": "t_PAMLibrary",
+      "label": "PAMLibrary",
+      "kind": "interface",
+      "sublabel": "libpam.so binding",
+      "row": 2,
+      "col": 3,
+      "methods": [
+        {
+          "name": "pam_start",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "service, user, conv, pamh_p",
+          "abstract": true
+        },
+        {
+          "name": "pam_end",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "handle, pam_status",
+          "abstract": true
+        },
+        {
+          "name": "pam_set_item",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "handle, item_type, item",
+          "abstract": true
+        },
+        {
+          "name": "pam_get_item",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "handle, item_type, item",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/jvnet/libpam/impl/PAMLibrary.java",
+          "line": 47,
+          "end_line": 140
+        }
+      ]
+    },
+    {
+      "id": "t_BSDCLibrary",
+      "label": "BSDCLibrary",
+      "kind": "interface",
+      "sublabel": "org.jvnet.libpam.impl",
+      "row": 1,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getpwnam",
+          "returns": "BSDPasswd",
+          "visibility": "public",
+          "parameters": "username",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/jvnet/libpam/impl/BSDCLibrary.java",
+          "line": 30,
+          "end_line": 32
+        }
+      ]
+    },
+    {
+      "id": "t_FreeBSDCLibrary",
+      "label": "FreeBSDCLibrary",
+      "kind": "interface",
+      "sublabel": "org.jvnet.libpam.impl",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getpwnam",
+          "returns": "FreeBSDPasswd",
+          "visibility": "public",
+          "parameters": "username",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/jvnet/libpam/impl/FreeBSDCLibrary.java",
+          "line": 30,
+          "end_line": 32
+        }
+      ]
+    },
+    {
+      "id": "t_LinuxCLibrary",
+      "label": "LinuxCLibrary",
+      "kind": "interface",
+      "sublabel": "org.jvnet.libpam.impl",
+      "row": 1,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getpwnam",
+          "returns": "LinuxPasswd",
+          "visibility": "public",
+          "parameters": "username",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/jvnet/libpam/impl/LinuxCLibrary.java",
+          "line": 30,
+          "end_line": 32
+        }
+      ]
+    },
+    {
+      "id": "t_SolarisCLibrary",
+      "label": "SolarisCLibrary",
+      "kind": "interface",
+      "sublabel": "org.jvnet.libpam.impl",
+      "row": 3,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getpwnam",
+          "returns": "SolarisPasswd",
+          "visibility": "public",
+          "parameters": "username",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/jvnet/libpam/impl/SolarisCLibrary.java",
+          "line": 31,
+          "end_line": 33
+        }
+      ]
+    },
+    {
+      "id": "t_SSSDFederationProvider",
+      "label": "SSSDFederationProvider",
+      "kind": "class",
+      "sublabel": "SPI provider implementation to retrieve…",
+      "row": 2,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "factory",
+          "type": "SSSDFederationProviderFactory",
+          "visibility": "private"
+        },
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "validate",
+          "returns": "UserModel",
+          "visibility": "public",
+          "parameters": "realm, user"
+        },
+        {
+          "name": "preRemove",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm"
+        },
+        {
+          "name": "supportsCredentialType",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "credentialType"
+        },
+        {
+          "name": "validateAndProxy",
+          "returns": "UserModel",
+          "visibility": "public",
+          "parameters": "realm, local"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/keycloak/federation/sssd/SSSDFederationProvider.java",
+          "line": 61,
+          "end_line": 203
+        }
+      ]
+    },
+    {
+      "id": "t_PAM",
+      "label": "PAM",
+      "kind": "class",
+      "sublabel": "PAM authenticator",
+      "row": 1,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "pht",
+          "type": "pam_handle_t",
+          "visibility": "private"
+        },
+        {
+          "name": "ret",
+          "type": "int",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "authenticate",
+          "returns": "UnixUser",
+          "visibility": "public",
+          "parameters": "username, factors"
+        },
+        {
+          "name": "getGroupsOfUser",
+          "returns": "Set<String>",
+          "visibility": "public",
+          "parameters": "username"
+        },
+        {
+          "name": "dispose",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/jvnet/libpam/PAM.java",
+          "line": 63,
+          "end_line": 173
+        }
+      ]
+    },
+    {
+      "id": "t_UnixUser",
+      "label": "UnixUser",
+      "kind": "class",
+      "sublabel": "Represents an Unix user",
+      "row": 0,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "shell",
+          "type": "StringuserName,gecos,dir,",
+          "visibility": "private"
+        },
+        {
+          "name": "gid",
+          "type": "intuid,",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getUserName",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getUID",
+          "returns": "int",
+          "visibility": "public"
+        },
+        {
+          "name": "getGID",
+          "returns": "int",
+          "visibility": "public"
+        },
+        {
+          "name": "exists",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "name",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/jvnet/libpam/UnixUser.java",
+          "line": 42,
+          "end_line": 156
+        }
+      ]
+    },
+    {
+      "id": "t_BSDPasswd",
+      "label": "BSDPasswd",
+      "kind": "class",
+      "sublabel": "FreeeBSD, OpenBSD and MacOS passwd stru…",
+      "row": 4,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getPwGecos",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getPwDir",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getPwShell",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/jvnet/libpam/impl/BSDPasswd.java",
+          "line": 51,
+          "end_line": 81
+        }
+      ]
+    },
+    {
+      "id": "t_FreeBSDPasswd",
+      "label": "FreeBSDPasswd",
+      "kind": "class",
+      "sublabel": "org.jvnet.libpam.impl",
+      "row": 4,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getPwGecos",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getPwDir",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getPwShell",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/jvnet/libpam/impl/FreeBSDPasswd.java",
+          "line": 53,
+          "end_line": 86
+        }
+      ]
+    },
+    {
+      "id": "t_LinuxPasswd",
+      "label": "LinuxPasswd",
+      "kind": "class",
+      "sublabel": "Linux passwd ?struct passwd { char *pw_…",
+      "row": 4,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getPwGecos",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getPwDir",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getPwShell",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/jvnet/libpam/impl/LinuxPasswd.java",
+          "line": 49,
+          "end_line": 70
+        }
+      ]
+    },
+    {
+      "id": "t_SolarisPasswd",
+      "label": "SolarisPasswd",
+      "kind": "class",
+      "sublabel": "Solaris passwd struct passwd { char *pw…",
+      "row": 2,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getPwGecos",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getPwDir",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getPwShell",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/sssd/src/main/java/org/jvnet/libpam/impl/SolarisPasswd.java",
+          "line": 51,
+          "end_line": 74
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_BSDCLibrary_CLibrary",
+      "from": "t_BSDCLibrary",
+      "to": "t_CLibrary",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_FreeBSDCLibrary_CLibrary",
+      "from": "t_FreeBSDCLibrary",
+      "to": "t_CLibrary",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_LinuxCLibrary_CLibrary",
+      "from": "t_LinuxCLibrary",
+      "to": "t_CLibrary",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r3_PAM_UnixUser",
+      "from": "t_PAM",
+      "to": "t_UnixUser",
+      "kind": "dependency"
+    },
+    {
+      "id": "r4_SolarisCLibrary_SolarisPasswd",
+      "from": "t_SolarisCLibrary",
+      "to": "t_SolarisPasswd",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module federation/sssd/ (keycloak-sssd-federation): 21 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "org.jvnet.libpam.impl (10)",
+        "org.jvnet.libpam (3)",
+        "federation.sssd (3)",
+        "federation.sssd.api (2)",
+        "federation.sssd.impl (2)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "SolarisCLibrary extends CLibrary",
+        "BSDCLibrary uses BSDPasswd",
+        "FreeBSDCLibrary uses FreeBSDPasswd",
+        "LinuxCLibrary uses LinuxPasswd"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "PAMAuthenticator, ReadonlySSSDUserModelDelegate, SSSDFederationProviderFactory, Sssd, AvailabilityChecker, PAMException, SSSDException"
+      ]
+    }
+  ]
+}

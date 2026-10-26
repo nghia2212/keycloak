@@ -1,0 +1,807 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "scim/core module types",
+    "output": "docs/diagrams/class-diagram/scim-core.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_ResourceTypeRepresentation",
+      "label": "ResourceTypeRepresentation",
+      "kind": "abstract",
+      "sublabel": "scim.resource",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "schemas",
+          "type": "Set<String>",
+          "visibility": "private"
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getSchemas",
+          "returns": "Set<String>",
+          "visibility": "public"
+        },
+        {
+          "name": "setSchemas",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "schemas"
+        },
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "addSchema",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "schema"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/ResourceTypeRepresentation.java",
+          "line": 23,
+          "end_line": 100
+        }
+      ]
+    },
+    {
+      "id": "t_Attribute",
+      "label": "Attribute",
+      "kind": "class",
+      "sublabel": "Represents an attribute from a ModelSch…",
+      "row": 2,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "name",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "mapper",
+          "type": "AttributeMapper<M,R>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "simple",
+          "returns": "Builder<M,R>",
+          "visibility": "public",
+          "parameters": "name",
+          "static": true
+        },
+        {
+          "name": "complex",
+          "returns": "Builder<M,R>",
+          "visibility": "public",
+          "parameters": "name, complexType",
+          "static": true
+        },
+        {
+          "name": "set",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "model, value"
+        },
+        {
+          "name": "add",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "model, value"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/schema/attribute/Attribute.java",
+          "line": 25,
+          "end_line": 283
+        }
+      ]
+    },
+    {
+      "id": "t_ModelSchema",
+      "label": "ModelSchema",
+      "kind": "interface",
+      "sublabel": "An interface that represents a schema f…",
+      "row": 3,
+      "col": 2,
+      "methods": [
+        {
+          "name": "populate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "model, representation",
+          "abstract": true
+        },
+        {
+          "name": "validate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "representation",
+          "abstract": true
+        },
+        {
+          "name": "add",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "model, path, value"
+        },
+        {
+          "name": "remove",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "resource, model, path"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/schema/ModelSchema.java",
+          "line": 22,
+          "end_line": 98
+        }
+      ]
+    },
+    {
+      "id": "t_ScimResourceTypeProvider",
+      "label": "ScimResourceTypeProvider",
+      "kind": "interface",
+      "sublabel": "A provider of a SCIM resource type",
+      "row": 3,
+      "col": 0.5,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "resource",
+          "abstract": true
+        },
+        {
+          "name": "update",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "resource",
+          "abstract": true
+        },
+        {
+          "name": "get",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "id",
+          "abstract": true
+        },
+        {
+          "name": "count",
+          "returns": "Long",
+          "visibility": "public",
+          "parameters": "searchOptions, resourceSize",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/spi/ScimResourceTypeProvider.java",
+          "line": 25,
+          "end_line": 135
+        }
+      ]
+    },
+    {
+      "id": "t_User",
+      "label": "User",
+      "kind": "class",
+      "sublabel": "scim.resource.user",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "userName",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "name",
+          "type": "Name",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getUserName",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setUserName",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "userName"
+        },
+        {
+          "name": "getName",
+          "returns": "Name",
+          "visibility": "public"
+        },
+        {
+          "name": "addGroup",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "id"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/user/User.java",
+          "line": 17,
+          "end_line": 215
+        }
+      ]
+    },
+    {
+      "id": "t_MultiValuedAttribute",
+      "label": "MultiValuedAttribute",
+      "kind": "class",
+      "sublabel": "scim.resource.common",
+      "row": 2,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "value",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "display",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getValue",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setValue",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "value"
+        },
+        {
+          "name": "getDisplay",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setDisplay",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "display"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/common/MultiValuedAttribute.java",
+          "line": 7,
+          "end_line": 36
+        }
+      ]
+    },
+    {
+      "id": "t_BaseResourceTypeProvider",
+      "label": "BaseResourceTypeProvider",
+      "kind": "abstract",
+      "sublabel": "scim.resource.spi",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        },
+        {
+          "name": "schemas",
+          "type": "List<ModelSchema<M,R>>",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "resource"
+        },
+        {
+          "name": "update",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "resource"
+        },
+        {
+          "name": "get",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "id"
+        },
+        {
+          "name": "delete",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "id"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/spi/BaseResourceTypeProvider.java",
+          "line": 13,
+          "end_line": 83
+        }
+      ]
+    },
+    {
+      "id": "t_ServiceProviderConfig",
+      "label": "ServiceProviderConfig",
+      "kind": "class",
+      "sublabel": "scim.resource.config",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "documentationUri",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "patch",
+          "type": "Supported",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getSchemas",
+          "returns": "Set<String>",
+          "visibility": "public"
+        },
+        {
+          "name": "getDocumentationUri",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setDocumentationUri",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "documentationUri"
+        },
+        {
+          "name": "getPatch",
+          "returns": "Supported",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/config/ServiceProviderConfig.java",
+          "line": 11,
+          "end_line": 52
+        }
+      ]
+    },
+    {
+      "id": "t_SearchOptions",
+      "label": "SearchOptions",
+      "kind": "class",
+      "sublabel": "scim.resource.spi",
+      "row": 2,
+      "col": 0.5,
+      "attributes": [
+        {
+          "name": "attributes",
+          "type": "List<String>",
+          "visibility": "private"
+        },
+        {
+          "name": "excludedAttributes",
+          "type": "List<String>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getAttributes",
+          "returns": "List<String>",
+          "visibility": "public"
+        },
+        {
+          "name": "setAttributes",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "attributes"
+        },
+        {
+          "name": "getExcludedAttributes",
+          "returns": "List<String>",
+          "visibility": "public"
+        },
+        {
+          "name": "builder",
+          "returns": "Builder",
+          "visibility": "public",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/spi/SearchOptions.java",
+          "line": 10,
+          "end_line": 84
+        }
+      ]
+    },
+    {
+      "id": "t_ResourceType",
+      "label": "ResourceType",
+      "kind": "class",
+      "sublabel": "scim.resource.resourcetype",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "name",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getSchemas",
+          "returns": "Set<String>",
+          "visibility": "public"
+        },
+        {
+          "name": "getName",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setName",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "name"
+        },
+        {
+          "name": "getDescription",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/resourcetype/ResourceType.java",
+          "line": 9,
+          "end_line": 41
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractModelSchema",
+      "label": "AbstractModelSchema",
+      "kind": "abstract",
+      "sublabel": "scim.resource.schema",
+      "row": 4,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "attributes",
+          "type": "Map<String,Attribute<M,R>>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "populate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "model, representation"
+        },
+        {
+          "name": "validate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "representation"
+        },
+        {
+          "name": "add",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "model, rawPath, value"
+        },
+        {
+          "name": "remove",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "resource, model, rawPath"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/schema/AbstractModelSchema.java",
+          "line": 38,
+          "end_line": 101
+        }
+      ]
+    },
+    {
+      "id": "t_SingletonResourceTypeProvider",
+      "label": "SingletonResourceTypeProvider",
+      "kind": "interface",
+      "sublabel": "A specialization of ScimResourceTypePro…",
+      "row": 4,
+      "col": 1,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "resource"
+        },
+        {
+          "name": "update",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "user"
+        },
+        {
+          "name": "get",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "id"
+        },
+        {
+          "name": "count",
+          "returns": "Long",
+          "visibility": "public",
+          "parameters": "searchRequest, resourceSize"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/spi/SingletonResourceTypeProvider.java",
+          "line": 19,
+          "end_line": 44
+        }
+      ]
+    },
+    {
+      "id": "t_Group",
+      "label": "Group",
+      "kind": "class",
+      "sublabel": "scim.resource.group",
+      "row": 6,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "displayName",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "members",
+          "type": "List<Member>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getSchemas",
+          "returns": "Set<String>",
+          "visibility": "public"
+        },
+        {
+          "name": "getDisplayName",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setDisplayName",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "displayName"
+        },
+        {
+          "name": "addMember",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "userId"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/group/Group.java",
+          "line": 11,
+          "end_line": 42
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractScimResourceTypeProvider",
+      "label": "AbstractScimResourceTypeProvider",
+      "kind": "abstract",
+      "sublabel": "scim.resource.spi",
+      "row": 5,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "schema",
+          "type": "ModelSchema<M,R>",
+          "visibility": "private"
+        },
+        {
+          "name": "schemaExtensions",
+          "type": "List<ModelSchema<M,R>>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "patch",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "existing, operations"
+        },
+        {
+          "name": "getSchema",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getSchemaExtensions",
+          "returns": "List<String>",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/core/src/main/java/org/keycloak/scim/resource/spi/AbstractScimResourceTypeProvider.java",
+          "line": 22,
+          "end_line": 96
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_User_ResourceTypeRepresentation",
+      "from": "t_User",
+      "to": "t_ResourceTypeRepresentation",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_ServiceProviderConfig_ResourceTypeRepresentation",
+      "from": "t_ServiceProviderConfig",
+      "to": "t_ResourceTypeRepresentation",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_ResourceType_ResourceTypeRepresentation",
+      "from": "t_ResourceType",
+      "to": "t_ResourceTypeRepresentation",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r3_BaseResourceTypeProvider_ScimResourceTypeProvider",
+      "from": "t_BaseResourceTypeProvider",
+      "to": "t_ScimResourceTypeProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r4_AbstractModelSchema_ModelSchema",
+      "from": "t_AbstractModelSchema",
+      "to": "t_ModelSchema",
+      "kind": "realization"
+    },
+    {
+      "id": "r5_SingletonResourceTypeProvider_ScimResourceTypeProvider",
+      "from": "t_SingletonResourceTypeProvider",
+      "to": "t_ScimResourceTypeProvider",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r6_AbstractScimResourceTypeProvider_BaseResourceTypeProvider",
+      "from": "t_AbstractScimResourceTypeProvider",
+      "to": "t_BaseResourceTypeProvider",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r7_ModelSchema_Attribute",
+      "from": "t_ModelSchema",
+      "to": "t_Attribute",
+      "kind": "dependency"
+    },
+    {
+      "id": "r8_ScimResourceTypeProvider_SearchOptions",
+      "from": "t_ScimResourceTypeProvider",
+      "to": "t_SearchOptions",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module scim/core/ (keycloak-scim-core): 41 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "scim.resource.spi (11)",
+        "scim.resource.user (5)",
+        "scim.resource.schema.attribute (4)",
+        "scim.filter (3)",
+        "scim.protocol.response (3)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "Group extends ResourceTypeRepresentation",
+        "AbstractScimResourceTypeProvider has a ModelSchema",
+        "ScimResourceTypeProvider uses ResourceType",
+        "AbstractModelSchema uses Attribute",
+        "BaseResourceTypeProvider uses SearchOptions",
+        "SingletonResourceTypeProvider uses SearchOptions"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "FilterUtils, ScimResourceTypeProviderFactory, Scim, Schema, AttributeMapper, PatchRequest, EnterpriseUser, Name"
+      ]
+    }
+  ]
+}

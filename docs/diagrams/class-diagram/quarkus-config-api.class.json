@@ -1,0 +1,551 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "quarkus/config-api module types",
+    "output": "docs/diagrams/class-diagram/quarkus-config-api.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_Option",
+      "label": "Option",
+      "kind": "class",
+      "sublabel": "config",
+      "row": 2,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "type",
+          "type": "Class<T>",
+          "visibility": "private"
+        },
+        {
+          "name": "componentType",
+          "type": "Class<?>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getType",
+          "returns": "Class<T>",
+          "visibility": "public"
+        },
+        {
+          "name": "withRuntimeSpecificDefault",
+          "returns": "Option<T>",
+          "visibility": "public",
+          "parameters": "defaultValue"
+        },
+        {
+          "name": "toBuilder",
+          "returns": "OptionBuilder<T>",
+          "visibility": "public"
+        },
+        {
+          "name": "transformEnumValue",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "value",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/Option.java",
+          "line": 10,
+          "end_line": 177
+        }
+      ]
+    },
+    {
+      "id": "t_OptionBuilder",
+      "label": "OptionBuilder",
+      "kind": "class",
+      "sublabel": "config",
+      "row": 2,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "type",
+          "type": "Class<T>",
+          "visibility": "private"
+        },
+        {
+          "name": "auxiliaryType",
+          "type": "Class<?>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "listOptionBuilder",
+          "returns": "OptionBuilder<List<A>>",
+          "visibility": "public",
+          "parameters": "key, type",
+          "static": true
+        },
+        {
+          "name": "category",
+          "returns": "OptionBuilder<T>",
+          "visibility": "public",
+          "parameters": "category"
+        },
+        {
+          "name": "hidden",
+          "returns": "OptionBuilder<T>",
+          "visibility": "public"
+        },
+        {
+          "name": "buildTime",
+          "returns": "OptionBuilder<T>",
+          "visibility": "public",
+          "parameters": "build"
+        }
+      ],
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/OptionBuilder.java",
+          "line": 16,
+          "end_line": 77
+        }
+      ]
+    },
+    {
+      "id": "t_OptionCategory",
+      "label": "OptionCategory",
+      "kind": "enum",
+      "sublabel": "config",
+      "row": 1,
+      "col": 0.5,
+      "attributes": [
+        {
+          "name": "CACHE",
+          "visibility": "public"
+        },
+        {
+          "name": "CONFIG",
+          "visibility": "public"
+        },
+        {
+          "name": "DATABASE",
+          "visibility": "public"
+        },
+        {
+          "name": "DATABASE_DATASOURCES",
+          "visibility": "public"
+        },
+        {
+          "name": "…",
+          "visibility": "public"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getHeading",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getOrder",
+          "returns": "int",
+          "visibility": "public"
+        },
+        {
+          "name": "getSupportLevel",
+          "returns": "ConfigSupportLevel",
+          "visibility": "public"
+        },
+        {
+          "name": "fromHeading",
+          "returns": "OptionCategory",
+          "visibility": "public",
+          "parameters": "heading",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/OptionCategory.java",
+          "line": 3,
+          "end_line": 64
+        }
+      ]
+    },
+    {
+      "id": "t_OptionsUtil",
+      "label": "OptionsUtil",
+      "kind": "interface",
+      "sublabel": "config",
+      "row": 0,
+      "col": 2,
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/OptionsUtil.java",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "id": "t_DeprecatedMetadata",
+      "label": "DeprecatedMetadata",
+      "kind": "class",
+      "sublabel": "config",
+      "row": 0,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "newOptionsKeys",
+          "type": "List<String>",
+          "visibility": "private"
+        },
+        {
+          "name": "note",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "deprecateOption",
+          "returns": "DeprecatedMetadata",
+          "visibility": "public",
+          "parameters": "note, newOptionsKeys",
+          "static": true
+        },
+        {
+          "name": "deprecateValues",
+          "returns": "DeprecatedMetadata",
+          "visibility": "public",
+          "parameters": "note, values",
+          "static": true
+        },
+        {
+          "name": "getNewOptionsKeys",
+          "returns": "List<String>",
+          "visibility": "public"
+        },
+        {
+          "name": "getNote",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/DeprecatedMetadata.java",
+          "line": 29,
+          "end_line": 53
+        }
+      ]
+    },
+    {
+      "id": "t_Database",
+      "label": "Database",
+      "kind": "class",
+      "sublabel": "config.database",
+      "row": 4,
+      "col": 0,
+      "methods": [
+        {
+          "name": "isLiquibaseDatabaseSupported",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "databaseType, dbKind",
+          "static": true
+        },
+        {
+          "name": "getVendor",
+          "returns": "Optional<Vendor>",
+          "visibility": "public",
+          "parameters": "vendor",
+          "static": true
+        },
+        {
+          "name": "getDatabaseKind",
+          "returns": "Optional<String>",
+          "visibility": "public",
+          "parameters": "alias",
+          "static": true
+        },
+        {
+          "name": "getDefaultUrl",
+          "returns": "Optional<String>",
+          "visibility": "public",
+          "parameters": "Function<Option<?>, getter,…",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/database/Database.java",
+          "line": 39,
+          "end_line": 74
+        }
+      ]
+    },
+    {
+      "id": "t_ConfigSupportLevel",
+      "label": "ConfigSupportLevel",
+      "kind": "enum",
+      "sublabel": "config",
+      "row": 0,
+      "col": 0.5,
+      "attributes": [
+        {
+          "name": "DEPRECATED",
+          "visibility": "public"
+        },
+        {
+          "name": "EXPERIMENTAL",
+          "visibility": "public"
+        },
+        {
+          "name": "PREVIEW",
+          "visibility": "public"
+        },
+        {
+          "name": "SUPPORTED",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/ConfigSupportLevel.java",
+          "line": 3,
+          "end_line": 7
+        }
+      ]
+    },
+    {
+      "id": "t_WildcardOptionsUtil",
+      "label": "WildcardOptionsUtil",
+      "kind": "class",
+      "sublabel": "Utility class for working with configur…",
+      "row": 4,
+      "col": 1,
+      "methods": [
+        {
+          "name": "isWildcardOption",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "key",
+          "static": true
+        },
+        {
+          "name": "getWildcardPrefix",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "wildcardKey",
+          "static": true
+        },
+        {
+          "name": "getWildcardNamedKey",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "wildcardKey, value",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/WildcardOptionsUtil.java",
+          "line": 10,
+          "end_line": 73
+        }
+      ]
+    },
+    {
+      "id": "t_TransactionOptions",
+      "label": "TransactionOptions",
+      "kind": "class",
+      "sublabel": "config",
+      "row": 4,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getNamedTxXADatasource",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "namedProperty",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/TransactionOptions.java",
+          "line": 5,
+          "end_line": 38
+        }
+      ]
+    },
+    {
+      "id": "t_CachingOptions",
+      "label": "CachingOptions",
+      "kind": "class",
+      "sublabel": "config",
+      "row": 3,
+      "col": 0,
+      "methods": [
+        {
+          "name": "maxCountOption",
+          "returns": "Option<Integer>",
+          "visibility": "public",
+          "parameters": "cache",
+          "static": true
+        },
+        {
+          "name": "cacheMaxCountProperty",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "cacheName",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/CachingOptions.java",
+          "line": 8,
+          "end_line": 213
+        }
+      ]
+    },
+    {
+      "id": "t_DatabaseOptions",
+      "label": "DatabaseOptions",
+      "kind": "class",
+      "sublabel": "config",
+      "row": 4,
+      "col": 3,
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/DatabaseOptions.java",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "id": "t_FeatureOptions",
+      "label": "FeatureOptions",
+      "kind": "class",
+      "sublabel": "config",
+      "row": 5,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getFeatureValues",
+          "returns": "List<String>",
+          "visibility": "public",
+          "parameters": "toEnable",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/FeatureOptions.java",
+          "line": 11,
+          "end_line": 34
+        }
+      ]
+    },
+    {
+      "id": "t_HttpOptions",
+      "label": "HttpOptions",
+      "kind": "class",
+      "sublabel": "config",
+      "row": 5,
+      "col": 0,
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/HttpOptions.java",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "id": "t_LoggingOptions",
+      "label": "LoggingOptions",
+      "kind": "class",
+      "sublabel": "config",
+      "row": 5,
+      "col": 1,
+      "sources": [
+        {
+          "path": "quarkus/config-api/src/main/java/org/keycloak/config/LoggingOptions.java",
+          "line": 15
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_Option_OptionCategory",
+      "from": "t_Option",
+      "to": "t_OptionCategory",
+      "kind": "association"
+    },
+    {
+      "id": "r1_OptionBuilder_OptionCategory",
+      "from": "t_OptionBuilder",
+      "to": "t_OptionCategory",
+      "kind": "association"
+    },
+    {
+      "id": "r2_OptionCategory_ConfigSupportLevel",
+      "from": "t_OptionCategory",
+      "to": "t_ConfigSupportLevel",
+      "kind": "association"
+    },
+    {
+      "id": "r3_CachingOptions_Option",
+      "from": "t_CachingOptions",
+      "to": "t_Option",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module quarkus/config-api/ (keycloak-config-api): 32 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "config (31)",
+        "config.database (1)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "Option has a DeprecatedMetadata",
+        "OptionBuilder has a DeprecatedMetadata",
+        "Option uses OptionBuilder"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "SecurityOptions, TelemetryOptions, BootstrapAdminOptions, ConfigKeystoreOptions, EventOptions, ExportOptions, HealthOptions, HostnameV2Options"
+      ]
+    }
+  ]
+}

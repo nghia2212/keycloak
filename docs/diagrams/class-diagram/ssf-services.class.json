@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "ssf/services module types",
+    "output": "docs/diagrams/class-diagram/ssf-services.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_SsfAdminResource",
+      "label": "SsfAdminResource",
+      "kind": "class",
+      "sublabel": "SsfAdmin resource to manage SSF related…",
+      "row": 0,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        },
+        {
+          "name": "realm",
+          "type": "RealmModel",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "createClientStream",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "receiver\""
+        },
+        {
+          "name": "verifyClientStream",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "receiver\""
+        },
+        {
+          "name": "updateClientStreamStatus",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "receiver\""
+        },
+        {
+          "name": "updateClientStream",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "receiver\""
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/services/src/main/java/org/keycloak/ssf/services/admin/SsfAdminResource.java",
+          "line": 94,
+          "end_line": 623
+        }
+      ]
+    },
+    {
+      "id": "t_SsfRealmResourceProvider",
+      "label": "SsfRealmResourceProvider",
+      "kind": "class",
+      "sublabel": "Exposes the realm specific SSF resource…",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getResource",
+          "returns": "Object",
+          "visibility": "public"
+        },
+        {
+          "name": "transmitter",
+          "returns": "SsfTransmitterResource",
+          "visibility": "public"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/services/src/main/java/org/keycloak/ssf/services/SsfRealmResourceProvider.java",
+          "line": 15,
+          "end_line": 43
+        }
+      ]
+    },
+    {
+      "id": "t_SsfAdminRealmResourceProvider",
+      "label": "SsfAdminRealmResourceProvider",
+      "kind": "class",
+      "sublabel": "Exposes the SsfAdminResource",
+      "row": 0,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getResource",
+          "returns": "Object",
+          "visibility": "public",
+          "parameters": "session, realm, auth, admin…"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/services/src/main/java/org/keycloak/ssf/services/admin/SsfAdminRealmResourceProvider.java",
+          "line": 13,
+          "end_line": 21
+        }
+      ]
+    },
+    {
+      "id": "t_SsfBootstrap",
+      "label": "SsfBootstrap",
+      "kind": "class",
+      "sublabel": "ssf.services",
+      "row": 0,
+      "col": 3,
+      "methods": [
+        {
+          "name": "addSsfSupport",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/services/src/main/java/org/keycloak/ssf/services/SsfBootstrap.java",
+          "line": 6,
+          "end_line": 8
+        }
+      ]
+    },
+    {
+      "id": "t_SsfAdminRealmResourceProviderFactory",
+      "label": "SsfAdminRealmResourceProviderFactory",
+      "kind": "class",
+      "sublabel": "Exposes the SsfAdminResource",
+      "row": 1,
+      "col": 0,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "AdminRealmResourceProvider",
+          "visibility": "public",
+          "parameters": "session"
+        },
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "config"
+        },
+        {
+          "name": "postInit",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "factory"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/services/src/main/java/org/keycloak/ssf/services/admin/SsfAdminRealmResourceProviderFactory.java",
+          "line": 15,
+          "end_line": 48
+        }
+      ]
+    },
+    {
+      "id": "t_SsfRealmResourceProviderFactory",
+      "label": "SsfRealmResourceProviderFactory",
+      "kind": "class",
+      "sublabel": "ssf.services",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "RealmResourceProvider",
+          "visibility": "public",
+          "parameters": "session"
+        },
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "scope"
+        },
+        {
+          "name": "postInit",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "keycloakSessionFactory"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/services/src/main/java/org/keycloak/ssf/services/SsfRealmResourceProviderFactory.java",
+          "line": 13,
+          "end_line": 52
+        }
+      ]
+    }
+  ],
+  "relationships": [],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module ssf/services/ (keycloak-ssf-services): 6 public types, 6 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "ssf.services (3)",
+        "ssf.services.admin (3)"
+      ]
+    }
+  ]
+}

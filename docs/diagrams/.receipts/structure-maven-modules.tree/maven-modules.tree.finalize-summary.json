@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "tree",
+  "quality": "showcase",
+  "specification": {
+    "path": "D:\\workspace1\\keycloak\\docs\\diagrams\\structure\\maven-modules.tree.json",
+    "sha256": "aa1d61675ee3eeeb8f14a5f7959bfb5b9f6d3fa838032b63a8a3ba05e8723533",
+    "bytes": 25537
+  },
+  "artifact": {
+    "path": "D:\\workspace1\\keycloak\\docs\\diagrams\\structure\\maven-modules.tree.html",
+    "sha256": "a2b0747def0be55eb7070aac6782544c8b4ae2098b9119eeeba11e4f59033392",
+    "bytes": 1067716
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "D:\\workspace1\\keycloak\\docs\\diagrams\\.receipts\\structure-maven-modules.tree\\maven-modules.tree.finalize.json",
+    "summaryReceipt": "D:\\workspace1\\keycloak\\docs\\diagrams\\.receipts\\structure-maven-modules.tree\\maven-modules.tree.finalize-summary.json",
+    "browserCheckReceipt": "D:\\workspace1\\keycloak\\docs\\diagrams\\.receipts\\structure-maven-modules.tree\\maven-modules.tree.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-26T02:14:15.730Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 5025,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  }
+}

@@ -1,0 +1,594 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "crypto/default module types",
+    "output": "docs/diagrams/class-diagram/crypto-default.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_JWEAlgorithmProvider",
+      "label": "JWEAlgorithmProvider",
+      "kind": "interface",
+      "sublabel": "from core/",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "decodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encodedCek, encryptionKey,…",
+          "abstract": true
+        },
+        {
+          "name": "encodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encryptionProvider, keyStor…",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/jose/jwe/alg/JWEAlgorithmProvider.java",
+          "line": 30,
+          "end_line": 34
+        }
+      ]
+    },
+    {
+      "id": "t_Argon2Parameters",
+      "label": "Argon2Parameters",
+      "kind": "class",
+      "sublabel": "crypto.hash",
+      "row": 3,
+      "col": 2,
+      "methods": [
+        {
+          "name": "listTypes",
+          "returns": "Set<String>",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "listVersions",
+          "returns": "Set<String>",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "getTypeValue",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "type",
+          "static": true
+        },
+        {
+          "name": "getVersionValue",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "version",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/hash/Argon2Parameters.java",
+          "line": 7,
+          "end_line": 43
+        }
+      ]
+    },
+    {
+      "id": "t_DefaultRsaKeyEncryptionJWEAlgorithmProvider",
+      "label": "DefaultRsaKeyEncryptionJWEAlgorithmProvider",
+      "kind": "class",
+      "sublabel": "crypto.def",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "jcaAlgorithmName",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "decodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encodedCek, privateKey, hea…"
+        },
+        {
+          "name": "encodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encryptionProvider, keyStor…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/def/DefaultRsaKeyEncryptionJWEAlgorithmProvider.java",
+          "line": 12,
+          "end_line": 28
+        }
+      ]
+    },
+    {
+      "id": "t_BlockChunkManager",
+      "label": "BlockChunkManager",
+      "kind": "class",
+      "sublabel": "Pool-of-chunks for Argon2 memory blocks",
+      "row": 3,
+      "col": 0.5,
+      "methods": [
+        {
+          "name": "lease",
+          "returns": "LeasedBlockPool",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/hash/BlockChunkManager.java",
+          "line": 39,
+          "end_line": 50
+        }
+      ]
+    },
+    {
+      "id": "t_DefaultCryptoProvider",
+      "label": "DefaultCryptoProvider",
+      "kind": "class",
+      "sublabel": "crypto.def",
+      "row": 6,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "bcProvider",
+          "type": "Provider",
+          "visibility": "private"
+        },
+        {
+          "name": "providers",
+          "type": "Map<String,Object>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getBouncyCastleProvider",
+          "returns": "Provider",
+          "visibility": "public"
+        },
+        {
+          "name": "order",
+          "returns": "int",
+          "visibility": "public"
+        },
+        {
+          "name": "createECParams",
+          "returns": "ECParameterSpec",
+          "visibility": "public",
+          "parameters": "curveName"
+        },
+        {
+          "name": "wrapFactoryForTruststore",
+          "returns": "SSLSocketFactory",
+          "visibility": "public",
+          "parameters": "delegate"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/def/DefaultCryptoProvider.java",
+          "line": 46,
+          "end_line": 190
+        }
+      ]
+    },
+    {
+      "id": "t_Argon2PasswordHashProviderFactory",
+      "label": "Argon2PasswordHashProviderFactory",
+      "kind": "class",
+      "sublabel": "crypto.hash",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "cpuCoreSemaphore",
+          "type": "Semaphore",
+          "visibility": "private"
+        },
+        {
+          "name": "blockChunkManager",
+          "type": "BlockChunkManager",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "PasswordHashProvider",
+          "visibility": "public",
+          "parameters": "session"
+        },
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "config"
+        },
+        {
+          "name": "postInit",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "factory"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/hash/Argon2PasswordHashProviderFactory.java",
+          "line": 19,
+          "end_line": 78
+        }
+      ]
+    },
+    {
+      "id": "t_BCCertificateUtilsProvider",
+      "label": "BCCertificateUtilsProvider",
+      "kind": "class",
+      "sublabel": "The Class CertificateUtils provides uti…",
+      "row": 5,
+      "col": 0,
+      "methods": [
+        {
+          "name": "generateV3Certificate",
+          "returns": "X509Certificate",
+          "visibility": "public",
+          "parameters": "keyPair, caPrivateKey, caCe…"
+        },
+        {
+          "name": "generateV1SelfSignedCertificate",
+          "returns": "X509Certificate",
+          "visibility": "public",
+          "parameters": "caKeyPair, subject"
+        },
+        {
+          "name": "getCertificatePolicyList",
+          "returns": "List<String>",
+          "visibility": "public",
+          "parameters": "cert"
+        },
+        {
+          "name": "createServicesTestCertificate",
+          "returns": "X509Certificate",
+          "visibility": "public",
+          "parameters": "dn, startDate, expiryDate,…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/def/BCCertificateUtilsProvider.java",
+          "line": 80,
+          "end_line": 287
+        }
+      ]
+    },
+    {
+      "id": "t_Argon2PasswordHashProvider",
+      "label": "Argon2PasswordHashProvider",
+      "kind": "class",
+      "sublabel": "crypto.hash",
+      "row": 4,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "version",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "policyCheck",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "policy, credential"
+        },
+        {
+          "name": "encodedCredential",
+          "returns": "PasswordCredentialModel",
+          "visibility": "public",
+          "parameters": "rawPassword, iterations"
+        },
+        {
+          "name": "verify",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "rawPassword, credential"
+        },
+        {
+          "name": "credentialHashingStrength",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "credential"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/hash/Argon2PasswordHashProvider.java",
+          "line": 27,
+          "end_line": 108
+        }
+      ]
+    },
+    {
+      "id": "t_BCEcdhEsAlgorithmProvider",
+      "label": "BCEcdhEsAlgorithmProvider",
+      "kind": "class",
+      "sublabel": "ECDH Ephemeral Static Algorithm Provider",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "decodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encodedCek, encryptionKey,…"
+        },
+        {
+          "name": "encodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encryptionProvider, keyStor…"
+        },
+        {
+          "name": "deriveKey",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "publicKey, privateKey, keyD…",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/def/BCEcdhEsAlgorithmProvider.java",
+          "line": 71,
+          "end_line": 151
+        }
+      ]
+    },
+    {
+      "id": "t_BCECDSACryptoProvider",
+      "label": "BCECDSACryptoProvider",
+      "kind": "class",
+      "sublabel": "crypto.def",
+      "row": 5,
+      "col": 1,
+      "methods": [
+        {
+          "name": "concatenatedRSToASN1DER",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "signature, signLength"
+        },
+        {
+          "name": "asn1derToConcatenatedRS",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "derEncodedSignatureValue, s…"
+        },
+        {
+          "name": "getPublicFromPrivate",
+          "returns": "ECPublicKey",
+          "visibility": "public",
+          "parameters": "ecPrivateKey"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/def/BCECDSACryptoProvider.java",
+          "line": 25,
+          "end_line": 74
+        }
+      ]
+    },
+    {
+      "id": "t_AesKeyWrapAlgorithmProvider",
+      "label": "AesKeyWrapAlgorithmProvider",
+      "kind": "class",
+      "sublabel": "crypto.def",
+      "row": 1,
+      "col": 2,
+      "methods": [
+        {
+          "name": "decodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encodedCek, encryptionKey,…"
+        },
+        {
+          "name": "encodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encryptionProvider, keyStor…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/def/AesKeyWrapAlgorithmProvider.java",
+          "line": 35,
+          "end_line": 45
+        }
+      ]
+    },
+    {
+      "id": "t_BCPemUtilsProvider",
+      "label": "BCPemUtilsProvider",
+      "kind": "class",
+      "sublabel": "Encodes Key or Certificates to PEM form…",
+      "row": 5,
+      "col": 2,
+      "methods": [
+        {
+          "name": "decodePublicKey",
+          "returns": "PublicKey",
+          "visibility": "public",
+          "parameters": "pem"
+        },
+        {
+          "name": "decodePrivateKey",
+          "returns": "PrivateKey",
+          "visibility": "public",
+          "parameters": "pem"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/def/BCPemUtilsProvider.java",
+          "line": 38,
+          "end_line": 83
+        }
+      ]
+    },
+    {
+      "id": "t_BCUserIdentityExtractorProvider",
+      "label": "BCUserIdentityExtractorProvider",
+      "kind": "class",
+      "sublabel": "crypto.def",
+      "row": 6,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getX500NameExtractor",
+          "returns": "UserIdentityExtractor",
+          "visibility": "public",
+          "parameters": "identifier, Function<X509Ce…"
+        },
+        {
+          "name": "getSubjectAltNameExtractor",
+          "returns": "SubjectAltNameExtractor",
+          "visibility": "public",
+          "parameters": "generalName"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/def/BCUserIdentityExtractorProvider.java",
+          "line": 56,
+          "end_line": 220
+        }
+      ]
+    },
+    {
+      "id": "t_BCOCSPProvider",
+      "label": "BCOCSPProvider",
+      "kind": "class",
+      "sublabel": "crypto.def",
+      "row": 6,
+      "col": 1,
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/def/BCOCSPProvider.java",
+          "line": 92
+        }
+      ]
+    },
+    {
+      "id": "t_DefaultRsaKeyEncryption256JWEAlgorithmProvider",
+      "label": "DefaultRsaKeyEncryption256JWEAlgorithmProvider",
+      "kind": "class",
+      "sublabel": "crypto.def",
+      "row": 2,
+      "col": 0,
+      "sources": [
+        {
+          "path": "crypto/default/src/main/java/org/keycloak/crypto/def/DefaultRsaKeyEncryption256JWEAlgorithmProvider.java",
+          "line": 12
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_DefaultRsaKeyEncryption256JWEAlgorithmProvider_DefaultRsaKeyEncryptionJWEAlgorithmProvider",
+      "from": "t_DefaultRsaKeyEncryption256JWEAlgorithmProvider",
+      "to": "t_DefaultRsaKeyEncryptionJWEAlgorithmProvider",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_DefaultRsaKeyEncryptionJWEAlgorithmProvider_JWEAlgorithmProvider",
+      "from": "t_DefaultRsaKeyEncryptionJWEAlgorithmProvider",
+      "to": "t_JWEAlgorithmProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r2_BCEcdhEsAlgorithmProvider_JWEAlgorithmProvider",
+      "from": "t_BCEcdhEsAlgorithmProvider",
+      "to": "t_JWEAlgorithmProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r3_AesKeyWrapAlgorithmProvider_JWEAlgorithmProvider",
+      "from": "t_AesKeyWrapAlgorithmProvider",
+      "to": "t_JWEAlgorithmProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r4_Argon2PasswordHashProviderFactory_BlockChunkManager",
+      "from": "t_Argon2PasswordHashProviderFactory",
+      "to": "t_BlockChunkManager",
+      "kind": "association"
+    },
+    {
+      "id": "r5_Argon2PasswordHashProvider_BlockChunkManager",
+      "from": "t_Argon2PasswordHashProvider",
+      "to": "t_BlockChunkManager",
+      "kind": "association"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module crypto/default/ (keycloak-crypto-default): 14 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection",
+        "JWEAlgorithmProvider: supertypes from other modules (sublabel \"from …\")"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "crypto.def (10)",
+        "crypto.hash (4)",
+        "jose.jwe.alg (1)"
+      ]
+    }
+  ]
+}

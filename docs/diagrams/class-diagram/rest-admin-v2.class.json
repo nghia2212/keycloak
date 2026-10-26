@@ -1,0 +1,670 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "rest/admin-v2 module types",
+    "output": "docs/diagrams/class-diagram/rest-admin-v2.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_BaseClientRepresentation",
+      "label": "BaseClientRepresentation",
+      "kind": "class",
+      "sublabel": "representations.admin.v2",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "uuid",
+          "type": "String",
+          "visibility": "protected"
+        },
+        {
+          "name": "clientId",
+          "type": "String",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getUuid",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setUuid",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "uuid"
+        },
+        {
+          "name": "getClientId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setClientId",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "clientId"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/api/src/main/java/org/keycloak/representations/admin/v2/BaseClientRepresentation.java",
+          "line": 43,
+          "end_line": 104
+        }
+      ]
+    },
+    {
+      "id": "t_OIDCClientRepresentation",
+      "label": "OIDCClientRepresentation",
+      "kind": "class",
+      "sublabel": "representations.admin.v2",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "loginFlows",
+          "type": "Set<Flow>",
+          "visibility": "private"
+        },
+        {
+          "name": "auth",
+          "type": "Auth",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getLoginFlows",
+          "returns": "Set<Flow>",
+          "visibility": "public"
+        },
+        {
+          "name": "setLoginFlows",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "loginFlows"
+        },
+        {
+          "name": "getAuth",
+          "returns": "Auth",
+          "visibility": "public"
+        },
+        {
+          "name": "setAuth",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "auth"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/api/src/main/java/org/keycloak/representations/admin/v2/OIDCClientRepresentation.java",
+          "line": 28,
+          "end_line": 81
+        }
+      ]
+    },
+    {
+      "id": "t_BaseClientModelSchema",
+      "label": "BaseClientModelSchema",
+      "kind": "abstract",
+      "sublabel": "Abstract schema for client models",
+      "row": 4,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "attributes",
+          "type": "Map",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "populate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "representation, model, attr…"
+        },
+        {
+          "name": "createRepresentation",
+          "returns": "R",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "fromModel",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "model"
+        },
+        {
+          "name": "applyProjection",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "rep, includeFields"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/services/src/main/java/org/keycloak/services/client/scim/BaseClientModelSchema.java",
+          "line": 26,
+          "end_line": 260
+        }
+      ]
+    },
+    {
+      "id": "t_ClientsApi",
+      "label": "ClientsApi",
+      "kind": "interface",
+      "sublabel": "admin.api.client",
+      "row": 1,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getClients",
+          "returns": "Stream",
+          "visibility": "public",
+          "parameters": "params",
+          "abstract": true
+        },
+        {
+          "name": "createClient",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "client",
+          "abstract": true
+        },
+        {
+          "name": "create",
+          "returns": "TypedResponse<T>",
+          "visibility": "public",
+          "parameters": "client"
+        },
+        {
+          "name": "client",
+          "returns": "ClientApi",
+          "visibility": "public",
+          "parameters": "(\"id\"",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/api/src/main/java/org/keycloak/admin/api/client/ClientsApi.java",
+          "line": 33,
+          "end_line": 71
+        }
+      ]
+    },
+    {
+      "id": "t_AdminApi",
+      "label": "AdminApi",
+      "kind": "interface",
+      "sublabel": "admin.api",
+      "row": 2,
+      "col": 2,
+      "methods": [
+        {
+          "name": "clientsV2",
+          "returns": "ClientsApi",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/api/src/main/java/org/keycloak/admin/api/AdminApi.java",
+          "line": 7,
+          "end_line": 13
+        }
+      ]
+    },
+    {
+      "id": "t_ValidationContext",
+      "label": "ValidationContext",
+      "kind": "record",
+      "sublabel": "Context object passed to constraint val…",
+      "row": 0,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "@NotNullKeycloakSession",
+          "visibility": "private"
+        },
+        {
+          "name": "realm",
+          "type": "@NotNullRealmModel",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "unwrap",
+          "returns": "ValidationContext",
+          "visibility": "public",
+          "parameters": "context",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/services/src/main/java/org/keycloak/validation/jakarta/ValidationContext.java",
+          "line": 38,
+          "end_line": 49
+        }
+      ]
+    },
+    {
+      "id": "t_PutClient",
+      "label": "PutClient",
+      "kind": "interface",
+      "sublabel": "This validation group allows to enable…",
+      "row": 4,
+      "col": 2,
+      "sources": [
+        {
+          "path": "rest/admin-v2/api/src/main/java/org/keycloak/representations/admin/v2/validation/PutClient.java",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "id": "t_SAMLClientRepresentation",
+      "label": "SAMLClientRepresentation",
+      "kind": "class",
+      "sublabel": "Representation of a SAML client",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "nameIdFormat",
+          "type": "NameIdFormat",
+          "visibility": "private"
+        },
+        {
+          "name": "forceNameIdFormat",
+          "type": "Boolean",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getNameIdFormat",
+          "returns": "NameIdFormat",
+          "visibility": "public"
+        },
+        {
+          "name": "setNameIdFormat",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "nameIdFormat"
+        },
+        {
+          "name": "getForceNameIdFormat",
+          "returns": "Boolean",
+          "visibility": "public"
+        },
+        {
+          "name": "setForceNameIdFormat",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "forceNameIdFormat"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/api/src/main/java/org/keycloak/representations/admin/v2/SAMLClientRepresentation.java",
+          "line": 36,
+          "end_line": 116
+        }
+      ]
+    },
+    {
+      "id": "t_ClientApi",
+      "label": "ClientApi",
+      "kind": "interface",
+      "sublabel": "admin.api.client",
+      "row": 4,
+      "col": 3,
+      "methods": [
+        {
+          "name": "createOrUpdateClient",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "client",
+          "abstract": true
+        },
+        {
+          "name": "createOrUpdate",
+          "returns": "TypedResponse<T>",
+          "visibility": "public",
+          "parameters": "client"
+        },
+        {
+          "name": "patchClient",
+          "returns": "BaseClientRepresentation",
+          "visibility": "public",
+          "parameters": "patch",
+          "abstract": true
+        },
+        {
+          "name": "deleteClient",
+          "returns": "Response",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/api/src/main/java/org/keycloak/admin/api/client/ClientApi.java",
+          "line": 27,
+          "end_line": 76
+        }
+      ]
+    },
+    {
+      "id": "t_PersistedFieldResolver",
+      "label": "PersistedFieldResolver",
+      "kind": "interface",
+      "sublabel": "Resolves provided and persisted values…",
+      "row": 1,
+      "col": 3,
+      "methods": [
+        {
+          "name": "supports",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "representationType",
+          "abstract": true
+        },
+        {
+          "name": "getValue",
+          "returns": "Object",
+          "visibility": "public",
+          "parameters": "representation, fieldName",
+          "abstract": true
+        },
+        {
+          "name": "getPersisted",
+          "returns": "T",
+          "visibility": "public",
+          "parameters": "context, representation",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/services/src/main/java/org/keycloak/representations/admin/v2/validators/PersistedFieldResolver.java",
+          "line": 10,
+          "end_line": 16
+        }
+      ]
+    },
+    {
+      "id": "t_ClientResourceTypeProvider",
+      "label": "ClientResourceTypeProvider",
+      "kind": "class",
+      "sublabel": "services.client.scim",
+      "row": 5,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "permissions",
+          "type": "AdminPermissionEvaluator",
+          "visibility": "private"
+        },
+        {
+          "name": "adminEventBuilder",
+          "type": "AdminEventBuilder",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "count",
+          "returns": "Long",
+          "visibility": "public",
+          "parameters": "searchRequest, resourceSize"
+        },
+        {
+          "name": "resolveField",
+          "returns": "Object",
+          "visibility": "public",
+          "parameters": "fieldPath, client",
+          "static": true
+        },
+        {
+          "name": "fromModel",
+          "returns": "BaseClientRepresentation",
+          "visibility": "public",
+          "parameters": "client",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/services/src/main/java/org/keycloak/services/client/scim/ClientResourceTypeProvider.java",
+          "line": 94,
+          "end_line": 425
+        }
+      ]
+    },
+    {
+      "id": "t_JakartaValidatorProvider",
+      "label": "JakartaValidatorProvider",
+      "kind": "interface",
+      "sublabel": "Provider interface for Jakarta Bean Val…",
+      "row": 4,
+      "col": 0,
+      "methods": [
+        {
+          "name": "validate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "object, groups",
+          "abstract": true
+        },
+        {
+          "name": "getValidator",
+          "returns": "Validator",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/services/src/main/java/org/keycloak/validation/jakarta/JakartaValidatorProvider.java",
+          "line": 20,
+          "end_line": 45
+        }
+      ]
+    },
+    {
+      "id": "t_AdminRootV2",
+      "label": "AdminRootV2",
+      "kind": "interface",
+      "sublabel": "admin.api",
+      "row": 3,
+      "col": 2,
+      "methods": [
+        {
+          "name": "adminApi",
+          "returns": "AdminApi",
+          "visibility": "public",
+          "parameters": "(\"realmName\"",
+          "abstract": true
+        },
+        {
+          "name": "preFlight",
+          "returns": "Response",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/api/src/main/java/org/keycloak/admin/api/AdminRootV2.java",
+          "line": 11,
+          "end_line": 20
+        }
+      ]
+    },
+    {
+      "id": "t_ListOptions",
+      "label": "ListOptions",
+      "kind": "class",
+      "sublabel": "admin.api",
+      "row": 6,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "fields",
+          "type": "String",
+          "visibility": "protected"
+        },
+        {
+          "name": "sort",
+          "type": "String",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "fields",
+          "returns": "ListOptions",
+          "visibility": "public",
+          "parameters": "fields"
+        },
+        {
+          "name": "query",
+          "returns": "ListOptions",
+          "visibility": "public",
+          "parameters": "query"
+        },
+        {
+          "name": "limit",
+          "returns": "ListOptions",
+          "visibility": "public",
+          "parameters": "limit"
+        },
+        {
+          "name": "offset",
+          "returns": "ListOptions",
+          "visibility": "public",
+          "parameters": "offset"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-v2/api/src/main/java/org/keycloak/admin/api/ListOptions.java",
+          "line": 15,
+          "end_line": 54
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_OIDCClientRepresentation_BaseClientRepresentation",
+      "from": "t_OIDCClientRepresentation",
+      "to": "t_BaseClientRepresentation",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_SAMLClientRepresentation_BaseClientRepresentation",
+      "from": "t_SAMLClientRepresentation",
+      "to": "t_BaseClientRepresentation",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_ClientResourceTypeProvider_JakartaValidatorProvider",
+      "from": "t_ClientResourceTypeProvider",
+      "to": "t_JakartaValidatorProvider",
+      "kind": "association"
+    },
+    {
+      "id": "r3_ClientsApi_BaseClientRepresentation",
+      "from": "t_ClientsApi",
+      "to": "t_BaseClientRepresentation",
+      "kind": "dependency"
+    },
+    {
+      "id": "r4_PersistedFieldResolver_ValidationContext",
+      "from": "t_PersistedFieldResolver",
+      "to": "t_ValidationContext",
+      "kind": "dependency"
+    },
+    {
+      "id": "r5_AdminApi_ClientsApi",
+      "from": "t_AdminApi",
+      "to": "t_ClientsApi",
+      "kind": "dependency"
+    },
+    {
+      "id": "r6_AdminRootV2_AdminApi",
+      "from": "t_AdminRootV2",
+      "to": "t_AdminApi",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module rest/admin-v2/ (keycloak-admin-v2-parent): 51 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "representations.admin.v2.validators (12)",
+        "admin.api (5)",
+        "representations.admin.v2 (4)",
+        "services (4)",
+        "services.client.scim (4)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "ClientResourceTypeProvider uses BaseClientRepresentation",
+        "ClientApi uses BaseClientRepresentation",
+        "ClientResourceTypeProvider uses BaseClientModelSchema",
+        "ClientsApi uses ClientApi",
+        "ClientsApi uses ListOptions"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "PatchClient, CreateClient, ServiceException, SimpleClientModel, BaseRepresentation, ClientSortField, HibernateValidatorProvider, OIDCClientModelSchema"
+      ]
+    }
+  ]
+}

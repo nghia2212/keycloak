@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "fe5af892-5c05-4998-b5d4-07014c9b9778",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\integration-client-cli.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\integration-client-cli.class.html",
+  "specification": {
+    "sha256": "f44f75040e03d08f2173ac7b5aaaa1c0535893912411d373ebebae73ab760566",
+    "bytes": 14902
+  },
+  "artifact": {
+    "sha256": "fc91d47cca07475475ed45e5a10fb134926f50ae4c98bbd3acc42f427c2b41c8",
+    "bytes": 884556
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "1595e5d9-169d-4378-87e5-9310f93e00b4",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\core.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\core.class.html",
+  "specification": {
+    "sha256": "43deb9610ed453b5d2c66ffaaac1c6701e48e6197553725d86607424d1d58cb5",
+    "bytes": 15378
+  },
+  "artifact": {
+    "sha256": "fed7b376a17d1f2ca9fb5c0f2cd1ab14564cabb7188d56589bed4b1848559ac8",
+    "bytes": 889126
+  }
+}

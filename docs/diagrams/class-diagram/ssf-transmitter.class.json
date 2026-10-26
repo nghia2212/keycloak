@@ -1,0 +1,766 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "ssf/transmitter module types",
+    "output": "docs/diagrams/class-diagram/ssf-transmitter.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_SsfTransmitterProvider",
+      "label": "SsfTransmitterProvider",
+      "kind": "interface",
+      "sublabel": "Provider for the SSF (Shared Signals Fr…",
+      "row": 1,
+      "col": 2.5,
+      "methods": [
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "verificationService",
+          "returns": "StreamVerificationService",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "metadataService",
+          "returns": "TransmitterMetadataService",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "securityEventTokenMapper",
+          "returns": "SecurityEventTokenMapper",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/SsfTransmitterProvider.java",
+          "line": 38,
+          "end_line": 64
+        }
+      ]
+    },
+    {
+      "id": "t_StreamConfig",
+      "label": "StreamConfig",
+      "kind": "class",
+      "sublabel": "Represents a stream configuration in th…",
+      "row": 3,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "streamId",
+          "type": "String",
+          "visibility": "protected"
+        },
+        {
+          "name": "issuer",
+          "type": "String",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getStreamId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setStreamId",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "streamId"
+        },
+        {
+          "name": "getIssuer",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setIssuer",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "issuer"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/stream/StreamConfig.java",
+          "line": 26,
+          "end_line": 321
+        }
+      ]
+    },
+    {
+      "id": "t_ClientStreamStore",
+      "label": "ClientStreamStore",
+      "kind": "class",
+      "sublabel": "ssf.transmitter.stream.storage.client",
+      "row": 5,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "saveStream",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "streamConfig"
+        },
+        {
+          "name": "updateStreamStatus",
+          "returns": "StreamStatus",
+          "visibility": "public",
+          "parameters": "streamId, streamStatus"
+        },
+        {
+          "name": "findStreamsForSsfReceiverClients",
+          "returns": "List<StreamConfig>",
+          "visibility": "public"
+        },
+        {
+          "name": "findStreamById",
+          "returns": "StreamConfig",
+          "visibility": "public",
+          "parameters": "streamId"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/stream/storage/client/ClientStreamStore.java",
+          "line": 36,
+          "end_line": 368
+        }
+      ]
+    },
+    {
+      "id": "t_SsfTransmitterConfig",
+      "label": "SsfTransmitterConfig",
+      "kind": "class",
+      "sublabel": "Immutable snapshot of the transmitter-w…",
+      "row": 3,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "pushEndpointConnectTimeoutMillis",
+          "type": "int",
+          "visibility": "private"
+        },
+        {
+          "name": "pushEndpointSocketTimeoutMillis",
+          "type": "int",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "defaults",
+          "returns": "SsfTransmitterConfig",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "getPushEndpointConnectTimeoutMillis",
+          "returns": "int",
+          "visibility": "public"
+        },
+        {
+          "name": "getPushEndpointSocketTimeoutMillis",
+          "returns": "int",
+          "visibility": "public"
+        },
+        {
+          "name": "getTransmitterInitiatedVerificationDelayMillis",
+          "returns": "int",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/SsfTransmitterConfig.java",
+          "line": 18,
+          "end_line": 351
+        }
+      ]
+    },
+    {
+      "id": "t_SsfSubjectInclusionResolver",
+      "label": "SsfSubjectInclusionResolver",
+      "kind": "interface",
+      "sublabel": "Read-side gate that decides whether a u…",
+      "row": 6,
+      "col": 0,
+      "methods": [
+        {
+          "name": "isUserNotified",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "session, user, receiverClie…",
+          "abstract": true
+        },
+        {
+          "name": "isUserExcluded",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "session, user, receiverClie…",
+          "abstract": true
+        },
+        {
+          "name": "isOrganizationNotified",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "session, organization, rece…",
+          "abstract": true
+        },
+        {
+          "name": "isOrganizationExcluded",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "session, organization, rece…",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/subject/SsfSubjectInclusionResolver.java",
+          "line": 41,
+          "end_line": 71
+        }
+      ]
+    },
+    {
+      "id": "t_SsfMetricsBinder",
+      "label": "SsfMetricsBinder",
+      "kind": "class",
+      "sublabel": "Facade for SSF transmitter Prometheus m…",
+      "row": 0,
+      "col": 1.5,
+      "attributes": [
+        {
+          "name": "registry",
+          "type": "MeterRegistry",
+          "visibility": "private"
+        },
+        {
+          "name": "depthSnapshot",
+          "type": "Map<RealmStatus,Long>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "RealmStatus",
+          "returns": "record",
+          "visibility": "public",
+          "parameters": "realmId, status"
+        },
+        {
+          "name": "recordEnqueued",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realmId, clientId, delivery…"
+        },
+        {
+          "name": "recordSuppressed",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realmId, clientId, reason"
+        },
+        {
+          "name": "recordPushDelivery",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realmId, clientId, outcome,…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/metrics/SsfMetricsBinder.java",
+          "line": 64,
+          "end_line": 343
+        }
+      ]
+    },
+    {
+      "id": "t_SecurityEventTokenMapper",
+      "label": "SecurityEventTokenMapper",
+      "kind": "class",
+      "sublabel": "Generator for Security Event Tokens (SE…",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "issuerGenerator",
+          "type": "Function",
+          "visibility": "protected"
+        },
+        {
+          "name": "issuer",
+          "type": "String",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "generateStreamUpdatedEvent",
+          "returns": "SsfSecurityEventToken",
+          "visibility": "public",
+          "parameters": "stream, newStatus"
+        },
+        {
+          "name": "generateVerificationEvent",
+          "returns": "SsfSecurityEventToken",
+          "visibility": "public",
+          "parameters": "stream, state"
+        },
+        {
+          "name": "generateSessionRevokedEvent",
+          "returns": "SsfSecurityEventToken",
+          "visibility": "public",
+          "parameters": "userEvent, adminEvent, stre…"
+        },
+        {
+          "name": "generateCredentialChangeEvent",
+          "returns": "SsfSecurityEventToken",
+          "visibility": "public",
+          "parameters": "userEvent, adminEvent, stre…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/event/SecurityEventTokenMapper.java",
+          "line": 60,
+          "end_line": 308
+        }
+      ]
+    },
+    {
+      "id": "t_SecurityEventTokenDispatcher",
+      "label": "SecurityEventTokenDispatcher",
+      "kind": "class",
+      "sublabel": "ssf.transmitter.delivery",
+      "row": 4,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        },
+        {
+          "name": "securityEventTokenEncoder",
+          "type": "SecurityEventTokenEncoder",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "dispatchEvent",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "eventToken, stream"
+        },
+        {
+          "name": "shouldDispatchForUser",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "user, stream"
+        },
+        {
+          "name": "deliverEvent",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "eventToken, stream"
+        },
+        {
+          "name": "deliverEventSync",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "eventToken, stream"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/delivery/SecurityEventTokenDispatcher.java",
+          "line": 29,
+          "end_line": 369
+        }
+      ]
+    },
+    {
+      "id": "t_SsfStreamStore",
+      "label": "SsfStreamStore",
+      "kind": "interface",
+      "sublabel": "Interface for storing and retrieving SS…",
+      "row": 4,
+      "col": 3,
+      "methods": [
+        {
+          "name": "saveStream",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "streamConfig",
+          "abstract": true
+        },
+        {
+          "name": "updateStreamStatus",
+          "returns": "StreamStatus",
+          "visibility": "public",
+          "parameters": "streamId, streamStatus",
+          "abstract": true
+        },
+        {
+          "name": "findStreamsForSsfReceiverClients",
+          "returns": "List<StreamConfig>",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "findStreamById",
+          "returns": "StreamConfig",
+          "visibility": "public",
+          "parameters": "streamId",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/stream/storage/SsfStreamStore.java",
+          "line": 15,
+          "end_line": 89
+        }
+      ]
+    },
+    {
+      "id": "t_SsfTransmitterServiceBuilder",
+      "label": "SsfTransmitterServiceBuilder",
+      "kind": "interface",
+      "sublabel": "Extension seam for constructing the per…",
+      "row": 2,
+      "col": 3,
+      "methods": [
+        {
+          "name": "createEncoder",
+          "returns": "SecurityEventTokenEncoder",
+          "visibility": "public",
+          "parameters": "session, ctx",
+          "abstract": true
+        },
+        {
+          "name": "createMapper",
+          "returns": "SecurityEventTokenMapper",
+          "visibility": "public",
+          "parameters": "session, ctx",
+          "abstract": true
+        },
+        {
+          "name": "createPushDelivery",
+          "returns": "PushDeliveryService",
+          "visibility": "public",
+          "parameters": "session, ctx",
+          "abstract": true
+        },
+        {
+          "name": "createStreamStore",
+          "returns": "ClientStreamStore",
+          "visibility": "public",
+          "parameters": "session, ctx",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/SsfTransmitterServiceBuilder.java",
+          "line": 45,
+          "end_line": 53
+        }
+      ]
+    },
+    {
+      "id": "t_StreamService",
+      "label": "StreamService",
+      "kind": "class",
+      "sublabel": "Service for managing SSF streams",
+      "row": 2,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        },
+        {
+          "name": "transmitterProvider",
+          "type": "SsfTransmitterProvider",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "createStream",
+          "returns": "StreamConfig",
+          "visibility": "public",
+          "parameters": "input, receiverClient"
+        },
+        {
+          "name": "createStreamAsAdmin",
+          "returns": "StreamConfig",
+          "visibility": "public",
+          "parameters": "input, receiverClient"
+        },
+        {
+          "name": "findStreamsForSsfReceiverClients",
+          "returns": "List<StreamConfig>",
+          "visibility": "public"
+        },
+        {
+          "name": "findStreamById",
+          "returns": "StreamConfig",
+          "visibility": "public",
+          "parameters": "streamId"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/stream/StreamService.java",
+          "line": 56,
+          "end_line": 849
+        }
+      ]
+    },
+    {
+      "id": "t_StreamVerificationService",
+      "label": "StreamVerificationService",
+      "kind": "class",
+      "sublabel": "Service for handling SSF stream verific…",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        },
+        {
+          "name": "streamStore",
+          "type": "SsfStreamStore",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "triggerVerification",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "verificationRequest"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/stream/StreamVerificationService.java",
+          "line": 18,
+          "end_line": 51
+        }
+      ]
+    },
+    {
+      "id": "t_PollDeliveryService",
+      "label": "PollDeliveryService",
+      "kind": "class",
+      "sublabel": "Orchestrates one RFC 8936 polling reque…",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        },
+        {
+          "name": "outboxStore",
+          "type": "OutboxStore",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "poll",
+          "returns": "PollResponse",
+          "visibility": "public",
+          "parameters": "receiverClient, request"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/delivery/poll/PollDeliveryService.java",
+          "line": 25,
+          "end_line": 70
+        }
+      ]
+    },
+    {
+      "id": "t_PushDeliveryService",
+      "label": "PushDeliveryService",
+      "kind": "class",
+      "sublabel": "Service for delivering events using the…",
+      "row": 4,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "httpClient",
+          "type": "HttpClient",
+          "visibility": "private"
+        },
+        {
+          "name": "transmitterConfig",
+          "type": "SsfTransmitterConfig",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "deliverEvent",
+          "returns": "PushDeliveryOutcome",
+          "visibility": "public",
+          "parameters": "stream, eventToken, encoded…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/transmitter/src/main/java/org/keycloak/ssf/transmitter/delivery/push/PushDeliveryService.java",
+          "line": 23,
+          "end_line": 51
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_ClientStreamStore_SsfStreamStore",
+      "from": "t_ClientStreamStore",
+      "to": "t_SsfStreamStore",
+      "kind": "realization"
+    },
+    {
+      "id": "r1_SecurityEventTokenMapper_SsfTransmitterConfig",
+      "from": "t_SecurityEventTokenMapper",
+      "to": "t_SsfTransmitterConfig",
+      "kind": "association"
+    },
+    {
+      "id": "r2_SecurityEventTokenDispatcher_SsfTransmitterConfig",
+      "from": "t_SecurityEventTokenDispatcher",
+      "to": "t_SsfTransmitterConfig",
+      "kind": "association"
+    },
+    {
+      "id": "r3_StreamService_SsfTransmitterProvider",
+      "from": "t_StreamService",
+      "to": "t_SsfTransmitterProvider",
+      "kind": "association"
+    },
+    {
+      "id": "r4_PushDeliveryService_SsfTransmitterConfig",
+      "from": "t_PushDeliveryService",
+      "to": "t_SsfTransmitterConfig",
+      "kind": "association"
+    },
+    {
+      "id": "r5_StreamVerificationService_SsfMetricsBinder",
+      "from": "t_StreamVerificationService",
+      "to": "t_SsfMetricsBinder",
+      "kind": "association"
+    },
+    {
+      "id": "r6_PollDeliveryService_SsfMetricsBinder",
+      "from": "t_PollDeliveryService",
+      "to": "t_SsfMetricsBinder",
+      "kind": "association"
+    },
+    {
+      "id": "r7_SsfTransmitterProvider_SsfMetricsBinder",
+      "from": "t_SsfTransmitterProvider",
+      "to": "t_SsfMetricsBinder",
+      "kind": "dependency"
+    },
+    {
+      "id": "r8_SsfStreamStore_StreamConfig",
+      "from": "t_SsfStreamStore",
+      "to": "t_StreamConfig",
+      "kind": "dependency"
+    },
+    {
+      "id": "r9_SsfTransmitterServiceBuilder_SsfTransmitterProvider",
+      "from": "t_SsfTransmitterServiceBuilder",
+      "to": "t_SsfTransmitterProvider",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module ssf/transmitter/ (keycloak-ssf-transmitter): 80 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "ssf.transmitter.stream (11)",
+        "ssf.transmitter (10)",
+        "ssf.transmitter.admin (9)",
+        "ssf.transmitter.subject (9)",
+        "ssf.transmitter.resources (8)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "SecurityEventTokenDispatcher has a SsfMetricsBinder",
+        "SecurityEventTokenDispatcher has a SsfSubjectInclusionResolver",
+        "StreamVerificationService has a SecurityEventTokenMapper",
+        "StreamVerificationService has a SecurityEventTokenDispatcher",
+        "SecurityEventTokenDispatcher has a PushDeliveryService",
+        "StreamService has a StreamVerificationService",
+        "StreamVerificationService has a SsfStreamStore",
+        "StreamService has a SsfStreamStore",
+        "ClientStreamStore uses StreamConfig",
+        "SsfTransmitterProvider uses SsfTransmitterConfig",
+        "…and 19 more"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "SsfUtil, SsfNotifyAttributes, SsfTransmitterProviderFactory, PurgedUserSnapshot, TransmitterMetadataService, SsfTransmitterContext, SubjectManagementService, StreamDeliveryConfig"
+      ]
+    }
+  ]
+}

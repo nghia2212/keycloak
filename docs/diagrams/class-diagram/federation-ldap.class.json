@@ -1,0 +1,785 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "federation/ldap module types",
+    "output": "docs/diagrams/class-diagram/federation-ldap.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_LDAPStorageProvider",
+      "label": "LDAPStorageProvider",
+      "kind": "class",
+      "sublabel": "storage.ldap",
+      "row": 2,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "factory",
+          "type": "LDAPStorageProviderFactory",
+          "visibility": "protected"
+        },
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "validate",
+          "returns": "UserModel",
+          "visibility": "public",
+          "parameters": "realm, local"
+        },
+        {
+          "name": "supportsCredentialAuthenticationFor",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "type"
+        },
+        {
+          "name": "searchForUserByUserAttributeStream",
+          "returns": "Stream<UserModel>",
+          "visibility": "public",
+          "parameters": "realm, attrName, attrValue"
+        },
+        {
+          "name": "synchronizeRegistrations",
+          "returns": "boolean",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/LDAPStorageProvider.java",
+          "line": 116,
+          "end_line": 317
+        }
+      ]
+    },
+    {
+      "id": "t_LDAPObject",
+      "label": "LDAPObject",
+      "kind": "class",
+      "sublabel": "storage.ldap.idm.model",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "uuid",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "dn",
+          "type": "LDAPDn",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "executeOnMandatoryAttributesComplete",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "mandatoryAttributeNames, co…"
+        },
+        {
+          "name": "addReadOnlyAttributeName",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "readOnlyAttribute"
+        },
+        {
+          "name": "removeReadOnlyAttributeName",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "readOnlyAttribute"
+        },
+        {
+          "name": "addRdnAttributeName",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "rdnAttributeName"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/idm/model/LDAPObject.java",
+          "line": 35,
+          "end_line": 148
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractLDAPStorageMapper",
+      "label": "AbstractLDAPStorageMapper",
+      "kind": "abstract",
+      "sublabel": "Stateful per-request object",
+      "row": 4,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "mapperModel",
+          "type": "ComponentModel",
+          "visibility": "protected"
+        },
+        {
+          "name": "ldapProvider",
+          "type": "LDAPStorageProvider",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "syncDataFromFederationProviderToKeycloak",
+          "returns": "SynchronizationResult",
+          "visibility": "public",
+          "parameters": "realm"
+        },
+        {
+          "name": "syncDataFromKeycloakToFederationProvider",
+          "returns": "SynchronizationResult",
+          "visibility": "public",
+          "parameters": "realm"
+        },
+        {
+          "name": "onAuthenticationFailure",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "ldapUser, user, ldapExcepti…"
+        },
+        {
+          "name": "mandatoryAttributeNames",
+          "returns": "Set<String>",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/mappers/AbstractLDAPStorageMapper.java",
+          "line": 41,
+          "end_line": 77
+        }
+      ]
+    },
+    {
+      "id": "t_LDAPConfig",
+      "label": "LDAPConfig",
+      "kind": "class",
+      "sublabel": "storage.ldap",
+      "row": 5,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "config",
+          "type": "MultivaluedHashMap",
+          "visibility": "private"
+        },
+        {
+          "name": "binaryAttributeNames",
+          "type": "Set<String>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getConnectionUrl",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getFactoryName",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "useExtendedPasswordModifyOp",
+          "returns": "boolean",
+          "visibility": "public"
+        },
+        {
+          "name": "addBinaryAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "attrName"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/LDAPConfig.java",
+          "line": 36,
+          "end_line": 270
+        }
+      ]
+    },
+    {
+      "id": "t_LDAPQuery",
+      "label": "LDAPQuery",
+      "kind": "class",
+      "sublabel": "Default IdentityQuery implementation",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "ldapFedProvider",
+          "type": "LDAPStorageProvider",
+          "visibility": "private"
+        },
+        {
+          "name": "limit",
+          "type": "int",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "addWhereCondition",
+          "returns": "LDAPQuery",
+          "visibility": "public",
+          "parameters": "condition"
+        },
+        {
+          "name": "sortBy",
+          "returns": "LDAPQuery",
+          "visibility": "public",
+          "parameters": "sorts"
+        },
+        {
+          "name": "addObjectClasses",
+          "returns": "LDAPQuery",
+          "visibility": "public",
+          "parameters": "objectClasses"
+        },
+        {
+          "name": "addReturningLdapAttribute",
+          "returns": "LDAPQuery",
+          "visibility": "public",
+          "parameters": "ldapAttributeName"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/idm/query/internal/LDAPQuery.java",
+          "line": 62,
+          "end_line": 128
+        }
+      ]
+    },
+    {
+      "id": "t_Condition",
+      "label": "Condition",
+      "kind": "interface",
+      "sublabel": "A Condition is used to specify how a sp…",
+      "row": 5,
+      "col": 0.5,
+      "methods": [
+        {
+          "name": "getParameterName",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "updateParameterName",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "modelParamName, ldapParamNa…",
+          "abstract": true
+        },
+        {
+          "name": "applyCondition",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "filter",
+          "abstract": true
+        },
+        {
+          "name": "toFilter",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/idm/query/Condition.java",
+          "line": 26,
+          "end_line": 45
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractLDAPStorageMapperFactory",
+      "label": "AbstractLDAPStorageMapperFactory",
+      "kind": "abstract",
+      "sublabel": "storage.ldap.mappers",
+      "row": 5,
+      "col": 3,
+      "methods": [
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "config"
+        },
+        {
+          "name": "create",
+          "returns": "LDAPStorageMapper",
+          "visibility": "public",
+          "parameters": "session, model"
+        },
+        {
+          "name": "postInit",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "factory"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/mappers/AbstractLDAPStorageMapperFactory.java",
+          "line": 35,
+          "end_line": 67
+        }
+      ]
+    },
+    {
+      "id": "t_LDAPStorageMapper",
+      "label": "LDAPStorageMapper",
+      "kind": "interface",
+      "sublabel": "storage.ldap.mappers",
+      "row": 3,
+      "col": 2,
+      "methods": [
+        {
+          "name": "syncDataFromFederationProviderToKeycloak",
+          "returns": "SynchronizationResult",
+          "visibility": "public",
+          "parameters": "realm",
+          "abstract": true
+        },
+        {
+          "name": "syncDataFromKeycloakToFederationProvider",
+          "returns": "SynchronizationResult",
+          "visibility": "public",
+          "parameters": "realm",
+          "abstract": true
+        },
+        {
+          "name": "onImportUserFromLDAP",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "ldapUser, user, realm, isCr…",
+          "abstract": true
+        },
+        {
+          "name": "onRegisterUserToLDAP",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "ldapUser, localUser, realm",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/mappers/LDAPStorageMapper.java",
+          "line": 37,
+          "end_line": 87
+        }
+      ]
+    },
+    {
+      "id": "t_LDAPUtils",
+      "label": "LDAPUtils",
+      "kind": "class",
+      "sublabel": "Allow to directly call some operations…",
+      "row": 3,
+      "col": 1,
+      "methods": [
+        {
+          "name": "addUserToLDAP",
+          "returns": "LDAPObject",
+          "visibility": "public",
+          "parameters": "ldapProvider, realm, user",
+          "static": true
+        },
+        {
+          "name": "createQueryForUserSearch",
+          "returns": "LDAPQuery",
+          "visibility": "public",
+          "parameters": "ldapProvider, realm",
+          "static": true
+        },
+        {
+          "name": "computeAndSetDn",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "config, ldapUser",
+          "static": true
+        },
+        {
+          "name": "checkUuid",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "ldapUser, config",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/LDAPUtils.java",
+          "line": 64,
+          "end_line": 196
+        }
+      ]
+    },
+    {
+      "id": "t_CommonLDAPGroupMapperConfig",
+      "label": "CommonLDAPGroupMapperConfig",
+      "kind": "abstract",
+      "sublabel": "storage.ldap.mappers.membership",
+      "row": 6,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "mapperModel",
+          "type": "ComponentModel",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getMembershipLdapAttribute",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getMembershipTypeLdapAttribute",
+          "returns": "MembershipType",
+          "visibility": "public"
+        },
+        {
+          "name": "getMembershipUserLdapAttribute",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "ldapConfig"
+        },
+        {
+          "name": "getMemberOfLdapAttribute",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/mappers/membership/CommonLDAPGroupMapperConfig.java",
+          "line": 31,
+          "end_line": 74
+        }
+      ]
+    },
+    {
+      "id": "t_NamedParameterCondition",
+      "label": "NamedParameterCondition",
+      "kind": "abstract",
+      "sublabel": "storage.ldap.idm.query.internal",
+      "row": 6,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "parameterName",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "binary",
+          "type": "boolean",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getParameterName",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setParameterName",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "parameterName"
+        },
+        {
+          "name": "updateParameterName",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "modelParamName, ldapParamNa…"
+        },
+        {
+          "name": "escapeValue",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "value"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/idm/query/internal/NamedParameterCondition.java",
+          "line": 29,
+          "end_line": 66
+        }
+      ]
+    },
+    {
+      "id": "t_UserRolesRetrieveStrategy",
+      "label": "UserRolesRetrieveStrategy",
+      "kind": "interface",
+      "sublabel": "Strategy for how to retrieve LDAP roles…",
+      "row": 2,
+      "col": 3,
+      "methods": [
+        {
+          "name": "getLDAPRoleMappings",
+          "returns": "List<LDAPObject>",
+          "visibility": "public",
+          "parameters": "roleOrGroupMapper, ldapUser…",
+          "abstract": true
+        },
+        {
+          "name": "getLDAPRoleMembers",
+          "returns": "List<UserModel>",
+          "visibility": "public",
+          "parameters": "realm, roleOrGroupMapper, l…",
+          "abstract": true
+        },
+        {
+          "name": "beforeUserLDAPQuery",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "roleOrGroupMapper, query",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/mappers/membership/UserRolesRetrieveStrategy.java",
+          "line": 41,
+          "end_line": 48
+        }
+      ]
+    },
+    {
+      "id": "t_LDAPDn",
+      "label": "LDAPDn",
+      "kind": "class",
+      "sublabel": "storage.ldap.idm.model",
+      "row": 0,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "ldapName",
+          "type": "LdapName",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "fromLdapName",
+          "returns": "LDAPDn",
+          "visibility": "public",
+          "parameters": "ldapName",
+          "static": true
+        },
+        {
+          "name": "fromString",
+          "returns": "LDAPDn",
+          "visibility": "public",
+          "parameters": "dnString",
+          "static": true
+        },
+        {
+          "name": "getLdapName",
+          "returns": "LdapName",
+          "visibility": "public"
+        },
+        {
+          "name": "addFirst",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "rdnName, rdnValue"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/idm/model/LDAPDn.java",
+          "line": 33,
+          "end_line": 120
+        }
+      ]
+    },
+    {
+      "id": "t_LDAPQueryConditionsBuilder",
+      "label": "LDAPQueryConditionsBuilder",
+      "kind": "class",
+      "sublabel": "storage.ldap.idm.query.internal",
+      "row": 6,
+      "col": 1,
+      "methods": [
+        {
+          "name": "equal",
+          "returns": "Condition",
+          "visibility": "public",
+          "parameters": "parameter, value"
+        },
+        {
+          "name": "greaterThan",
+          "returns": "Condition",
+          "visibility": "public",
+          "parameters": "paramName, x"
+        },
+        {
+          "name": "greaterThanOrEqualTo",
+          "returns": "Condition",
+          "visibility": "public",
+          "parameters": "paramName, x"
+        },
+        {
+          "name": "lessThan",
+          "returns": "Condition",
+          "visibility": "public",
+          "parameters": "paramName, x"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ldap/src/main/java/org/keycloak/storage/ldap/idm/query/internal/LDAPQueryConditionsBuilder.java",
+          "line": 29,
+          "end_line": 45
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_AbstractLDAPStorageMapper_LDAPStorageMapper",
+      "from": "t_AbstractLDAPStorageMapper",
+      "to": "t_LDAPStorageMapper",
+      "kind": "realization"
+    },
+    {
+      "id": "r1_NamedParameterCondition_Condition",
+      "from": "t_NamedParameterCondition",
+      "to": "t_Condition",
+      "kind": "realization"
+    },
+    {
+      "id": "r2_LDAPQuery_LDAPStorageProvider",
+      "from": "t_LDAPQuery",
+      "to": "t_LDAPStorageProvider",
+      "kind": "association"
+    },
+    {
+      "id": "r3_LDAPObject_LDAPDn",
+      "from": "t_LDAPObject",
+      "to": "t_LDAPDn",
+      "kind": "association"
+    },
+    {
+      "id": "r4_LDAPStorageProvider_LDAPObject",
+      "from": "t_LDAPStorageProvider",
+      "to": "t_LDAPObject",
+      "kind": "dependency"
+    },
+    {
+      "id": "r5_LDAPUtils_LDAPStorageProvider",
+      "from": "t_LDAPUtils",
+      "to": "t_LDAPStorageProvider",
+      "kind": "dependency"
+    },
+    {
+      "id": "r6_LDAPStorageMapper_LDAPStorageProvider",
+      "from": "t_LDAPStorageMapper",
+      "to": "t_LDAPStorageProvider",
+      "kind": "dependency"
+    },
+    {
+      "id": "r7_UserRolesRetrieveStrategy_LDAPObject",
+      "from": "t_UserRolesRetrieveStrategy",
+      "to": "t_LDAPObject",
+      "kind": "dependency"
+    },
+    {
+      "id": "r8_CommonLDAPGroupMapperConfig_LDAPConfig",
+      "from": "t_CommonLDAPGroupMapperConfig",
+      "to": "t_LDAPConfig",
+      "kind": "dependency"
+    },
+    {
+      "id": "r9_LDAPQueryConditionsBuilder_Condition",
+      "from": "t_LDAPQueryConditionsBuilder",
+      "to": "t_Condition",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module federation/ldap/ (keycloak-ldap-federation): 83 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "storage.ldap.mappers (27)",
+        "storage.ldap (8)",
+        "storage.ldap.idm.query.internal (7)",
+        "storage.ldap.idm.store.ldap (6)",
+        "storage.ldap.mappers.membership (5)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "AbstractLDAPStorageMapper has a LDAPStorageProvider",
+        "AbstractLDAPStorageMapper uses LDAPObject",
+        "LDAPStorageProvider uses LDAPDn",
+        "LDAPQuery uses LDAPObject",
+        "LDAPUtils uses LDAPObject",
+        "LDAPStorageMapper uses LDAPObject",
+        "LDAPUtils uses LDAPConfig",
+        "LDAPUtils uses LDAPQuery",
+        "LDAPStorageMapper uses LDAPQuery",
+        "UserRolesRetrieveStrategy uses LDAPConfig",
+        "…and 2 more"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "LDAPOperationDecorator, LDAPUtil, CommonLDAPGroupMapper, LDAPIdentityStore, PasswordUpdateCallback, MembershipType, LDAPConfigDecorator, LDAPStorageMapperFactory"
+      ]
+    }
+  ]
+}

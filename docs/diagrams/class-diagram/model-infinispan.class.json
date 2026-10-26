@@ -1,0 +1,779 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "model/infinispan module types",
+    "output": "docs/diagrams/class-diagram/model-infinispan.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_Marshalling",
+      "label": "Marshalling",
+      "kind": "class",
+      "sublabel": "Ids of the protostream type",
+      "row": 4,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getSchemas",
+          "returns": "List",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "setSchemas",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "schemas",
+          "static": true
+        },
+        {
+          "name": "configure",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "builder",
+          "static": true
+        },
+        {
+          "name": "protoEntity",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "clazz",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/marshalling/Marshalling.java",
+          "line": 49,
+          "end_line": 207
+        }
+      ]
+    },
+    {
+      "id": "t_InfinispanConnectionProvider",
+      "label": "InfinispanConnectionProvider",
+      "kind": "interface",
+      "sublabel": "connections.infinispan",
+      "row": 4,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getCache",
+          "returns": "Cache<K,V>",
+          "visibility": "public",
+          "parameters": "name"
+        },
+        {
+          "name": "getRemoteCache",
+          "returns": "RemoteCache<K,V>",
+          "visibility": "public",
+          "parameters": "name",
+          "abstract": true
+        },
+        {
+          "name": "migrateToProtoStream",
+          "returns": "CompletionStage<Void>",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "skipSessionsCacheIfRequired",
+          "returns": "Stream<String>",
+          "visibility": "public",
+          "parameters": "caches",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/connections/infinispan/InfinispanConnectionProvider.java",
+          "line": 39,
+          "end_line": 228
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractRevisioned",
+      "label": "AbstractRevisioned",
+      "kind": "class",
+      "sublabel": "models.cache.infinispan.entities",
+      "row": 1,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "revision",
+          "type": "long",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getRevision",
+          "returns": "long",
+          "visibility": "public"
+        },
+        {
+          "name": "setRevision",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "revision"
+        },
+        {
+          "name": "getCacheTimestamp",
+          "returns": "long",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/models/cache/infinispan/entities/AbstractRevisioned.java",
+          "line": 11,
+          "end_line": 42
+        }
+      ]
+    },
+    {
+      "id": "t_InvalidationEvent",
+      "label": "InvalidationEvent",
+      "kind": "abstract",
+      "sublabel": "models.cache.infinispan.events",
+      "row": 4,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "hashCode",
+          "returns": "int",
+          "visibility": "public"
+        },
+        {
+          "name": "equals",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "obj"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/models/cache/infinispan/events/InvalidationEvent.java",
+          "line": 29,
+          "end_line": 48
+        }
+      ]
+    },
+    {
+      "id": "t_SessionEntity",
+      "label": "SessionEntity",
+      "kind": "abstract",
+      "sublabel": "Represents an entity containing data ab…",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "realmId",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "isOffline",
+          "type": "boolean",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getRealmId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setRealmId",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realmId"
+        },
+        {
+          "name": "mergeRemoteEntityWithLocalEntity",
+          "returns": "SessionEntityWrapper",
+          "visibility": "public",
+          "parameters": "localEntityWrapper"
+        },
+        {
+          "name": "shouldEvaluateRemoval",
+          "returns": "boolean",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/models/sessions/infinispan/entities/SessionEntity.java",
+          "line": 33,
+          "end_line": 89
+        }
+      ]
+    },
+    {
+      "id": "t_SessionEntityWrapper",
+      "label": "SessionEntityWrapper",
+      "kind": "class",
+      "sublabel": "models.sessions.infinispan.changes",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "version",
+          "type": "UUID",
+          "visibility": "private"
+        },
+        {
+          "name": "entity",
+          "type": "S",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "forTransport",
+          "returns": "SessionEntityWrapper<S>",
+          "visibility": "public",
+          "parameters": "entity",
+          "static": true
+        },
+        {
+          "name": "getVersion",
+          "returns": "UUID",
+          "visibility": "public"
+        },
+        {
+          "name": "createTombstoneMarker",
+          "returns": "SessionEntityWrapper<S>",
+          "visibility": "public",
+          "parameters": "removedEntity",
+          "static": true
+        },
+        {
+          "name": "putLocalMetadataNoteInt",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "key, value"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/models/sessions/infinispan/changes/SessionEntityWrapper.java",
+          "line": 40,
+          "end_line": 166
+        }
+      ]
+    },
+    {
+      "id": "t_RealmAdapter",
+      "label": "RealmAdapter",
+      "kind": "class",
+      "sublabel": "models.cache.infinispan",
+      "row": 5,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "cached",
+          "type": "CachedRealm",
+          "visibility": "protected"
+        },
+        {
+          "name": "cacheSession",
+          "type": "RealmCacheSession",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "invalidate",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "addRequiredCredential",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "cred"
+        },
+        {
+          "name": "addDefaultGroup",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "group"
+        },
+        {
+          "name": "removeDefaultGroup",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "group"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/models/cache/infinispan/RealmAdapter.java",
+          "line": 78,
+          "end_line": 878
+        }
+      ]
+    },
+    {
+      "id": "t_Revisioned",
+      "label": "Revisioned",
+      "kind": "interface",
+      "sublabel": "models.cache.infinispan.entities",
+      "row": 0,
+      "col": 3,
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getRevision",
+          "returns": "long",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "setRevision",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "revision",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/models/cache/infinispan/entities/Revisioned.java",
+          "line": 7,
+          "end_line": 10
+        }
+      ]
+    },
+    {
+      "id": "t_UserSessionEntity",
+      "label": "UserSessionEntity",
+      "kind": "class",
+      "sublabel": "models.sessions.infinispan.entities",
+      "row": 2,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "user",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "mergeRemoteEntityWithLocalEntity",
+          "returns": "SessionEntityWrapper",
+          "visibility": "public",
+          "parameters": "localEntityWrapper"
+        },
+        {
+          "name": "create",
+          "returns": "UserSessionEntity",
+          "visibility": "public",
+          "parameters": "id, realm, user, loginUsern…",
+          "static": true
+        },
+        {
+          "name": "updateSessionEntity",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "entity, realm, user, loginU…",
+          "static": true
+        },
+        {
+          "name": "createFromModel",
+          "returns": "UserSessionEntity",
+          "visibility": "public",
+          "parameters": "userSession",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/models/sessions/infinispan/entities/UserSessionEntity.java",
+          "line": 48,
+          "end_line": 280
+        }
+      ]
+    },
+    {
+      "id": "t_AuthenticatedClientSessionEntity",
+      "label": "AuthenticatedClientSessionEntity",
+      "kind": "class",
+      "sublabel": "models.sessions.infinispan.entities",
+      "row": 2,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "authMethod",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "redirectUri",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getAuthMethod",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setAuthMethod",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "authMethod"
+        },
+        {
+          "name": "create",
+          "returns": "AuthenticatedClientSessionEntity",
+          "visibility": "public",
+          "parameters": "realm, client, userSession",
+          "static": true
+        },
+        {
+          "name": "createFromModel",
+          "returns": "AuthenticatedClientSessionEntity",
+          "visibility": "public",
+          "parameters": "model",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/models/sessions/infinispan/entities/AuthenticatedClientSessionEntity.java",
+          "line": 45,
+          "end_line": 198
+        }
+      ]
+    },
+    {
+      "id": "t_RealmCacheSession",
+      "label": "RealmCacheSession",
+      "kind": "class",
+      "sublabel": "- the high level architecture of this c…",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "cache",
+          "type": "RealmCacheManager",
+          "visibility": "protected"
+        },
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "clear",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "clearManagedModels",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "registerInvalidation",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "id"
+        },
+        {
+          "name": "registerRealmInvalidation",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "id, name"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/models/cache/infinispan/RealmCacheSession.java",
+          "line": 149,
+          "end_line": 252
+        }
+      ]
+    },
+    {
+      "id": "t_SessionTimeouts",
+      "label": "SessionTimeouts",
+      "kind": "class",
+      "sublabel": "models.sessions.infinispan.util",
+      "row": 3,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getUserSessionLifespanMs",
+          "returns": "long",
+          "visibility": "public",
+          "parameters": "realm, client, userSessionE…",
+          "static": true
+        },
+        {
+          "name": "getUserSessionMaxIdleMs",
+          "returns": "long",
+          "visibility": "public",
+          "parameters": "realm, client, userSessionE…",
+          "static": true
+        },
+        {
+          "name": "getClientSessionLifespanMs",
+          "returns": "long",
+          "visibility": "public",
+          "parameters": "realm, client, clientSessio…",
+          "static": true
+        },
+        {
+          "name": "calculateEffectiveSessionLifespan",
+          "returns": "long",
+          "visibility": "public",
+          "parameters": "maxIdle, lifespan",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/models/sessions/infinispan/util/SessionTimeouts.java",
+          "line": 36,
+          "end_line": 264
+        }
+      ]
+    },
+    {
+      "id": "t_LoginFailureEntity",
+      "label": "LoginFailureEntity",
+      "kind": "class",
+      "sublabel": "models.sessions.infinispan.entities",
+      "row": 2,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "userId",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "failedLoginNotBefore",
+          "type": "int",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getUserId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getFailedLoginNotBefore",
+          "returns": "int",
+          "visibility": "public"
+        },
+        {
+          "name": "clearFailures",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "clearPrimaryAndSecondaryAuthFailures",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/models/sessions/infinispan/entities/LoginFailureEntity.java",
+          "line": 34,
+          "end_line": 134
+        }
+      ]
+    },
+    {
+      "id": "t_RootAuthenticationSessionEntity",
+      "label": "RootAuthenticationSessionEntity",
+      "kind": "class",
+      "sublabel": "models.sessions.infinispan.entities",
+      "row": 6,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "timestamp",
+          "type": "int",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getTimestamp",
+          "returns": "int",
+          "visibility": "public"
+        },
+        {
+          "name": "setTimestamp",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "timestamp"
+        },
+        {
+          "name": "shouldEvaluateRemoval",
+          "returns": "boolean",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/infinispan/src/main/java/org/keycloak/models/sessions/infinispan/entities/RootAuthenticationSessionEntity.java",
+          "line": 36,
+          "end_line": 87
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_AbstractRevisioned_Revisioned",
+      "from": "t_AbstractRevisioned",
+      "to": "t_Revisioned",
+      "kind": "realization"
+    },
+    {
+      "id": "r1_UserSessionEntity_SessionEntity",
+      "from": "t_UserSessionEntity",
+      "to": "t_SessionEntity",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_AuthenticatedClientSessionEntity_SessionEntity",
+      "from": "t_AuthenticatedClientSessionEntity",
+      "to": "t_SessionEntity",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r3_LoginFailureEntity_SessionEntity",
+      "from": "t_LoginFailureEntity",
+      "to": "t_SessionEntity",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r4_RealmAdapter_RealmCacheSession",
+      "from": "t_RealmAdapter",
+      "to": "t_RealmCacheSession",
+      "kind": "association"
+    },
+    {
+      "id": "r5_SessionEntity_SessionEntityWrapper",
+      "from": "t_SessionEntity",
+      "to": "t_SessionEntityWrapper",
+      "kind": "dependency"
+    },
+    {
+      "id": "r6_SessionTimeouts_UserSessionEntity",
+      "from": "t_SessionTimeouts",
+      "to": "t_UserSessionEntity",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module model/infinispan/ (keycloak-model-infinispan): 363 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "models.cache.infinispan.entities (36)",
+        "models.cache.infinispan.events (26)",
+        "models.sessions.infinispan (25)",
+        "models.cache.infinispan (21)",
+        "models.sessions.infinispan.changes (21)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "RootAuthenticationSessionEntity extends SessionEntity",
+        "UserSessionEntity uses SessionEntityWrapper",
+        "SessionTimeouts uses AuthenticatedClientSessionEntity",
+        "SessionTimeouts uses LoginFailureEntity",
+        "SessionTimeouts uses RootAuthenticationSessionEntity"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "InRealm, InfinispanUtils, RealmCacheManager, SessionUpdateTask, InfinispanTransactionProvider, StoreFactoryCacheManager, CachedRealm, RemoteAuthenticatedClientSessionEntity"
+      ]
+    }
+  ]
+}

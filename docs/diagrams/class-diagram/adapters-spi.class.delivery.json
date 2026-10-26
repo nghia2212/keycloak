@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "a97f911c-4ab3-42df-8ee5-fb7c35638f10",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\adapters-spi.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\adapters-spi.class.html",
+  "specification": {
+    "sha256": "de8ec8abbae9e35b50eb7e4f11bc9015365e4ee95c444773e823f982f731fd10",
+    "bytes": 10518
+  },
+  "artifact": {
+    "sha256": "fbac84ae4dd6f7e60d5a26b251b3ed81a37b28ca22a88f69c84fb0ad8ddf86cd",
+    "bytes": 867534
+  }
+}

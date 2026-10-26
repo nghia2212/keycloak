@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "bec72686-6bd5-4a42-b203-7231b2048150",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\model-jpa.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\model-jpa.class.html",
+  "specification": {
+    "sha256": "358b0a31c08b6ad51b866cceb0ef66c9a95495557f79eabbca0214f1f21e6d6b",
+    "bytes": 15227
+  },
+  "artifact": {
+    "sha256": "7ba869b014fa8d8483b1cea766f89a594d6122c16a697347ed65845c50fd6305",
+    "bytes": 888833
+  }
+}

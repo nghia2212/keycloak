@@ -1,0 +1,680 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "rest/admin-ui-ext module types",
+    "output": "docs/diagrams/class-diagram/rest-admin-ui-ext.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_RoleMappingResource",
+      "label": "RoleMappingResource",
+      "kind": "abstract",
+      "sublabel": "admin.ui.rest",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        },
+        {
+          "name": "realm",
+          "type": "RealmModel",
+          "visibility": "protected"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/RoleMappingResource.java",
+          "line": 7,
+          "end_line": 9
+        }
+      ]
+    },
+    {
+      "id": "t_ClientRole",
+      "label": "ClientRole",
+      "kind": "class",
+      "sublabel": "admin.ui.rest.model",
+      "row": 2,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "role",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getRole",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getClient",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "copy",
+          "returns": "ClientRole",
+          "visibility": "public",
+          "parameters": "id, role, client, clientId,…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/model/ClientRole.java",
+          "line": 7,
+          "end_line": 64
+        }
+      ]
+    },
+    {
+      "id": "t_Authentication",
+      "label": "Authentication",
+      "kind": "class",
+      "sublabel": "admin.ui.rest.model",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "alias",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getUsedBy",
+          "returns": "UsedBy",
+          "visibility": "public"
+        },
+        {
+          "name": "setUsedBy",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "usedBy"
+        },
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setId",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "id"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/model/Authentication.java",
+          "line": 7,
+          "end_line": 34
+        }
+      ]
+    },
+    {
+      "id": "t_RoleMapper",
+      "label": "RoleMapper",
+      "kind": "class",
+      "sublabel": "admin.ui.rest.model",
+      "row": 3,
+      "col": 1,
+      "methods": [
+        {
+          "name": "convertToModel",
+          "returns": "ClientRole",
+          "visibility": "public",
+          "parameters": "roleModel, realm",
+          "static": true
+        },
+        {
+          "name": "convertToEffectiveRole",
+          "returns": "EffectiveRole",
+          "visibility": "public",
+          "parameters": "roleModel, realm",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/model/RoleMapper.java",
+          "line": 7,
+          "end_line": 19
+        }
+      ]
+    },
+    {
+      "id": "t_EffectiveRole",
+      "label": "EffectiveRole",
+      "kind": "class",
+      "sublabel": "admin.ui.rest.model",
+      "row": 5,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getName",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getDescription",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "isClientRole",
+          "returns": "boolean",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/model/EffectiveRole.java",
+          "line": 7,
+          "end_line": 46
+        }
+      ]
+    },
+    {
+      "id": "t_SessionRepresentation",
+      "label": "SessionRepresentation",
+      "kind": "class",
+      "sublabel": "admin.ui.rest.model",
+      "row": 5,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setId",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "id"
+        },
+        {
+          "name": "getUsername",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setUsername",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "username"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/model/SessionRepresentation.java",
+          "line": 9,
+          "end_line": 33
+        }
+      ]
+    },
+    {
+      "id": "t_UsedBy",
+      "label": "UsedBy",
+      "kind": "class",
+      "sublabel": "admin.ui.rest.model",
+      "row": 2,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "type",
+          "type": "UsedByType",
+          "visibility": "private"
+        },
+        {
+          "name": "values",
+          "type": "List<String>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getType",
+          "returns": "UsedByType",
+          "visibility": "public"
+        },
+        {
+          "name": "setType",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "type"
+        },
+        {
+          "name": "getValues",
+          "returns": "List<String>",
+          "visibility": "public"
+        },
+        {
+          "name": "setValues",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "values"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/model/UsedBy.java",
+          "line": 8,
+          "end_line": 44
+        }
+      ]
+    },
+    {
+      "id": "t_UsedByClientRef",
+      "label": "UsedByClientRef",
+      "kind": "class",
+      "sublabel": "admin.ui.rest.model",
+      "row": 5,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "clientId",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setId",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "id"
+        },
+        {
+          "name": "getClientId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setClientId",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "clientId"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/model/UsedByClientRef.java",
+          "line": 7,
+          "end_line": 33
+        }
+      ]
+    },
+    {
+      "id": "t_AllEffectiveRoleMappingResource",
+      "label": "AllEffectiveRoleMappingResource",
+      "kind": "class",
+      "sublabel": "admin.ui.rest",
+      "row": 1,
+      "col": 0,
+      "methods": [
+        {
+          "name": "listAllEffectiveClientScopeRoleMappings",
+          "returns": "List<EffectiveRole>",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        },
+        {
+          "name": "listAllEffectiveClientsRoleMappings",
+          "returns": "List<EffectiveRole>",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        },
+        {
+          "name": "listAllEffectiveGroupsRoleMappings",
+          "returns": "List<EffectiveRole>",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        },
+        {
+          "name": "listAllEffectiveUsersRoleMappings",
+          "returns": "List<EffectiveRole>",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/AllEffectiveRoleMappingResource.java",
+          "line": 35,
+          "end_line": 147
+        }
+      ]
+    },
+    {
+      "id": "t_AvailableRoleMappingResource",
+      "label": "AvailableRoleMappingResource",
+      "kind": "class",
+      "sublabel": "admin.ui.rest",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "listAvailableClientScopeRoleMappings",
+          "returns": "List<ClientRole>",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        },
+        {
+          "name": "listAvailableClientRoleMappings",
+          "returns": "List<ClientRole>",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        },
+        {
+          "name": "listAvailableGroupRoleMappings",
+          "returns": "List<ClientRole>",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        },
+        {
+          "name": "listAvailableUserRoleMappings",
+          "returns": "List<ClientRole>",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/AvailableRoleMappingResource.java",
+          "line": 48,
+          "end_line": 188
+        }
+      ]
+    },
+    {
+      "id": "t_EffectiveRoleMappingResource",
+      "label": "EffectiveRoleMappingResource",
+      "kind": "class",
+      "sublabel": "admin.ui.rest",
+      "row": 1,
+      "col": 2,
+      "methods": [
+        {
+          "name": "listCompositeClientScopeRoleMappings",
+          "returns": "List<ClientRole>",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        },
+        {
+          "name": "listCompositeClientsRoleMappings",
+          "returns": "List<ClientRole>",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        },
+        {
+          "name": "listCompositeGroupsRoleMappings",
+          "returns": "List<ClientRole>",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        },
+        {
+          "name": "listCompositeUsersRoleMappings",
+          "returns": "List<ClientRole>",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/EffectiveRoleMappingResource.java",
+          "line": 35,
+          "end_line": 147
+        }
+      ]
+    },
+    {
+      "id": "t_AuthenticationManagementResource",
+      "label": "AuthenticationManagementResource",
+      "kind": "class",
+      "sublabel": "admin.ui.rest",
+      "row": 3,
+      "col": 2,
+      "methods": [
+        {
+          "name": "listIdentityProviders",
+          "returns": "List<Authentication>",
+          "visibility": "public"
+        },
+        {
+          "name": "listUsed",
+          "returns": "List<UsedByReference>",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        },
+        {
+          "name": "getRequiredActions",
+          "returns": "Stream",
+          "visibility": "public"
+        },
+        {
+          "name": "toRepresentation",
+          "returns": "ConfigurableRequiredActionProviderRepresentation",
+          "visibility": "public",
+          "parameters": "model"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/AuthenticationManagementResource.java",
+          "line": 43,
+          "end_line": 143
+        }
+      ]
+    },
+    {
+      "id": "t_ConfigurableRequiredActionProviderRepresentation",
+      "label": "ConfigurableRequiredActionProviderRepresentation",
+      "kind": "class",
+      "sublabel": "admin.ui.rest.model",
+      "row": 2,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "configurable",
+          "type": "boolean",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "isConfigurable",
+          "returns": "boolean",
+          "visibility": "public"
+        },
+        {
+          "name": "setConfigurable",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "configurable"
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/model/ConfigurableRequiredActionProviderRepresentation.java",
+          "line": 21,
+          "end_line": 29
+        }
+      ]
+    },
+    {
+      "id": "t_AuthenticationMapper",
+      "label": "AuthenticationMapper",
+      "kind": "class",
+      "sublabel": "admin.ui.rest.model",
+      "row": 4,
+      "col": 0,
+      "methods": [
+        {
+          "name": "convertToModel",
+          "returns": "Authentication",
+          "visibility": "public",
+          "parameters": "session, flow, realm, auth",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "rest/admin-ui-ext/src/main/java/org/keycloak/admin/ui/rest/model/AuthenticationMapper.java",
+          "line": 16,
+          "end_line": 19
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_AllEffectiveRoleMappingResource_RoleMappingResource",
+      "from": "t_AllEffectiveRoleMappingResource",
+      "to": "t_RoleMappingResource",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_AvailableRoleMappingResource_RoleMappingResource",
+      "from": "t_AvailableRoleMappingResource",
+      "to": "t_RoleMappingResource",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_EffectiveRoleMappingResource_RoleMappingResource",
+      "from": "t_EffectiveRoleMappingResource",
+      "to": "t_RoleMappingResource",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r3_Authentication_UsedBy",
+      "from": "t_Authentication",
+      "to": "t_UsedBy",
+      "kind": "association"
+    },
+    {
+      "id": "r4_RoleMapper_ClientRole",
+      "from": "t_RoleMapper",
+      "to": "t_ClientRole",
+      "kind": "dependency"
+    },
+    {
+      "id": "r5_AuthenticationMapper_Authentication",
+      "from": "t_AuthenticationMapper",
+      "to": "t_Authentication",
+      "kind": "dependency"
+    },
+    {
+      "id": "r6_AuthenticationManagementResource_ConfigurableRequiredActionProviderRepresentation",
+      "from": "t_AuthenticationManagementResource",
+      "to": "t_ConfigurableRequiredActionProviderRepresentation",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module rest/admin-ui-ext/ (keycloak-rest-admin-ui-ext): 33 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "admin.ui.rest.model (19)",
+        "admin.ui.rest (14)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "AuthenticationManagementResource extends RoleMappingResource",
+        "RoleMapper uses EffectiveRole"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "ClientIdSessionType, EventListener, AdminExtResource, RoleDeleteRequest, UsedByReference, RoleMappingDeleteResource, RealmNameRepresentation, RoleMappingRepresentation"
+      ]
+    }
+  ]
+}

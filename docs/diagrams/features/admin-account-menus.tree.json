@@ -1,0 +1,647 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "Keycloak chức năng và menu",
+    "output": "docs/diagrams/features/admin-account-menus.tree.html",
+    "quality_profile": "showcase",
+    "locale": "vi",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "direction": "right"
+  },
+  "nodes": [
+    {
+      "id": "n0",
+      "label": "Keycloak (localhost:8080)",
+      "sublabel": "Chức năng và menu của app đang chạy"
+    },
+    {
+      "id": "n1",
+      "label": "Admin Console",
+      "parent": "n0",
+      "sublabel": "/admin/master/console · quản trị",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 112,
+          "end_line": 165
+        }
+      ]
+    },
+    {
+      "id": "n2",
+      "label": "Realm",
+      "parent": "n1",
+      "sublabel": "Nhóm đầu menu"
+    },
+    {
+      "id": "n3",
+      "label": "Manage realms",
+      "parent": "n2",
+      "sublabel": "Tạo / chọn realm (chỉ ở realm master)",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 126
+        }
+      ]
+    },
+    {
+      "id": "n4",
+      "label": "Manage",
+      "parent": "n1",
+      "sublabel": "Quản lý đối tượng của realm",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 130,
+          "end_line": 142
+        }
+      ]
+    },
+    {
+      "id": "n5",
+      "label": "Organizations",
+      "parent": "n4",
+      "sublabel": "ẩn: cần feature organizations + bật ở realm",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 131,
+          "end_line": 133
+        }
+      ]
+    },
+    {
+      "id": "n6",
+      "label": "Clients",
+      "parent": "n4",
+      "sublabel": "Ứng dụng kết nối OIDC / SAML",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 135
+        }
+      ]
+    },
+    {
+      "id": "n7",
+      "label": "Clients list",
+      "parent": "n6"
+    },
+    {
+      "id": "n8",
+      "label": "Initial access token",
+      "parent": "n6"
+    },
+    {
+      "id": "n9",
+      "label": "Client registration",
+      "parent": "n6"
+    },
+    {
+      "id": "n10",
+      "label": "Chi tiết client",
+      "parent": "n6",
+      "sublabel": "tab khi mở một client"
+    },
+    {
+      "id": "n11",
+      "label": "Settings",
+      "parent": "n10"
+    },
+    {
+      "id": "n12",
+      "label": "Roles",
+      "parent": "n10"
+    },
+    {
+      "id": "n13",
+      "label": "Client scopes",
+      "parent": "n10"
+    },
+    {
+      "id": "n14",
+      "label": "Sessions",
+      "parent": "n10"
+    },
+    {
+      "id": "n15",
+      "label": "Advanced",
+      "parent": "n10"
+    },
+    {
+      "id": "n16",
+      "label": "Events",
+      "parent": "n10"
+    },
+    {
+      "id": "n17",
+      "label": "Client scopes",
+      "parent": "n4",
+      "sublabel": "Scope và mapper dùng chung",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 136
+        }
+      ]
+    },
+    {
+      "id": "n18",
+      "label": "Chi tiết client scope",
+      "parent": "n17",
+      "sublabel": "tab khi mở một scope"
+    },
+    {
+      "id": "n19",
+      "label": "Settings",
+      "parent": "n18"
+    },
+    {
+      "id": "n20",
+      "label": "Mappers",
+      "parent": "n18"
+    },
+    {
+      "id": "n21",
+      "label": "Scope",
+      "parent": "n18"
+    },
+    {
+      "id": "n22",
+      "label": "Realm roles",
+      "parent": "n4",
+      "sublabel": "Vai trò cấp realm",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 137
+        }
+      ]
+    },
+    {
+      "id": "n23",
+      "label": "Users",
+      "parent": "n4",
+      "sublabel": "Tài khoản người dùng",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 138
+        }
+      ]
+    },
+    {
+      "id": "n24",
+      "label": "User list",
+      "parent": "n23"
+    },
+    {
+      "id": "n25",
+      "label": "Chi tiết user",
+      "parent": "n23",
+      "sublabel": "tab khi mở một user"
+    },
+    {
+      "id": "n26",
+      "label": "Details",
+      "parent": "n25"
+    },
+    {
+      "id": "n27",
+      "label": "Credentials",
+      "parent": "n25"
+    },
+    {
+      "id": "n28",
+      "label": "Role mapping",
+      "parent": "n25"
+    },
+    {
+      "id": "n29",
+      "label": "Groups",
+      "parent": "n25"
+    },
+    {
+      "id": "n30",
+      "label": "Consents",
+      "parent": "n25"
+    },
+    {
+      "id": "n31",
+      "label": "Identity provider links",
+      "parent": "n25"
+    },
+    {
+      "id": "n32",
+      "label": "Sessions",
+      "parent": "n25"
+    },
+    {
+      "id": "n33",
+      "label": "Events",
+      "parent": "n25"
+    },
+    {
+      "id": "n34",
+      "label": "Workflows",
+      "parent": "n25"
+    },
+    {
+      "id": "n35",
+      "label": "Groups",
+      "parent": "n4",
+      "sublabel": "Nhóm người dùng phân cấp",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 139
+        }
+      ]
+    },
+    {
+      "id": "n36",
+      "label": "Sessions",
+      "parent": "n4",
+      "sublabel": "Phiên đăng nhập đang hoạt động",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 140
+        }
+      ]
+    },
+    {
+      "id": "n37",
+      "label": "Events",
+      "parent": "n4",
+      "sublabel": "Nhật ký sự kiện",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 141
+        }
+      ]
+    },
+    {
+      "id": "n38",
+      "label": "User events",
+      "parent": "n37"
+    },
+    {
+      "id": "n39",
+      "label": "Admin events",
+      "parent": "n37"
+    },
+    {
+      "id": "n40",
+      "label": "Configure",
+      "parent": "n1",
+      "sublabel": "Cấu hình realm",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 146,
+          "end_line": 165
+        }
+      ]
+    },
+    {
+      "id": "n41",
+      "label": "Realm settings",
+      "parent": "n40",
+      "sublabel": "Cấu hình chung của realm",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 147
+        }
+      ]
+    },
+    {
+      "id": "n42",
+      "label": "General",
+      "parent": "n41"
+    },
+    {
+      "id": "n43",
+      "label": "Login",
+      "parent": "n41"
+    },
+    {
+      "id": "n44",
+      "label": "Email",
+      "parent": "n41"
+    },
+    {
+      "id": "n45",
+      "label": "Themes",
+      "parent": "n41"
+    },
+    {
+      "id": "n46",
+      "label": "Keys",
+      "parent": "n41"
+    },
+    {
+      "id": "n47",
+      "label": "Events",
+      "parent": "n41"
+    },
+    {
+      "id": "n48",
+      "label": "Localization",
+      "parent": "n41"
+    },
+    {
+      "id": "n49",
+      "label": "Security defenses",
+      "parent": "n41"
+    },
+    {
+      "id": "n50",
+      "label": "Sessions",
+      "parent": "n41"
+    },
+    {
+      "id": "n51",
+      "label": "Tokens",
+      "parent": "n41"
+    },
+    {
+      "id": "n52",
+      "label": "Client policies",
+      "parent": "n41"
+    },
+    {
+      "id": "n53",
+      "label": "User profile",
+      "parent": "n41"
+    },
+    {
+      "id": "n54",
+      "label": "User registration",
+      "parent": "n41"
+    },
+    {
+      "id": "n55",
+      "label": "Default roles",
+      "parent": "n54"
+    },
+    {
+      "id": "n56",
+      "label": "Default groups",
+      "parent": "n54"
+    },
+    {
+      "id": "n57",
+      "label": "Authentication",
+      "parent": "n40",
+      "sublabel": "Luồng đăng nhập, chính sách",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 148
+        }
+      ]
+    },
+    {
+      "id": "n58",
+      "label": "Flows",
+      "parent": "n57"
+    },
+    {
+      "id": "n59",
+      "label": "Required actions",
+      "parent": "n57"
+    },
+    {
+      "id": "n60",
+      "label": "Policies",
+      "parent": "n57"
+    },
+    {
+      "id": "n61",
+      "label": "Permissions",
+      "parent": "n40",
+      "sublabel": "ẩn: cần admin-fine-grained-authz:v2",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 149,
+          "end_line": 152
+        }
+      ]
+    },
+    {
+      "id": "n62",
+      "label": "Identity providers",
+      "parent": "n40",
+      "sublabel": "Đăng nhập qua IdP bên ngoài",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 153
+        }
+      ]
+    },
+    {
+      "id": "n63",
+      "label": "User federation",
+      "parent": "n40",
+      "sublabel": "Kết nối LDAP / Kerberos",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 154
+        }
+      ]
+    },
+    {
+      "id": "n64",
+      "label": "Workflows",
+      "parent": "n40",
+      "sublabel": "Tự động hoá vòng đời user",
+      "sources": [
+        {
+          "path": "js/apps/admin-ui/src/PageNav.tsx",
+          "line": 155
+        }
+      ]
+    },
+    {
+      "id": "n65",
+      "label": "Account Console",
+      "parent": "n0",
+      "sublabel": "/realms/master/account · tự phục vụ",
+      "sources": [
+        {
+          "path": "js/apps/account-ui/public/content.json",
+          "line": 1,
+          "end_line": 40
+        }
+      ]
+    },
+    {
+      "id": "n66",
+      "label": "Personal info",
+      "parent": "n65",
+      "sublabel": "Sửa hồ sơ cá nhân",
+      "sources": [
+        {
+          "path": "js/apps/account-ui/public/content.json",
+          "line": 2
+        }
+      ]
+    },
+    {
+      "id": "n67",
+      "label": "Account security",
+      "parent": "n65",
+      "sublabel": "Bảo mật tài khoản",
+      "sources": [
+        {
+          "path": "js/apps/account-ui/public/content.json",
+          "line": 3,
+          "end_line": 14
+        }
+      ]
+    },
+    {
+      "id": "n68",
+      "label": "Signing in",
+      "parent": "n67",
+      "sublabel": "Mật khẩu, OTP, passkey",
+      "sources": [
+        {
+          "path": "js/apps/account-ui/public/content.json",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "id": "n69",
+      "label": "Device activity",
+      "parent": "n67",
+      "sublabel": "Thiết bị / phiên đang đăng nhập",
+      "sources": [
+        {
+          "path": "js/apps/account-ui/public/content.json",
+          "line": 7
+        }
+      ]
+    },
+    {
+      "id": "n70",
+      "label": "Linked accounts",
+      "parent": "n67",
+      "sublabel": "ẩn: cần có identity provider",
+      "sources": [
+        {
+          "path": "js/apps/account-ui/public/content.json",
+          "line": 8,
+          "end_line": 12
+        }
+      ]
+    },
+    {
+      "id": "n71",
+      "label": "Applications",
+      "parent": "n65",
+      "sublabel": "Ứng dụng đã cấp quyền",
+      "sources": [
+        {
+          "path": "js/apps/account-ui/public/content.json",
+          "line": 15,
+          "end_line": 19
+        }
+      ]
+    },
+    {
+      "id": "n72",
+      "label": "Verifiable credentials",
+      "parent": "n65",
+      "sublabel": "ẩn: cần feature oid4vc-vci + realm",
+      "sources": [
+        {
+          "path": "js/apps/account-ui/public/content.json",
+          "line": 20,
+          "end_line": 24
+        }
+      ]
+    },
+    {
+      "id": "n73",
+      "label": "Groups",
+      "parent": "n65",
+      "sublabel": "ẩn: user chưa thuộc nhóm nào",
+      "sources": [
+        {
+          "path": "js/apps/account-ui/public/content.json",
+          "line": 25,
+          "end_line": 29
+        }
+      ]
+    },
+    {
+      "id": "n74",
+      "label": "Organizations",
+      "parent": "n65",
+      "sublabel": "ẩn: realm chưa bật organizations",
+      "sources": [
+        {
+          "path": "js/apps/account-ui/public/content.json",
+          "line": 30,
+          "end_line": 34
+        }
+      ]
+    },
+    {
+      "id": "n75",
+      "label": "Resources",
+      "parent": "n65",
+      "sublabel": "ẩn: cần bật User-managed access",
+      "sources": [
+        {
+          "path": "js/apps/account-ui/public/content.json",
+          "line": 35,
+          "end_line": 39
+        }
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Cách đọc",
+      "items": [
+        "Cấp 1: console; cấp 2: nhóm menu bên trái; cấp 3: mục menu; cấp 4+: tab trong trang",
+        "Tên menu và tab giữ nguyên tiếng Anh như trên giao diện",
+        "Dữ liệu đọc từ app chạy ở localhost:8080 (realm master, đăng nhập admin)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Menu ẩn",
+      "items": [
+        "Mục ghi \"ẩn: …\" có trong code nhưng không hiện trên app đang chạy vì chưa bật điều kiện",
+        "Workflows và tab Workflows của user đang hiện vì feature workflows bật trong bản dev này"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Chưa đọc",
+      "items": [
+        "Tab chi tiết của Groups, Realm roles, Identity providers, User federation (realm chưa có dữ liệu mẫu)"
+      ]
+    }
+  ]
+}

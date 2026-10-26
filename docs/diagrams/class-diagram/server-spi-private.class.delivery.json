@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "43009ddd-cd5b-49b8-90c5-fca81a25168d",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\server-spi-private.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\server-spi-private.class.html",
+  "specification": {
+    "sha256": "07e4c6a30ff13f0240a4a1f59a9488a8f8cd930e61cc8473b9d72b71513c5ebd",
+    "bytes": 18952
+  },
+  "artifact": {
+    "sha256": "1491825e40cea31e5ac97c97e46d0f170d128f3d61b097ea00be904fa493ad9f",
+    "bytes": 900227
+  }
+}

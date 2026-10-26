@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "b5f4478f-4153-43c7-85f3-a32ac1bc098b",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\ssf-services.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\ssf-services.class.html",
+  "specification": {
+    "sha256": "0b07b42a36728a46daeb600ce5841aa93339053dfee4cd5880d268d7c2c34211",
+    "bytes": 6602
+  },
+  "artifact": {
+    "sha256": "48e8799e4959edb353bc8850ca5fd142e6ad8a064d3eef52e2e5cb26d64ce2f8",
+    "bytes": 849082
+  }
+}

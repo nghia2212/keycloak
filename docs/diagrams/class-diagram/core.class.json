@@ -1,0 +1,667 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "core module types",
+    "output": "docs/diagrams/class-diagram/core.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_RealmRepresentation",
+      "label": "RealmRepresentation",
+      "kind": "class",
+      "sublabel": "representations.idm",
+      "row": 1,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "protected"
+        },
+        {
+          "name": "realm",
+          "type": "String",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "user",
+          "returns": "UserRepresentation",
+          "visibility": "public",
+          "parameters": "username"
+        },
+        {
+          "name": "clientScopeMapping",
+          "returns": "ScopeMappingRepresentation",
+          "visibility": "public",
+          "parameters": "clientName"
+        },
+        {
+          "name": "clientScopeScopeMapping",
+          "returns": "ScopeMappingRepresentation",
+          "visibility": "public",
+          "parameters": "clientScopeName"
+        },
+        {
+          "name": "addUserFederationMapper",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "userFederationMapper"
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/representations/idm/RealmRepresentation.java",
+          "line": 41,
+          "end_line": 932
+        }
+      ]
+    },
+    {
+      "id": "t_JWK",
+      "label": "JWK",
+      "kind": "class",
+      "sublabel": "jose.jwk",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "keyId",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "keyType",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getKeyId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setKeyId",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "keyId"
+        },
+        {
+          "name": "getKeyType",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setKeyType",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "keyType"
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/jose/jwk/JWK.java",
+          "line": 34,
+          "end_line": 106
+        }
+      ]
+    },
+    {
+      "id": "t_Algorithm",
+      "label": "Algorithm",
+      "kind": "interface",
+      "sublabel": "crypto",
+      "row": 4,
+      "col": 2,
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/crypto/Algorithm.java",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "id": "t_JsonWebToken",
+      "label": "JsonWebToken",
+      "kind": "class",
+      "sublabel": "representations",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "protected"
+        },
+        {
+          "name": "exp",
+          "type": "Long",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "id",
+          "returns": "JsonWebToken",
+          "visibility": "public",
+          "parameters": "id"
+        },
+        {
+          "name": "exp",
+          "returns": "JsonWebToken",
+          "visibility": "public",
+          "parameters": "exp"
+        },
+        {
+          "name": "nbf",
+          "returns": "JsonWebToken",
+          "visibility": "public",
+          "parameters": "nbf"
+        },
+        {
+          "name": "issuedNow",
+          "returns": "JsonWebToken",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/representations/JsonWebToken.java",
+          "line": 43,
+          "end_line": 146
+        }
+      ]
+    },
+    {
+      "id": "t_KeycloakJsonMapperFactory",
+      "label": "KeycloakJsonMapperFactory",
+      "kind": "class",
+      "sublabel": "Factory for obtaining the KeycloakJsonM…",
+      "row": 4,
+      "col": 1,
+      "methods": [
+        {
+          "name": "mapper",
+          "returns": "KeycloakJsonMapper",
+          "visibility": "public",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/json/KeycloakJsonMapperFactory.java",
+          "line": 11,
+          "end_line": 16
+        }
+      ]
+    },
+    {
+      "id": "t_KeyUse",
+      "label": "KeyUse",
+      "kind": "enum",
+      "sublabel": "crypto",
+      "row": 0,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "SIG",
+          "visibility": "public"
+        },
+        {
+          "name": "ENC",
+          "visibility": "public"
+        },
+        {
+          "name": "JWT_SVID",
+          "visibility": "public"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getSpecName",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/crypto/KeyUse.java",
+          "line": 19,
+          "end_line": 31
+        }
+      ]
+    },
+    {
+      "id": "t_KeyWrapper",
+      "label": "KeyWrapper",
+      "kind": "class",
+      "sublabel": "crypto",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "providerId",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "providerPriority",
+          "type": "long",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getProviderId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setProviderId",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "providerId"
+        },
+        {
+          "name": "getProviderPriority",
+          "returns": "long",
+          "visibility": "public"
+        },
+        {
+          "name": "cloneKey",
+          "returns": "KeyWrapper",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/crypto/KeyWrapper.java",
+          "line": 29,
+          "end_line": 204
+        }
+      ]
+    },
+    {
+      "id": "t_Token",
+      "label": "Token",
+      "kind": "interface",
+      "sublabel": "org.keycloak",
+      "row": 0,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getCategory",
+          "returns": "TokenCategory",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/Token.java",
+          "line": 21,
+          "end_line": 24
+        }
+      ]
+    },
+    {
+      "id": "t_IDToken",
+      "label": "IDToken",
+      "kind": "class",
+      "sublabel": "representations",
+      "row": 2,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "nonce",
+          "type": "String",
+          "visibility": "protected"
+        },
+        {
+          "name": "auth_time",
+          "type": "Long",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getNonce",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setNonce",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "nonce"
+        },
+        {
+          "name": "getAuth_time",
+          "returns": "Long",
+          "visibility": "public"
+        },
+        {
+          "name": "setAuth_time",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "auth_time"
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/representations/IDToken.java",
+          "line": 32,
+          "end_line": 162
+        }
+      ]
+    },
+    {
+      "id": "t_AccessToken",
+      "label": "AccessToken",
+      "kind": "class",
+      "sublabel": "representations",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "trustedCertificates",
+          "type": "Set<String>",
+          "visibility": "protected"
+        },
+        {
+          "name": "allowedOrigins",
+          "type": "Set<String>",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "addAccess",
+          "returns": "Access",
+          "visibility": "public",
+          "parameters": "service"
+        },
+        {
+          "name": "id",
+          "returns": "AccessToken",
+          "visibility": "public",
+          "parameters": "id"
+        },
+        {
+          "name": "issuer",
+          "returns": "AccessToken",
+          "visibility": "public",
+          "parameters": "issuer"
+        },
+        {
+          "name": "subject",
+          "returns": "AccessToken",
+          "visibility": "public",
+          "parameters": "subject"
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/representations/AccessToken.java",
+          "line": 40,
+          "end_line": 238
+        }
+      ]
+    },
+    {
+      "id": "t_JWSHeader",
+      "label": "JWSHeader",
+      "kind": "class",
+      "sublabel": "jose.jws",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "algorithm",
+          "type": "Algorithm",
+          "visibility": "private"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getAlgorithm",
+          "returns": "Algorithm",
+          "visibility": "public"
+        },
+        {
+          "name": "setAlgorithm",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "algorithm"
+        },
+        {
+          "name": "getRawAlgorithm",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "addX5c",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "x5c"
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/jose/jws/JWSHeader.java",
+          "line": 44,
+          "end_line": 135
+        }
+      ]
+    },
+    {
+      "id": "t_JWSInput",
+      "label": "JWSInput",
+      "kind": "class",
+      "sublabel": "jose.jws",
+      "row": 5,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getWireString",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getEncodedHeader",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "readJsonContent",
+          "returns": "T",
+          "visibility": "public",
+          "parameters": "type"
+        },
+        {
+          "name": "readContentAsString",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/jose/jws/JWSInput.java",
+          "line": 31,
+          "end_line": 102
+        }
+      ]
+    },
+    {
+      "id": "t_RawJsonValue",
+      "label": "RawJsonValue",
+      "kind": "class",
+      "sublabel": "A Jackson-version-agnostic replacement…",
+      "row": 0,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "value",
+          "type": "Object",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "of",
+          "returns": "RawJsonValue",
+          "visibility": "public",
+          "parameters": "value",
+          "static": true
+        },
+        {
+          "name": "get",
+          "returns": "RawJsonValue",
+          "visibility": "public",
+          "parameters": "key"
+        },
+        {
+          "name": "path",
+          "returns": "RawJsonValue",
+          "visibility": "public",
+          "parameters": "key"
+        },
+        {
+          "name": "asBoolean",
+          "returns": "boolean",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/json/RawJsonValue.java",
+          "line": 20,
+          "end_line": 51
+        }
+      ]
+    },
+    {
+      "id": "t_JOSE",
+      "label": "JOSE",
+      "kind": "interface",
+      "sublabel": "An interface to represent signed (JWS)…",
+      "row": 4,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getHeader",
+          "returns": "H",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/jose/JOSE.java",
+          "line": 8,
+          "end_line": 15
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_JsonWebToken_Token",
+      "from": "t_JsonWebToken",
+      "to": "t_Token",
+      "kind": "realization"
+    },
+    {
+      "id": "r1_IDToken_JsonWebToken",
+      "from": "t_IDToken",
+      "to": "t_JsonWebToken",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_AccessToken_IDToken",
+      "from": "t_AccessToken",
+      "to": "t_IDToken",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r3_JWSInput_JOSE",
+      "from": "t_JWSInput",
+      "to": "t_JOSE",
+      "kind": "realization"
+    },
+    {
+      "id": "r4_KeyWrapper_KeyUse",
+      "from": "t_KeyWrapper",
+      "to": "t_KeyUse",
+      "kind": "association"
+    },
+    {
+      "id": "r5_JWSHeader_JWK",
+      "from": "t_JWSHeader",
+      "to": "t_JWK",
+      "kind": "association"
+    },
+    {
+      "id": "r6_RealmRepresentation_RawJsonValue",
+      "from": "t_RealmRepresentation",
+      "to": "t_RawJsonValue",
+      "kind": "association"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module core/ (keycloak-core): 339 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "representations.idm (80)",
+        "representations.idm.authorization (33)",
+        "sdjwt (25)",
+        "crypto (19)",
+        "org.keycloak (15)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "JWSHeader has a Algorithm",
+        "JWSInput uses JWSHeader"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "SignatureSignerContext, AbstractPolicyRepresentation, SignatureVerifierContext, SdJwtUtils, KeyType, OAuth2Constants, JWEEncryptionProvider, OIDCConfigurationRepresentation"
+      ]
+    }
+  ]
+}

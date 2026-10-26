@@ -1,0 +1,473 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "federation/kerberos module types",
+    "output": "docs/diagrams/class-diagram/federation-kerberos.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_CommonKerberosConfig",
+      "label": "CommonKerberosConfig",
+      "kind": "abstract",
+      "sublabel": "Common configuration useful for all pro…",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "userStorageConfig",
+          "type": "MultivaluedHashMap",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "isAllowKerberosAuthentication",
+          "returns": "boolean",
+          "visibility": "public"
+        },
+        {
+          "name": "getKerberosRealm",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getServerPrincipal",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getKeyTab",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/kerberos/src/main/java/org/keycloak/federation/kerberos/CommonKerberosConfig.java",
+          "line": 30,
+          "end_line": 59
+        }
+      ]
+    },
+    {
+      "id": "t_KerberosFederationProvider",
+      "label": "KerberosFederationProvider",
+      "kind": "class",
+      "sublabel": "federation.kerberos",
+      "row": 2,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        },
+        {
+          "name": "model",
+          "type": "UserStorageProviderModel",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "validate",
+          "returns": "UserModel",
+          "visibility": "public",
+          "parameters": "realm, user"
+        },
+        {
+          "name": "preRemove",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm"
+        },
+        {
+          "name": "updateCredential",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "realm, user, input"
+        },
+        {
+          "name": "disableCredentialType",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm, user, credentialType"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/kerberos/src/main/java/org/keycloak/federation/kerberos/KerberosFederationProvider.java",
+          "line": 65,
+          "end_line": 148
+        }
+      ]
+    },
+    {
+      "id": "t_KerberosPrincipal",
+      "label": "KerberosPrincipal",
+      "kind": "class",
+      "sublabel": "federation.kerberos",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "kerberosPrincipal",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "prefix",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getKerberosPrincipal",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getPrefix",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getRealm",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "toString",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/kerberos/src/main/java/org/keycloak/federation/kerberos/KerberosPrincipal.java",
+          "line": 25,
+          "end_line": 54
+        }
+      ]
+    },
+    {
+      "id": "t_KerberosServerSubjectAuthenticator",
+      "label": "KerberosServerSubjectAuthenticator",
+      "kind": "class",
+      "sublabel": "federation.kerberos.impl",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "config",
+          "type": "CommonKerberosConfig",
+          "visibility": "protected"
+        },
+        {
+          "name": "loginContext",
+          "type": "LoginContext",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "authenticateServerSubject",
+          "returns": "Subject",
+          "visibility": "public"
+        },
+        {
+          "name": "logoutServerSubject",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/kerberos/src/main/java/org/keycloak/federation/kerberos/impl/KerberosServerSubjectAuthenticator.java",
+          "line": 37,
+          "end_line": 67
+        }
+      ]
+    },
+    {
+      "id": "t_KerberosUsernamePasswordAuthenticator",
+      "label": "KerberosUsernamePasswordAuthenticator",
+      "kind": "class",
+      "sublabel": "federation.kerberos.impl",
+      "row": 2,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "loginContext",
+          "type": "LoginContext",
+          "visibility": "private"
+        },
+        {
+          "name": "disableKerberosAuthenticationRoundTrip",
+          "type": "boolean",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "isUserAvailable",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "username"
+        },
+        {
+          "name": "validUser",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "username, password"
+        },
+        {
+          "name": "authenticateSubject",
+          "returns": "Subject",
+          "visibility": "public",
+          "parameters": "username, password"
+        },
+        {
+          "name": "logoutSubject",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/kerberos/src/main/java/org/keycloak/federation/kerberos/impl/KerberosUsernamePasswordAuthenticator.java",
+          "line": 48,
+          "end_line": 200
+        }
+      ]
+    },
+    {
+      "id": "t_SPNEGOAuthenticator",
+      "label": "SPNEGOAuthenticator",
+      "kind": "class",
+      "sublabel": "federation.kerberos.impl",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "kerberosSubjectAuthenticator",
+          "type": "KerberosServerSubjectAuthenticator",
+          "visibility": "private"
+        },
+        {
+          "name": "spnegoToken",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "authenticate",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "isAuthenticated",
+          "returns": "boolean",
+          "visibility": "public"
+        },
+        {
+          "name": "getResponseToken",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getSerializedDelegationCredential",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/kerberos/src/main/java/org/keycloak/federation/kerberos/impl/SPNEGOAuthenticator.java",
+          "line": 42,
+          "end_line": 93
+        }
+      ]
+    },
+    {
+      "id": "t_KerberosFederationProviderFactory",
+      "label": "KerberosFederationProviderFactory",
+      "kind": "class",
+      "sublabel": "Factory for standalone Kerberos federat…",
+      "row": 4,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "disableKerberosAuthenticationRoundTrip",
+          "type": "boolean",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "KerberosFederationProvider",
+          "visibility": "public",
+          "parameters": "session, model"
+        },
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "config"
+        },
+        {
+          "name": "postInit",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "factory"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/kerberos/src/main/java/org/keycloak/federation/kerberos/KerberosFederationProviderFactory.java",
+          "line": 52,
+          "end_line": 130
+        }
+      ]
+    },
+    {
+      "id": "t_KerberosConfig",
+      "label": "KerberosConfig",
+      "kind": "class",
+      "sublabel": "Configuration specific to KerberosFeder…",
+      "row": 1,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getEditMode",
+          "returns": "EditMode",
+          "visibility": "public"
+        },
+        {
+          "name": "isAllowPasswordAuthentication",
+          "returns": "boolean",
+          "visibility": "public"
+        },
+        {
+          "name": "isUpdateProfileFirstLogin",
+          "returns": "boolean",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/kerberos/src/main/java/org/keycloak/federation/kerberos/KerberosConfig.java",
+          "line": 31,
+          "end_line": 54
+        }
+      ]
+    },
+    {
+      "id": "t_ReadOnlyKerberosUserModelDelegate",
+      "label": "ReadOnlyKerberosUserModelDelegate",
+      "kind": "class",
+      "sublabel": "federation.kerberos",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "provider",
+          "type": "KerberosFederationProvider",
+          "visibility": "protected"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/kerberos/src/main/java/org/keycloak/federation/kerberos/ReadOnlyKerberosUserModelDelegate.java",
+          "line": 26,
+          "end_line": 28
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_KerberosConfig_CommonKerberosConfig",
+      "from": "t_KerberosConfig",
+      "to": "t_CommonKerberosConfig",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_KerberosUsernamePasswordAuthenticator_KerberosServerSubjectAuthenticator",
+      "from": "t_KerberosUsernamePasswordAuthenticator",
+      "to": "t_KerberosServerSubjectAuthenticator",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_KerberosServerSubjectAuthenticator_CommonKerberosConfig",
+      "from": "t_KerberosServerSubjectAuthenticator",
+      "to": "t_CommonKerberosConfig",
+      "kind": "association"
+    },
+    {
+      "id": "r3_SPNEGOAuthenticator_CommonKerberosConfig",
+      "from": "t_SPNEGOAuthenticator",
+      "to": "t_CommonKerberosConfig",
+      "kind": "association"
+    },
+    {
+      "id": "r4_KerberosFederationProvider_KerberosConfig",
+      "from": "t_KerberosFederationProvider",
+      "to": "t_KerberosConfig",
+      "kind": "association"
+    },
+    {
+      "id": "r5_ReadOnlyKerberosUserModelDelegate_KerberosFederationProvider",
+      "from": "t_ReadOnlyKerberosUserModelDelegate",
+      "to": "t_KerberosFederationProvider",
+      "kind": "association"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module federation/kerberos/ (keycloak-kerberos-federation): 9 public types, 9 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "federation.kerberos (6)",
+        "federation.kerberos.impl (3)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "KerberosFederationProvider has a KerberosFederationProviderFactory",
+        "SPNEGOAuthenticator has a KerberosServerSubjectAuthenticator",
+        "SPNEGOAuthenticator uses KerberosPrincipal"
+      ]
+    }
+  ]
+}

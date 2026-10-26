@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "integration/admin-client module types",
+    "output": "docs/diagrams/class-diagram/integration-admin-client.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_ResteasyClientClassicProvider",
+      "label": "ResteasyClientClassicProvider",
+      "kind": "class",
+      "sublabel": "An implementation of ResteasyClientProv…",
+      "row": 0,
+      "col": 0,
+      "methods": [
+        {
+          "name": "newRestEasyClient",
+          "returns": "Client",
+          "visibility": "public",
+          "parameters": "customJacksonProvider, sslC…"
+        },
+        {
+          "name": "createClientBuilder",
+          "returns": "ResteasyClientBuilderImpl",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "targetProxy",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "client, targetClass"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client/src/main/java/org/keycloak/admin/client/spi/ResteasyClientClassicProvider.java",
+          "line": 33,
+          "end_line": 60
+        }
+      ]
+    },
+    {
+      "id": "t_StreamMessageBodyReader",
+      "label": "StreamMessageBodyReader",
+      "kind": "class",
+      "sublabel": "Provides a way to read Streams incremen…",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "isReadable",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "type, genericType, annotati…"
+        },
+        {
+          "name": "readFrom",
+          "returns": "Stream<?>",
+          "visibility": "public",
+          "parameters": "type, genericType, annotati…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client/src/main/java/org/keycloak/admin/client/spi/StreamMessageBodyReader.java",
+          "line": 34,
+          "end_line": 42
+        }
+      ]
+    },
+    {
+      "id": "t_JacksonProvider",
+      "label": "JacksonProvider",
+      "kind": "class",
+      "sublabel": "admin.client",
+      "row": 0,
+      "col": 2,
+      "methods": [
+        {
+          "name": "locateMapper",
+          "returns": "ObjectMapper",
+          "visibility": "public",
+          "parameters": "type, mediaType"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client/src/main/java/org/keycloak/admin/client/JacksonProvider.java",
+          "line": 10,
+          "end_line": 13
+        }
+      ]
+    },
+    {
+      "id": "t_ClientBuilderWrapper",
+      "label": "ClientBuilderWrapper",
+      "kind": "class",
+      "sublabel": "Use createClientBuilder() instead",
+      "row": 0,
+      "col": 3,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "ClientBuilder",
+          "visibility": "public",
+          "parameters": "sslContext, disableTrustMan…",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client/src/main/java/org/keycloak/admin/client/ClientBuilderWrapper.java",
+          "line": 15,
+          "end_line": 17
+        }
+      ]
+    }
+  ],
+  "relationships": [],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module integration/admin-client/ (keycloak-admin-client-internal): 4 public types, 4 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "admin.client (2)",
+        "admin.client.spi (2)"
+      ]
+    }
+  ]
+}

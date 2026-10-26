@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "568ad5a2-748f-4d5a-87f3-7970bf74e3da",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\architecture\\module-layers.architecture.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\architecture\\module-layers.architecture.html",
+  "specification": {
+    "sha256": "348ef3d4ed8e986de0b00a0a031db0635e34d754038dd2c8fb8334616e0944c6",
+    "bytes": 12328
+  },
+  "artifact": {
+    "sha256": "b5afef7466c8a0596b47c566fb3b28f9ea5f97e4f309d1c149dda6534d8256f6",
+    "bytes": 869128
+  }
+}

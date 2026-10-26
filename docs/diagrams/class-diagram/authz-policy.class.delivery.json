@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "40f1c93c-c107-4317-84be-9bbd58740bd8",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\authz-policy.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\authz-policy.class.html",
+  "specification": {
+    "sha256": "1490ee555938f377575b100276639848e15074976d684c114625b5463ebe7ff0",
+    "bytes": 22669
+  },
+  "artifact": {
+    "sha256": "021b107758a14025ffb38e313cb5a49011ce5a719285e0ddd919539586cb6d18",
+    "bytes": 916045
+  }
+}

@@ -1,0 +1,750 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "saml-core-api module types",
+    "output": "docs/diagrams/class-diagram/saml-core-api.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_ExtensionType",
+      "label": "ExtensionType",
+      "kind": "class",
+      "sublabel": "Java class for ExtensionType complex ty…",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "any",
+          "type": "List<Object>",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getAny",
+          "returns": "List<Object>",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/ac/ExtensionType.java",
+          "line": 56,
+          "end_line": 82
+        }
+      ]
+    },
+    {
+      "id": "t_ExtensionListType",
+      "label": "ExtensionListType",
+      "kind": "class",
+      "sublabel": "A type that contains a list of Extensio…",
+      "row": 5,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "content",
+          "type": "List<ExtensionType>",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "add",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "obj"
+        },
+        {
+          "name": "remove",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "obj"
+        },
+        {
+          "name": "getContent",
+          "returns": "List<ExtensionType>",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/ac/classes/ExtensionListType.java",
+          "line": 29,
+          "end_line": 41
+        }
+      ]
+    },
+    {
+      "id": "t_ExtensionOnlyType",
+      "label": "ExtensionOnlyType",
+      "kind": "class",
+      "sublabel": "Java class for ExtensionOnlyType comple…",
+      "row": 4,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "extension",
+          "type": "List<ExtensionType>",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getExtension",
+          "returns": "List<ExtensionType>",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/ac/ExtensionOnlyType.java",
+          "line": 56,
+          "end_line": 81
+        }
+      ]
+    },
+    {
+      "id": "t_RequestAbstractType",
+      "label": "RequestAbstractType",
+      "kind": "abstract",
+      "sublabel": "Java class for RequestAbstractType comp…",
+      "row": 2,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "issuer",
+          "type": "NameIDType",
+          "visibility": "protected"
+        },
+        {
+          "name": "extensions",
+          "type": "ExtensionsType",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getIssuer",
+          "returns": "NameIDType",
+          "visibility": "public"
+        },
+        {
+          "name": "setIssuer",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "value"
+        },
+        {
+          "name": "getExtensions",
+          "returns": "ExtensionsType",
+          "visibility": "public"
+        },
+        {
+          "name": "setExtensions",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "value"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/protocol/RequestAbstractType.java",
+          "line": 52,
+          "end_line": 100
+        }
+      ]
+    },
+    {
+      "id": "t_NameIDType",
+      "label": "NameIDType",
+      "kind": "class",
+      "sublabel": "Represents a NameIDType",
+      "row": 1,
+      "col": 0.5,
+      "attributes": [
+        {
+          "name": "value",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "format",
+          "type": "URI",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getsPProvidedID",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setsPProvidedID",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "sPProvidedID"
+        },
+        {
+          "name": "serializeAsString",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "deserializeFromString",
+          "returns": "NameIDType",
+          "visibility": "public",
+          "parameters": "s",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/assertion/NameIDType.java",
+          "line": 30,
+          "end_line": 86
+        }
+      ]
+    },
+    {
+      "id": "t_SubjectQueryAbstractType",
+      "label": "SubjectQueryAbstractType",
+      "kind": "abstract",
+      "sublabel": "Java class for SubjectQueryAbstractType…",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "subject",
+          "type": "SubjectType",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "setSubject",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "subject"
+        },
+        {
+          "name": "getSubject",
+          "returns": "SubjectType",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/protocol/SubjectQueryAbstractType.java",
+          "line": 42,
+          "end_line": 59
+        }
+      ]
+    },
+    {
+      "id": "t_RoleDescriptorType",
+      "label": "RoleDescriptorType",
+      "kind": "abstract",
+      "sublabel": "Java class for RoleDescriptorType compl…",
+      "row": 1,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "signature",
+          "type": "Element",
+          "visibility": "protected"
+        },
+        {
+          "name": "extensions",
+          "type": "ExtensionsType",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "addKeyDescriptor",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "keyD"
+        },
+        {
+          "name": "addContactPerson",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "contact"
+        },
+        {
+          "name": "removeKeyDescriptor",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "keyD"
+        },
+        {
+          "name": "removeContactPerson",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "contact"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/metadata/RoleDescriptorType.java",
+          "line": 56,
+          "end_line": 114
+        }
+      ]
+    },
+    {
+      "id": "t_ExtensionsType",
+      "label": "ExtensionsType",
+      "kind": "class",
+      "sublabel": "Java class for ExtensionsType complex t…",
+      "row": 4,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "any",
+          "type": "List<Object>",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getElement",
+          "returns": "Element",
+          "visibility": "public"
+        },
+        {
+          "name": "setElement",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "element"
+        },
+        {
+          "name": "addExtension",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "extension"
+        },
+        {
+          "name": "removeExtension",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "extension"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/metadata/ExtensionsType.java",
+          "line": 47,
+          "end_line": 84
+        }
+      ]
+    },
+    {
+      "id": "t_TypeWithOtherAttributes",
+      "label": "TypeWithOtherAttributes",
+      "kind": "abstract",
+      "sublabel": "Abstract base class for types that can…",
+      "row": 0,
+      "col": 2.5,
+      "attributes": [
+        {
+          "name": "otherAttributes",
+          "type": "Map<QName,String>",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "addOtherAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "qame, value"
+        },
+        {
+          "name": "removeOtherAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "qame"
+        },
+        {
+          "name": "getOtherAttributes",
+          "returns": "Map<QName,String>",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/metadata/TypeWithOtherAttributes.java",
+          "line": 30,
+          "end_line": 59
+        }
+      ]
+    },
+    {
+      "id": "t_BaseIDAbstractType",
+      "label": "BaseIDAbstractType",
+      "kind": "abstract",
+      "sublabel": "Abstract Type that represents an ID &lt…",
+      "row": 0,
+      "col": 0.5,
+      "attributes": [
+        {
+          "name": "nameQualifier",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "sPNameQualifier",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getNameQualifier",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setNameQualifier",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "nameQualifier"
+        },
+        {
+          "name": "getSPNameQualifier",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setSPNameQualifier",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "sPNameQualifier"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/assertion/BaseIDAbstractType.java",
+          "line": 38,
+          "end_line": 55
+        }
+      ]
+    },
+    {
+      "id": "t_SSODescriptorType",
+      "label": "SSODescriptorType",
+      "kind": "abstract",
+      "sublabel": "Java class for SSODescriptorType comple…",
+      "row": 2,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "artifactResolutionService",
+          "type": "List<IndexedEndpointType>",
+          "visibility": "protected"
+        },
+        {
+          "name": "singleLogoutService",
+          "type": "List<EndpointType>",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "addSingleLogoutService",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "endpt"
+        },
+        {
+          "name": "addArtifactResolutionService",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "i"
+        },
+        {
+          "name": "addManageNameIDService",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "end"
+        },
+        {
+          "name": "addNameIDFormat",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "s"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/metadata/SSODescriptorType.java",
+          "line": 48,
+          "end_line": 94
+        }
+      ]
+    },
+    {
+      "id": "t_AssertionType",
+      "label": "AssertionType",
+      "kind": "class",
+      "sublabel": "dom.saml.v2.assertion",
+      "row": 2,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "signature",
+          "type": "Element",
+          "visibility": "private"
+        },
+        {
+          "name": "version",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getSubject",
+          "returns": "SubjectType",
+          "visibility": "public"
+        },
+        {
+          "name": "addStatement",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "statement"
+        },
+        {
+          "name": "addStatements",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "statement"
+        },
+        {
+          "name": "updateIssueInstant",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "xg"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/assertion/AssertionType.java",
+          "line": 44,
+          "end_line": 244
+        }
+      ]
+    },
+    {
+      "id": "t_EndpointType",
+      "label": "EndpointType",
+      "kind": "class",
+      "sublabel": "Java class for EndpointType complex type",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "any",
+          "type": "List<Object>",
+          "visibility": "protected"
+        },
+        {
+          "name": "binding",
+          "type": "URI",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "addObject",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "obj"
+        },
+        {
+          "name": "removeObject",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "obj"
+        },
+        {
+          "name": "getAny",
+          "returns": "List<Object>",
+          "visibility": "public"
+        },
+        {
+          "name": "getBinding",
+          "returns": "URI",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/metadata/EndpointType.java",
+          "line": 46,
+          "end_line": 93
+        }
+      ]
+    },
+    {
+      "id": "t_AuthenticatorTransportProtocolType",
+      "label": "AuthenticatorTransportProtocolType",
+      "kind": "class",
+      "sublabel": "dom.saml.v2.ac",
+      "row": 5,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "http",
+          "type": "ExtensionOnlyType",
+          "visibility": "protected"
+        },
+        {
+          "name": "ssl",
+          "type": "ExtensionOnlyType",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getHTTP",
+          "returns": "ExtensionOnlyType",
+          "visibility": "public"
+        },
+        {
+          "name": "setHTTP",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "value"
+        },
+        {
+          "name": "getSSL",
+          "returns": "ExtensionOnlyType",
+          "visibility": "public"
+        },
+        {
+          "name": "setSSL",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "value"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core-api/src/main/java/org/keycloak/dom/saml/v2/ac/AuthenticatorTransportProtocolType.java",
+          "line": 69,
+          "end_line": 126
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_SubjectQueryAbstractType_RequestAbstractType",
+      "from": "t_SubjectQueryAbstractType",
+      "to": "t_RequestAbstractType",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_NameIDType_BaseIDAbstractType",
+      "from": "t_NameIDType",
+      "to": "t_BaseIDAbstractType",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_EndpointType_TypeWithOtherAttributes",
+      "from": "t_EndpointType",
+      "to": "t_TypeWithOtherAttributes",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r3_RoleDescriptorType_TypeWithOtherAttributes",
+      "from": "t_RoleDescriptorType",
+      "to": "t_TypeWithOtherAttributes",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r4_SSODescriptorType_RoleDescriptorType",
+      "from": "t_SSODescriptorType",
+      "to": "t_RoleDescriptorType",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r5_RequestAbstractType_NameIDType",
+      "from": "t_RequestAbstractType",
+      "to": "t_NameIDType",
+      "kind": "association"
+    },
+    {
+      "id": "r6_AuthenticatorTransportProtocolType_ExtensionOnlyType",
+      "from": "t_AuthenticatorTransportProtocolType",
+      "to": "t_ExtensionOnlyType",
+      "kind": "association"
+    },
+    {
+      "id": "r7_AssertionType_NameIDType",
+      "from": "t_AssertionType",
+      "to": "t_NameIDType",
+      "kind": "association"
+    },
+    {
+      "id": "r8_ExtensionListType_ExtensionType",
+      "from": "t_ExtensionListType",
+      "to": "t_ExtensionType",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module saml-core-api/ (keycloak-saml-core-public): 222 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "dom.saml.v2.ac (39)",
+        "dom.saml.v2.assertion (29)",
+        "dom.saml.v1.assertion (24)",
+        "dom.saml.v2.metadata (24)",
+        "dom.saml.v2.protocol (24)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "RequestAbstractType has a ExtensionsType",
+        "RoleDescriptorType has a ExtensionsType",
+        "SSODescriptorType uses EndpointType"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "EncryptedElementType, AttributeType, ConditionAbstractType, StatementAbstractType, PasswordType, LengthType, Generation, SAML11ConditionAbstractType"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "b5bad438-184e-465f-b682-ae4838b4f8ba",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\model-infinispan.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\model-infinispan.class.html",
+  "specification": {
+    "sha256": "17b4fdf1171129e065740b4f9905ee4a5eb13c37d2af0314fa96c294039a4e38",
+    "bytes": 20113
+  },
+  "artifact": {
+    "sha256": "b13624e5d3633d5e605f224aaa30be42a3cc423b27aabe84c3f8bdeade3bff0b",
+    "bytes": 910204
+  }
+}

@@ -1,0 +1,828 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "server-spi module types",
+    "output": "docs/diagrams/class-diagram/server-spi.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "spi",
+      "label": "Spi",
+      "kind": "interface",
+      "sublabel": "Names one extension point",
+      "row": 0,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getName",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getProviderClass",
+          "returns": "Class<Provider>",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getProviderFactoryClass",
+          "returns": "Class<ProviderFactory>",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/provider/Spi.java",
+          "line": 23,
+          "end_line": 28
+        }
+      ]
+    },
+    {
+      "id": "provider_factory",
+      "label": "ProviderFactory<T>",
+      "kind": "interface",
+      "sublabel": "Singleton; builds per-session providers",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "init",
+          "parameters": "config",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "postInit",
+          "parameters": "factory",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "create",
+          "parameters": "session",
+          "returns": "T",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/provider/ProviderFactory.java",
+          "line": 29,
+          "end_line": 58
+        }
+      ]
+    },
+    {
+      "id": "provider",
+      "label": "Provider",
+      "kind": "interface",
+      "sublabel": "Request-scoped implementation",
+      "row": 0,
+      "col": 2,
+      "methods": [
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/provider/Provider.java",
+          "line": 23,
+          "end_line": 25
+        }
+      ]
+    },
+    {
+      "id": "session_factory",
+      "label": "KeycloakSessionFactory",
+      "kind": "interface",
+      "sublabel": "Server-wide registry of factories",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "KeycloakSession",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getSpi",
+          "parameters": "providerClass",
+          "returns": "Spi",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getProviderFactory",
+          "parameters": "clazz, id",
+          "returns": "ProviderFactory<T>",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/KeycloakSessionFactory.java",
+          "line": 35,
+          "end_line": 45
+        }
+      ]
+    },
+    {
+      "id": "context",
+      "label": "KeycloakContext",
+      "kind": "interface",
+      "sublabel": "Current realm, client, request",
+      "row": 2,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getRealm",
+          "returns": "RealmModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getClient",
+          "returns": "ClientModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getUri",
+          "returns": "KeycloakUriInfo",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getAuthenticationSession",
+          "returns": "AuthenticationSessionModel",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/KeycloakContext.java",
+          "line": 37,
+          "end_line": 119
+        }
+      ]
+    },
+    {
+      "id": "session",
+      "label": "KeycloakSession",
+      "kind": "interface",
+      "sublabel": "One request / transaction",
+      "row": 2,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getProvider",
+          "parameters": "clazz",
+          "returns": "T",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "realms",
+          "returns": "RealmProvider",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "users",
+          "returns": "UserProvider",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "sessions",
+          "returns": "UserSessionProvider",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/KeycloakSession.java",
+          "line": 36,
+          "end_line": 65
+        },
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/KeycloakSession.java",
+          "line": 152,
+          "end_line": 258
+        }
+      ]
+    },
+    {
+      "id": "tx_manager",
+      "label": "KeycloakTransactionManager",
+      "kind": "interface",
+      "sublabel": "Commits enlisted work at request end",
+      "row": 2,
+      "col": 2,
+      "methods": [
+        {
+          "name": "enlist",
+          "parameters": "transaction",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/KeycloakTransactionManager.java",
+          "line": 24,
+          "end_line": 41
+        }
+      ]
+    },
+    {
+      "id": "realm_provider",
+      "label": "RealmProvider",
+      "kind": "interface",
+      "sublabel": "Realm storage SPI",
+      "row": 3,
+      "col": 0,
+      "methods": [
+        {
+          "name": "createRealm",
+          "parameters": "name",
+          "returns": "RealmModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getRealm",
+          "parameters": "id",
+          "returns": "RealmModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "removeRealm",
+          "parameters": "id",
+          "returns": "boolean",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/RealmProvider.java",
+          "line": 29,
+          "end_line": 89
+        }
+      ]
+    },
+    {
+      "id": "user_provider",
+      "label": "UserProvider",
+      "kind": "interface",
+      "sublabel": "User storage SPI",
+      "row": 3,
+      "col": 1,
+      "methods": [
+        {
+          "name": "addUser",
+          "parameters": "realm, id, username, …",
+          "returns": "UserModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getUserById",
+          "parameters": "realm, id",
+          "returns": "UserModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getUserByUsername",
+          "parameters": "realm, username",
+          "returns": "UserModel",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/UserProvider.java",
+          "line": 33,
+          "end_line": 85
+        },
+        {
+          "path": "server-spi/src/main/java/org/keycloak/storage/user/UserLookupProvider.java",
+          "line": 36,
+          "end_line": 58,
+          "label": "lookup methods"
+        }
+      ]
+    },
+    {
+      "id": "session_provider",
+      "label": "UserSessionProvider",
+      "kind": "interface",
+      "sublabel": "Login session storage SPI",
+      "row": 3,
+      "col": 2,
+      "methods": [
+        {
+          "name": "createUserSession",
+          "parameters": "id, realm, user, …",
+          "returns": "UserSessionModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getUserSession",
+          "parameters": "realm, id",
+          "returns": "UserSessionModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "removeUserSession",
+          "parameters": "realm, session",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/UserSessionProvider.java",
+          "line": 32,
+          "end_line": 158
+        }
+      ]
+    },
+    {
+      "id": "realm_model",
+      "label": "RealmModel",
+      "kind": "interface",
+      "sublabel": "Tenant: clients, roles, groups",
+      "row": 4,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getName",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "addClient",
+          "parameters": "name",
+          "returns": "ClientModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getClientById",
+          "parameters": "id",
+          "returns": "ClientModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "createGroup",
+          "parameters": "id, name, parent",
+          "returns": "GroupModel",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/RealmModel.java",
+          "line": 35,
+          "end_line": 76
+        },
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/RealmModel.java",
+          "line": 368,
+          "end_line": 374
+        }
+      ]
+    },
+    {
+      "id": "user_model",
+      "label": "UserModel",
+      "kind": "interface",
+      "sublabel": "A user account in a realm",
+      "row": 4,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getUsername",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "isEnabled",
+          "returns": "boolean",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getGroupsStream",
+          "returns": "Stream<GroupModel>",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "joinGroup",
+          "parameters": "group",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/UserModel.java",
+          "line": 33,
+          "end_line": 221
+        }
+      ]
+    },
+    {
+      "id": "user_session_model",
+      "label": "UserSessionModel",
+      "kind": "interface",
+      "sublabel": "SSO session of one user",
+      "row": 4,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getUser",
+          "returns": "UserModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getRealm",
+          "returns": "RealmModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getAuthenticatedClientSessions",
+          "returns": "Map<String, …>",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getState",
+          "returns": "State",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/UserSessionModel.java",
+          "line": 32,
+          "end_line": 106
+        }
+      ]
+    },
+    {
+      "id": "client_model",
+      "label": "ClientModel",
+      "kind": "interface",
+      "sublabel": "An application registered in a realm",
+      "row": 5,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getClientId",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getProtocol",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getRedirectUris",
+          "returns": "Set<String>",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "isPublicClient",
+          "returns": "boolean",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/ClientModel.java",
+          "line": 32,
+          "end_line": 207
+        }
+      ]
+    },
+    {
+      "id": "group_model",
+      "label": "GroupModel",
+      "kind": "interface",
+      "sublabel": "Hierarchical user group",
+      "row": 5,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getName",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getParent",
+          "returns": "GroupModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getSubGroupsStream",
+          "returns": "Stream<GroupModel>",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/GroupModel.java",
+          "line": 31,
+          "end_line": 272
+        }
+      ]
+    },
+    {
+      "id": "role_container",
+      "label": "RoleContainerModel",
+      "kind": "interface",
+      "sublabel": "Owns roles (realm or client)",
+      "row": 6,
+      "col": 0,
+      "methods": [
+        {
+          "name": "addRole",
+          "parameters": "name",
+          "returns": "RoleModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getRole",
+          "parameters": "name",
+          "returns": "RoleModel",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getRolesStream",
+          "returns": "Stream<RoleModel>",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/RoleContainerModel.java",
+          "line": 28,
+          "end_line": 49
+        }
+      ]
+    },
+    {
+      "id": "role_model",
+      "label": "RoleModel",
+      "kind": "interface",
+      "sublabel": "Realm or client role",
+      "row": 6,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getName",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "isComposite",
+          "returns": "boolean",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "addCompositeRole",
+          "parameters": "role",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getContainer",
+          "returns": "RoleContainerModel",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi/src/main/java/org/keycloak/models/RoleModel.java",
+          "line": 30,
+          "end_line": 144
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r_spi_factory",
+      "from": "spi",
+      "to": "provider_factory",
+      "kind": "dependency",
+      "label": "names"
+    },
+    {
+      "id": "r_factory_provider",
+      "from": "provider_factory",
+      "to": "provider",
+      "kind": "dependency",
+      "label": "create()"
+    },
+    {
+      "id": "r_sf_factory",
+      "from": "session_factory",
+      "to": "provider_factory",
+      "kind": "dependency",
+      "label": "getProviderFactory()"
+    },
+    {
+      "id": "r_sf_session",
+      "from": "session_factory",
+      "to": "session",
+      "kind": "dependency",
+      "label": "create()"
+    },
+    {
+      "id": "r_session_context",
+      "from": "session",
+      "to": "context",
+      "kind": "dependency",
+      "label": "getContext()"
+    },
+    {
+      "id": "r_session_tx",
+      "from": "session",
+      "to": "tx_manager",
+      "kind": "dependency",
+      "label": "getTransactionManager()"
+    },
+    {
+      "id": "r_session_realms",
+      "from": "session",
+      "to": "realm_provider",
+      "kind": "dependency",
+      "label": "realms()"
+    },
+    {
+      "id": "r_session_users",
+      "from": "session",
+      "to": "user_provider",
+      "kind": "dependency",
+      "label": "users()"
+    },
+    {
+      "id": "r_session_sessions",
+      "from": "session",
+      "to": "session_provider",
+      "kind": "dependency",
+      "label": "sessions()"
+    },
+    {
+      "id": "r_rp_realm",
+      "from": "realm_provider",
+      "to": "realm_model",
+      "kind": "dependency",
+      "label": "returns"
+    },
+    {
+      "id": "r_up_user",
+      "from": "user_provider",
+      "to": "user_model",
+      "kind": "dependency",
+      "label": "returns"
+    },
+    {
+      "id": "r_sp_session",
+      "from": "session_provider",
+      "to": "user_session_model",
+      "kind": "dependency",
+      "label": "returns"
+    },
+    {
+      "id": "r_usm_user",
+      "from": "user_session_model",
+      "to": "user_model",
+      "kind": "dependency",
+      "label": "getUser()"
+    },
+    {
+      "id": "r_realm_client",
+      "from": "realm_model",
+      "to": "client_model",
+      "kind": "dependency",
+      "label": "addClient()"
+    },
+    {
+      "id": "r_user_group",
+      "from": "user_model",
+      "to": "group_model",
+      "kind": "dependency",
+      "label": "joinGroup()"
+    },
+    {
+      "id": "r_client_roles",
+      "from": "client_model",
+      "to": "role_container",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r_container_role",
+      "from": "role_container",
+      "to": "role_model",
+      "kind": "dependency",
+      "label": "getRole()"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "How the SPI fits together",
+      "items": [
+        "Each Spi names a Provider / ProviderFactory pair; factories are discovered via META-INF/services",
+        "KeycloakSessionFactory holds one ProviderFactory per provider id and creates a KeycloakSession per request",
+        "session.getProvider(X.class) asks the factory to create() a request-scoped Provider, closed with the session"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Inheritance not drawn",
+      "items": [
+        "RealmProvider, UserProvider and UserSessionProvider extend Provider",
+        "RealmModel extends RoleContainerModel; UserModel and GroupModel extend RoleMapperModel",
+        "UserProvider also extends UserLookupProvider, UserQueryProvider, UserRegistrationProvider"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Implementations elsewhere",
+      "items": [
+        "Session / factory: DefaultKeycloakSession(Factory) in services",
+        "Realm, user storage: model/jpa; user sessions: model/infinispan",
+        "Also in this module: ClientProvider, RoleProvider, GroupProvider, KeyManager, TokenManager, AuthenticationSessionProvider"
+      ]
+    }
+  ]
+}

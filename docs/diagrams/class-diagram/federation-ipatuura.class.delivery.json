@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "c2aa977e-88db-46eb-ae2e-ab5a381d8110",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\federation-ipatuura.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\federation-ipatuura.class.html",
+  "specification": {
+    "sha256": "df576b510ce80388d82d783b4dfd8ab2d3fb76d5e825a923ad35092fd3bfb519",
+    "bytes": 10916
+  },
+  "artifact": {
+    "sha256": "99b1fca5a23ef25d8e9eecb422258baaa19a24047908fb5d101e5403da687f41",
+    "bytes": 868255
+  }
+}

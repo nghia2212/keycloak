@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "bf860a96-a8e5-4321-bb61-0a5534166dfd",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\adapters-saml.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\adapters-saml.class.html",
+  "specification": {
+    "sha256": "3815fbd341e6d34509335f27d5194f869dda13cba6b6fe42722f6192d0eae803",
+    "bytes": 16250
+  },
+  "artifact": {
+    "sha256": "e1c94a05a8e830bf2e0217d51eb3a3d0420deb57679fa1510150ca6c430dac00",
+    "bytes": 890958
+  }
+}

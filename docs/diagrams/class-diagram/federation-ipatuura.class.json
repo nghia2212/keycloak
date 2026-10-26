@@ -1,0 +1,439 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "federation/ipatuura module types",
+    "output": "docs/diagrams/class-diagram/federation-ipatuura.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_Ipatuura",
+      "label": "Ipatuura",
+      "kind": "class",
+      "sublabel": "ipatuura_user_spi",
+      "row": 1,
+      "col": 0.5,
+      "attributes": [
+        {
+          "name": "model",
+          "type": "ComponentModel",
+          "visibility": "private"
+        },
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "csrfAuthLogin",
+          "returns": "Integer",
+          "visibility": "public"
+        },
+        {
+          "name": "gssAuth",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "spnegoToken"
+        },
+        {
+          "name": "clientRequest",
+          "returns": "SimpleHttpResponse",
+          "visibility": "public",
+          "parameters": "endpoint, method, entity"
+        },
+        {
+          "name": "deleteUser",
+          "returns": "SimpleHttpResponse",
+          "visibility": "public",
+          "parameters": "username"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ipatuura/src/main/java/org/keycloak/ipatuura_user_spi/Ipatuura.java",
+          "line": 37,
+          "end_line": 266
+        }
+      ]
+    },
+    {
+      "id": "t_SCIMUser",
+      "label": "SCIMUser",
+      "kind": "class",
+      "sublabel": "ipatuura_user_spi.schemas",
+      "row": 0,
+      "col": 0.5,
+      "attributes": [
+        {
+          "name": "resources",
+          "type": "List<Resource>",
+          "visibility": "private"
+        },
+        {
+          "name": "itemsPerPage",
+          "type": "Integer",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getResources",
+          "returns": "List<Resource>",
+          "visibility": "public"
+        },
+        {
+          "name": "setResources",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "resources"
+        },
+        {
+          "name": "getItemsPerPage",
+          "returns": "Integer",
+          "visibility": "public"
+        },
+        {
+          "name": "setItemsPerPage",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "itemsPerPage"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ipatuura/src/main/java/org/keycloak/ipatuura_user_spi/schemas/SCIMUser.java",
+          "line": 35,
+          "end_line": 66
+        }
+      ]
+    },
+    {
+      "id": "t_IpatuuraUserStorageProvider",
+      "label": "IpatuuraUserStorageProvider",
+      "kind": "class",
+      "sublabel": "ipatuura_user_spi",
+      "row": 2,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        },
+        {
+          "name": "model",
+          "type": "ComponentModel",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "supportsCredentialType",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "credentialType"
+        },
+        {
+          "name": "validate",
+          "returns": "UserModel",
+          "visibility": "public",
+          "parameters": "realm, local"
+        },
+        {
+          "name": "addUser",
+          "returns": "UserModel",
+          "visibility": "public",
+          "parameters": "realm, username"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ipatuura/src/main/java/org/keycloak/ipatuura_user_spi/IpatuuraUserStorageProvider.java",
+          "line": 60,
+          "end_line": 198
+        }
+      ]
+    },
+    {
+      "id": "t_IpatuuraAuthenticator",
+      "label": "IpatuuraAuthenticator",
+      "kind": "class",
+      "sublabel": "ipatuura_user_spi.authenticator",
+      "row": 0,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getToken",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "session"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ipatuura/src/main/java/org/keycloak/ipatuura_user_spi/authenticator/IpatuuraAuthenticator.java",
+          "line": 31,
+          "end_line": 35
+        }
+      ]
+    },
+    {
+      "id": "t_SCIMError",
+      "label": "SCIMError",
+      "kind": "class",
+      "sublabel": "ipatuura_user_spi.schemas",
+      "row": 0,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "schemas",
+          "type": "List<String>",
+          "visibility": "private"
+        },
+        {
+          "name": "detail",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getSchemas",
+          "returns": "List<String>",
+          "visibility": "public"
+        },
+        {
+          "name": "setSchemas",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "schemas"
+        },
+        {
+          "name": "getDetail",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setDetail",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "detail"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ipatuura/src/main/java/org/keycloak/ipatuura_user_spi/schemas/SCIMError.java",
+          "line": 35,
+          "end_line": 62
+        }
+      ]
+    },
+    {
+      "id": "t_IpatuuraUserModelDelegate",
+      "label": "IpatuuraUserModelDelegate",
+      "kind": "class",
+      "sublabel": "ipatuura_user_spi",
+      "row": 2,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "model",
+          "type": "ComponentModel",
+          "visibility": "private"
+        },
+        {
+          "name": "ipatuura",
+          "type": "Ipatuura",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "setAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "attr, values"
+        },
+        {
+          "name": "setSingleAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "name, value"
+        },
+        {
+          "name": "setUsername",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "username"
+        },
+        {
+          "name": "setLastName",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "lastName"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ipatuura/src/main/java/org/keycloak/ipatuura_user_spi/IpatuuraUserModelDelegate.java",
+          "line": 31,
+          "end_line": 73
+        }
+      ]
+    },
+    {
+      "id": "t_SCIMSearchRequest",
+      "label": "SCIMSearchRequest",
+      "kind": "class",
+      "sublabel": "ipatuura_user_spi.schemas",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "schemas",
+          "type": "List<String>",
+          "visibility": "private"
+        },
+        {
+          "name": "filter",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getSchemas",
+          "returns": "List<String>",
+          "visibility": "public"
+        },
+        {
+          "name": "setSchemas",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "schemas"
+        },
+        {
+          "name": "getFilter",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setFilter",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "filter"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ipatuura/src/main/java/org/keycloak/ipatuura_user_spi/schemas/SCIMSearchRequest.java",
+          "line": 35,
+          "end_line": 60
+        }
+      ]
+    },
+    {
+      "id": "t_IpatuuraUserStorageProviderFactory",
+      "label": "IpatuuraUserStorageProviderFactory",
+      "kind": "class",
+      "sublabel": "ipatuura_user_spi",
+      "row": 3,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getConfigProperties",
+          "returns": "List<ProviderConfigProperty>",
+          "visibility": "public"
+        },
+        {
+          "name": "validateConfiguration",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session, realm, config"
+        },
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "create",
+          "returns": "IpatuuraUserStorageProvider",
+          "visibility": "public",
+          "parameters": "session, model"
+        }
+      ],
+      "sources": [
+        {
+          "path": "federation/ipatuura/src/main/java/org/keycloak/ipatuura_user_spi/IpatuuraUserStorageProviderFactory.java",
+          "line": 45,
+          "end_line": 137
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_IpatuuraUserStorageProvider_Ipatuura",
+      "from": "t_IpatuuraUserStorageProvider",
+      "to": "t_Ipatuura",
+      "kind": "association"
+    },
+    {
+      "id": "r1_IpatuuraUserModelDelegate_Ipatuura",
+      "from": "t_IpatuuraUserModelDelegate",
+      "to": "t_Ipatuura",
+      "kind": "association"
+    },
+    {
+      "id": "r2_Ipatuura_SCIMUser",
+      "from": "t_Ipatuura",
+      "to": "t_SCIMUser",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module federation/ipatuura/ (keycloak-ipatuura-federation): 8 public types, 8 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "ipatuura_user_spi (4)",
+        "ipatuura_user_spi.schemas (3)",
+        "ipatuura_user_spi.authenticator (1)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "IpatuuraUserStorageProvider has a IpatuuraUserStorageProviderFactory"
+      ]
+    }
+  ]
+}

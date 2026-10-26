@@ -1,0 +1,614 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "common module types",
+    "output": "docs/diagrams/class-diagram/common.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "7e07aeecd7281e6cd90a0dcc46957d74332dd553"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "feature",
+      "label": "Profile.Feature",
+      "kind": "enum",
+      "sublabel": "Named feature flags",
+      "row": 0,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "AUTHORIZATION",
+          "visibility": "public"
+        },
+        {
+          "name": "AUTHZEN",
+          "visibility": "public"
+        },
+        {
+          "name": "…",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/Profile.java",
+          "line": 59,
+          "end_line": 62
+        }
+      ]
+    },
+    {
+      "id": "profile",
+      "label": "Profile",
+      "kind": "class",
+      "sublabel": "Process-wide feature profile",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "CURRENT",
+          "type": "Profile",
+          "visibility": "private",
+          "static": true
+        },
+        {
+          "name": "profileName",
+          "type": "ProfileName",
+          "visibility": "private"
+        },
+        {
+          "name": "features",
+          "type": "Map<Feature, Boolean>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "configure",
+          "parameters": "resolvers…",
+          "returns": "Profile",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "getInstance",
+          "returns": "Profile",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "isFeatureEnabled",
+          "parameters": "feature",
+          "returns": "boolean",
+          "visibility": "public",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/Profile.java",
+          "line": 363,
+          "end_line": 376
+        },
+        {
+          "path": "common/src/main/java/org/keycloak/common/Profile.java",
+          "line": 532,
+          "end_line": 544
+        }
+      ]
+    },
+    {
+      "id": "feature_config",
+      "label": "FeatureConfig",
+      "kind": "enum",
+      "sublabel": "Resolver answer per feature",
+      "row": 0,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "ENABLED",
+          "visibility": "public"
+        },
+        {
+          "name": "DISABLED",
+          "visibility": "public"
+        },
+        {
+          "name": "UNCONFIGURED",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/profile/ProfileConfigResolver.java",
+          "line": 11,
+          "end_line": 15
+        }
+      ]
+    },
+    {
+      "id": "resolver",
+      "label": "ProfileConfigResolver",
+      "kind": "interface",
+      "sublabel": "Source of profile config",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getProfileName",
+          "returns": "ProfileName",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getFeatureConfig",
+          "parameters": "feature: String",
+          "returns": "FeatureConfig",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/profile/ProfileConfigResolver.java",
+          "line": 5,
+          "end_line": 9
+        }
+      ]
+    },
+    {
+      "id": "csv_resolver",
+      "label": "CommaSeparatedListProfileConfigResolver",
+      "kind": "class",
+      "sublabel": "enabled/disabled lists",
+      "row": 2,
+      "col": 0,
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/profile/CommaSeparatedListProfileConfigResolver.java",
+          "line": 9,
+          "end_line": 32
+        }
+      ]
+    },
+    {
+      "id": "props_resolver",
+      "label": "PropertiesProfileConfigResolver",
+      "kind": "class",
+      "sublabel": "keycloak.profile.* properties",
+      "row": 2,
+      "col": 1,
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/profile/PropertiesProfileConfigResolver.java",
+          "line": 9,
+          "end_line": 36
+        }
+      ]
+    },
+    {
+      "id": "single_resolver",
+      "label": "SingleProfileConfigResolver",
+      "kind": "class",
+      "sublabel": "one fixed feature setting",
+      "row": 2,
+      "col": 2,
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/profile/SingleProfileConfigResolver.java",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "id": "pem_utils",
+      "label": "PemUtils",
+      "kind": "class",
+      "sublabel": "util/ static facade",
+      "row": 3,
+      "col": 0,
+      "methods": [
+        {
+          "name": "decodeCertificate",
+          "parameters": "pem",
+          "returns": "X509Certificate",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "decodePublicKey",
+          "parameters": "pem",
+          "returns": "PublicKey",
+          "visibility": "public",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/util/PemUtils.java",
+          "line": 36,
+          "end_line": 90
+        }
+      ]
+    },
+    {
+      "id": "crypto_integration",
+      "label": "CryptoIntegration",
+      "kind": "class",
+      "sublabel": "Holds the active provider",
+      "row": 3,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "cryptoProvider",
+          "type": "CryptoProvider",
+          "visibility": "private",
+          "static": true
+        }
+      ],
+      "methods": [
+        {
+          "name": "init",
+          "parameters": "classLoader",
+          "returns": "void",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "getProvider",
+          "returns": "CryptoProvider",
+          "visibility": "public",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/crypto/CryptoIntegration.java",
+          "line": 22,
+          "end_line": 60
+        }
+      ]
+    },
+    {
+      "id": "fips_mode",
+      "label": "FipsMode",
+      "kind": "enum",
+      "sublabel": "Maps mode to provider class",
+      "row": 3,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "NON_STRICT",
+          "visibility": "public"
+        },
+        {
+          "name": "STRICT",
+          "visibility": "public"
+        },
+        {
+          "name": "DISABLED",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/crypto/FipsMode.java",
+          "line": 3,
+          "end_line": 6
+        }
+      ]
+    },
+    {
+      "id": "crypto_provider",
+      "label": "CryptoProvider",
+      "kind": "interface",
+      "sublabel": "ServiceLoader-discovered SPI",
+      "row": 4,
+      "col": 1,
+      "methods": [
+        {
+          "name": "order",
+          "returns": "int",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getCertificateUtils",
+          "returns": "CertificateUtilsProvider",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getPemUtils",
+          "returns": "PemUtilsProvider",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getIdentityExtractorProvider",
+          "returns": "UserIdentityExtractorProvider",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getEcdsaCryptoProvider",
+          "returns": "ECDSACryptoProvider",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/crypto/CryptoProvider.java",
+          "line": 32,
+          "end_line": 78
+        }
+      ]
+    },
+    {
+      "id": "cert_utils",
+      "label": "CertificateUtilsProvider",
+      "kind": "interface",
+      "sublabel": "X.509 generation & parsing",
+      "row": 5,
+      "col": 0,
+      "methods": [
+        {
+          "name": "generateV1SelfSignedCertificate",
+          "parameters": "keyPair, subject",
+          "returns": "X509Certificate",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getCRLDistributionPoints",
+          "parameters": "cert",
+          "returns": "List<String>",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/crypto/CertificateUtilsProvider.java",
+          "line": 33,
+          "end_line": 70
+        }
+      ]
+    },
+    {
+      "id": "pem_provider",
+      "label": "PemUtilsProvider",
+      "kind": "abstract",
+      "sublabel": "PEM encode / decode",
+      "row": 5,
+      "col": 1,
+      "methods": [
+        {
+          "name": "decodePublicKey",
+          "parameters": "pem",
+          "returns": "PublicKey",
+          "visibility": "public"
+        },
+        {
+          "name": "decodePrivateKey",
+          "parameters": "pem",
+          "returns": "PrivateKey",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/crypto/PemUtilsProvider.java",
+          "line": 40,
+          "end_line": 103
+        }
+      ]
+    },
+    {
+      "id": "ecdsa",
+      "label": "ECDSACryptoProvider",
+      "kind": "interface",
+      "sublabel": "EC signature transcoding",
+      "row": 5,
+      "col": 2,
+      "methods": [
+        {
+          "name": "concatenatedRSToASN1DER",
+          "parameters": "sig, len",
+          "returns": "byte[]",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getPublicFromPrivate",
+          "parameters": "key",
+          "returns": "ECPublicKey",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/crypto/ECDSACryptoProvider.java",
+          "line": 7,
+          "end_line": 13
+        }
+      ]
+    },
+    {
+      "id": "uie_provider",
+      "label": "UserIdentityExtractorProvider",
+      "kind": "abstract",
+      "sublabel": "Builds cert identity extractors",
+      "row": 6,
+      "col": 1,
+      "methods": [
+        {
+          "name": "either",
+          "parameters": "extractor",
+          "returns": "OrBuilder",
+          "visibility": "public"
+        },
+        {
+          "name": "getCertificatePemIdentityExtractor",
+          "returns": "UserIdentityExtractor",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/crypto/UserIdentityExtractorProvider.java",
+          "line": 39,
+          "end_line": 119
+        }
+      ]
+    },
+    {
+      "id": "uie",
+      "label": "UserIdentityExtractor",
+      "kind": "interface",
+      "sublabel": "Client-cert → user identity",
+      "row": 6,
+      "col": 2,
+      "methods": [
+        {
+          "name": "extractUserIdentity",
+          "parameters": "certs",
+          "returns": "Object",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "common/src/main/java/org/keycloak/common/crypto/UserIdentityExtractor.java",
+          "line": 33
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r_profile_feature",
+      "from": "profile",
+      "to": "feature",
+      "kind": "association",
+      "label": "enables"
+    },
+    {
+      "id": "r_profile_resolver",
+      "from": "profile",
+      "to": "resolver",
+      "kind": "dependency",
+      "label": "configure()"
+    },
+    {
+      "id": "r_resolver_config",
+      "from": "resolver",
+      "to": "feature_config",
+      "kind": "dependency",
+      "label": "returns"
+    },
+    {
+      "id": "r_csv",
+      "from": "csv_resolver",
+      "to": "resolver",
+      "kind": "realization"
+    },
+    {
+      "id": "r_props",
+      "from": "props_resolver",
+      "to": "resolver",
+      "kind": "realization"
+    },
+    {
+      "id": "r_single",
+      "from": "single_resolver",
+      "to": "resolver",
+      "kind": "realization"
+    },
+    {
+      "id": "r_pem_facade",
+      "from": "pem_utils",
+      "to": "crypto_integration",
+      "kind": "dependency",
+      "label": "getProvider()"
+    },
+    {
+      "id": "r_integration_provider",
+      "from": "crypto_integration",
+      "to": "crypto_provider",
+      "kind": "association",
+      "label": "active"
+    },
+    {
+      "id": "r_cp_cert",
+      "from": "crypto_provider",
+      "to": "cert_utils",
+      "kind": "dependency"
+    },
+    {
+      "id": "r_cp_pem",
+      "from": "crypto_provider",
+      "to": "pem_provider",
+      "kind": "dependency"
+    },
+    {
+      "id": "r_cp_ecdsa",
+      "from": "crypto_provider",
+      "to": "ecdsa",
+      "kind": "dependency"
+    },
+    {
+      "id": "r_cp_uie",
+      "from": "crypto_provider",
+      "to": "uie_provider",
+      "kind": "dependency"
+    },
+    {
+      "id": "r_uie_build",
+      "from": "uie_provider",
+      "to": "uie",
+      "kind": "dependency",
+      "label": "builds"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module common/ (keycloak-common), packages org.keycloak.common, .profile and .crypto",
+        "Members are selected, not exhaustive; Profile.Feature has many more constants"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Crypto SPI",
+      "items": [
+        "CryptoIntegration.init() loads CryptoProvider via ServiceLoader and keeps the highest-order one",
+        "Implementations live in crypto/default, crypto/elytron and crypto/fips1402",
+        "FipsMode names the provider class for each FIPS mode"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Not drawn",
+      "items": [
+        "util/ (~50 helpers: Base64, KeycloakUriBuilder, MultivaluedHashMap, Time, …)",
+        "Version, ClientConnection, VerificationException, constants/ and enums/"
+      ]
+    }
+  ]
+}

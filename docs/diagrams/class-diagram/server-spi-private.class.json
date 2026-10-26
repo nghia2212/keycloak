@@ -1,0 +1,741 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "server-spi-private module types",
+    "output": "docs/diagrams/class-diagram/server-spi-private.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_Scope",
+      "label": "Scope",
+      "kind": "interface",
+      "sublabel": "Represents a scope, which is usually as…",
+      "row": 1,
+      "col": 1.5,
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getName",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "setName",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "name",
+          "abstract": true
+        },
+        {
+          "name": "getDisplayName",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/model/Scope.java",
+          "line": 27,
+          "end_line": 70
+        }
+      ]
+    },
+    {
+      "id": "t_Policy",
+      "label": "Policy",
+      "kind": "interface",
+      "sublabel": "Represents an authorization policy and…",
+      "row": 2,
+      "col": 1,
+      "methods": [
+        {
+          "name": "removeConfig",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "name",
+          "abstract": true
+        },
+        {
+          "name": "putConfig",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "name, value",
+          "abstract": true
+        },
+        {
+          "name": "addScope",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "scope",
+          "abstract": true
+        },
+        {
+          "name": "removeScope",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "scope",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/model/Policy.java",
+          "line": 34,
+          "end_line": 193
+        }
+      ]
+    },
+    {
+      "id": "t_ResourceServer",
+      "label": "ResourceServer",
+      "kind": "interface",
+      "sublabel": "Represents a resource server, whose res…",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "isAllowRemoteResourceManagement",
+          "returns": "boolean",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "setAllowRemoteResourceManagement",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "allowRemoteResourceManageme…",
+          "abstract": true
+        },
+        {
+          "name": "getPolicyEnforcementMode",
+          "returns": "PolicyEnforcementMode",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/model/ResourceServer.java",
+          "line": 30,
+          "end_line": 58
+        }
+      ]
+    },
+    {
+      "id": "t_AuthorizationProvider",
+      "label": "AuthorizationProvider",
+      "kind": "class",
+      "sublabel": "The main contract here is the creation…",
+      "row": 7,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "policyEvaluator",
+          "type": "PolicyEvaluator",
+          "visibility": "private"
+        },
+        {
+          "name": "storeFactory",
+          "type": "StoreFactory",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "evaluators",
+          "returns": "Evaluators",
+          "visibility": "public"
+        },
+        {
+          "name": "getStoreFactory",
+          "returns": "StoreFactory",
+          "visibility": "public"
+        },
+        {
+          "name": "getLocalStoreFactory",
+          "returns": "StoreFactory",
+          "visibility": "public"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/AuthorizationProvider.java",
+          "line": 78,
+          "end_line": 179
+        }
+      ]
+    },
+    {
+      "id": "t_RealmModelDelegate",
+      "label": "RealmModelDelegate",
+      "kind": "class",
+      "sublabel": "models.utils",
+      "row": 8,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "delegate",
+          "type": "RealmModel",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "removeAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "name"
+        },
+        {
+          "name": "addRequiredCredential",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "cred"
+        },
+        {
+          "name": "addDefaultGroup",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "group"
+        },
+        {
+          "name": "removeDefaultGroup",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "group"
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/models/utils/RealmModelDelegate.java",
+          "line": 52,
+          "end_line": 543
+        }
+      ]
+    },
+    {
+      "id": "t_KeycloakModelUtils",
+      "label": "KeycloakModelUtils",
+      "kind": "class",
+      "sublabel": "Set of helper methods, which are useful…",
+      "row": 2,
+      "col": 2,
+      "methods": [
+        {
+          "name": "generateId",
+          "returns": "String",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "generateShortId",
+          "returns": "String",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "generateKeyPairCertificate",
+          "returns": "CertificateRepresentation",
+          "visibility": "public",
+          "parameters": "subject",
+          "static": true
+        },
+        {
+          "name": "generateSecret",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "client",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/models/utils/KeycloakModelUtils.java",
+          "line": 112,
+          "end_line": 259
+        }
+      ]
+    },
+    {
+      "id": "t_Resource",
+      "label": "Resource",
+      "kind": "interface",
+      "sublabel": "Represents a resource, which is usually…",
+      "row": 4,
+      "col": 0.5,
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "updateUris",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "uri",
+          "abstract": true
+        },
+        {
+          "name": "updateScopes",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "scopes",
+          "abstract": true
+        },
+        {
+          "name": "removeAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "name",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/model/Resource.java",
+          "line": 30,
+          "end_line": 206
+        }
+      ]
+    },
+    {
+      "id": "t_StoreFactory",
+      "label": "StoreFactory",
+      "kind": "interface",
+      "sublabel": "A factory for the different types of st…",
+      "row": 6,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getResourceStore",
+          "returns": "ResourceStore",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getResourceServerStore",
+          "returns": "ResourceServerStore",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getScopeStore",
+          "returns": "ScopeStore",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getPolicyStore",
+          "returns": "PolicyStore",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/store/StoreFactory.java",
+          "line": 31,
+          "end_line": 59
+        }
+      ]
+    },
+    {
+      "id": "t_ResourcePermission",
+      "label": "ResourcePermission",
+      "kind": "class",
+      "sublabel": "Represents a permission for a given res…",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "resource",
+          "type": "Resource",
+          "visibility": "private"
+        },
+        {
+          "name": "scopes",
+          "type": "Collection<Scope>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "addClaim",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "name, value"
+        },
+        {
+          "name": "removeClaim",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "name"
+        },
+        {
+          "name": "addScope",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "scope"
+        },
+        {
+          "name": "addClaims",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "Map<String, claims"
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/permission/ResourcePermission.java",
+          "line": 39,
+          "end_line": 159
+        }
+      ]
+    },
+    {
+      "id": "t_Decision",
+      "label": "Decision",
+      "kind": "interface",
+      "sublabel": "authorization",
+      "row": 2,
+      "col": 0,
+      "methods": [
+        {
+          "name": "onDecision",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "evaluation",
+          "abstract": true
+        },
+        {
+          "name": "onError",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "cause"
+        },
+        {
+          "name": "onComplete",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "isEvaluated",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "scope"
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/Decision.java",
+          "line": 27,
+          "end_line": 58
+        }
+      ]
+    },
+    {
+      "id": "t_ResourceStore",
+      "label": "ResourceStore",
+      "kind": "interface",
+      "sublabel": "A ResourceStore is responsible to manag…",
+      "row": 5,
+      "col": 0,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "Resource",
+          "visibility": "public",
+          "parameters": "resourceServer, name, owner"
+        },
+        {
+          "name": "delete",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "id",
+          "abstract": true
+        },
+        {
+          "name": "findById",
+          "returns": "Resource",
+          "visibility": "public",
+          "parameters": "resourceServer, id",
+          "abstract": true
+        },
+        {
+          "name": "findByOwner",
+          "returns": "List<Resource>",
+          "visibility": "public",
+          "parameters": "resourceServer, ownerId"
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/store/ResourceStore.java",
+          "line": 35,
+          "end_line": 83
+        }
+      ]
+    },
+    {
+      "id": "t_EnvironmentDependentProviderFactory",
+      "label": "EnvironmentDependentProviderFactory",
+      "kind": "interface",
+      "sublabel": "Providers that are only supported in so…",
+      "row": 4,
+      "col": 2,
+      "methods": [
+        {
+          "name": "isSupported",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "config",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/provider/EnvironmentDependentProviderFactory.java",
+          "line": 28,
+          "end_line": 36
+        }
+      ]
+    },
+    {
+      "id": "t_AdminPermissionsSchema",
+      "label": "AdminPermissionsSchema",
+      "kind": "class",
+      "sublabel": "authorization.fgap",
+      "row": 3,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "partialEvaluator",
+          "type": "PartialEvaluator",
+          "visibility": "private"
+        },
+        {
+          "name": "policyEvaluator",
+          "type": "PolicyEvaluator",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "throwExceptionIfAdminPermissionClient",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session, id"
+        },
+        {
+          "name": "throwExceptionIfResourceTypeOrScopesNotProvided",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session, resourceServer, rep"
+        },
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session, realm"
+        },
+        {
+          "name": "removeResource",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "resource, policy, authoriza…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/fgap/AdminPermissionsSchema.java",
+          "line": 78,
+          "end_line": 411
+        }
+      ]
+    },
+    {
+      "id": "t_PolicyStore",
+      "label": "PolicyStore",
+      "kind": "interface",
+      "sublabel": "A PolicyStore is responsible to manage…",
+      "row": 5,
+      "col": 1,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "Policy",
+          "visibility": "public",
+          "parameters": "resourceServer, representat…",
+          "abstract": true
+        },
+        {
+          "name": "delete",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "id",
+          "abstract": true
+        },
+        {
+          "name": "findById",
+          "returns": "Policy",
+          "visibility": "public",
+          "parameters": "resourceServer, id",
+          "abstract": true
+        },
+        {
+          "name": "findByName",
+          "returns": "Policy",
+          "visibility": "public",
+          "parameters": "resourceServer, name",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/store/PolicyStore.java",
+          "line": 37,
+          "end_line": 72
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_AuthorizationProvider_StoreFactory",
+      "from": "t_AuthorizationProvider",
+      "to": "t_StoreFactory",
+      "kind": "association"
+    },
+    {
+      "id": "r1_ResourcePermission_ResourceServer",
+      "from": "t_ResourcePermission",
+      "to": "t_ResourceServer",
+      "kind": "association"
+    },
+    {
+      "id": "r2_Policy_Scope",
+      "from": "t_Policy",
+      "to": "t_Scope",
+      "kind": "dependency"
+    },
+    {
+      "id": "r3_Scope_ResourceServer",
+      "from": "t_Scope",
+      "to": "t_ResourceServer",
+      "kind": "dependency"
+    },
+    {
+      "id": "r4_KeycloakModelUtils_Scope",
+      "from": "t_KeycloakModelUtils",
+      "to": "t_Scope",
+      "kind": "dependency"
+    },
+    {
+      "id": "r5_AdminPermissionsSchema_Policy",
+      "from": "t_AdminPermissionsSchema",
+      "to": "t_Policy",
+      "kind": "dependency"
+    },
+    {
+      "id": "r6_Decision_ResourcePermission",
+      "from": "t_Decision",
+      "to": "t_ResourcePermission",
+      "kind": "dependency"
+    },
+    {
+      "id": "r7_ResourceStore_Resource",
+      "from": "t_ResourceStore",
+      "to": "t_Resource",
+      "kind": "dependency"
+    },
+    {
+      "id": "r8_StoreFactory_ResourceStore",
+      "from": "t_StoreFactory",
+      "to": "t_ResourceStore",
+      "kind": "dependency"
+    },
+    {
+      "id": "r9_PolicyStore_Resource",
+      "from": "t_PolicyStore",
+      "to": "t_Resource",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module server-spi-private/ (keycloak-server-spi-private): 625 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "models (49)",
+        "policy (38)",
+        "authentication (35)",
+        "models.utils (27)",
+        "models.workflow (27)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "ResourcePermission has a Resource",
+        "ResourcePermission uses Scope",
+        "EnvironmentDependentProviderFactory uses Scope",
+        "AdminPermissionsSchema uses Scope",
+        "AuthorizationProvider uses ResourceServer",
+        "Policy uses Resource",
+        "AdminPermissionsSchema uses AuthorizationProvider",
+        "AdminPermissionsSchema uses ResourceServer",
+        "ResourceStore uses ResourceServer",
+        "PolicyStore uses Policy",
+        "…and 3 more"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "PasswordPolicyProviderFactory, Event, ValidationContext, ResourceType, ValidationError, Identity, LoginFormsProvider, EvaluationContext"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "bcdf4761-6403-4f04-afd5-624d48f81138",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\federation-sssd.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\federation-sssd.class.html",
+  "specification": {
+    "sha256": "f2cf77e1a1b987a4b4dcaf36d2f74e6a2310d013ab3e6a2bb0496d386949beaa",
+    "bytes": 14376
+  },
+  "artifact": {
+    "sha256": "764acde60b0339fa4639f4089228f7767bb3b2d96820684156e805d55ba6cf2a",
+    "bytes": 884763
+  }
+}

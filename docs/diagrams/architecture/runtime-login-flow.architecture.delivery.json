@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "6c054130-4b99-4bdc-ae8f-b152e5c4a471",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\architecture\\runtime-login-flow.architecture.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\architecture\\runtime-login-flow.architecture.html",
+  "specification": {
+    "sha256": "f50aee4d0ebb0ee4481ae03eb71cc1ed09a313ac890ffc4dfc8e656be4f75c98",
+    "bytes": 11516
+  },
+  "artifact": {
+    "sha256": "5c91f82575a87a3c4dbf1a5853fa60c38b2345eec2e1591a9e493109513769cd",
+    "bytes": 860018
+  }
+}

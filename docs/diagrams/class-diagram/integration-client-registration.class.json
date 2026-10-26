@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "integration/client-registration module types",
+    "output": "docs/diagrams/class-diagram/integration-client-registration.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_Auth",
+      "label": "Auth",
+      "kind": "abstract",
+      "sublabel": "client.registration",
+      "row": 0,
+      "col": 0,
+      "methods": [
+        {
+          "name": "addAuth",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "request",
+          "abstract": true
+        },
+        {
+          "name": "token",
+          "returns": "Auth",
+          "visibility": "public",
+          "parameters": "token",
+          "static": true
+        },
+        {
+          "name": "client",
+          "returns": "Auth",
+          "visibility": "public",
+          "parameters": "clientId, clientSecret",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-registration/src/main/java/org/keycloak/client/registration/Auth.java",
+          "line": 32,
+          "end_line": 52
+        }
+      ]
+    },
+    {
+      "id": "t_HttpErrorException",
+      "label": "HttpErrorException",
+      "kind": "class",
+      "sublabel": "client.registration",
+      "row": 0,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "statusLine",
+          "type": "StatusLine",
+          "visibility": "private"
+        },
+        {
+          "name": "errorResponse",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getStatusLine",
+          "returns": "StatusLine",
+          "visibility": "public"
+        },
+        {
+          "name": "getErrorResponse",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "toErrorRepresentation",
+          "returns": "OAuth2ErrorRepresentation",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-registration/src/main/java/org/keycloak/client/registration/HttpErrorException.java",
+          "line": 30,
+          "end_line": 48
+        }
+      ]
+    },
+    {
+      "id": "t_ClientRegistration",
+      "label": "ClientRegistration",
+      "kind": "class",
+      "sublabel": "client.registration",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "JSON",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "XML",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "ClientRegistrationBuilder",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "auth",
+          "returns": "ClientRegistration",
+          "visibility": "public",
+          "parameters": "auth"
+        },
+        {
+          "name": "get",
+          "returns": "ClientRepresentation",
+          "visibility": "public",
+          "parameters": "clientId"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/client-registration/src/main/java/org/keycloak/client/registration/ClientRegistration.java",
+          "line": 38,
+          "end_line": 83
+        }
+      ]
+    },
+    {
+      "id": "t_ClientRegistrationException",
+      "label": "ClientRegistrationException",
+      "kind": "class",
+      "sublabel": "client.registration",
+      "row": 0,
+      "col": 1,
+      "sources": [
+        {
+          "path": "integration/client-registration/src/main/java/org/keycloak/client/registration/ClientRegistrationException.java",
+          "line": 23
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_ClientRegistration_Auth",
+      "from": "t_ClientRegistration",
+      "to": "t_Auth",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module integration/client-registration/ (keycloak-client-registration-api): 4 public types, 4 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "client.registration (4)"
+      ]
+    }
+  ]
+}

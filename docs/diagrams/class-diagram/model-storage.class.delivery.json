@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "b65222d4-bc3a-41c2-b070-0dbfdea9adf6",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\model-storage.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\model-storage.class.html",
+  "specification": {
+    "sha256": "e7edb6b29f851cfc8b24689e42210178195197b1a05673835f5431b05b9291e0",
+    "bytes": 20349
+  },
+  "artifact": {
+    "sha256": "44a68bb796badc3ddf0500b5170159df62f8bf4c14416c19cd29f16cbb24aa7b",
+    "bytes": 909361
+  }
+}

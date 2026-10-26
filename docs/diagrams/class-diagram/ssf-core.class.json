@@ -1,0 +1,695 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "ssf/core module types",
+    "output": "docs/diagrams/class-diagram/ssf-core.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_SubjectId",
+      "label": "SubjectId",
+      "kind": "abstract",
+      "sublabel": "A Subject Identifier is structured info…",
+      "row": 3,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "format",
+          "type": "String",
+          "visibility": "protected"
+        },
+        {
+          "name": "attributes",
+          "type": "Map<String,Object>",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getAttributes",
+          "returns": "Map<String,Object>",
+          "visibility": "public"
+        },
+        {
+          "name": "setAttributes",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "Map<String, attributes"
+        },
+        {
+          "name": "setAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "key, value"
+        },
+        {
+          "name": "getFormat",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/subject/SubjectId.java",
+          "line": 26,
+          "end_line": 51
+        }
+      ]
+    },
+    {
+      "id": "t_SsfEvent",
+      "label": "SsfEvent",
+      "kind": "abstract",
+      "sublabel": "Represents a generic SSF event",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "alias",
+          "type": "String",
+          "visibility": "protected"
+        },
+        {
+          "name": "eventType",
+          "type": "String",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getEventType",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getAttributes",
+          "returns": "Map<String,Object>",
+          "visibility": "public"
+        },
+        {
+          "name": "createAdminDetails",
+          "returns": "Map<String,Object>",
+          "visibility": "public"
+        },
+        {
+          "name": "validate",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/event/SsfEvent.java",
+          "line": 25,
+          "end_line": 145
+        }
+      ]
+    },
+    {
+      "id": "t_SsfEventProvider",
+      "label": "SsfEventProvider",
+      "kind": "interface",
+      "sublabel": "Per-session provider that exposes the g…",
+      "row": 4,
+      "col": 0,
+      "methods": [
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "getRegistry",
+          "returns": "SsfEventRegistry",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/event/SsfEventProvider.java",
+          "line": 12,
+          "end_line": 21
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractDeliveryMethodRepresentation",
+      "label": "AbstractDeliveryMethodRepresentation",
+      "kind": "abstract",
+      "sublabel": "See SET Token Delivery Using HTTP Profi…",
+      "row": 7,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "method",
+          "type": "DeliveryMethod",
+          "visibility": "private"
+        },
+        {
+          "name": "endpointUrl",
+          "type": "URI",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getMethod",
+          "returns": "DeliveryMethod",
+          "visibility": "public"
+        },
+        {
+          "name": "getEndpointUrl",
+          "returns": "URI",
+          "visibility": "public"
+        },
+        {
+          "name": "getAuthorizationHeader",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "create",
+          "returns": "AbstractDeliveryMethodRepresentation",
+          "visibility": "public",
+          "parameters": "(\"method\"",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/stream/AbstractDeliveryMethodRepresentation.java",
+          "line": 16,
+          "end_line": 78
+        }
+      ]
+    },
+    {
+      "id": "t_SsfEventProviderFactory",
+      "label": "SsfEventProviderFactory",
+      "kind": "interface",
+      "sublabel": "Factory contract for SsfEventProvider i…",
+      "row": 5,
+      "col": 0,
+      "methods": [
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "config"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "create",
+          "returns": "SsfEventProvider",
+          "visibility": "public",
+          "parameters": "session"
+        },
+        {
+          "name": "buildRegistry",
+          "returns": "SsfEventRegistry",
+          "visibility": "public",
+          "parameters": "sessionFactory",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/event/SsfEventProviderFactory.java",
+          "line": 26,
+          "end_line": 117
+        }
+      ]
+    },
+    {
+      "id": "t_CaepCredentialChange",
+      "label": "CaepCredentialChange",
+      "kind": "class",
+      "sublabel": "The Credential Change event signals tha…",
+      "row": 2,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "credentialType",
+          "type": "String",
+          "visibility": "protected"
+        },
+        {
+          "name": "changeType",
+          "type": "ChangeType",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "validate",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "getCredentialType",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setCredentialType",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "credentialType"
+        },
+        {
+          "name": "createAdminDetails",
+          "returns": "Map<String,Object>",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/event/caep/CaepCredentialChange.java",
+          "line": 15,
+          "end_line": 209
+        }
+      ]
+    },
+    {
+      "id": "t_InitiatingEntityAware",
+      "label": "InitiatingEntityAware",
+      "kind": "interface",
+      "sublabel": "Implemented by event types that carry t…",
+      "row": 4,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getInitiatingEntity",
+          "returns": "InitiatingEntity",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "setInitiatingEntity",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "initiatingEntity",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/event/InitiatingEntityAware.java",
+          "line": 19,
+          "end_line": 23
+        }
+      ]
+    },
+    {
+      "id": "t_SsfEventRegistry",
+      "label": "SsfEventRegistry",
+      "kind": "class",
+      "sublabel": "Immutable registry of all known SSF eve…",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "classByEventType",
+          "type": "Map",
+          "visibility": "private"
+        },
+        {
+          "name": "classByAlias",
+          "type": "Map",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "resolveEventClass",
+          "returns": "Class<?extendsSsfEvent>",
+          "visibility": "public",
+          "parameters": "aliasOrEventType"
+        },
+        {
+          "name": "resolveAliasForEventType",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "eventType"
+        },
+        {
+          "name": "resolveEventTypeForAlias",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "alias"
+        },
+        {
+          "name": "parseEventTypeAliases",
+          "returns": "Set<String>",
+          "visibility": "public",
+          "parameters": "eventAliases",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/event/SsfEventRegistry.java",
+          "line": 25,
+          "end_line": 231
+        }
+      ]
+    },
+    {
+      "id": "t_CaepEvent",
+      "label": "CaepEvent",
+      "kind": "abstract",
+      "sublabel": "Generic CaepEvent",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "subjectId",
+          "type": "SubjectId",
+          "visibility": "protected"
+        },
+        {
+          "name": "eventTimestamp",
+          "type": "Long",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "createAdminDetails",
+          "returns": "Map<String,Object>",
+          "visibility": "public"
+        },
+        {
+          "name": "getSubjectId",
+          "returns": "SubjectId",
+          "visibility": "public"
+        },
+        {
+          "name": "setSubjectId",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "subjectId"
+        },
+        {
+          "name": "getEventTimestamp",
+          "returns": "Long",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/event/caep/CaepEvent.java",
+          "line": 19,
+          "end_line": 91
+        }
+      ]
+    },
+    {
+      "id": "t_RiscEvent",
+      "label": "RiscEvent",
+      "kind": "abstract",
+      "sublabel": "Generic RiscEvent",
+      "row": 1,
+      "col": 1,
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/event/risc/RiscEvent.java",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "id": "t_InitiatingEntity",
+      "label": "InitiatingEntity",
+      "kind": "enum",
+      "sublabel": "ssf.event",
+      "row": 3,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "ADMIN",
+          "visibility": "public"
+        },
+        {
+          "name": "USER",
+          "visibility": "public"
+        },
+        {
+          "name": "POLICY",
+          "visibility": "public"
+        },
+        {
+          "name": "SYSTEM",
+          "visibility": "public"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getCode",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/event/InitiatingEntity.java",
+          "line": 5,
+          "end_line": 19
+        }
+      ]
+    },
+    {
+      "id": "t_SsfStreamEvent",
+      "label": "SsfStreamEvent",
+      "kind": "abstract",
+      "sublabel": "Base class for all SSF stream related e…",
+      "row": 1,
+      "col": 2,
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/event/stream/SsfStreamEvent.java",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "id": "t_IssuerSubjectId",
+      "label": "IssuerSubjectId",
+      "kind": "class",
+      "sublabel": "See: https://datatracker.ietf.org/doc/h…",
+      "row": 4,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "iss",
+          "type": "String",
+          "visibility": "protected"
+        },
+        {
+          "name": "sub",
+          "type": "String",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getIss",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setIss",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "iss"
+        },
+        {
+          "name": "getSub",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setSub",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "sub"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/subject/IssuerSubjectId.java",
+          "line": 8,
+          "end_line": 34
+        }
+      ]
+    },
+    {
+      "id": "t_DeliveryMethod",
+      "label": "DeliveryMethod",
+      "kind": "enum",
+      "sublabel": "ssf.stream",
+      "row": 6,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "PUSH",
+          "visibility": "public"
+        },
+        {
+          "name": "POLL",
+          "visibility": "public"
+        },
+        {
+          "name": "RISC_PUSH",
+          "visibility": "public"
+        },
+        {
+          "name": "RISC_POLL",
+          "visibility": "public"
+        }
+      ],
+      "methods": [
+        {
+          "name": "valueOfUri",
+          "returns": "DeliveryMethod",
+          "visibility": "public",
+          "parameters": "deliveryMethod",
+          "static": true
+        },
+        {
+          "name": "family",
+          "returns": "DeliveryMethodFamily",
+          "visibility": "public"
+        },
+        {
+          "name": "getSpecUri",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "toString",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "ssf/core/src/main/java/org/keycloak/ssf/stream/DeliveryMethod.java",
+          "line": 23,
+          "end_line": 66
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_IssuerSubjectId_SubjectId",
+      "from": "t_IssuerSubjectId",
+      "to": "t_SubjectId",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_CaepEvent_SsfEvent",
+      "from": "t_CaepEvent",
+      "to": "t_SsfEvent",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_RiscEvent_SsfEvent",
+      "from": "t_RiscEvent",
+      "to": "t_SsfEvent",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r3_SsfStreamEvent_SsfEvent",
+      "from": "t_SsfStreamEvent",
+      "to": "t_SsfEvent",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r4_CaepCredentialChange_CaepEvent",
+      "from": "t_CaepCredentialChange",
+      "to": "t_CaepEvent",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r5_AbstractDeliveryMethodRepresentation_DeliveryMethod",
+      "from": "t_AbstractDeliveryMethodRepresentation",
+      "to": "t_DeliveryMethod",
+      "kind": "association"
+    },
+    {
+      "id": "r6_SsfEventProvider_SsfEventRegistry",
+      "from": "t_SsfEventProvider",
+      "to": "t_SsfEventRegistry",
+      "kind": "dependency"
+    },
+    {
+      "id": "r7_SsfEventProviderFactory_SsfEventProvider",
+      "from": "t_SsfEventProviderFactory",
+      "to": "t_SsfEventProvider",
+      "kind": "dependency"
+    },
+    {
+      "id": "r8_InitiatingEntityAware_InitiatingEntity",
+      "from": "t_InitiatingEntityAware",
+      "to": "t_InitiatingEntity",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module ssf/core/ (keycloak-ssf-core): 66 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "ssf.subject (20)",
+        "ssf.stream (14)",
+        "ssf.event (11)",
+        "ssf.event.token (5)",
+        "ssf.event.caep (4)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "CaepEvent implements InitiatingEntityAware",
+        "CaepEvent has a SubjectId",
+        "CaepEvent has a InitiatingEntity",
+        "SsfEventProviderFactory uses SsfEventRegistry"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "SecurityEventToken, SubjectResolution, OpaqueSubjectId, SubjectIdJsonDeserializer, ComplexSubjectId, EmailSubjectId, AbstractSecurityEventToken, SsfStreamRepresentation"
+      ]
+    }
+  ]
+}

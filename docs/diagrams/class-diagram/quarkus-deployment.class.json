@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "quarkus/deployment module types",
+    "output": "docs/diagrams/class-diagram/quarkus-deployment.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_IsKeycloakDevMode",
+      "label": "IsKeycloakDevMode",
+      "kind": "class",
+      "sublabel": "quarkus.deployment",
+      "row": 0,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getAsBoolean",
+          "returns": "boolean",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "quarkus/deployment/src/main/java/org/keycloak/quarkus/deployment/IsKeycloakDevMode.java",
+          "line": 24,
+          "end_line": 27
+        }
+      ]
+    },
+    {
+      "id": "t_IsManagementEnabled",
+      "label": "IsManagementEnabled",
+      "kind": "class",
+      "sublabel": "quarkus.deployment",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getAsBoolean",
+          "returns": "boolean",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "quarkus/deployment/src/main/java/org/keycloak/quarkus/deployment/IsManagementEnabled.java",
+          "line": 23,
+          "end_line": 25
+        }
+      ]
+    },
+    {
+      "id": "t_IsReAugmentation",
+      "label": "IsReAugmentation",
+      "kind": "class",
+      "sublabel": "quarkus.deployment",
+      "row": 0,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getAsBoolean",
+          "returns": "boolean",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "quarkus/deployment/src/main/java/org/keycloak/quarkus/deployment/IsReAugmentation.java",
+          "line": 24,
+          "end_line": 27
+        }
+      ]
+    },
+    {
+      "id": "t_CheckJdbcBuildStep",
+      "label": "CheckJdbcBuildStep",
+      "kind": "class",
+      "sublabel": "A barrier build item that can be consum…",
+      "row": 0,
+      "col": 3,
+      "sources": [
+        {
+          "path": "quarkus/deployment/src/main/java/org/keycloak/quarkus/deployment/CheckJdbcBuildStep.java",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "id": "t_CheckMultipleDatasourcesBuildStep",
+      "label": "CheckMultipleDatasourcesBuildStep",
+      "kind": "class",
+      "sublabel": "quarkus.deployment",
+      "row": 1,
+      "col": 0,
+      "sources": [
+        {
+          "path": "quarkus/deployment/src/main/java/org/keycloak/quarkus/deployment/CheckMultipleDatasourcesBuildStep.java",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "id": "t_ConfigBuildItem",
+      "label": "ConfigBuildItem",
+      "kind": "class",
+      "sublabel": "A barrier build item that can be consum…",
+      "row": 1,
+      "col": 1,
+      "sources": [
+        {
+          "path": "quarkus/deployment/src/main/java/org/keycloak/quarkus/deployment/ConfigBuildItem.java",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "id": "t_CryptoProviderInitBuildItem",
+      "label": "CryptoProviderInitBuildItem",
+      "kind": "class",
+      "sublabel": "A barrier build item that can be consum…",
+      "row": 1,
+      "col": 2,
+      "sources": [
+        {
+          "path": "quarkus/deployment/src/main/java/org/keycloak/quarkus/deployment/CryptoProviderInitBuildItem.java",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "id": "t_KeycloakSessionFactoryPreInitBuildItem",
+      "label": "KeycloakSessionFactoryPreInitBuildItem",
+      "kind": "class",
+      "sublabel": "A symbolic build item that can be consu…",
+      "row": 1,
+      "col": 3,
+      "sources": [
+        {
+          "path": "quarkus/deployment/src/main/java/org/keycloak/quarkus/deployment/KeycloakSessionFactoryPreInitBuildItem.java",
+          "line": 26
+        }
+      ]
+    },
+    {
+      "id": "t_ProfileBuildItem",
+      "label": "ProfileBuildItem",
+      "kind": "class",
+      "sublabel": "A barrier build item that can be consum…",
+      "row": 2,
+      "col": 0,
+      "sources": [
+        {
+          "path": "quarkus/deployment/src/main/java/org/keycloak/quarkus/deployment/ProfileBuildItem.java",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "id": "t_ValidatePersistenceUnitsBuildItem",
+      "label": "ValidatePersistenceUnitsBuildItem",
+      "kind": "class",
+      "sublabel": "quarkus.deployment",
+      "row": 2,
+      "col": 1,
+      "sources": [
+        {
+          "path": "quarkus/deployment/src/main/java/org/keycloak/quarkus/deployment/ValidatePersistenceUnitsBuildItem.java",
+          "line": 5
+        }
+      ]
+    }
+  ],
+  "relationships": [],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module quarkus/deployment/ (keycloak-quarkus-server-deployment): 10 public types, 10 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "quarkus.deployment (10)"
+      ]
+    }
+  ]
+}

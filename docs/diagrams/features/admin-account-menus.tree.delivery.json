@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "d6c4022a-58b1-4338-a6a6-29362df0a1b6",
+  "status": "current",
+  "command": "deliver",
+  "type": "tree",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\features\\admin-account-menus.tree.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\features\\admin-account-menus.tree.html",
+  "specification": {
+    "sha256": "5a9e01fb42dad904639da8aa3f3fb52f4a752a85f99db885306d6a0683f25062",
+    "bytes": 13598
+  },
+  "artifact": {
+    "sha256": "e2b41ebca1093765d2224e02f10002b225955a258221c80734f29d2b36cd83c6",
+    "bytes": 954254
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "d0313450-480b-490f-bdf8-95376daf2d40",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\quarkus-config-api.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\quarkus-config-api.class.html",
+  "specification": {
+    "sha256": "ec5f45a02ea64cc2b46f581e341708951ad1090179486c28b164cd274151ecb7",
+    "bytes": 13328
+  },
+  "artifact": {
+    "sha256": "82c0730390cfa28b55df28855cc23ebb35494b72b7b8b9aba48f64033557962f",
+    "bytes": 880259
+  }
+}

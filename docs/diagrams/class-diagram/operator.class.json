@@ -1,0 +1,714 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "operator module types",
+    "output": "docs/diagrams/class-diagram/operator.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_CRDUtils",
+      "label": "CRDUtils",
+      "kind": "class",
+      "sublabel": "operator.crds.v2beta1",
+      "row": 1,
+      "col": 0,
+      "methods": [
+        {
+          "name": "configuredOptions",
+          "returns": "Map<String,String>",
+          "visibility": "public",
+          "parameters": "keycloak",
+          "static": true
+        },
+        {
+          "name": "keycloakSpecOf",
+          "returns": "Optional<KeycloakSpec>",
+          "visibility": "public",
+          "parameters": "keycloak",
+          "static": true
+        },
+        {
+          "name": "firstContainerOf",
+          "returns": "Optional<Container>",
+          "visibility": "public",
+          "parameters": "statefulSet",
+          "static": true
+        },
+        {
+          "name": "toJsonNode",
+          "returns": "JsonNode",
+          "visibility": "public",
+          "parameters": "value, context",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/crds/v2beta1/CRDUtils.java",
+          "line": 45,
+          "end_line": 105
+        }
+      ]
+    },
+    {
+      "id": "t_KeycloakSpec",
+      "label": "KeycloakSpec",
+      "kind": "class",
+      "sublabel": "operator.crds.v2beta1.deployment",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "instances",
+          "type": "Integer",
+          "visibility": "private"
+        },
+        {
+          "name": "image",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getHttpSpec",
+          "returns": "HttpSpec",
+          "visibility": "public"
+        },
+        {
+          "name": "setHttpSpec",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "httpSpec"
+        },
+        {
+          "name": "getUnsupported",
+          "returns": "UnsupportedSpec",
+          "visibility": "public"
+        },
+        {
+          "name": "setUnsupported",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "unsupported"
+        }
+      ],
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/crds/v2beta1/deployment/KeycloakSpec.java",
+          "line": 54,
+          "end_line": 190
+        }
+      ]
+    },
+    {
+      "id": "t_Utils",
+      "label": "Utils",
+      "kind": "class",
+      "sublabel": "operator",
+      "row": 2,
+      "col": 2,
+      "methods": [
+        {
+          "name": "iso8601Now",
+          "returns": "String",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "asBase64",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "toEncode",
+          "static": true
+        },
+        {
+          "name": "toSelectorString",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "Map<String, labels",
+          "static": true
+        },
+        {
+          "name": "allInstanceLabels",
+          "returns": "Map<String,String>",
+          "visibility": "public",
+          "parameters": "primary",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/Utils.java",
+          "line": 45,
+          "end_line": 72
+        }
+      ]
+    },
+    {
+      "id": "t_ContextUtils",
+      "label": "ContextUtils",
+      "kind": "class",
+      "sublabel": "operator",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "storeCurrentStatefulSet",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "context, statefulSet",
+          "static": true
+        },
+        {
+          "name": "storeDesiredStatefulSet",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "context, statefulSet",
+          "static": true
+        },
+        {
+          "name": "storeUpdateType",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "context, updateType, reason",
+          "static": true
+        },
+        {
+          "name": "storeOperatorConfig",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "context, operatorConfig",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/ContextUtils.java",
+          "line": 31,
+          "end_line": 75
+        }
+      ]
+    },
+    {
+      "id": "t_Config",
+      "label": "Config",
+      "kind": "interface",
+      "sublabel": "operator",
+      "row": 1,
+      "col": 2,
+      "methods": [
+        {
+          "name": "keycloak",
+          "returns": "Keycloak",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/Config.java",
+          "line": 29,
+          "end_line": 30
+        }
+      ]
+    },
+    {
+      "id": "t_HttpSpec",
+      "label": "HttpSpec",
+      "kind": "class",
+      "sublabel": "operator.crds.v2beta1.deployment.spec",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "tlsSecret",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "httpEnabled",
+          "type": "Boolean",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "httpPort",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "keycloak",
+          "static": true
+        },
+        {
+          "name": "httpsPort",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "keycloak",
+          "static": true
+        },
+        {
+          "name": "serviceHttpPort",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "keycloak",
+          "static": true
+        },
+        {
+          "name": "serviceHttpsPort",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "keycloak",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/crds/v2beta1/deployment/spec/HttpSpec.java",
+          "line": 37,
+          "end_line": 140
+        }
+      ]
+    },
+    {
+      "id": "t_Keycloak",
+      "label": "Keycloak",
+      "kind": "class",
+      "sublabel": "operator.crds.v2beta1.deployment",
+      "row": 0,
+      "col": 1,
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/crds/v2beta1/deployment/Keycloak.java",
+          "line": 40
+        }
+      ]
+    },
+    {
+      "id": "t_UpdateSpec",
+      "label": "UpdateSpec",
+      "kind": "class",
+      "sublabel": "operator.crds.v2beta1.deployment.spec",
+      "row": 4,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "schedulingSpec",
+          "type": "SchedulingSpec",
+          "visibility": "private"
+        },
+        {
+          "name": "strategy",
+          "type": "UpdateStrategy",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getStrategy",
+          "returns": "UpdateStrategy",
+          "visibility": "public"
+        },
+        {
+          "name": "setStrategy",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "strategy"
+        },
+        {
+          "name": "getRevision",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setRevision",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "revision"
+        }
+      ],
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/crds/v2beta1/deployment/spec/UpdateSpec.java",
+          "line": 42,
+          "end_line": 75
+        }
+      ]
+    },
+    {
+      "id": "t_SchedulingSpec",
+      "label": "SchedulingSpec",
+      "kind": "class",
+      "sublabel": "operator.crds.v2beta1.deployment.spec",
+      "row": 3,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "affinity",
+          "type": "Affinity",
+          "visibility": "private"
+        },
+        {
+          "name": "tolerations",
+          "type": "List<Toleration>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getAffinity",
+          "returns": "Affinity",
+          "visibility": "public"
+        },
+        {
+          "name": "setAffinity",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "affinity"
+        },
+        {
+          "name": "getTolerations",
+          "returns": "List<Toleration>",
+          "visibility": "public"
+        },
+        {
+          "name": "setTolerations",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "tolerations"
+        }
+      ],
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/crds/v2beta1/deployment/spec/SchedulingSpec.java",
+          "line": 14,
+          "end_line": 35
+        }
+      ]
+    },
+    {
+      "id": "t_KeycloakClientBaseController",
+      "label": "KeycloakClientBaseController",
+      "kind": "abstract",
+      "sublabel": "Base class for Client controllers",
+      "row": 6,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "addressOverride",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "reconcile",
+          "returns": "UpdateControl<R>",
+          "visibility": "public",
+          "parameters": "resource, context"
+        },
+        {
+          "name": "cleanup",
+          "returns": "DeleteControl",
+          "visibility": "public",
+          "parameters": "resource, context"
+        },
+        {
+          "name": "updateErrorStatus",
+          "returns": "ErrorStatusUpdateControl<R>",
+          "visibility": "public",
+          "parameters": "resource, context, e"
+        },
+        {
+          "name": "setAddressOverride",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "addressOverride"
+        }
+      ],
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/controllers/KeycloakClientBaseController.java",
+          "line": 100,
+          "end_line": 300
+        }
+      ]
+    },
+    {
+      "id": "t_HttpManagementSpec",
+      "label": "HttpManagementSpec",
+      "kind": "class",
+      "sublabel": "operator.crds.v2beta1.deployment.spec",
+      "row": 3,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "port",
+          "type": "Integer",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getPort",
+          "returns": "Integer",
+          "visibility": "public"
+        },
+        {
+          "name": "setPort",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "port"
+        },
+        {
+          "name": "managementPort",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "keycloak",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/crds/v2beta1/deployment/spec/HttpManagementSpec.java",
+          "line": 30,
+          "end_line": 43
+        }
+      ]
+    },
+    {
+      "id": "t_KeycloakDeploymentDependentResource",
+      "label": "KeycloakDeploymentDependentResource",
+      "kind": "class",
+      "sublabel": "operator.controllers",
+      "row": 5,
+      "col": 0,
+      "methods": [
+        {
+          "name": "initialDesired",
+          "returns": "StatefulSet",
+          "visibility": "public",
+          "parameters": "primary, context"
+        },
+        {
+          "name": "desired",
+          "returns": "StatefulSet",
+          "visibility": "public",
+          "parameters": "primary, context"
+        },
+        {
+          "name": "getName",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "keycloak",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/controllers/KeycloakDeploymentDependentResource.java",
+          "line": 85,
+          "end_line": 597
+        }
+      ]
+    },
+    {
+      "id": "t_TelemetrySpec",
+      "label": "TelemetrySpec",
+      "kind": "class",
+      "sublabel": "operator.crds.v2beta1.deployment.spec",
+      "row": 5,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "endpoint",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "serviceName",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getResourceAttributes",
+          "returns": "Map<String,String>",
+          "visibility": "public"
+        },
+        {
+          "name": "getEndpoint",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setEndpoint",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "endpoint"
+        },
+        {
+          "name": "convertResourceAttributesToString",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "Map<String, attributes",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/crds/v2beta1/deployment/spec/TelemetrySpec.java",
+          "line": 14,
+          "end_line": 71
+        }
+      ]
+    },
+    {
+      "id": "t_FeatureSpec",
+      "label": "FeatureSpec",
+      "kind": "class",
+      "sublabel": "operator.crds.v2beta1.deployment.spec",
+      "row": 5,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "enabledFeatures",
+          "type": "List<String>",
+          "visibility": "private"
+        },
+        {
+          "name": "disabledFeatures",
+          "type": "List<String>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getEnabledFeatures",
+          "returns": "List<String>",
+          "visibility": "public"
+        },
+        {
+          "name": "setEnabledFeatures",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "enabledFeatures"
+        },
+        {
+          "name": "getDisabledFeatures",
+          "returns": "List<String>",
+          "visibility": "public"
+        },
+        {
+          "name": "setDisabledFeatures",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "disabledFeatures"
+        }
+      ],
+      "sources": [
+        {
+          "path": "operator/src/main/java/org/keycloak/operator/crds/v2beta1/deployment/spec/FeatureSpec.java",
+          "line": 32,
+          "end_line": 54
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_KeycloakSpec_HttpSpec",
+      "from": "t_KeycloakSpec",
+      "to": "t_HttpSpec",
+      "kind": "association"
+    },
+    {
+      "id": "r1_UpdateSpec_SchedulingSpec",
+      "from": "t_UpdateSpec",
+      "to": "t_SchedulingSpec",
+      "kind": "association"
+    },
+    {
+      "id": "r2_CRDUtils_Keycloak",
+      "from": "t_CRDUtils",
+      "to": "t_Keycloak",
+      "kind": "dependency"
+    },
+    {
+      "id": "r3_ContextUtils_Keycloak",
+      "from": "t_ContextUtils",
+      "to": "t_Keycloak",
+      "kind": "dependency"
+    },
+    {
+      "id": "r4_Config_Keycloak",
+      "from": "t_Config",
+      "to": "t_Keycloak",
+      "kind": "dependency"
+    },
+    {
+      "id": "r5_Utils_Config",
+      "from": "t_Utils",
+      "to": "t_Config",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module operator/ (keycloak-operator): 75 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "operator.crds.v2beta1.deployment.spec (22)",
+        "operator.controllers (18)",
+        "operator.crds.v2alpha1.client (9)",
+        "operator.crds.v2beta1.deployment (6)",
+        "operator.crds.v2beta1.realmimport (6)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "KeycloakSpec has a HttpManagementSpec",
+        "KeycloakSpec has a SchedulingSpec",
+        "KeycloakSpec has a UpdateSpec",
+        "KeycloakSpec has a FeatureSpec",
+        "KeycloakSpec has a TelemetrySpec",
+        "HttpSpec uses Keycloak",
+        "UpdateSpec uses Keycloak",
+        "HttpManagementSpec uses Keycloak",
+        "KeycloakDeploymentDependentResource uses Keycloak",
+        "KeycloakClientBaseController uses Keycloak",
+        "…and 1 more"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "KeycloakStatusAggregator, StatusCondition, UpdateLogic, KeycloakRealmImport, Constants, ValueOrSecret, KeycloakUpdateJobDependentResource, KeycloakDistConfigurator"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,752 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "model/storage module types",
+    "output": "docs/diagrams/class-diagram/model-storage.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_UserModelDefaultMethods",
+      "label": "UserModelDefaultMethods",
+      "kind": "abstract",
+      "sublabel": "from server-spi-private/",
+      "row": 0,
+      "col": 0.5,
+      "methods": [
+        {
+          "name": "getFirstName",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setFirstName",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "firstName"
+        },
+        {
+          "name": "getLastName",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/models/UserModelDefaultMethods.java",
+          "line": 24,
+          "end_line": 37
+        }
+      ]
+    },
+    {
+      "id": "t_UserStorageProvider",
+      "label": "UserStorageProvider",
+      "kind": "interface",
+      "sublabel": "A class implementing this interface rep…",
+      "row": 3,
+      "col": 1,
+      "methods": [
+        {
+          "name": "preRemove",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/UserStorageProvider.java",
+          "line": 42,
+          "end_line": 51
+        }
+      ]
+    },
+    {
+      "id": "t_UserFederatedStorageProvider",
+      "label": "UserFederatedStorageProvider",
+      "kind": "interface",
+      "sublabel": "storage.federated",
+      "row": 1,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getStoredUsersStream",
+          "returns": "Stream<String>",
+          "visibility": "public",
+          "parameters": "realm, first, max",
+          "abstract": true
+        },
+        {
+          "name": "getStoredUsersCount",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "realm",
+          "abstract": true
+        },
+        {
+          "name": "preRemove",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/federated/UserFederatedStorageProvider.java",
+          "line": 36,
+          "end_line": 59
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractUserAdapter",
+      "label": "AbstractUserAdapter",
+      "kind": "abstract",
+      "sublabel": "This abstract class provides implementa…",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        },
+        {
+          "name": "realm",
+          "type": "RealmModel",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "addRequiredAction",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "action"
+        },
+        {
+          "name": "removeRequiredAction",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "action"
+        },
+        {
+          "name": "joinGroup",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "group"
+        },
+        {
+          "name": "leaveGroup",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "group"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/adapter/AbstractUserAdapter.java",
+          "line": 53,
+          "end_line": 141
+        }
+      ]
+    },
+    {
+      "id": "t_UserStorageProviderFactory",
+      "label": "UserStorageProviderFactory",
+      "kind": "interface",
+      "sublabel": "storage",
+      "row": 3,
+      "col": 2,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "T",
+          "visibility": "public",
+          "parameters": "session, model",
+          "abstract": true
+        },
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "config"
+        },
+        {
+          "name": "postInit",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "factory"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/UserStorageProviderFactory.java",
+          "line": 39,
+          "end_line": 70
+        }
+      ]
+    },
+    {
+      "id": "t_CacheableStorageProviderModel",
+      "label": "CacheableStorageProviderModel",
+      "kind": "class",
+      "sublabel": "storage",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "cachePolicy",
+          "type": "CachePolicy",
+          "visibility": "private"
+        },
+        {
+          "name": "maxLifespan",
+          "type": "long",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "shouldInvalidate",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "cached"
+        },
+        {
+          "name": "dailyTimeout",
+          "returns": "long",
+          "visibility": "public",
+          "parameters": "hour, minute",
+          "static": true
+        },
+        {
+          "name": "dailyEvictionBoundary",
+          "returns": "long",
+          "visibility": "public",
+          "parameters": "hour, minute",
+          "static": true
+        },
+        {
+          "name": "weeklyTimeout",
+          "returns": "long",
+          "visibility": "public",
+          "parameters": "day, hour, minute",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/CacheableStorageProviderModel.java",
+          "line": 30,
+          "end_line": 248
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractUserAdapterFederatedStorage",
+      "label": "AbstractUserAdapterFederatedStorage",
+      "kind": "abstract",
+      "sublabel": "Assumes everything is managed by federa…",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        },
+        {
+          "name": "realm",
+          "type": "RealmModel",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "addRequiredAction",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "action"
+        },
+        {
+          "name": "removeRequiredAction",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "action"
+        },
+        {
+          "name": "joinGroup",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "group"
+        },
+        {
+          "name": "leaveGroup",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "group"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/adapter/AbstractUserAdapterFederatedStorage.java",
+          "line": 51,
+          "end_line": 141
+        }
+      ]
+    },
+    {
+      "id": "t_ServerConfigStorageProvider",
+      "label": "ServerConfigStorageProvider",
+      "kind": "interface",
+      "sublabel": "A Provider to store server configuratio…",
+      "row": 5,
+      "col": 0,
+      "methods": [
+        {
+          "name": "find",
+          "returns": "Optional<String>",
+          "visibility": "public",
+          "parameters": "key",
+          "abstract": true
+        },
+        {
+          "name": "store",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "key, value",
+          "abstract": true
+        },
+        {
+          "name": "remove",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "key",
+          "abstract": true
+        },
+        {
+          "name": "loadOrCreate",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "key, valueGenerator",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/configuration/ServerConfigStorageProvider.java",
+          "line": 33,
+          "end_line": 73
+        }
+      ]
+    },
+    {
+      "id": "t_UserStorageProviderModel",
+      "label": "UserStorageProviderModel",
+      "kind": "class",
+      "sublabel": "Stored configuration of a User Storage…",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "fullSyncPeriod",
+          "type": "Integer",
+          "visibility": "private"
+        },
+        {
+          "name": "changedSyncPeriod",
+          "type": "Integer",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "isImportEnabled",
+          "returns": "boolean",
+          "visibility": "public"
+        },
+        {
+          "name": "setImportEnabled",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "flag"
+        },
+        {
+          "name": "getFullSyncPeriod",
+          "returns": "int",
+          "visibility": "public"
+        },
+        {
+          "name": "setFullSyncPeriod",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "fullSyncPeriod"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/UserStorageProviderModel.java",
+          "line": 31,
+          "end_line": 81
+        }
+      ]
+    },
+    {
+      "id": "t_UserVerifiableCredentialFederatedStorage",
+      "label": "UserVerifiableCredentialFederatedStorage",
+      "kind": "interface",
+      "sublabel": "storage.federated",
+      "row": 5,
+      "col": 1,
+      "methods": [
+        {
+          "name": "addVerifiableCredential",
+          "returns": "UserVerifiableCredentialModel",
+          "visibility": "public",
+          "parameters": "userId, credentialModel",
+          "abstract": true
+        },
+        {
+          "name": "updateVerifiableCredential",
+          "returns": "UserVerifiableCredentialModel",
+          "visibility": "public",
+          "parameters": "userId, clientScopeId",
+          "abstract": true
+        },
+        {
+          "name": "removeVerifiableCredential",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "userId, clientScopeId",
+          "abstract": true
+        },
+        {
+          "name": "addIssuedVerifiableCredential",
+          "returns": "IssuedVerifiableCredentialModel",
+          "visibility": "public",
+          "parameters": "issuedVc",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/federated/UserVerifiableCredentialFederatedStorage.java",
+          "line": 24,
+          "end_line": 84
+        }
+      ]
+    },
+    {
+      "id": "t_StoreManagers",
+      "label": "StoreManagers",
+      "kind": "interface",
+      "sublabel": "storage",
+      "row": 2,
+      "col": 2,
+      "methods": [
+        {
+          "name": "clientStorageManager",
+          "returns": "ClientProvider",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "clientScopeStorageManager",
+          "returns": "ClientScopeProvider",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "roleStorageManager",
+          "returns": "RoleProvider",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "groupStorageManager",
+          "returns": "GroupProvider",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/StoreManagers.java",
+          "line": 27,
+          "end_line": 35
+        }
+      ]
+    },
+    {
+      "id": "t_UserBrokerLinkFederatedStorage",
+      "label": "UserBrokerLinkFederatedStorage",
+      "kind": "interface",
+      "sublabel": "storage.federated",
+      "row": 5,
+      "col": 2,
+      "methods": [
+        {
+          "name": "addFederatedIdentity",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm, userId, socialLink",
+          "abstract": true
+        },
+        {
+          "name": "removeFederatedIdentity",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "realm, userId, socialProvid…",
+          "abstract": true
+        },
+        {
+          "name": "preRemove",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm, provider",
+          "abstract": true
+        },
+        {
+          "name": "updateFederatedIdentity",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm, userId, federatedIde…",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/federated/UserBrokerLinkFederatedStorage.java",
+          "line": 29,
+          "end_line": 34
+        }
+      ]
+    },
+    {
+      "id": "t_UserFederatedUserCredentialStore",
+      "label": "UserFederatedUserCredentialStore",
+      "kind": "interface",
+      "sublabel": "storage.federated",
+      "row": 6,
+      "col": 0,
+      "methods": [
+        {
+          "name": "updateCredential",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm, userId, cred",
+          "abstract": true
+        },
+        {
+          "name": "createCredential",
+          "returns": "CredentialModel",
+          "visibility": "public",
+          "parameters": "realm, userId, cred",
+          "abstract": true
+        },
+        {
+          "name": "removeStoredCredential",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "realm, userId, id",
+          "abstract": true
+        },
+        {
+          "name": "getStoredCredentialById",
+          "returns": "CredentialModel",
+          "visibility": "public",
+          "parameters": "realm, userId, id",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/federated/UserFederatedUserCredentialStore.java",
+          "line": 29,
+          "end_line": 33
+        }
+      ]
+    },
+    {
+      "id": "t_UserAttributeFederatedStorage",
+      "label": "UserAttributeFederatedStorage",
+      "kind": "interface",
+      "sublabel": "storage.federated",
+      "row": 0,
+      "col": 2,
+      "methods": [
+        {
+          "name": "setSingleAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm, userId, name, value",
+          "abstract": true
+        },
+        {
+          "name": "setAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm, userId, name, values",
+          "abstract": true
+        },
+        {
+          "name": "removeAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm, userId, name",
+          "abstract": true
+        },
+        {
+          "name": "getAttributes",
+          "returns": "MultivaluedHashMap",
+          "visibility": "public",
+          "parameters": "realm, userId",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/federated/UserAttributeFederatedStorage.java",
+          "line": 29,
+          "end_line": 33
+        }
+      ]
+    },
+    {
+      "id": "t_UserConsentFederatedStorage",
+      "label": "UserConsentFederatedStorage",
+      "kind": "interface",
+      "sublabel": "storage.federated",
+      "row": 6,
+      "col": 1,
+      "methods": [
+        {
+          "name": "addConsent",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm, userId, consent",
+          "abstract": true
+        },
+        {
+          "name": "getConsentByClient",
+          "returns": "UserConsentModel",
+          "visibility": "public",
+          "parameters": "realm, userId, clientIntern…",
+          "abstract": true
+        },
+        {
+          "name": "updateConsent",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realm, userId, consent",
+          "abstract": true
+        },
+        {
+          "name": "revokeConsentForClient",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "realm, userId, clientIntern…",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage/src/main/java/org/keycloak/storage/federated/UserConsentFederatedStorage.java",
+          "line": 28,
+          "end_line": 42
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_UserStorageProviderModel_CacheableStorageProviderModel",
+      "from": "t_UserStorageProviderModel",
+      "to": "t_CacheableStorageProviderModel",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_UserFederatedStorageProvider_UserAttributeFederatedStorage",
+      "from": "t_UserFederatedStorageProvider",
+      "to": "t_UserAttributeFederatedStorage",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_AbstractUserAdapter_UserModelDefaultMethods",
+      "from": "t_AbstractUserAdapter",
+      "to": "t_UserModelDefaultMethods",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r3_AbstractUserAdapterFederatedStorage_UserModelDefaultMethods",
+      "from": "t_AbstractUserAdapterFederatedStorage",
+      "to": "t_UserModelDefaultMethods",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r4_StoreManagers_UserFederatedStorageProvider",
+      "from": "t_StoreManagers",
+      "to": "t_UserFederatedStorageProvider",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module model/storage/ (keycloak-model-storage): 39 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection",
+        "UserModelDefaultMethods: supertypes from other modules (sublabel \"from …\")"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "storage.federated (12)",
+        "storage (8)",
+        "models.cache (4)",
+        "storage.configuration (3)",
+        "models (2)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "UserFederatedStorageProvider extends UserBrokerLinkFederatedStorage",
+        "UserFederatedStorageProvider extends UserConsentFederatedStorage",
+        "UserFederatedStorageProvider extends UserFederatedUserCredentialStore",
+        "UserFederatedStorageProvider extends UserVerifiableCredentialFederatedStorage",
+        "AbstractUserAdapterFederatedStorage uses UserFederatedStorageProvider"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "ClientStorageProvider, CachedUserModel, UserGroupMembershipFederatedStorage, UserCache, UserRequiredActionsFederatedStorage, UserRoleMappingsFederatedStorage, ImportSynchronization, UserNotBeforeFederatedStorage"
+      ]
+    }
+  ]
+}

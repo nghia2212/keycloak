@@ -1,0 +1,624 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "model/jpa module types",
+    "output": "docs/diagrams/class-diagram/model-jpa.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid",
+    "typeMaxW": 230,
+    "gapX": 40
+  },
+  "types": [
+    {
+      "id": "default_conn",
+      "label": "DefaultJpaConnectionProvider",
+      "kind": "class",
+      "sublabel": "Holds the request EntityManager",
+      "row": 0,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "em",
+          "type": "EntityManager",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getEntityManager",
+          "returns": "EntityManager",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/connections/jpa/DefaultJpaConnectionProvider.java",
+          "line": 27,
+          "end_line": 37
+        }
+      ]
+    },
+    {
+      "id": "jpa_conn",
+      "label": "JpaConnectionProvider",
+      "kind": "interface",
+      "sublabel": "Connection SPI",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getEntityManager",
+          "returns": "EntityManager",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/connections/jpa/JpaConnectionProvider.java",
+          "line": 27,
+          "end_line": 29
+        }
+      ]
+    },
+    {
+      "id": "updater",
+      "label": "JpaUpdaterProvider",
+      "kind": "interface",
+      "sublabel": "Schema migration SPI",
+      "row": 0,
+      "col": 2,
+      "methods": [
+        {
+          "name": "update",
+          "parameters": "connection, schema",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "validate",
+          "parameters": "connection, schema",
+          "returns": "Status",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/connections/jpa/updater/JpaUpdaterProvider.java",
+          "line": 28,
+          "end_line": 61
+        }
+      ]
+    },
+    {
+      "id": "liquibase",
+      "label": "LiquibaseJpaUpdaterProvider",
+      "kind": "class",
+      "sublabel": "Applies jpa-changelog-master.xml",
+      "row": 0,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "CHANGELOG",
+          "type": "String",
+          "visibility": "public",
+          "static": true
+        }
+      ],
+      "methods": [
+        {
+          "name": "update",
+          "parameters": "connection, schema",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "validate",
+          "parameters": "connection, schema",
+          "returns": "Status",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/connections/jpa/updater/liquibase/LiquibaseJpaUpdaterProvider.java",
+          "line": 67,
+          "end_line": 86
+        }
+      ]
+    },
+    {
+      "id": "realm_factory",
+      "label": "JpaRealmProviderFactory",
+      "kind": "class",
+      "sublabel": "RealmProviderFactory",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "create",
+          "parameters": "session",
+          "returns": "JpaRealmProvider",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/models/jpa/JpaRealmProviderFactory.java",
+          "line": 40,
+          "end_line": 64
+        }
+      ]
+    },
+    {
+      "id": "user_factory",
+      "label": "JpaUserProviderFactory",
+      "kind": "class",
+      "sublabel": "UserProviderFactory",
+      "row": 1,
+      "col": 2,
+      "methods": [
+        {
+          "name": "create",
+          "parameters": "session",
+          "returns": "UserProvider",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/models/jpa/JpaUserProviderFactory.java",
+          "line": 36,
+          "end_line": 54
+        }
+      ]
+    },
+    {
+      "id": "realm_provider",
+      "label": "JpaRealmProvider",
+      "kind": "class",
+      "sublabel": "Realms, clients, roles, groups",
+      "row": 2,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "em",
+          "type": "EntityManager",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "createRealm",
+          "parameters": "id, name",
+          "returns": "RealmModel",
+          "visibility": "public"
+        },
+        {
+          "name": "getRealm",
+          "parameters": "id",
+          "returns": "RealmModel",
+          "visibility": "public"
+        },
+        {
+          "name": "addRealmRole",
+          "parameters": "realm, id, name",
+          "returns": "RoleModel",
+          "visibility": "public"
+        },
+        {
+          "name": "addClient",
+          "parameters": "realm, id, clientId",
+          "returns": "ClientModel",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/models/jpa/JpaRealmProvider.java",
+          "line": 99,
+          "end_line": 158
+        },
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/models/jpa/JpaRealmProvider.java",
+          "line": 944,
+          "end_line": 1030,
+          "label": "addClient → ClientAdapter"
+        }
+      ]
+    },
+    {
+      "id": "user_provider",
+      "label": "JpaUserProvider",
+      "kind": "class",
+      "sublabel": "Users and credentials",
+      "row": 2,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "em",
+          "type": "EntityManager",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "addUser",
+          "parameters": "realm, id, username, …",
+          "returns": "UserModel",
+          "visibility": "public"
+        },
+        {
+          "name": "getUserById",
+          "parameters": "realm, id",
+          "returns": "UserModel",
+          "visibility": "public"
+        },
+        {
+          "name": "getUserByUsername",
+          "parameters": "realm, username",
+          "returns": "UserModel",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/models/jpa/JpaUserProvider.java",
+          "line": 103,
+          "end_line": 139
+        },
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/models/jpa/JpaUserProvider.java",
+          "line": 712,
+          "end_line": 719
+        }
+      ]
+    },
+    {
+      "id": "realm_adapter",
+      "label": "RealmAdapter",
+      "kind": "class",
+      "sublabel": "RealmModel over RealmEntity",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "realm",
+          "type": "RealmEntity",
+          "visibility": "protected"
+        },
+        {
+          "name": "em",
+          "type": "EntityManager",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getName",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "addClient",
+          "parameters": "name",
+          "returns": "ClientModel",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/models/jpa/RealmAdapter.java",
+          "line": 104,
+          "end_line": 135
+        }
+      ]
+    },
+    {
+      "id": "client_adapter",
+      "label": "ClientAdapter",
+      "kind": "class",
+      "sublabel": "ClientModel over ClientEntity",
+      "row": 3,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "entity",
+          "type": "ClientEntity",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getRealm",
+          "returns": "RealmModel",
+          "visibility": "public"
+        },
+        {
+          "name": "getClientId",
+          "returns": "String",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/models/jpa/ClientAdapter.java",
+          "line": 51,
+          "end_line": 76
+        }
+      ]
+    },
+    {
+      "id": "user_adapter",
+      "label": "UserAdapter",
+      "kind": "class",
+      "sublabel": "UserModel over UserEntity",
+      "row": 3,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "user",
+          "type": "UserEntity",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getUsername",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "joinGroup",
+          "parameters": "group",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/models/jpa/UserAdapter.java",
+          "line": 71,
+          "end_line": 102
+        }
+      ]
+    },
+    {
+      "id": "jpa_model",
+      "label": "JpaModel<T>",
+      "kind": "interface",
+      "sublabel": "Exposes the backing entity",
+      "row": 3,
+      "col": 3,
+      "methods": [
+        {
+          "name": "getEntity",
+          "returns": "T",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/models/jpa/JpaModel.java",
+          "line": 7,
+          "end_line": 8
+        }
+      ]
+    },
+    {
+      "id": "realm_entity",
+      "label": "RealmEntity",
+      "kind": "class",
+      "sublabel": "@Entity table REALM",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "protected"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "visibility": "protected"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/models/jpa/entities/RealmEntity.java",
+          "line": 51,
+          "end_line": 66
+        }
+      ]
+    },
+    {
+      "id": "client_entity",
+      "label": "ClientEntity",
+      "kind": "class",
+      "sublabel": "@Entity table CLIENT",
+      "row": 4,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "clientId",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "realmId",
+          "type": "String",
+          "visibility": "protected"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/models/jpa/entities/ClientEntity.java",
+          "line": 53,
+          "end_line": 100
+        }
+      ]
+    },
+    {
+      "id": "user_entity",
+      "label": "UserEntity",
+      "kind": "class",
+      "sublabel": "@Entity table USER_ENTITY",
+      "row": 4,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "id",
+          "type": "String",
+          "visibility": "protected"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "visibility": "protected"
+        },
+        {
+          "name": "realmId",
+          "type": "String",
+          "visibility": "protected"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/jpa/src/main/java/org/keycloak/models/jpa/entities/UserEntity.java",
+          "line": 60,
+          "end_line": 96
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r_default_conn",
+      "from": "default_conn",
+      "to": "jpa_conn",
+      "kind": "realization"
+    },
+    {
+      "id": "r_liquibase",
+      "from": "liquibase",
+      "to": "updater",
+      "kind": "realization"
+    },
+    {
+      "id": "r_realm_factory_em",
+      "from": "realm_factory",
+      "to": "jpa_conn",
+      "kind": "dependency",
+      "label": "getEntityManager()"
+    },
+    {
+      "id": "r_realm_factory_create",
+      "from": "realm_factory",
+      "to": "realm_provider",
+      "kind": "dependency",
+      "label": "create()"
+    },
+    {
+      "id": "r_user_factory_create",
+      "from": "user_factory",
+      "to": "user_provider",
+      "kind": "dependency",
+      "label": "create()"
+    },
+    {
+      "id": "r_rp_realm",
+      "from": "realm_provider",
+      "to": "realm_adapter",
+      "kind": "dependency",
+      "label": "new"
+    },
+    {
+      "id": "r_rp_client",
+      "from": "realm_provider",
+      "to": "client_adapter",
+      "kind": "dependency",
+      "label": "new"
+    },
+    {
+      "id": "r_up_user",
+      "from": "user_provider",
+      "to": "user_adapter",
+      "kind": "dependency",
+      "label": "new"
+    },
+    {
+      "id": "r_user_jpa_model",
+      "from": "user_adapter",
+      "to": "jpa_model",
+      "kind": "realization"
+    },
+    {
+      "id": "r_realm_entity",
+      "from": "realm_adapter",
+      "to": "realm_entity",
+      "kind": "association",
+      "label": "realm"
+    },
+    {
+      "id": "r_client_entity",
+      "from": "client_adapter",
+      "to": "client_entity",
+      "kind": "association",
+      "label": "entity"
+    },
+    {
+      "id": "r_user_entity",
+      "from": "user_adapter",
+      "to": "user_entity",
+      "kind": "association",
+      "label": "user"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Layering",
+      "items": [
+        "Factory → provider → adapter → entity: each provider wraps the request EntityManager",
+        "Adapters implement the server-spi models (RealmAdapter: RealmModel, ClientAdapter: ClientModel, UserAdapter: UserModel) and keep the JPA entity",
+        "RealmAdapter and ClientAdapter also implement JpaModel<entity> (only UserAdapter's edge is drawn)"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Wiring",
+      "items": [
+        "JpaUserProviderFactory also gets its EntityManager from JpaConnectionProvider",
+        "JpaRealmProvider implements RealmProvider, ClientProvider, ClientScopeProvider, GroupProvider and RoleProvider",
+        "JpaConnectionProviderFactory is an interface here; the Quarkus runtime implements it and runs JpaUpdaterProvider at startup"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Not drawn",
+      "items": [
+        "~50 other entities (RoleEntity, GroupEntity, CredentialEntity, …) and Liquibase custom changes",
+        "JPA event store, user-session persister, authorization (authorization.jpa.*) and workflow stores"
+      ]
+    }
+  ]
+}

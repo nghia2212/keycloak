@@ -1,0 +1,419 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "crypto/fips1402 module types",
+    "output": "docs/diagrams/class-diagram/crypto-fips1402.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_JWEAlgorithmProvider",
+      "label": "JWEAlgorithmProvider",
+      "kind": "interface",
+      "sublabel": "from core/",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "decodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encodedCek, encryptionKey,…",
+          "abstract": true
+        },
+        {
+          "name": "encodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encryptionProvider, keyStor…",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "core/src/main/java/org/keycloak/jose/jwe/alg/JWEAlgorithmProvider.java",
+          "line": 30,
+          "end_line": 34
+        }
+      ]
+    },
+    {
+      "id": "t_FIPS1402Provider",
+      "label": "FIPS1402Provider",
+      "kind": "class",
+      "sublabel": "Integration based on FIPS 140-2",
+      "row": 0,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "bcFipsProvider",
+          "type": "BouncyCastleFipsProvider",
+          "visibility": "private"
+        },
+        {
+          "name": "providers",
+          "type": "Map<String,Object>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getBouncyCastleProvider",
+          "returns": "Provider",
+          "visibility": "public"
+        },
+        {
+          "name": "order",
+          "returns": "int",
+          "visibility": "public"
+        },
+        {
+          "name": "createECParams",
+          "returns": "ECParameterSpec",
+          "visibility": "public",
+          "parameters": "curveName"
+        },
+        {
+          "name": "wrapFactoryForTruststore",
+          "returns": "SSLSocketFactory",
+          "visibility": "public",
+          "parameters": "delegate"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/fips1402/src/main/java/org/keycloak/crypto/fips/FIPS1402Provider.java",
+          "line": 79,
+          "end_line": 250
+        }
+      ]
+    },
+    {
+      "id": "t_BCFIPSCertificateUtilsProvider",
+      "label": "BCFIPSCertificateUtilsProvider",
+      "kind": "class",
+      "sublabel": "The Class CertificateUtils provides uti…",
+      "row": 2,
+      "col": 0,
+      "methods": [
+        {
+          "name": "generateV3Certificate",
+          "returns": "X509Certificate",
+          "visibility": "public",
+          "parameters": "keyPair, caPrivateKey, caCe…"
+        },
+        {
+          "name": "generateV1SelfSignedCertificate",
+          "returns": "X509Certificate",
+          "visibility": "public",
+          "parameters": "caKeyPair, subject"
+        },
+        {
+          "name": "getCertificatePolicyList",
+          "returns": "List<String>",
+          "visibility": "public",
+          "parameters": "cert"
+        },
+        {
+          "name": "createServicesTestCertificate",
+          "returns": "X509Certificate",
+          "visibility": "public",
+          "parameters": "dn, startDate, expiryDate,…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/fips1402/src/main/java/org/keycloak/crypto/fips/BCFIPSCertificateUtilsProvider.java",
+          "line": 80,
+          "end_line": 288
+        }
+      ]
+    },
+    {
+      "id": "t_BCFIPSEcdhEsAlgorithmProvider",
+      "label": "BCFIPSEcdhEsAlgorithmProvider",
+      "kind": "class",
+      "sublabel": "ECDH Ephemeral Static Algorithm Provider",
+      "row": 1,
+      "col": 0,
+      "methods": [
+        {
+          "name": "decodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encodedCek, encryptionKey,…"
+        },
+        {
+          "name": "encodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encryptionProvider, keyStor…"
+        },
+        {
+          "name": "deriveKey",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "publicKey, privateKey, keyD…",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/fips1402/src/main/java/org/keycloak/crypto/fips/BCFIPSEcdhEsAlgorithmProvider.java",
+          "line": 77,
+          "end_line": 161
+        }
+      ]
+    },
+    {
+      "id": "t_BCFIPSECDSACryptoProvider",
+      "label": "BCFIPSECDSACryptoProvider",
+      "kind": "class",
+      "sublabel": "crypto.fips",
+      "row": 2,
+      "col": 1,
+      "methods": [
+        {
+          "name": "concatenatedRSToASN1DER",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "signature, signLength"
+        },
+        {
+          "name": "asn1derToConcatenatedRS",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "derEncodedSignatureValue, s…"
+        },
+        {
+          "name": "getPublicFromPrivate",
+          "returns": "ECPublicKey",
+          "visibility": "public",
+          "parameters": "ecPrivateKey"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/fips1402/src/main/java/org/keycloak/crypto/fips/BCFIPSECDSACryptoProvider.java",
+          "line": 25,
+          "end_line": 74
+        }
+      ]
+    },
+    {
+      "id": "t_BCFIPSPemUtilsProvider",
+      "label": "BCFIPSPemUtilsProvider",
+      "kind": "class",
+      "sublabel": "Encodes Key or Certificates to PEM form…",
+      "row": 2,
+      "col": 2,
+      "methods": [
+        {
+          "name": "decodePublicKey",
+          "returns": "PublicKey",
+          "visibility": "public",
+          "parameters": "pem"
+        },
+        {
+          "name": "decodePrivateKey",
+          "returns": "PrivateKey",
+          "visibility": "public",
+          "parameters": "pem"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/fips1402/src/main/java/org/keycloak/crypto/fips/BCFIPSPemUtilsProvider.java",
+          "line": 44,
+          "end_line": 89
+        }
+      ]
+    },
+    {
+      "id": "t_BCFIPSUserIdentityExtractorProvider",
+      "label": "BCFIPSUserIdentityExtractorProvider",
+      "kind": "class",
+      "sublabel": "crypto.fips",
+      "row": 2,
+      "col": 3,
+      "methods": [
+        {
+          "name": "getX500NameExtractor",
+          "returns": "UserIdentityExtractor",
+          "visibility": "public",
+          "parameters": "identifier, Function<X509Ce…"
+        },
+        {
+          "name": "getSubjectAltNameExtractor",
+          "returns": "SubjectAltNameExtractor",
+          "visibility": "public",
+          "parameters": "generalName"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/fips1402/src/main/java/org/keycloak/crypto/fips/BCFIPSUserIdentityExtractorProvider.java",
+          "line": 54,
+          "end_line": 218
+        }
+      ]
+    },
+    {
+      "id": "t_FIPSAesKeyWrapAlgorithmProvider",
+      "label": "FIPSAesKeyWrapAlgorithmProvider",
+      "kind": "class",
+      "sublabel": "Variant of org.keycloak.jose.jwe.alg.Ae…",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "decodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encodedCek, encryptionKey,…"
+        },
+        {
+          "name": "encodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encryptionProvider, keyStor…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/fips1402/src/main/java/org/keycloak/crypto/fips/FIPSAesKeyWrapAlgorithmProvider.java",
+          "line": 20,
+          "end_line": 32
+        }
+      ]
+    },
+    {
+      "id": "t_FIPSRsaKeyEncryptionJWEAlgorithmProvider",
+      "label": "FIPSRsaKeyEncryptionJWEAlgorithmProvider",
+      "kind": "class",
+      "sublabel": "Fips note: Based on https://downloads.b…",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "wrapParameters",
+          "type": "FipsRSA.WrapParameters",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "decodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encodedCek, privateKey, hea…"
+        },
+        {
+          "name": "encodeCek",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "encryptionProvider, keyStor…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/fips1402/src/main/java/org/keycloak/crypto/fips/FIPSRsaKeyEncryptionJWEAlgorithmProvider.java",
+          "line": 24,
+          "end_line": 47
+        }
+      ]
+    },
+    {
+      "id": "t_BCFIPSOCSPProvider",
+      "label": "BCFIPSOCSPProvider",
+      "kind": "class",
+      "sublabel": "crypto.fips",
+      "row": 3,
+      "col": 0,
+      "sources": [
+        {
+          "path": "crypto/fips1402/src/main/java/org/keycloak/crypto/fips/BCFIPSOCSPProvider.java",
+          "line": 91
+        }
+      ]
+    },
+    {
+      "id": "t_Fips1402StrictCryptoProvider",
+      "label": "Fips1402StrictCryptoProvider",
+      "kind": "class",
+      "sublabel": "A FIPS1402Provider that forces BC to ru…",
+      "row": 1,
+      "col": 3,
+      "methods": [
+        {
+          "name": "getSupportedRsaKeySizes",
+          "returns": "String[]",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "crypto/fips1402/src/main/java/org/keycloak/crypto/fips/Fips1402StrictCryptoProvider.java",
+          "line": 12,
+          "end_line": 19
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_BCFIPSEcdhEsAlgorithmProvider_JWEAlgorithmProvider",
+      "from": "t_BCFIPSEcdhEsAlgorithmProvider",
+      "to": "t_JWEAlgorithmProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r1_FIPSAesKeyWrapAlgorithmProvider_JWEAlgorithmProvider",
+      "from": "t_FIPSAesKeyWrapAlgorithmProvider",
+      "to": "t_JWEAlgorithmProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r2_FIPSRsaKeyEncryptionJWEAlgorithmProvider_JWEAlgorithmProvider",
+      "from": "t_FIPSRsaKeyEncryptionJWEAlgorithmProvider",
+      "to": "t_JWEAlgorithmProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r3_Fips1402StrictCryptoProvider_FIPS1402Provider",
+      "from": "t_Fips1402StrictCryptoProvider",
+      "to": "t_FIPS1402Provider",
+      "kind": "inheritance"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module crypto/fips1402/ (keycloak-crypto-fips1402): 10 public types, 10 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection",
+        "JWEAlgorithmProvider: supertypes from other modules (sublabel \"from …\")"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "crypto.fips (10)",
+        "jose.jwe.alg (1)"
+      ]
+    }
+  ]
+}

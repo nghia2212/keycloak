@@ -1,0 +1,666 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "saml-core module types",
+    "output": "docs/diagrams/class-diagram/saml-core.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_StaxParserUtil",
+      "label": "StaxParserUtil",
+      "kind": "class",
+      "sublabel": "Utility for the stax based parser",
+      "row": 2,
+      "col": 2,
+      "methods": [
+        {
+          "name": "validate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "doc, sch",
+          "static": true
+        },
+        {
+          "name": "bypassElementBlock",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "xmlEventReader, tag",
+          "static": true
+        },
+        {
+          "name": "wasWhitespacePeeked",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "xmlEventReader, xmlEvent",
+          "static": true
+        },
+        {
+          "name": "matches",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "startElement, tag",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/common/util/StaxParserUtil.java",
+          "line": 71,
+          "end_line": 740
+        }
+      ]
+    },
+    {
+      "id": "t_PicketLinkLogger",
+      "label": "PicketLinkLogger",
+      "kind": "interface",
+      "sublabel": "This interface acts as a Log Facade for…",
+      "row": 2,
+      "col": 0.5,
+      "methods": [
+        {
+          "name": "nullArgumentError",
+          "returns": "IllegalArgumentException",
+          "visibility": "public",
+          "parameters": "argument",
+          "abstract": true
+        },
+        {
+          "name": "shouldNotBeTheSameError",
+          "returns": "IllegalArgumentException",
+          "visibility": "public",
+          "parameters": "string",
+          "abstract": true
+        },
+        {
+          "name": "resourceNotFound",
+          "returns": "ProcessingException",
+          "visibility": "public",
+          "parameters": "resource",
+          "abstract": true
+        },
+        {
+          "name": "processingError",
+          "returns": "ProcessingException",
+          "visibility": "public",
+          "parameters": "t",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/common/PicketLinkLogger.java",
+          "line": 51,
+          "end_line": 88
+        }
+      ]
+    },
+    {
+      "id": "t_PicketLinkLoggerFactory",
+      "label": "PicketLinkLoggerFactory",
+      "kind": "class",
+      "sublabel": "Factory class to create PicketLinkLogge…",
+      "row": 3,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getLogger",
+          "returns": "PicketLinkLogger",
+          "visibility": "public",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/common/PicketLinkLoggerFactory.java",
+          "line": 28,
+          "end_line": 50
+        }
+      ]
+    },
+    {
+      "id": "t_SAMLMetadataQNames",
+      "label": "SAMLMetadataQNames",
+      "kind": "enum",
+      "sublabel": "saml.processing.core.parsers.saml.metad…",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "ADDITIONAL_METADATA_LOCATION",
+          "visibility": "public"
+        },
+        {
+          "name": "AFFILIATE_MEMBER",
+          "visibility": "public"
+        },
+        {
+          "name": "AFFILIATION_DESCRIPTOR",
+          "visibility": "public"
+        },
+        {
+          "name": "ARTIFACT_RESOLUTION_SERVICE",
+          "visibility": "public"
+        },
+        {
+          "name": "…",
+          "visibility": "public"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getQName",
+          "returns": "QName",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/processing/core/parsers/saml/metadata/SAMLMetadataQNames.java",
+          "line": 14,
+          "end_line": 118
+        }
+      ]
+    },
+    {
+      "id": "t_XMLTimeUtil",
+      "label": "XMLTimeUtil",
+      "kind": "class",
+      "sublabel": "Util class dealing with xml based time",
+      "row": 2,
+      "col": 3,
+      "methods": [
+        {
+          "name": "add",
+          "returns": "XMLGregorianCalendar",
+          "visibility": "public",
+          "parameters": "value, millis",
+          "static": true
+        },
+        {
+          "name": "subtract",
+          "returns": "XMLGregorianCalendar",
+          "visibility": "public",
+          "parameters": "value, millis",
+          "static": true
+        },
+        {
+          "name": "inMilis",
+          "returns": "long",
+          "visibility": "public",
+          "parameters": "valueInMins",
+          "static": true
+        },
+        {
+          "name": "parseAsDuration",
+          "returns": "Duration",
+          "visibility": "public",
+          "parameters": "timeValue",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/processing/core/saml/v2/util/XMLTimeUtil.java",
+          "line": 41,
+          "end_line": 181
+        }
+      ]
+    },
+    {
+      "id": "t_DefaultPicketLinkLogger",
+      "label": "DefaultPicketLinkLogger",
+      "kind": "class",
+      "sublabel": "saml.common",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "logger",
+          "type": "Logger",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "info",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "message"
+        },
+        {
+          "name": "debug",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "message"
+        },
+        {
+          "name": "trace",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "message"
+        },
+        {
+          "name": "error",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "t"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/common/DefaultPicketLinkLogger.java",
+          "line": 50,
+          "end_line": 124
+        }
+      ]
+    },
+    {
+      "id": "t_SAMLAssertionQNames",
+      "label": "SAMLAssertionQNames",
+      "kind": "enum",
+      "sublabel": "Elements and attribute names from saml-…",
+      "row": 1,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "ACTION",
+          "visibility": "public"
+        },
+        {
+          "name": "ADVICE",
+          "visibility": "public"
+        },
+        {
+          "name": "ASSERTION",
+          "visibility": "public"
+        },
+        {
+          "name": "ASSERTION_ID_REF",
+          "visibility": "public"
+        },
+        {
+          "name": "…",
+          "visibility": "public"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getQName",
+          "returns": "QName",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/processing/core/parsers/saml/assertion/SAMLAssertionQNames.java",
+          "line": 29,
+          "end_line": 112
+        }
+      ]
+    },
+    {
+      "id": "t_StringUtil",
+      "label": "StringUtil",
+      "kind": "class",
+      "sublabel": "Utility dealing with Strings",
+      "row": 4,
+      "col": 0,
+      "methods": [
+        {
+          "name": "isNotNull",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "str",
+          "static": true
+        },
+        {
+          "name": "isNullOrEmpty",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "str",
+          "static": true
+        },
+        {
+          "name": "match",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "first, second",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/common/util/StringUtil.java",
+          "line": 29,
+          "end_line": 61
+        }
+      ]
+    },
+    {
+      "id": "t_StaxUtil",
+      "label": "StaxUtil",
+      "kind": "class",
+      "sublabel": "Utility class that deals with StAX",
+      "row": 4,
+      "col": 2,
+      "methods": [
+        {
+          "name": "flush",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "writer",
+          "static": true
+        },
+        {
+          "name": "writeAttribute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "writer, attributeName, attr…",
+          "static": true
+        },
+        {
+          "name": "writeCharacters",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "writer, value",
+          "static": true
+        },
+        {
+          "name": "writeCData",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "writer, value",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/common/util/StaxUtil.java",
+          "line": 46,
+          "end_line": 260
+        }
+      ]
+    },
+    {
+      "id": "t_SecurityActions",
+      "label": "SecurityActions",
+      "kind": "class",
+      "sublabel": "Privileged Blocks",
+      "row": 4,
+      "col": 1,
+      "methods": [
+        {
+          "name": "loadClass",
+          "returns": "Class<?>",
+          "visibility": "public",
+          "parameters": "theClass, fullQualifiedName",
+          "static": true
+        },
+        {
+          "name": "loadResource",
+          "returns": "URL",
+          "visibility": "public",
+          "parameters": "clazz, resourceName",
+          "static": true
+        },
+        {
+          "name": "setSystemProperty",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "key, value",
+          "static": true
+        },
+        {
+          "name": "getSystemProperty",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "key, defaultValue",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/common/util/SecurityActions.java",
+          "line": 30,
+          "end_line": 194
+        }
+      ]
+    },
+    {
+      "id": "t_DocumentUtil",
+      "label": "DocumentUtil",
+      "kind": "class",
+      "sublabel": "Utility dealing with DOM",
+      "row": 4,
+      "col": 3,
+      "methods": [
+        {
+          "name": "createDocument",
+          "returns": "Document",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "createDocumentWithBaseNamespace",
+          "returns": "Document",
+          "visibility": "public",
+          "parameters": "baseNamespace, localPart",
+          "static": true
+        },
+        {
+          "name": "getDocument",
+          "returns": "Document",
+          "visibility": "public",
+          "parameters": "docString",
+          "static": true
+        },
+        {
+          "name": "asString",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "doc",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/common/util/DocumentUtil.java",
+          "line": 62,
+          "end_line": 348
+        }
+      ]
+    },
+    {
+      "id": "t_SAMLProtocolQNames",
+      "label": "SAMLProtocolQNames",
+      "kind": "enum",
+      "sublabel": "Elements from saml-schema-protocol-2.0.…",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "ARTIFACT",
+          "visibility": "public"
+        },
+        {
+          "name": "ARTIFACT_RESOLVE",
+          "visibility": "public"
+        },
+        {
+          "name": "ARTIFACT_RESPONSE",
+          "visibility": "public"
+        },
+        {
+          "name": "ASSERTION_ID_REQUEST",
+          "visibility": "public"
+        },
+        {
+          "name": "…",
+          "visibility": "public"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getQName",
+          "returns": "QName",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/processing/core/parsers/saml/protocol/SAMLProtocolQNames.java",
+          "line": 30,
+          "end_line": 119
+        }
+      ]
+    },
+    {
+      "id": "t_HasQName",
+      "label": "HasQName",
+      "kind": "interface",
+      "sublabel": "saml.processing.core.parsers.util",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getQName",
+          "returns": "QName",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/processing/core/parsers/util/HasQName.java",
+          "line": 25,
+          "end_line": 27
+        }
+      ]
+    },
+    {
+      "id": "t_XmlDSigQNames",
+      "label": "XmlDSigQNames",
+      "kind": "enum",
+      "sublabel": "Elements from saml-schema-protocol-2.0.…",
+      "row": 5,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "CANONICALIZATION_METHOD",
+          "visibility": "public"
+        },
+        {
+          "name": "DIGEST_METHOD",
+          "visibility": "public"
+        },
+        {
+          "name": "DIGEST_VALUE",
+          "visibility": "public"
+        },
+        {
+          "name": "DSA_KEY_VALUE",
+          "visibility": "public"
+        },
+        {
+          "name": "…",
+          "visibility": "public"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getQName",
+          "returns": "QName",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "saml-core/src/main/java/org/keycloak/saml/processing/core/parsers/saml/xmldsig/XmlDSigQNames.java",
+          "line": 28,
+          "end_line": 94
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_SAMLMetadataQNames_HasQName",
+      "from": "t_SAMLMetadataQNames",
+      "to": "t_HasQName",
+      "kind": "realization"
+    },
+    {
+      "id": "r1_DefaultPicketLinkLogger_PicketLinkLogger",
+      "from": "t_DefaultPicketLinkLogger",
+      "to": "t_PicketLinkLogger",
+      "kind": "realization"
+    },
+    {
+      "id": "r2_SAMLAssertionQNames_HasQName",
+      "from": "t_SAMLAssertionQNames",
+      "to": "t_HasQName",
+      "kind": "realization"
+    },
+    {
+      "id": "r3_SAMLProtocolQNames_HasQName",
+      "from": "t_SAMLProtocolQNames",
+      "to": "t_HasQName",
+      "kind": "realization"
+    },
+    {
+      "id": "r4_PicketLinkLoggerFactory_PicketLinkLogger",
+      "from": "t_PicketLinkLoggerFactory",
+      "to": "t_PicketLinkLogger",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module saml-core/ (keycloak-saml-core): 159 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "saml.processing.core.parsers.saml.metadata (29)",
+        "saml (15)",
+        "saml.processing.core.parsers.saml.assertion (15)",
+        "saml.processing.core.parsers.saml.protocol (14)",
+        "saml.processing.core.util (11)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "XmlDSigQNames implements HasQName",
+        "StaxParserUtil uses HasQName"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "StaxParser, AbstractStaxSamlAssertionParser, SAMLParserUtil, SAML11Constants, SamlProtocolExtensionsAwareBuilder, ErrorCodes, SAMLEndpointTypeParser, SAMLExtensionsParser"
+      ]
+    }
+  ]
+}

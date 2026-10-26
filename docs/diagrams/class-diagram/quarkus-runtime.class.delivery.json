@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "27eb71fb-dace-4423-b5d8-78f3fa533191",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\quarkus-runtime.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\quarkus-runtime.class.html",
+  "specification": {
+    "sha256": "fa492b20c97d4f5789d782a282287bfc4425082fe44b474766b5d981732f333e",
+    "bytes": 17112
+  },
+  "artifact": {
+    "sha256": "ca8b66f1d0b0036b00a2b9edcbf2003beb754bd4ea993e942fb69f911381e115",
+    "bytes": 895478
+  }
+}

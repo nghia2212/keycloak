@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "util/embedded-ldap module types",
+    "output": "docs/diagrams/class-diagram/util-embedded-ldap.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_TLS13StartTlsHandler",
+      "label": "TLS13StartTlsHandler",
+      "kind": "class",
+      "sublabel": "Replacement for the stock AM27 StartTls…",
+      "row": 0,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "sslCtx",
+          "type": "SSLContext",
+          "visibility": "private"
+        },
+        {
+          "name": "ciphers",
+          "type": "List<String>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "setLdapServer",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "ldapServer"
+        },
+        {
+          "name": "handleExtendedOperation",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session, req"
+        }
+      ],
+      "sources": [
+        {
+          "path": "util/embedded-ldap/src/main/java/org/keycloak/util/ldap/TLS13StartTlsHandler.java",
+          "line": 53,
+          "end_line": 90
+        }
+      ]
+    },
+    {
+      "id": "t_JdbmPartitionFactoryFast",
+      "label": "JdbmPartitionFactoryFast",
+      "kind": "class",
+      "sublabel": "util.ldap",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "createPartition",
+          "returns": "JdbmPartition",
+          "visibility": "public",
+          "parameters": "schemaManager, dnFactory, i…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "util/embedded-ldap/src/main/java/org/keycloak/util/ldap/JdbmPartitionFactoryFast.java",
+          "line": 30,
+          "end_line": 32
+        }
+      ]
+    },
+    {
+      "id": "t_RangedAttributeInterceptor",
+      "label": "RangedAttributeInterceptor",
+      "kind": "class",
+      "sublabel": "Ranged interceptor to emulate the behav…",
+      "row": 0,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "name",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "max",
+          "type": "int",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "search",
+          "returns": "EntryFilteringCursor",
+          "visibility": "public",
+          "parameters": "sc"
+        }
+      ],
+      "sources": [
+        {
+          "path": "util/embedded-ldap/src/main/java/org/keycloak/util/ldap/RangedAttributeInterceptor.java",
+          "line": 52,
+          "end_line": 220
+        }
+      ]
+    },
+    {
+      "id": "t_LDAPEmbeddedServer",
+      "label": "LDAPEmbeddedServer",
+      "kind": "class",
+      "sublabel": "util.ldap",
+      "row": 0,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "defaultProperties",
+          "type": "Properties",
+          "visibility": "protected"
+        },
+        {
+          "name": "baseDN",
+          "type": "String",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "main",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "args",
+          "static": true
+        },
+        {
+          "name": "execute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "args, defaultProperties",
+          "static": true
+        },
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "start",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "util/embedded-ldap/src/main/java/org/keycloak/util/ldap/LDAPEmbeddedServer.java",
+          "line": 64,
+          "end_line": 216
+        }
+      ]
+    },
+    {
+      "id": "t_KerberosKeytabCreator",
+      "label": "KerberosKeytabCreator",
+      "kind": "class",
+      "sublabel": "Helper utility for creating Keytab files",
+      "row": 1,
+      "col": 0,
+      "methods": [
+        {
+          "name": "main",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "args",
+          "static": true
+        },
+        {
+          "name": "execute",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "args, defaultProperties",
+          "static": true
+        },
+        {
+          "name": "createKeytab",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "principalName, passPhrase,…",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "util/embedded-ldap/src/main/java/org/keycloak/util/ldap/KerberosKeytabCreator.java",
+          "line": 40,
+          "end_line": 87
+        }
+      ]
+    }
+  ],
+  "relationships": [],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module util/embedded-ldap/ (keycloak-util-embedded-ldap): 5 public types, 5 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "util.ldap (5)"
+      ]
+    }
+  ]
+}

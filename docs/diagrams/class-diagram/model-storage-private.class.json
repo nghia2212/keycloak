@@ -1,0 +1,630 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "model/storage-private module types",
+    "output": "docs/diagrams/class-diagram/model-storage-private.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_RealmMigration",
+      "label": "RealmMigration",
+      "kind": "abstract",
+      "sublabel": "migration.migrators",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "migrate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session"
+        },
+        {
+          "name": "migrateImport",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session, realm, rep, skipUs…"
+        },
+        {
+          "name": "migrateRealm",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session, realm",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/migration/migrators/RealmMigration.java",
+          "line": 31,
+          "end_line": 65
+        }
+      ]
+    },
+    {
+      "id": "t_UserSessionPersisterProvider",
+      "label": "UserSessionPersisterProvider",
+      "kind": "interface",
+      "sublabel": "models.session",
+      "row": 2,
+      "col": 1,
+      "methods": [
+        {
+          "name": "createUserSession",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "userSession, offline",
+          "abstract": true
+        },
+        {
+          "name": "createClientSession",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "clientSession, offline",
+          "abstract": true
+        },
+        {
+          "name": "removeUserSession",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "userSessionId, offline",
+          "abstract": true
+        },
+        {
+          "name": "removeClientSession",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "userSessionId, clientUUID,…",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/models/session/UserSessionPersisterProvider.java",
+          "line": 35,
+          "end_line": 47
+        }
+      ]
+    },
+    {
+      "id": "t_CacheRealmProvider",
+      "label": "CacheRealmProvider",
+      "kind": "interface",
+      "sublabel": "models.cache",
+      "row": 2,
+      "col": 2,
+      "methods": [
+        {
+          "name": "clear",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "clearManagedModels",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "registerRealmInvalidation",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "id, name",
+          "abstract": true
+        },
+        {
+          "name": "registerClientInvalidation",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "id, clientId, realmId",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/models/cache/CacheRealmProvider.java",
+          "line": 31,
+          "end_line": 40
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractReadOnlyClientStorageAdapter",
+      "label": "AbstractReadOnlyClientStorageAdapter",
+      "kind": "abstract",
+      "sublabel": "storage.client",
+      "row": 4,
+      "col": 0,
+      "methods": [
+        {
+          "name": "addWebOrigin",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "webOrigin"
+        },
+        {
+          "name": "removeWebOrigin",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "webOrigin"
+        },
+        {
+          "name": "addRedirectUri",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "redirectUri"
+        },
+        {
+          "name": "removeRedirectUri",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "redirectUri"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/storage/client/AbstractReadOnlyClientStorageAdapter.java",
+          "line": 32,
+          "end_line": 97
+        }
+      ]
+    },
+    {
+      "id": "t_UserStorageManager",
+      "label": "UserStorageManager",
+      "kind": "class",
+      "sublabel": "storage",
+      "row": 5,
+      "col": 2,
+      "methods": [
+        {
+          "name": "addUser",
+          "returns": "UserModel",
+          "visibility": "public",
+          "parameters": "realm, username"
+        },
+        {
+          "name": "removeUser",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "realm, user"
+        },
+        {
+          "name": "searchForUserStream",
+          "returns": "Stream<UserModel>",
+          "visibility": "public",
+          "parameters": "realm, Map<String, attribut…"
+        },
+        {
+          "name": "searchForUserByUserAttributeStream",
+          "returns": "Stream<UserModel>",
+          "visibility": "public",
+          "parameters": "realm, attrName, attrValue"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/storage/UserStorageManager.java",
+          "line": 96,
+          "end_line": 759
+        }
+      ]
+    },
+    {
+      "id": "t_ClientScopeStorageProvider",
+      "label": "ClientScopeStorageProvider",
+      "kind": "interface",
+      "sublabel": "storage.clientscope",
+      "row": 5,
+      "col": 0,
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/storage/clientscope/ClientScopeStorageProvider.java",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "id": "t_DBLockProvider",
+      "label": "DBLockProvider",
+      "kind": "interface",
+      "sublabel": "Global database lock to ensure that som…",
+      "row": 5,
+      "col": 1,
+      "methods": [
+        {
+          "name": "waitForLock",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "lock",
+          "abstract": true
+        },
+        {
+          "name": "releaseLock",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "supportsForcedUnlock",
+          "returns": "boolean",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "destroyLockInfo",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/models/dblock/DBLockProvider.java",
+          "line": 38,
+          "end_line": 90
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractClientStorageAdapter",
+      "label": "AbstractClientStorageAdapter",
+      "kind": "abstract",
+      "sublabel": "Helper base class for ClientModel imple…",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "protected"
+        },
+        {
+          "name": "realm",
+          "type": "RealmModel",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "registerNode",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "nodeHost, registrationTime"
+        },
+        {
+          "name": "unregisterNode",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "nodeHost"
+        },
+        {
+          "name": "updateClient",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/storage/client/AbstractClientStorageAdapter.java",
+          "line": 35,
+          "end_line": 122
+        }
+      ]
+    },
+    {
+      "id": "t_UnsupportedOperationsClientStorageAdapter",
+      "label": "UnsupportedOperationsClientStorageAdapter",
+      "kind": "abstract",
+      "sublabel": "Base helper class",
+      "row": 2,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getRole",
+          "returns": "RoleModel",
+          "visibility": "public",
+          "parameters": "name"
+        },
+        {
+          "name": "addRole",
+          "returns": "RoleModel",
+          "visibility": "public",
+          "parameters": "name"
+        },
+        {
+          "name": "removeRole",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "role"
+        },
+        {
+          "name": "searchForRolesStream",
+          "returns": "Stream<RoleModel>",
+          "visibility": "public",
+          "parameters": "search, first, max"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/storage/client/UnsupportedOperationsClientStorageAdapter.java",
+          "line": 31,
+          "end_line": 63
+        }
+      ]
+    },
+    {
+      "id": "t_DisabledUserSessionPersisterProvider",
+      "label": "DisabledUserSessionPersisterProvider",
+      "kind": "class",
+      "sublabel": "Persistence of userSessions is disabled ",
+      "row": 3,
+      "col": 1,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "UserSessionPersisterProvider",
+          "visibility": "public",
+          "parameters": "session"
+        },
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "config"
+        },
+        {
+          "name": "postInit",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "factory"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/models/session/DisabledUserSessionPersisterProvider.java",
+          "line": 40,
+          "end_line": 60
+        }
+      ]
+    },
+    {
+      "id": "t_MigrateTo26_7_0",
+      "label": "MigrateTo26_7_0",
+      "kind": "class",
+      "sublabel": "migration.migrators",
+      "row": 1,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getVersion",
+          "returns": "ModelVersion",
+          "visibility": "public"
+        },
+        {
+          "name": "migrate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session"
+        },
+        {
+          "name": "migrateImport",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session, realm, rep, skipUs…"
+        },
+        {
+          "name": "migrateRealm",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session, realm"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/migration/migrators/MigrateTo26_7_0.java",
+          "line": 27,
+          "end_line": 54
+        }
+      ]
+    },
+    {
+      "id": "t_MigrateTo22_0_0",
+      "label": "MigrateTo22_0_0",
+      "kind": "class",
+      "sublabel": "migration.migrators",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "migrateRealm",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session, realm"
+        },
+        {
+          "name": "migrateImport",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session, realm, rep, skipUs…"
+        },
+        {
+          "name": "getVersion",
+          "returns": "ModelVersion",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/migration/migrators/MigrateTo22_0_0.java",
+          "line": 35,
+          "end_line": 103
+        }
+      ]
+    },
+    {
+      "id": "t_MigrateTo25_0_0",
+      "label": "MigrateTo25_0_0",
+      "kind": "class",
+      "sublabel": "migration.migrators",
+      "row": 1,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getVersion",
+          "returns": "ModelVersion",
+          "visibility": "public"
+        },
+        {
+          "name": "migrate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session"
+        },
+        {
+          "name": "migrateRealm",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session, realm"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/migration/migrators/MigrateTo25_0_0.java",
+          "line": 35,
+          "end_line": 58
+        }
+      ]
+    },
+    {
+      "id": "t_MigrateTo26_0_0",
+      "label": "MigrateTo26_0_0",
+      "kind": "class",
+      "sublabel": "migration.migrators",
+      "row": 6,
+      "col": 0,
+      "methods": [
+        {
+          "name": "getVersion",
+          "returns": "ModelVersion",
+          "visibility": "public"
+        },
+        {
+          "name": "migrate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session"
+        },
+        {
+          "name": "migrateRealm",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "session, realm"
+        }
+      ],
+      "sources": [
+        {
+          "path": "model/storage-private/src/main/java/org/keycloak/migration/migrators/MigrateTo26_0_0.java",
+          "line": 28,
+          "end_line": 49
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_MigrateTo26_7_0_RealmMigration",
+      "from": "t_MigrateTo26_7_0",
+      "to": "t_RealmMigration",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_MigrateTo22_0_0_RealmMigration",
+      "from": "t_MigrateTo22_0_0",
+      "to": "t_RealmMigration",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_MigrateTo25_0_0_RealmMigration",
+      "from": "t_MigrateTo25_0_0",
+      "to": "t_RealmMigration",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r3_DisabledUserSessionPersisterProvider_UserSessionPersisterProvider",
+      "from": "t_DisabledUserSessionPersisterProvider",
+      "to": "t_UserSessionPersisterProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r4_AbstractClientStorageAdapter_UnsupportedOperationsClientStorageAdapter",
+      "from": "t_AbstractClientStorageAdapter",
+      "to": "t_UnsupportedOperationsClientStorageAdapter",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r5_AbstractReadOnlyClientStorageAdapter_AbstractClientStorageAdapter",
+      "from": "t_AbstractReadOnlyClientStorageAdapter",
+      "to": "t_AbstractClientStorageAdapter",
+      "kind": "inheritance"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module model/storage-private/ (keycloak-model-storage-private): 115 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "migration.migrators (49)",
+        "models.cache (12)",
+        "models.session (12)",
+        "storage (9)",
+        "services.scheduled (7)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "MigrateTo26_0_0 extends RealmMigration"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "RevokedTokenPersisterProvider, DefaultDatastoreProvider, ClientScopeStorageProviderFactory, ClientStorageProviderFactory, GroupStorageProviderFactory, PersistentUserSessionModel, MigrationManager, CacheCrlProvider"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "e6205843-ada7-482a-8e4d-54b158e94db5",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\util-embedded-ldap.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\util-embedded-ldap.class.html",
+  "specification": {
+    "sha256": "31cf423143473207cffd90ada1a5c1ddd54023c271ac517adb2e0ec5fe0c09d1",
+    "bytes": 5639
+  },
+  "artifact": {
+    "sha256": "d39050c3a5f1de4e6d572997314b009e4235ec8b7aadbd3ee5a4c7d86a8a2532",
+    "bytes": 844032
+  }
+}

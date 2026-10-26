@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "7be981df-951c-4836-8822-72a500380d46",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\federation-kerberos.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\federation-kerberos.class.html",
+  "specification": {
+    "sha256": "c81b1a4f54186820904ef3d9b5d9c8bf14c39852ae28134d5e2142c806823724",
+    "bytes": 12422
+  },
+  "artifact": {
+    "sha256": "a0e8cd3deb2d5930c8977f448b3c39a4ccea3bfac8017eb28e1c2e0d89cae007",
+    "bytes": 872955
+  }
+}

@@ -1,0 +1,728 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "integration/admin-client-core module types",
+    "output": "docs/diagrams/class-diagram/integration-admin-client-core.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_Keycloak",
+      "label": "Keycloak",
+      "kind": "class",
+      "sublabel": "Provides a Keycloak client",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "config",
+          "type": "Config",
+          "visibility": "private"
+        },
+        {
+          "name": "tokenManager",
+          "type": "TokenManager",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "realms",
+          "returns": "RealmsResource",
+          "visibility": "public"
+        },
+        {
+          "name": "realm",
+          "returns": "RealmResource",
+          "visibility": "public",
+          "parameters": "realmName"
+        },
+        {
+          "name": "serverInfo",
+          "returns": "ServerInfoResource",
+          "visibility": "public"
+        },
+        {
+          "name": "tokenManager",
+          "returns": "TokenManager",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/Keycloak.java",
+          "line": 47,
+          "end_line": 202
+        }
+      ]
+    },
+    {
+      "id": "t_RealmResource",
+      "label": "RealmResource",
+      "kind": "interface",
+      "sublabel": "admin.client.resource",
+      "row": 2,
+      "col": 3,
+      "methods": [
+        {
+          "name": "toRepresentation",
+          "returns": "RealmRepresentation",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "update",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "realmRepresentation",
+          "abstract": true
+        },
+        {
+          "name": "clients",
+          "returns": "ClientsResource",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "clientScopes",
+          "returns": "ClientScopesResource",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/resource/RealmResource.java",
+          "line": 52,
+          "end_line": 66
+        }
+      ]
+    },
+    {
+      "id": "t_UserResource",
+      "label": "UserResource",
+      "kind": "interface",
+      "sublabel": "admin.client.resource",
+      "row": 1,
+      "col": 0,
+      "methods": [
+        {
+          "name": "toRepresentation",
+          "returns": "UserRepresentation",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "update",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "userRepresentation",
+          "abstract": true
+        },
+        {
+          "name": "remove",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "groups",
+          "returns": "List<GroupRepresentation>",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/resource/UserResource.java",
+          "line": 47,
+          "end_line": 63
+        }
+      ]
+    },
+    {
+      "id": "t_RoleMappingResource",
+      "label": "RoleMappingResource",
+      "kind": "interface",
+      "sublabel": "admin.client.resource",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getAll",
+          "returns": "MappingsRepresentation",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "realmLevel",
+          "returns": "RoleScopeResource",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "clientLevel",
+          "returns": "RoleScopeResource",
+          "visibility": "public",
+          "parameters": "(\"clientUUID\"",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/resource/RoleMappingResource.java",
+          "line": 34,
+          "end_line": 43
+        }
+      ]
+    },
+    {
+      "id": "t_AuthenticationManagementResource",
+      "label": "AuthenticationManagementResource",
+      "kind": "interface",
+      "sublabel": "admin.client.resource",
+      "row": 3,
+      "col": 2,
+      "methods": [
+        {
+          "name": "createFlow",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "model",
+          "abstract": true
+        },
+        {
+          "name": "deleteFlow",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "(\"id\"",
+          "abstract": true
+        },
+        {
+          "name": "copy",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "(\"flowAlias\"",
+          "abstract": true
+        },
+        {
+          "name": "updateFlow",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "(\"id\"",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/resource/AuthenticationManagementResource.java",
+          "line": 48,
+          "end_line": 97
+        }
+      ]
+    },
+    {
+      "id": "t_UsersResource",
+      "label": "UsersResource",
+      "kind": "interface",
+      "sublabel": "admin.client.resource",
+      "row": 2,
+      "col": 0,
+      "methods": [
+        {
+          "name": "search",
+          "returns": "List<UserRepresentation>",
+          "visibility": "public",
+          "parameters": "(\"username\"",
+          "abstract": true
+        },
+        {
+          "name": "searchByAttributes",
+          "returns": "List<UserRepresentation>",
+          "visibility": "public",
+          "parameters": "(\"q\"",
+          "abstract": true
+        },
+        {
+          "name": "searchByUsername",
+          "returns": "List<UserRepresentation>",
+          "visibility": "public",
+          "parameters": "(\"username\"",
+          "abstract": true
+        },
+        {
+          "name": "searchByEmail",
+          "returns": "List<UserRepresentation>",
+          "visibility": "public",
+          "parameters": "(\"email\"",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/resource/UsersResource.java",
+          "line": 35,
+          "end_line": 153
+        }
+      ]
+    },
+    {
+      "id": "t_ClientResource",
+      "label": "ClientResource",
+      "kind": "interface",
+      "sublabel": "admin.client.resource",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "toRepresentation",
+          "returns": "ClientRepresentation",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "update",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "clientRepresentation",
+          "abstract": true
+        },
+        {
+          "name": "remove",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "generateNewSecret",
+          "returns": "CredentialRepresentation",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/resource/ClientResource.java",
+          "line": 46,
+          "end_line": 89
+        }
+      ]
+    },
+    {
+      "id": "t_RolesResource",
+      "label": "RolesResource",
+      "kind": "interface",
+      "sublabel": "admin.client.resource",
+      "row": 1,
+      "col": 3,
+      "methods": [
+        {
+          "name": "list",
+          "returns": "List<RoleRepresentation>",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "create",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "roleRepresentation",
+          "abstract": true
+        },
+        {
+          "name": "get",
+          "returns": "RoleResource",
+          "visibility": "public",
+          "parameters": "(\"roleName\"",
+          "abstract": true
+        },
+        {
+          "name": "deleteRole",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "(\"role-name\"",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/resource/RolesResource.java",
+          "line": 38,
+          "end_line": 125
+        }
+      ]
+    },
+    {
+      "id": "t_RoleResource",
+      "label": "RoleResource",
+      "kind": "interface",
+      "sublabel": "admin.client.resource",
+      "row": 0,
+      "col": 3,
+      "methods": [
+        {
+          "name": "toRepresentation",
+          "returns": "RoleRepresentation",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "update",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "roleRepresentation",
+          "abstract": true
+        },
+        {
+          "name": "remove",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "addComposites",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "rolesToAdd",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/resource/RoleResource.java",
+          "line": 43,
+          "end_line": 98
+        }
+      ]
+    },
+    {
+      "id": "t_ProtocolMappersResource",
+      "label": "ProtocolMappersResource",
+      "kind": "interface",
+      "sublabel": "admin.client.resource",
+      "row": 3,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getMappersPerProtocol",
+          "returns": "List",
+          "visibility": "public",
+          "parameters": "(\"protocol\"",
+          "abstract": true
+        },
+        {
+          "name": "createMapper",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "rep",
+          "abstract": true
+        },
+        {
+          "name": "update",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "(\"id\"",
+          "abstract": true
+        },
+        {
+          "name": "delete",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "(\"id\"",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/resource/ProtocolMappersResource.java",
+          "line": 37,
+          "end_line": 71
+        }
+      ]
+    },
+    {
+      "id": "t_GroupsResource",
+      "label": "GroupsResource",
+      "kind": "interface",
+      "sublabel": "admin.client.resource",
+      "row": 2,
+      "col": 2,
+      "methods": [
+        {
+          "name": "groups",
+          "returns": "List<GroupRepresentation>",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "count",
+          "returns": "Map<String,Long>",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "add",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "rep",
+          "abstract": true
+        },
+        {
+          "name": "group",
+          "returns": "GroupResource",
+          "visibility": "public",
+          "parameters": "(\"id\"",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/resource/GroupsResource.java",
+          "line": 40,
+          "end_line": 204
+        }
+      ]
+    },
+    {
+      "id": "t_OrganizationsResource",
+      "label": "OrganizationsResource",
+      "kind": "interface",
+      "sublabel": "admin.client.resource",
+      "row": 3,
+      "col": 3,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "organization",
+          "abstract": true
+        },
+        {
+          "name": "get",
+          "returns": "OrganizationResource",
+          "visibility": "public",
+          "parameters": "(\"id\"",
+          "abstract": true
+        },
+        {
+          "name": "list",
+          "returns": "List",
+          "visibility": "public",
+          "parameters": "(\"first\"",
+          "abstract": true
+        },
+        {
+          "name": "search",
+          "returns": "List",
+          "visibility": "public",
+          "parameters": "(\"search\"",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/resource/OrganizationsResource.java",
+          "line": 39,
+          "end_line": 81
+        }
+      ]
+    },
+    {
+      "id": "t_GroupResource",
+      "label": "GroupResource",
+      "kind": "interface",
+      "sublabel": "admin.client.resource",
+      "row": 1,
+      "col": 2,
+      "methods": [
+        {
+          "name": "toRepresentation",
+          "returns": "GroupRepresentation",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "update",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "rep",
+          "abstract": true
+        },
+        {
+          "name": "remove",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "subGroup",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "rep",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/resource/GroupResource.java",
+          "line": 42,
+          "end_line": 182
+        }
+      ]
+    },
+    {
+      "id": "t_Config",
+      "label": "Config",
+      "kind": "class",
+      "sublabel": "admin.client",
+      "row": 3,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "serverUrl",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "realm",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getServerUrl",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setServerUrl",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "serverUrl"
+        },
+        {
+          "name": "getRealm",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "checkGrantType",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "grantType",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-core/src/main/java/org/keycloak/admin/client/Config.java",
+          "line": 26,
+          "end_line": 123
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_Keycloak_Config",
+      "from": "t_Keycloak",
+      "to": "t_Config",
+      "kind": "association"
+    },
+    {
+      "id": "r1_UserResource_RoleMappingResource",
+      "from": "t_UserResource",
+      "to": "t_RoleMappingResource",
+      "kind": "dependency"
+    },
+    {
+      "id": "r2_ClientResource_RoleMappingResource",
+      "from": "t_ClientResource",
+      "to": "t_RoleMappingResource",
+      "kind": "dependency"
+    },
+    {
+      "id": "r3_GroupResource_RoleMappingResource",
+      "from": "t_GroupResource",
+      "to": "t_RoleMappingResource",
+      "kind": "dependency"
+    },
+    {
+      "id": "r4_RealmResource_RolesResource",
+      "from": "t_RealmResource",
+      "to": "t_RolesResource",
+      "kind": "dependency"
+    },
+    {
+      "id": "r5_RolesResource_RoleResource",
+      "from": "t_RolesResource",
+      "to": "t_RoleResource",
+      "kind": "dependency"
+    },
+    {
+      "id": "r6_UsersResource_UserResource",
+      "from": "t_UsersResource",
+      "to": "t_UserResource",
+      "kind": "dependency"
+    },
+    {
+      "id": "r7_GroupsResource_GroupResource",
+      "from": "t_GroupsResource",
+      "to": "t_GroupResource",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module integration/admin-client-core/ (keycloak-admin-client-core): 85 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "admin.client.resource (78)",
+        "admin.client (4)",
+        "admin.client.token (2)",
+        "admin.client.spi (1)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "Keycloak uses RealmResource",
+        "RealmResource uses UsersResource",
+        "RealmResource uses GroupsResource",
+        "RealmResource uses AuthenticationManagementResource",
+        "RealmResource uses OrganizationsResource",
+        "ClientResource uses ProtocolMappersResource",
+        "ClientResource uses RolesResource"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "OrganizationMembersResource, PoliciesResource, IdentityProviderResource, IdentityProvidersResource, OrganizationGroupResource, RoleByIdResource, AuthorizationResource, ClientsResource"
+      ]
+    }
+  ]
+}

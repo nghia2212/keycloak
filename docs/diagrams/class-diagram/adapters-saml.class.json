@@ -1,0 +1,648 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "adapters/saml module types",
+    "output": "docs/diagrams/class-diagram/adapters-saml.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_SamlDeployment",
+      "label": "SamlDeployment",
+      "kind": "interface",
+      "sublabel": "Represents SAML deployment configuration",
+      "row": 6,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getIDP",
+          "returns": "IDP",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "isConfigured",
+          "returns": "boolean",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getSslRequired",
+          "returns": "SslRequired",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "turnOffChangeSessionIdOnLogin",
+          "returns": "boolean",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/saml/SamlDeployment.java",
+          "line": 37,
+          "end_line": 163
+        }
+      ]
+    },
+    {
+      "id": "t_IDP",
+      "label": "IDP",
+      "kind": "class",
+      "sublabel": "adapters.saml.config",
+      "row": 5,
+      "col": 0.5,
+      "attributes": [
+        {
+          "name": "entityID",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "signatureAlgorithm",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getEntityID",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setEntityID",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "entityID"
+        },
+        {
+          "name": "getSingleSignOnService",
+          "returns": "SingleSignOnService",
+          "visibility": "public"
+        },
+        {
+          "name": "setSingleSignOnService",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "singleSignOnService"
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/saml/config/IDP.java",
+          "line": 30,
+          "end_line": 320
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractKeycloakSamlAdapterV1Parser",
+      "label": "AbstractKeycloakSamlAdapterV1Parser",
+      "kind": "abstract",
+      "sublabel": "adapters.saml.config.parsers",
+      "row": 8,
+      "col": 1,
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/saml/config/parsers/AbstractKeycloakSamlAdapterV1Parser.java",
+          "line": 33
+        }
+      ]
+    },
+    {
+      "id": "t_SP",
+      "label": "SP",
+      "kind": "class",
+      "sublabel": "adapters.saml.config",
+      "row": 6,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "entityID",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "sslPolicy",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getEntityID",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setEntityID",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "entityID"
+        },
+        {
+          "name": "getSslPolicy",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "setSslPolicy",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "sslPolicy"
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/saml/config/SP.java",
+          "line": 29,
+          "end_line": 107
+        }
+      ]
+    },
+    {
+      "id": "t_KeycloakSamlAdapterV1QNames",
+      "label": "KeycloakSamlAdapterV1QNames",
+      "kind": "enum",
+      "sublabel": "adapters.saml.config.parsers",
+      "row": 8,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "ALLOWED_CLOCK_SKEW",
+          "visibility": "public"
+        },
+        {
+          "name": "ATTRIBUTE",
+          "visibility": "public"
+        },
+        {
+          "name": "CERTIFICATE",
+          "visibility": "public"
+        },
+        {
+          "name": "CERTIFICATE_PEM",
+          "visibility": "public"
+        },
+        {
+          "name": "…",
+          "visibility": "public"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getQName",
+          "returns": "QName",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/saml/config/parsers/KeycloakSamlAdapterV1QNames.java",
+          "line": 27,
+          "end_line": 118
+        }
+      ]
+    },
+    {
+      "id": "t_SamlSessionStore",
+      "label": "SamlSessionStore",
+      "kind": "interface",
+      "sublabel": "adapters.saml",
+      "row": 1,
+      "col": 0,
+      "methods": [
+        {
+          "name": "saveAccount",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "account",
+          "abstract": true
+        },
+        {
+          "name": "logoutAccount",
+          "returns": "void",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "logoutByPrincipal",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "principal",
+          "abstract": true
+        },
+        {
+          "name": "logoutBySsoId",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "ssoIds",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/saml/SamlSessionStore.java",
+          "line": 28,
+          "end_line": 48
+        }
+      ]
+    },
+    {
+      "id": "t_SamlSession",
+      "label": "SamlSession",
+      "kind": "class",
+      "sublabel": "adapters.saml",
+      "row": 0,
+      "col": 0.5,
+      "attributes": [
+        {
+          "name": "principal",
+          "type": "SamlPrincipal",
+          "visibility": "private"
+        },
+        {
+          "name": "roles",
+          "type": "Set<String>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getPrincipal",
+          "returns": "SamlPrincipal",
+          "visibility": "public"
+        },
+        {
+          "name": "getRoles",
+          "returns": "Set<String>",
+          "visibility": "public"
+        },
+        {
+          "name": "getSessionIndex",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getSessionNotOnOrAfter",
+          "returns": "XMLGregorianCalendar",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/saml/SamlSession.java",
+          "line": 30,
+          "end_line": 58
+        }
+      ]
+    },
+    {
+      "id": "t_RoleMappingsProvider",
+      "label": "RoleMappingsProvider",
+      "kind": "interface",
+      "sublabel": "A simple SPI for mapping SAML roles int…",
+      "row": 5,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getId",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "deployment, loader, config",
+          "abstract": true
+        },
+        {
+          "name": "map",
+          "returns": "Set<String>",
+          "visibility": "public",
+          "parameters": "principalName, roles",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/saml/RoleMappingsProvider.java",
+          "line": 62,
+          "end_line": 96
+        }
+      ]
+    },
+    {
+      "id": "t_OnSessionCreated",
+      "label": "OnSessionCreated",
+      "kind": "interface",
+      "sublabel": "adapters.saml",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "onSessionCreated",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "samlSession",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/saml/OnSessionCreated.java",
+          "line": 23,
+          "end_line": 25
+        }
+      ]
+    },
+    {
+      "id": "t_SamlAuthenticationHandler",
+      "label": "SamlAuthenticationHandler",
+      "kind": "interface",
+      "sublabel": "adapters.saml.profile",
+      "row": 2,
+      "col": 1,
+      "methods": [
+        {
+          "name": "handle",
+          "returns": "AuthOutcome",
+          "visibility": "public",
+          "parameters": "onCreateSession",
+          "abstract": true
+        },
+        {
+          "name": "getChallenge",
+          "returns": "AuthChallenge",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/saml/profile/SamlAuthenticationHandler.java",
+          "line": 27,
+          "end_line": 29
+        }
+      ]
+    },
+    {
+      "id": "t_ResourceLoader",
+      "label": "ResourceLoader",
+      "kind": "interface",
+      "sublabel": "adapters.saml.config.parsers",
+      "row": 4,
+      "col": 2,
+      "methods": [
+        {
+          "name": "getResourceAsStream",
+          "returns": "InputStream",
+          "visibility": "public",
+          "parameters": "resource",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/saml/config/parsers/ResourceLoader.java",
+          "line": 26,
+          "end_line": 27
+        }
+      ]
+    },
+    {
+      "id": "t_SamlAuthenticator",
+      "label": "SamlAuthenticator",
+      "kind": "abstract",
+      "sublabel": "adapters.saml",
+      "row": 3,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "handler",
+          "type": "SamlAuthenticationHandler",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getChallenge",
+          "returns": "AuthChallenge",
+          "visibility": "public"
+        },
+        {
+          "name": "authenticate",
+          "returns": "AuthOutcome",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/saml/SamlAuthenticator.java",
+          "line": 33,
+          "end_line": 47
+        }
+      ]
+    },
+    {
+      "id": "t_AdapterHttpClientConfig",
+      "label": "AdapterHttpClientConfig",
+      "kind": "interface",
+      "sublabel": "Configuration options relevant for conf…",
+      "row": 4,
+      "col": 0.5,
+      "methods": [
+        {
+          "name": "getTruststore",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getTruststorePassword",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getClientKeystore",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        },
+        {
+          "name": "getClientKeystorePassword",
+          "returns": "String",
+          "visibility": "public",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/cloned/AdapterHttpClientConfig.java",
+          "line": 27,
+          "end_line": 47
+        }
+      ]
+    },
+    {
+      "id": "t_DefaultSamlDeployment",
+      "label": "DefaultSamlDeployment",
+      "kind": "class",
+      "sublabel": "adapters.saml",
+      "row": 7,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "idp",
+          "type": "IDP",
+          "visibility": "private"
+        },
+        {
+          "name": "configured",
+          "type": "boolean",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "turnOffChangeSessionIdOnLogin",
+          "returns": "boolean",
+          "visibility": "public"
+        },
+        {
+          "name": "setTurnOffChangeSessionIdOnLogin",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "turnOffChangeSessionIdOnLog…"
+        },
+        {
+          "name": "getIDP",
+          "returns": "IDP",
+          "visibility": "public"
+        },
+        {
+          "name": "isConfigured",
+          "returns": "boolean",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "adapters/saml/core/src/main/java/org/keycloak/adapters/saml/DefaultSamlDeployment.java",
+          "line": 41,
+          "end_line": 337
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_DefaultSamlDeployment_SamlDeployment",
+      "from": "t_DefaultSamlDeployment",
+      "to": "t_SamlDeployment",
+      "kind": "realization"
+    },
+    {
+      "id": "r1_SP_IDP",
+      "from": "t_SP",
+      "to": "t_IDP",
+      "kind": "association"
+    },
+    {
+      "id": "r2_IDP_AdapterHttpClientConfig",
+      "from": "t_IDP",
+      "to": "t_AdapterHttpClientConfig",
+      "kind": "association"
+    },
+    {
+      "id": "r3_SamlAuthenticator_SamlAuthenticationHandler",
+      "from": "t_SamlAuthenticator",
+      "to": "t_SamlAuthenticationHandler",
+      "kind": "association"
+    },
+    {
+      "id": "r4_SamlDeployment_IDP",
+      "from": "t_SamlDeployment",
+      "to": "t_IDP",
+      "kind": "dependency"
+    },
+    {
+      "id": "r5_SamlSessionStore_SamlSession",
+      "from": "t_SamlSessionStore",
+      "to": "t_SamlSession",
+      "kind": "dependency"
+    },
+    {
+      "id": "r6_OnSessionCreated_SamlSession",
+      "from": "t_OnSessionCreated",
+      "to": "t_SamlSession",
+      "kind": "dependency"
+    },
+    {
+      "id": "r7_RoleMappingsProvider_ResourceLoader",
+      "from": "t_RoleMappingsProvider",
+      "to": "t_ResourceLoader",
+      "kind": "dependency"
+    },
+    {
+      "id": "r8_SamlAuthenticationHandler_OnSessionCreated",
+      "from": "t_SamlAuthenticationHandler",
+      "to": "t_OnSessionCreated",
+      "kind": "dependency"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module adapters/saml/ (keycloak-saml-client-adapter-pom): 80 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "adapters.saml.config.parsers (17)",
+        "adapters.saml (16)",
+        "subsystem.adapter.saml.extension (15)",
+        "adapters.saml.elytron (8)",
+        "adapters.cloned (5)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "DefaultSamlDeployment has a IDP",
+        "DefaultSamlDeployment has a RoleMappingsProvider",
+        "SamlDeployment uses RoleMappingsProvider"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "Key, Configuration, KeycloakSamlExtension, SamlPrincipal, AbstractInitiateLogin, AbstractSamlAuthenticationHandler, KeycloakDependencyProcessor, ElytronTokeStore"
+      ]
+    }
+  ]
+}

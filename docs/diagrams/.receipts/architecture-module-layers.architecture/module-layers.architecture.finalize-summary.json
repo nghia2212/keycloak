@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "D:\\workspace1\\keycloak\\docs\\diagrams\\architecture\\module-layers.architecture.json",
+    "sha256": "348ef3d4ed8e986de0b00a0a031db0635e34d754038dd2c8fb8334616e0944c6",
+    "bytes": 12328
+  },
+  "artifact": {
+    "path": "D:\\workspace1\\keycloak\\docs\\diagrams\\architecture\\module-layers.architecture.html",
+    "sha256": "b5afef7466c8a0596b47c566fb3b28f9ea5f97e4f309d1c149dda6534d8256f6",
+    "bytes": 869128
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "D:\\workspace1\\keycloak\\docs\\diagrams\\.receipts\\architecture-module-layers.architecture\\module-layers.architecture.finalize.json",
+    "summaryReceipt": "D:\\workspace1\\keycloak\\docs\\diagrams\\.receipts\\architecture-module-layers.architecture\\module-layers.architecture.finalize-summary.json",
+    "browserCheckReceipt": "D:\\workspace1\\keycloak\\docs\\diagrams\\.receipts\\architecture-module-layers.architecture\\module-layers.architecture.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-26T02:14:15.730Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 2808,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  }
+}

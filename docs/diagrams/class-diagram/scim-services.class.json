@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "scim/services module types",
+    "output": "docs/diagrams/class-diagram/scim-services.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_ScimResourceTypeResource",
+      "label": "ScimResourceTypeResource",
+      "kind": "class",
+      "sublabel": "scim.services",
+      "row": 0,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "private"
+        },
+        {
+          "name": "resourceTypeProvider",
+          "type": "ScimResourceTypeProvider<R>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "is"
+        },
+        {
+          "name": "get",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        },
+        {
+          "name": "search",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "searchRequest"
+        },
+        {
+          "name": "delete",
+          "returns": "Response",
+          "visibility": "public",
+          "parameters": "(\"id\""
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/services/src/main/java/org/keycloak/scim/services/ScimResourceTypeResource.java",
+          "line": 55,
+          "end_line": 174
+        }
+      ]
+    },
+    {
+      "id": "t_ScimRealmResource",
+      "label": "ScimRealmResource",
+      "kind": "class",
+      "sublabel": "scim.services",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "session",
+          "type": "KeycloakSession",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "resourceType",
+          "returns": "Object",
+          "visibility": "public",
+          "parameters": "(\"resourceType\""
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/services/src/main/java/org/keycloak/scim/services/ScimRealmResource.java",
+          "line": 21,
+          "end_line": 32
+        }
+      ]
+    },
+    {
+      "id": "t_ScimRealmResourceFactory",
+      "label": "ScimRealmResourceFactory",
+      "kind": "class",
+      "sublabel": "scim.services",
+      "row": 0,
+      "col": 2,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "RealmResourceProvider",
+          "visibility": "public",
+          "parameters": "session"
+        },
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "config"
+        },
+        {
+          "name": "postInit",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "factory"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/services/src/main/java/org/keycloak/scim/services/ScimRealmResourceFactory.java",
+          "line": 30,
+          "end_line": 112
+        }
+      ]
+    }
+  ],
+  "relationships": [],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module scim/services/ (keycloak-scim-services): 3 public types, 3 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "scim.services (3)"
+      ]
+    }
+  ]
+}

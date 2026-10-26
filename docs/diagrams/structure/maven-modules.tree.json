@@ -1,0 +1,1009 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "Keycloak Maven modules",
+    "output": "docs/diagrams/structure/maven-modules.tree.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "direction": "right"
+  },
+  "nodes": [
+    {
+      "id": "root",
+      "label": "keycloak-parent",
+      "sublabel": "root pom.xml",
+      "sources": [
+        {
+          "path": "pom.xml",
+          "line": 310,
+          "end_line": 337,
+          "label": "default <modules>"
+        }
+      ]
+    },
+    {
+      "id": "g_found",
+      "label": "Foundation",
+      "parent": "root",
+      "sublabel": "shared libs & crypto"
+    },
+    {
+      "id": "m_common",
+      "label": "common/",
+      "parent": "g_found",
+      "sublabel": "keycloak-common · class diagram ↗",
+      "sources": [
+        {
+          "path": "common/pom.xml",
+          "line": 22,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_core",
+      "label": "core/",
+      "parent": "g_found",
+      "sublabel": "keycloak-core · class diagram ↗",
+      "sources": [
+        {
+          "path": "core/pom.xml",
+          "line": 22,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_crypto",
+      "label": "crypto/",
+      "parent": "g_found",
+      "sublabel": "keycloak-crypto-parent",
+      "sources": [
+        {
+          "path": "crypto/pom.xml",
+          "line": 21,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_crypto__default",
+      "label": "default",
+      "parent": "m_crypto",
+      "sublabel": "keycloak-crypto-default · class diagram ↗"
+    },
+    {
+      "id": "m_crypto__fips1402",
+      "label": "fips1402",
+      "parent": "m_crypto",
+      "sublabel": "keycloak-crypto-fips1402 · class diagram ↗"
+    },
+    {
+      "id": "m_crypto__elytron",
+      "label": "elytron",
+      "parent": "m_crypto",
+      "sublabel": "keycloak-crypto-elytron · class diagram ↗"
+    },
+    {
+      "id": "m_util",
+      "label": "util/",
+      "parent": "g_found",
+      "sublabel": "keycloak-util-parent",
+      "sources": [
+        {
+          "path": "util/pom.xml",
+          "line": 21,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_util__embedded_ldap",
+      "label": "embedded-ldap",
+      "parent": "m_util",
+      "sublabel": "keycloak-util-embedded-ldap · class diagram ↗"
+    },
+    {
+      "id": "g_spi",
+      "label": "Server SPIs",
+      "parent": "root",
+      "sublabel": "extension contracts"
+    },
+    {
+      "id": "m_server_spi",
+      "label": "server-spi/",
+      "parent": "g_spi",
+      "sublabel": "keycloak-server-spi · class diagram ↗",
+      "sources": [
+        {
+          "path": "server-spi/pom.xml",
+          "line": 22,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_server_spi_private",
+      "label": "server-spi-private/",
+      "parent": "g_spi",
+      "sublabel": "keycloak-server-spi-private · class diagram ↗",
+      "sources": [
+        {
+          "path": "server-spi-private/pom.xml",
+          "line": 22,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "g_server",
+      "label": "Server core",
+      "parent": "root",
+      "sublabel": "services, storage, federation"
+    },
+    {
+      "id": "m_services",
+      "label": "services/",
+      "parent": "g_server",
+      "sublabel": "keycloak-services · class diagram ↗",
+      "sources": [
+        {
+          "path": "services/pom.xml",
+          "line": 22,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_model",
+      "label": "model/",
+      "parent": "g_server",
+      "sublabel": "keycloak-model-pom",
+      "sources": [
+        {
+          "path": "model/pom.xml",
+          "line": 21,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_model__storage",
+      "label": "storage",
+      "parent": "m_model",
+      "sublabel": "keycloak-model-storage · class diagram ↗"
+    },
+    {
+      "id": "m_model__storage_private",
+      "label": "storage-private",
+      "parent": "m_model",
+      "sublabel": "keycloak-model-storage-private · class diagram ↗"
+    },
+    {
+      "id": "m_model__storage_services",
+      "label": "storage-services",
+      "parent": "m_model",
+      "sublabel": "keycloak-model-storage-services · class diagram ↗"
+    },
+    {
+      "id": "m_model__jpa",
+      "label": "jpa",
+      "parent": "m_model",
+      "sublabel": "keycloak-model-jpa · class diagram ↗"
+    },
+    {
+      "id": "m_model__infinispan",
+      "label": "infinispan",
+      "parent": "m_model",
+      "sublabel": "keycloak-model-infinispan · class diagram ↗"
+    },
+    {
+      "id": "m_federation",
+      "label": "federation/",
+      "parent": "g_server",
+      "sublabel": "keycloak-federation-parent",
+      "sources": [
+        {
+          "path": "federation/pom.xml",
+          "line": 23,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_federation__kerberos",
+      "label": "kerberos",
+      "parent": "m_federation",
+      "sublabel": "keycloak-kerberos-federation · class diagram ↗"
+    },
+    {
+      "id": "m_federation__ldap",
+      "label": "ldap",
+      "parent": "m_federation",
+      "sublabel": "keycloak-ldap-federation · class diagram ↗"
+    },
+    {
+      "id": "m_federation__sssd",
+      "label": "sssd",
+      "parent": "m_federation",
+      "sublabel": "keycloak-sssd-federation · class diagram ↗"
+    },
+    {
+      "id": "m_federation__ipatuura",
+      "label": "ipatuura",
+      "parent": "m_federation",
+      "sublabel": "keycloak-ipatuura-federation · class diagram ↗"
+    },
+    {
+      "id": "m_rest",
+      "label": "rest/",
+      "parent": "g_server",
+      "sublabel": "keycloak-rest-parent",
+      "sources": [
+        {
+          "path": "rest/pom.xml",
+          "line": 23,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_rest__admin_v2",
+      "label": "admin-v2",
+      "parent": "m_rest",
+      "sublabel": "keycloak-admin-v2-parent · class diagram ↗"
+    },
+    {
+      "id": "m_rest__admin_ui_ext",
+      "label": "admin-ui-ext",
+      "parent": "m_rest",
+      "sublabel": "keycloak-rest-admin-ui-ext · class diagram ↗"
+    },
+    {
+      "id": "m_authz",
+      "label": "authz/",
+      "parent": "g_server",
+      "sublabel": "keycloak-authz-parent",
+      "sources": [
+        {
+          "path": "authz/pom.xml",
+          "line": 9,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_authz__policy",
+      "label": "policy",
+      "parent": "m_authz",
+      "sublabel": "keycloak-authz-provider-parent · class diagram ↗"
+    },
+    {
+      "id": "m_authz__client",
+      "label": "client",
+      "parent": "m_authz",
+      "sublabel": "keycloak-authz-client-tests · class diagram ↗"
+    },
+    {
+      "id": "g_proto",
+      "label": "Protocols & standards",
+      "parent": "root",
+      "sublabel": "SAML, SCIM, SSF, AuthZEN"
+    },
+    {
+      "id": "m_saml_core_api",
+      "label": "saml-core-api/",
+      "parent": "g_proto",
+      "sublabel": "keycloak-saml-core-public · class diagram ↗",
+      "sources": [
+        {
+          "path": "saml-core-api/pom.xml",
+          "line": 22,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_saml_core",
+      "label": "saml-core/",
+      "parent": "g_proto",
+      "sublabel": "keycloak-saml-core · class diagram ↗",
+      "sources": [
+        {
+          "path": "saml-core/pom.xml",
+          "line": 22,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_scim",
+      "label": "scim/",
+      "parent": "g_proto",
+      "sublabel": "keycloak-scim-parent",
+      "sources": [
+        {
+          "path": "scim/pom.xml",
+          "line": 5,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_scim__core",
+      "label": "core",
+      "parent": "m_scim",
+      "sublabel": "keycloak-scim-core · class diagram ↗"
+    },
+    {
+      "id": "m_scim__model",
+      "label": "model",
+      "parent": "m_scim",
+      "sublabel": "keycloak-scim-model · class diagram ↗"
+    },
+    {
+      "id": "m_scim__client",
+      "label": "client",
+      "parent": "m_scim",
+      "sublabel": "keycloak-scim-client · class diagram ↗"
+    },
+    {
+      "id": "m_scim__services",
+      "label": "services",
+      "parent": "m_scim",
+      "sublabel": "keycloak-scim-services · class diagram ↗"
+    },
+    {
+      "id": "m_scim__tests",
+      "label": "tests",
+      "parent": "m_scim",
+      "sublabel": "keycloak-scim-tests-parent"
+    },
+    {
+      "id": "m_ssf",
+      "label": "ssf/",
+      "parent": "g_proto",
+      "sublabel": "keycloak-ssf-parent",
+      "sources": [
+        {
+          "path": "ssf/pom.xml",
+          "line": 5,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_ssf__core",
+      "label": "core",
+      "parent": "m_ssf",
+      "sublabel": "keycloak-ssf-core · class diagram ↗"
+    },
+    {
+      "id": "m_ssf__transmitter",
+      "label": "transmitter",
+      "parent": "m_ssf",
+      "sublabel": "keycloak-ssf-transmitter · class diagram ↗"
+    },
+    {
+      "id": "m_ssf__services",
+      "label": "services",
+      "parent": "m_ssf",
+      "sublabel": "keycloak-ssf-services · class diagram ↗"
+    },
+    {
+      "id": "m_ssf__tests",
+      "label": "tests",
+      "parent": "m_ssf",
+      "sublabel": "keycloak-ssf-tests-parent"
+    },
+    {
+      "id": "m_authzen",
+      "label": "authzen/",
+      "parent": "g_proto",
+      "sublabel": "keycloak-authzen-parent",
+      "sources": [
+        {
+          "path": "authzen/pom.xml",
+          "line": 5,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_authzen__services",
+      "label": "services",
+      "parent": "m_authzen",
+      "sublabel": "keycloak-authzen-services · class diagram ↗"
+    },
+    {
+      "id": "m_authzen__tests",
+      "label": "tests",
+      "parent": "m_authzen",
+      "sublabel": "keycloak-authzen-tests-parent"
+    },
+    {
+      "id": "g_ui",
+      "label": "UI & themes",
+      "parent": "root",
+      "sublabel": "consoles and themes"
+    },
+    {
+      "id": "m_themes",
+      "label": "themes/",
+      "parent": "g_ui",
+      "sublabel": "keycloak-themes",
+      "sources": [
+        {
+          "path": "themes/pom.xml",
+          "line": 4,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_js",
+      "label": "js/",
+      "parent": "g_ui",
+      "sublabel": "keycloak-js-parent",
+      "sources": [
+        {
+          "path": "js/pom.xml",
+          "line": 6,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_js__apps_account_ui",
+      "label": "apps/account-ui",
+      "parent": "m_js",
+      "sublabel": "keycloak-account-ui"
+    },
+    {
+      "id": "m_js__apps_admin_ui",
+      "label": "apps/admin-ui",
+      "parent": "m_js",
+      "sublabel": "keycloak-admin-ui"
+    },
+    {
+      "id": "m_js__libs_keycloak_admin_client",
+      "label": "libs/keycloak-admin-client",
+      "parent": "m_js",
+      "sublabel": "keycloak-js-admin-client"
+    },
+    {
+      "id": "m_js__libs_ui_shared",
+      "label": "libs/ui-shared",
+      "parent": "m_js",
+      "sublabel": "keycloak-ui-shared"
+    },
+    {
+      "id": "m_js__themes_vendor",
+      "label": "themes-vendor",
+      "parent": "m_js",
+      "sublabel": "keycloak-themes-vendor"
+    },
+    {
+      "id": "g_runtime",
+      "label": "Runtime & delivery",
+      "parent": "root",
+      "sublabel": "Quarkus server, dist, operator"
+    },
+    {
+      "id": "m_quarkus",
+      "label": "quarkus/",
+      "parent": "g_runtime",
+      "sublabel": "keycloak-quarkus-parent",
+      "sources": [
+        {
+          "path": "quarkus/pom.xml",
+          "line": 21,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_quarkus__config_api",
+      "label": "config-api",
+      "parent": "m_quarkus",
+      "sublabel": "keycloak-config-api · class diagram ↗"
+    },
+    {
+      "id": "m_quarkus__runtime",
+      "label": "runtime",
+      "parent": "m_quarkus",
+      "sublabel": "keycloak-quarkus-server · class diagram ↗"
+    },
+    {
+      "id": "m_quarkus__deployment",
+      "label": "deployment",
+      "parent": "m_quarkus",
+      "sublabel": "keycloak-quarkus-server-deployment · class diagram ↗"
+    },
+    {
+      "id": "m_quarkus__server",
+      "label": "server",
+      "parent": "m_quarkus",
+      "sublabel": "keycloak-quarkus-server-app"
+    },
+    {
+      "id": "m_quarkus__dist",
+      "label": "dist",
+      "parent": "m_quarkus",
+      "sublabel": "keycloak-quarkus-dist"
+    },
+    {
+      "id": "m_quarkus__tests",
+      "label": "tests",
+      "parent": "m_quarkus",
+      "sublabel": "keycloak-quarkus-test-parent"
+    },
+    {
+      "id": "m_distribution",
+      "label": "distribution/",
+      "parent": "g_runtime",
+      "sublabel": "keycloak-distribution-parent · profile",
+      "sources": [
+        {
+          "path": "distribution/pom.xml",
+          "line": 21,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_distribution__saml_adapters",
+      "label": "saml-adapters",
+      "parent": "m_distribution",
+      "sublabel": "keycloak-saml-adapters-distribution-parent"
+    },
+    {
+      "id": "m_distribution__galleon_feature_packs",
+      "label": "galleon-feature-packs",
+      "parent": "m_distribution",
+      "sublabel": "galleon-feature-packs-parent"
+    },
+    {
+      "id": "m_distribution__licenses_common",
+      "label": "licenses-common",
+      "parent": "m_distribution",
+      "sublabel": "keycloak-distribution-licenses-common"
+    },
+    {
+      "id": "m_distribution__maven_plugins",
+      "label": "maven-plugins",
+      "parent": "m_distribution",
+      "sublabel": "keycloak-distribution-maven-plugins-parent"
+    },
+    {
+      "id": "m_distribution__api_docs_dist",
+      "label": "api-docs-dist",
+      "parent": "m_distribution",
+      "sublabel": "keycloak-api-docs-dist"
+    },
+    {
+      "id": "m_distribution__downloads",
+      "label": "downloads",
+      "parent": "m_distribution",
+      "sublabel": "keycloak-dist-downloads"
+    },
+    {
+      "id": "m_operator",
+      "label": "operator/",
+      "parent": "g_runtime",
+      "sublabel": "keycloak-operator · profile · class diagram ↗",
+      "sources": [
+        {
+          "path": "operator/pom.xml",
+          "line": 8,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "g_client",
+      "label": "Client integrations",
+      "parent": "root",
+      "sublabel": "admin client, CLI, adapters"
+    },
+    {
+      "id": "m_integration",
+      "label": "integration/",
+      "parent": "g_client",
+      "sublabel": "keycloak-integration-parent",
+      "sources": [
+        {
+          "path": "integration/pom.xml",
+          "line": 21,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_integration__admin_client_core",
+      "label": "admin-client-core",
+      "parent": "m_integration",
+      "sublabel": "keycloak-admin-client-core · class diagram ↗"
+    },
+    {
+      "id": "m_integration__admin_client",
+      "label": "admin-client",
+      "parent": "m_integration",
+      "sublabel": "keycloak-admin-client-internal · class diagram ↗"
+    },
+    {
+      "id": "m_integration__admin_client_jackson3",
+      "label": "admin-client-jackson3",
+      "parent": "m_integration",
+      "sublabel": "keycloak-admin-client-jackson3-internal · class diagram ↗"
+    },
+    {
+      "id": "m_integration__client_registration",
+      "label": "client-registration",
+      "parent": "m_integration",
+      "sublabel": "keycloak-client-registration-api · class diagram ↗"
+    },
+    {
+      "id": "m_integration__client_cli",
+      "label": "client-cli",
+      "parent": "m_integration",
+      "sublabel": "keycloak-client-cli-parent · class diagram ↗"
+    },
+    {
+      "id": "m_adapters",
+      "label": "adapters/",
+      "parent": "g_client",
+      "sublabel": "keycloak-adapters-pom · profile",
+      "sources": [
+        {
+          "path": "adapters/pom.xml",
+          "line": 21,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_adapters__spi",
+      "label": "spi",
+      "parent": "m_adapters",
+      "sublabel": "keycloak-client-adapter-spi-pom · class diagram ↗"
+    },
+    {
+      "id": "m_adapters__saml",
+      "label": "saml",
+      "parent": "m_adapters",
+      "sublabel": "keycloak-saml-client-adapter-pom · class diagram ↗"
+    },
+    {
+      "id": "g_build",
+      "label": "Build & BOMs",
+      "parent": "root",
+      "sublabel": "dependency mgmt, verifiers"
+    },
+    {
+      "id": "m_boms",
+      "label": "boms/",
+      "parent": "g_build",
+      "sublabel": "keycloak-bom-parent",
+      "sources": [
+        {
+          "path": "boms/pom.xml",
+          "line": 23,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_boms__spi",
+      "label": "spi",
+      "parent": "m_boms",
+      "sublabel": "keycloak-spi-bom"
+    },
+    {
+      "id": "m_dependencies",
+      "label": "dependencies/",
+      "parent": "g_build",
+      "sublabel": "keycloak-dependencies-parent",
+      "sources": [
+        {
+          "path": "dependencies/pom.xml",
+          "line": 22,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_dependencies__server_min",
+      "label": "server-min",
+      "parent": "m_dependencies",
+      "sublabel": "keycloak-dependencies-server-min"
+    },
+    {
+      "id": "m_dependencies__server_all",
+      "label": "server-all",
+      "parent": "m_dependencies",
+      "sublabel": "keycloak-dependencies-server-all"
+    },
+    {
+      "id": "m_misc_db_compatibility_verifier",
+      "label": "misc/db-compatibility-verifier/",
+      "parent": "g_build",
+      "sublabel": "db-compatibility-verifier-maven-plugin",
+      "sources": [
+        {
+          "path": "misc/db-compatibility-verifier/pom.xml",
+          "line": 9,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "m_misc_theme_verifier",
+      "label": "misc/theme-verifier/",
+      "parent": "g_build",
+      "sublabel": "theme-verifier-maven-plugin",
+      "sources": [
+        {
+          "path": "misc/theme-verifier/pom.xml",
+          "line": 25,
+          "label": "module pom"
+        }
+      ]
+    },
+    {
+      "id": "g_test",
+      "label": "Test infrastructure",
+      "parent": "root",
+      "sublabel": "framework and new test suite"
+    },
+    {
+      "id": "m_test_framework",
+      "label": "test-framework/",
+      "parent": "g_test",
+      "sublabel": "keycloak-test-framework-parent",
+      "sources": [
+        {
+          "path": "test-framework/pom.xml",
+          "line": 22,
+          "label": "module pom"
+        }
+      ],
+      "collapsed": true
+    },
+    {
+      "id": "m_test_framework__bom",
+      "label": "bom",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-bom"
+    },
+    {
+      "id": "m_test_framework__builders",
+      "label": "builders",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-builders"
+    },
+    {
+      "id": "m_test_framework__core",
+      "label": "core",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-core"
+    },
+    {
+      "id": "m_test_framework__junit5_config",
+      "label": "junit5-config",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-junit5-config"
+    },
+    {
+      "id": "m_test_framework__test_containers",
+      "label": "test-containers",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-test-containers"
+    },
+    {
+      "id": "m_test_framework__db_edb",
+      "label": "db-edb",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-db-edb"
+    },
+    {
+      "id": "m_test_framework__db_mariadb",
+      "label": "db-mariadb",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-db-mariadb"
+    },
+    {
+      "id": "m_test_framework__db_mssql",
+      "label": "db-mssql",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-db-mssql"
+    },
+    {
+      "id": "m_test_framework__db_mysql",
+      "label": "db-mysql",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-db-mysql"
+    },
+    {
+      "id": "m_test_framework__db_oracle",
+      "label": "db-oracle",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-db-oracle"
+    },
+    {
+      "id": "m_test_framework__db_postgres",
+      "label": "db-postgres",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-db-postgres"
+    },
+    {
+      "id": "m_test_framework__db_tidb",
+      "label": "db-tidb",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-db-tidb"
+    },
+    {
+      "id": "m_test_framework__email_server",
+      "label": "email-server",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-email-server"
+    },
+    {
+      "id": "m_test_framework__test_providers",
+      "label": "test-providers",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-test-providers"
+    },
+    {
+      "id": "m_test_framework__tests",
+      "label": "tests",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-tests"
+    },
+    {
+      "id": "m_test_framework__infinispan_server",
+      "label": "infinispan-server",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-infinispan-server"
+    },
+    {
+      "id": "m_test_framework__oauth",
+      "label": "oauth",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-oauth"
+    },
+    {
+      "id": "m_test_framework__remote",
+      "label": "remote",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-remote"
+    },
+    {
+      "id": "m_test_framework__remote_providers",
+      "label": "remote-providers",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-remote-providers"
+    },
+    {
+      "id": "m_test_framework__ui",
+      "label": "ui",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-ui"
+    },
+    {
+      "id": "m_test_framework__clustering",
+      "label": "clustering",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-clustering"
+    },
+    {
+      "id": "m_test_framework__conformance_runner",
+      "label": "conformance-runner",
+      "parent": "m_test_framework",
+      "sublabel": "keycloak-test-framework-conformance-runner"
+    },
+    {
+      "id": "m_tests",
+      "label": "tests/",
+      "parent": "g_test",
+      "sublabel": "keycloak-tests-parent",
+      "sources": [
+        {
+          "path": "tests/pom.xml",
+          "line": 22,
+          "label": "module pom"
+        }
+      ],
+      "collapsed": true
+    },
+    {
+      "id": "m_tests__base",
+      "label": "base",
+      "parent": "m_tests",
+      "sublabel": "keycloak-tests-base"
+    },
+    {
+      "id": "m_tests__utils",
+      "label": "utils",
+      "parent": "m_tests",
+      "sublabel": "keycloak-tests-utils"
+    },
+    {
+      "id": "m_tests__utils_shared",
+      "label": "utils-shared",
+      "parent": "m_tests",
+      "sublabel": "keycloak-tests-utils-shared"
+    },
+    {
+      "id": "m_tests__custom_providers",
+      "label": "custom-providers",
+      "parent": "m_tests",
+      "sublabel": "keycloak-tests-custom-providers"
+    },
+    {
+      "id": "m_tests__custom_scripts",
+      "label": "custom-scripts",
+      "parent": "m_tests",
+      "sublabel": "keycloak-tests-custom-scripts"
+    },
+    {
+      "id": "m_tests__clustering",
+      "label": "clustering",
+      "parent": "m_tests",
+      "sublabel": "keycloak-tests-clustering"
+    },
+    {
+      "id": "m_tests__webauthn",
+      "label": "webauthn",
+      "parent": "m_tests",
+      "sublabel": "keycloak-tests-webauthn"
+    },
+    {
+      "id": "m_tests__conformance",
+      "label": "conformance",
+      "parent": "m_tests",
+      "sublabel": "keycloak-tests-conformance"
+    },
+    {
+      "id": "m_tests__migration_util",
+      "label": "migration-util",
+      "parent": "m_tests",
+      "sublabel": "keycloak-tests-migration-util"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "How to read",
+      "items": [
+        "Level 1 groups are a responsibility grouping, not Maven parents",
+        "Level 2 and 3 are real Maven modules (directory, artifactId)",
+        "testsuite/ and docs/ are omitted as requested; test infrastructure starts collapsed"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Profile-gated modules",
+      "items": [
+        "adapters/, distribution/ and operator/ are listed under root pom profiles, not the default <modules> block"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Class diagrams",
+      "items": [
+        "Nodes marked \"class diagram ↗\" link to ../class-diagram/<module>.class.html",
+        "43 modules have a class diagram"
+      ]
+    }
+  ]
+}

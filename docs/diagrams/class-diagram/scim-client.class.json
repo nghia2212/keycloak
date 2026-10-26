@@ -1,0 +1,521 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "scim/client module types",
+    "output": "docs/diagrams/class-diagram/scim-client.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_AbstractScimResourceClient",
+      "label": "AbstractScimResourceClient",
+      "kind": "abstract",
+      "sublabel": "scim.client",
+      "row": 2,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "client",
+          "type": "ScimClient",
+          "visibility": "protected"
+        },
+        {
+          "name": "resourceTypeClass",
+          "type": "Class<R>",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "resource"
+        },
+        {
+          "name": "update",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "resource"
+        },
+        {
+          "name": "delete",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "id"
+        },
+        {
+          "name": "get",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "id"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/client/src/main/java/org/keycloak/scim/client/AbstractScimResourceClient.java",
+          "line": 20,
+          "end_line": 50
+        }
+      ]
+    },
+    {
+      "id": "t_ScimClient",
+      "label": "ScimClient",
+      "kind": "class",
+      "sublabel": "A client for interacting with a SCIM 2.…",
+      "row": 1,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "http",
+          "type": "SimpleHttp",
+          "visibility": "private"
+        },
+        {
+          "name": "baseUrl",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "Builder",
+          "visibility": "public",
+          "parameters": "httpClient",
+          "static": true
+        },
+        {
+          "name": "users",
+          "returns": "ScimUsersClient",
+          "visibility": "public"
+        },
+        {
+          "name": "groups",
+          "returns": "ScimGroupsClient",
+          "visibility": "public"
+        },
+        {
+          "name": "config",
+          "returns": "ScimConfigClient",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/client/src/main/java/org/keycloak/scim/client/ScimClient.java",
+          "line": 40,
+          "end_line": 64
+        }
+      ]
+    },
+    {
+      "id": "t_AuthorizationMethod",
+      "label": "AuthorizationMethod",
+      "kind": "interface",
+      "sublabel": "scim.client.authorization",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "onBefore",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "http, request",
+          "abstract": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/client/src/main/java/org/keycloak/scim/client/authorization/AuthorizationMethod.java",
+          "line": 6,
+          "end_line": 8
+        }
+      ]
+    },
+    {
+      "id": "t_ResourceFilter",
+      "label": "ResourceFilter",
+      "kind": "class",
+      "sublabel": "Fluent builder for SCIM filter expressi…",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "filter",
+          "type": "StringBuilder",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "filter",
+          "returns": "ResourceFilter",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "eq",
+          "returns": "ResourceFilter",
+          "visibility": "public",
+          "parameters": "property, value"
+        },
+        {
+          "name": "ne",
+          "returns": "ResourceFilter",
+          "visibility": "public",
+          "parameters": "property, value"
+        },
+        {
+          "name": "co",
+          "returns": "ResourceFilter",
+          "visibility": "public",
+          "parameters": "property, value"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/client/src/main/java/org/keycloak/scim/client/ResourceFilter.java",
+          "line": 10,
+          "end_line": 30
+        }
+      ]
+    },
+    {
+      "id": "t_ScimClientException",
+      "label": "ScimClientException",
+      "kind": "class",
+      "sublabel": "scim.client",
+      "row": 4,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "response",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "error",
+          "type": "ErrorResponse",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getResponse",
+          "returns": "String",
+          "visibility": "public"
+        },
+        {
+          "name": "getError",
+          "returns": "ErrorResponse",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/client/src/main/java/org/keycloak/scim/client/ScimClientException.java",
+          "line": 5,
+          "end_line": 32
+        }
+      ]
+    },
+    {
+      "id": "t_ScimUsersClient",
+      "label": "ScimUsersClient",
+      "kind": "class",
+      "sublabel": "scim.client",
+      "row": 3,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getAll",
+          "returns": "ListResponse<User>",
+          "visibility": "public"
+        },
+        {
+          "name": "search",
+          "returns": "ListResponse<User>",
+          "visibility": "public",
+          "parameters": "filterExpression"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/client/src/main/java/org/keycloak/scim/client/ScimUsersClient.java",
+          "line": 12,
+          "end_line": 82
+        }
+      ]
+    },
+    {
+      "id": "t_ScimSchemasClient",
+      "label": "ScimSchemasClient",
+      "kind": "class",
+      "sublabel": "Client for interacting with the SCIM Sc…",
+      "row": 3,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "scimClient",
+          "type": "ScimClient",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getAll",
+          "returns": "ListResponse<Schema>",
+          "visibility": "public"
+        },
+        {
+          "name": "create",
+          "returns": "Schema",
+          "visibility": "public",
+          "parameters": "resource"
+        },
+        {
+          "name": "update",
+          "returns": "Schema",
+          "visibility": "public",
+          "parameters": "resource"
+        },
+        {
+          "name": "delete",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "id"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/client/src/main/java/org/keycloak/scim/client/ScimSchemasClient.java",
+          "line": 10,
+          "end_line": 60
+        }
+      ]
+    },
+    {
+      "id": "t_ScimGroupsClient",
+      "label": "ScimGroupsClient",
+      "kind": "class",
+      "sublabel": "scim.client",
+      "row": 3,
+      "col": 3,
+      "methods": [
+        {
+          "name": "getAll",
+          "returns": "ListResponse<Group>",
+          "visibility": "public",
+          "parameters": "filterExpression"
+        },
+        {
+          "name": "search",
+          "returns": "ListResponse<Group>",
+          "visibility": "public",
+          "parameters": "filterExpression, startInde…"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/client/src/main/java/org/keycloak/scim/client/ScimGroupsClient.java",
+          "line": 8,
+          "end_line": 48
+        }
+      ]
+    },
+    {
+      "id": "t_ScimResourceTypesClient",
+      "label": "ScimResourceTypesClient",
+      "kind": "class",
+      "sublabel": "scim.client",
+      "row": 4,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "client",
+          "type": "ScimClient",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getAll",
+          "returns": "ListResponse<ResourceType>",
+          "visibility": "public"
+        },
+        {
+          "name": "search",
+          "returns": "ListResponse<ResourceType>",
+          "visibility": "public",
+          "parameters": "request"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/client/src/main/java/org/keycloak/scim/client/ScimResourceTypesClient.java",
+          "line": 7,
+          "end_line": 21
+        }
+      ]
+    },
+    {
+      "id": "t_OAuth2Bearer",
+      "label": "OAuth2Bearer",
+      "kind": "record",
+      "sublabel": "An implementation of AuthorizationMetho…",
+      "row": 1,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "tokenEndpoint",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "clientId",
+          "type": "String",
+          "visibility": "private"
+        },
+        {
+          "name": "clientSecret",
+          "type": "String",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "onBefore",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "http, request"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/client/src/main/java/org/keycloak/scim/client/authorization/OAuth2Bearer.java",
+          "line": 20,
+          "end_line": 23
+        }
+      ]
+    },
+    {
+      "id": "t_ScimConfigClient",
+      "label": "ScimConfigClient",
+      "kind": "class",
+      "sublabel": "scim.client",
+      "row": 4,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "client",
+          "type": "ScimClient",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "get",
+          "returns": "ServiceProviderConfig",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "scim/client/src/main/java/org/keycloak/scim/client/ScimConfigClient.java",
+          "line": 6,
+          "end_line": 14
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_ScimUsersClient_AbstractScimResourceClient",
+      "from": "t_ScimUsersClient",
+      "to": "t_AbstractScimResourceClient",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_ScimSchemasClient_AbstractScimResourceClient",
+      "from": "t_ScimSchemasClient",
+      "to": "t_AbstractScimResourceClient",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_ScimGroupsClient_AbstractScimResourceClient",
+      "from": "t_ScimGroupsClient",
+      "to": "t_AbstractScimResourceClient",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r3_OAuth2Bearer_AuthorizationMethod",
+      "from": "t_OAuth2Bearer",
+      "to": "t_AuthorizationMethod",
+      "kind": "realization"
+    },
+    {
+      "id": "r4_AbstractScimResourceClient_ScimClient",
+      "from": "t_AbstractScimResourceClient",
+      "to": "t_ScimClient",
+      "kind": "association"
+    },
+    {
+      "id": "r5_ScimClient_AuthorizationMethod",
+      "from": "t_ScimClient",
+      "to": "t_AuthorizationMethod",
+      "kind": "association"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module scim/client/ (keycloak-scim-client): 11 public types, 11 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "scim.client (9)",
+        "scim.client.authorization (2)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "ScimSchemasClient has a ScimClient",
+        "ScimResourceTypesClient has a ScimClient",
+        "ScimConfigClient has a ScimClient",
+        "ScimClient uses ScimUsersClient",
+        "ScimClient uses ScimGroupsClient"
+      ]
+    }
+  ]
+}

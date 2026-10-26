@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "integration/admin-client-jackson3 module types",
+    "output": "docs/diagrams/class-diagram/integration-admin-client-jackson3.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_Jackson3RawJsonValueSupport",
+      "label": "Jackson3RawJsonValueSupport",
+      "kind": "class",
+      "sublabel": "admin.client.jackson3",
+      "row": 0,
+      "col": 2,
+      "methods": [
+        {
+          "name": "get",
+          "returns": "RawJsonValue",
+          "visibility": "public",
+          "parameters": "node, key"
+        },
+        {
+          "name": "path",
+          "returns": "RawJsonValue",
+          "visibility": "public",
+          "parameters": "node, key"
+        },
+        {
+          "name": "asBoolean",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "value"
+        },
+        {
+          "name": "asInt",
+          "returns": "int",
+          "visibility": "public",
+          "parameters": "value"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-jackson3/src/main/java/org/keycloak/admin/client/jackson3/Jackson3RawJsonValueSupport.java",
+          "line": 9,
+          "end_line": 48
+        }
+      ]
+    },
+    {
+      "id": "t_StreamMessageBodyReader3",
+      "label": "StreamMessageBodyReader3",
+      "kind": "class",
+      "sublabel": "admin.client.jackson3",
+      "row": 0,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "jacksonProvider",
+          "type": "Object",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "isReadable",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "type, genericType, annotati…"
+        },
+        {
+          "name": "readFrom",
+          "returns": "Stream<?>",
+          "visibility": "public",
+          "parameters": "type, genericType, annotati…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-jackson3/src/main/java/org/keycloak/admin/client/jackson3/StreamMessageBodyReader3.java",
+          "line": 29,
+          "end_line": 43
+        }
+      ]
+    },
+    {
+      "id": "t_Jackson3JsonMapper",
+      "label": "Jackson3JsonMapper",
+      "kind": "class",
+      "sublabel": "admin.client.jackson3",
+      "row": 0,
+      "col": 3,
+      "methods": [
+        {
+          "name": "convertValue",
+          "returns": "T",
+          "visibility": "public",
+          "parameters": "fromValue, toValueType"
+        },
+        {
+          "name": "readValue",
+          "returns": "T",
+          "visibility": "public",
+          "parameters": "src, valueType"
+        },
+        {
+          "name": "writeValueAsBytes",
+          "returns": "byte[]",
+          "visibility": "public",
+          "parameters": "value"
+        },
+        {
+          "name": "writeValueAsString",
+          "returns": "String",
+          "visibility": "public",
+          "parameters": "value"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-jackson3/src/main/java/org/keycloak/admin/client/jackson3/Jackson3JsonMapper.java",
+          "line": 9,
+          "end_line": 45
+        }
+      ]
+    },
+    {
+      "id": "t_JacksonProvider3",
+      "label": "JacksonProvider3",
+      "kind": "class",
+      "sublabel": "admin.client.jackson3",
+      "row": 0,
+      "col": 1,
+      "sources": [
+        {
+          "path": "integration/admin-client-jackson3/src/main/java/org/keycloak/admin/client/jackson3/JacksonProvider3.java",
+          "line": 5
+        }
+      ]
+    },
+    {
+      "id": "t_ResteasyClientClassicProvider3",
+      "label": "ResteasyClientClassicProvider3",
+      "kind": "class",
+      "sublabel": "admin.client.jackson3",
+      "row": 1,
+      "col": 0,
+      "methods": [
+        {
+          "name": "newRestEasyClient",
+          "returns": "Client",
+          "visibility": "public",
+          "parameters": "customJacksonProvider, sslC…"
+        },
+        {
+          "name": "targetProxy",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "client, targetClass"
+        }
+      ],
+      "sources": [
+        {
+          "path": "integration/admin-client-jackson3/src/main/java/org/keycloak/admin/client/jackson3/ResteasyClientClassicProvider3.java",
+          "line": 13,
+          "end_line": 31
+        }
+      ]
+    }
+  ],
+  "relationships": [],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module integration/admin-client-jackson3/ (keycloak-admin-client-jackson3-internal): 5 public types, 5 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "admin.client.jackson3 (5)"
+      ]
+    }
+  ]
+}

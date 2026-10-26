@@ -1,0 +1,815 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "authz/policy module types",
+    "output": "docs/diagrams/class-diagram/authz-policy.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "t_PolicyProvider",
+      "label": "PolicyProvider",
+      "kind": "interface",
+      "sublabel": "from server-spi-private/",
+      "row": 0,
+      "col": 2,
+      "methods": [
+        {
+          "name": "evaluate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "evaluation",
+          "abstract": true
+        },
+        {
+          "name": "isValid",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "policy, authorization"
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/policy/provider/PolicyProvider.java",
+          "line": 28,
+          "end_line": 40
+        }
+      ]
+    },
+    {
+      "id": "t_PolicyProviderFactory",
+      "label": "PolicyProviderFactory",
+      "kind": "interface",
+      "sublabel": "from server-spi-private/",
+      "row": 6,
+      "col": 1,
+      "methods": [
+        {
+          "name": "create",
+          "returns": "PolicyProvider",
+          "visibility": "public",
+          "parameters": "authorization",
+          "abstract": true
+        },
+        {
+          "name": "toRepresentation",
+          "returns": "R",
+          "visibility": "public",
+          "parameters": "policy, authorization",
+          "abstract": true
+        },
+        {
+          "name": "onCreate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "policy, representation, aut…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/policy/provider/PolicyProviderFactory.java",
+          "line": 31,
+          "end_line": 55
+        }
+      ]
+    },
+    {
+      "id": "t_PartialEvaluationPolicyProvider",
+      "label": "PartialEvaluationPolicyProvider",
+      "kind": "interface",
+      "sublabel": "from server-spi-private/",
+      "row": 3,
+      "col": 1,
+      "methods": [
+        {
+          "name": "supports",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "policy",
+          "abstract": true
+        },
+        {
+          "name": "evaluate",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "session, policy, subject",
+          "abstract": true
+        },
+        {
+          "name": "evaluateOutcome",
+          "returns": "Outcome",
+          "visibility": "public",
+          "parameters": "session, policy, subject"
+        }
+      ],
+      "sources": [
+        {
+          "path": "server-spi-private/src/main/java/org/keycloak/authorization/fgap/evaluation/partial/PartialEvaluationPolicyProvider.java",
+          "line": 34,
+          "end_line": 97
+        }
+      ]
+    },
+    {
+      "id": "t_AbstractPermissionProvider",
+      "label": "AbstractPermissionProvider",
+      "kind": "abstract",
+      "sublabel": "authorization.policy.provider.permission",
+      "row": 1,
+      "col": 1,
+      "methods": [
+        {
+          "name": "evaluate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "evaluation"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/permission/AbstractPermissionProvider.java",
+          "line": 35,
+          "end_line": 71
+        }
+      ]
+    },
+    {
+      "id": "t_JSPolicyProviderFactory",
+      "label": "JSPolicyProviderFactory",
+      "kind": "class",
+      "sublabel": "authorization.policy.provider.js",
+      "row": 7,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "provider",
+          "type": "JSPolicyProvider",
+          "visibility": "private"
+        },
+        {
+          "name": "scriptCache",
+          "type": "ScriptCache",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "PolicyProvider",
+          "visibility": "public",
+          "parameters": "authorization"
+        },
+        {
+          "name": "toRepresentation",
+          "returns": "JSPolicyRepresentation",
+          "visibility": "public",
+          "parameters": "policy, authorization"
+        },
+        {
+          "name": "onCreate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "policy, representation, aut…"
+        },
+        {
+          "name": "onUpdate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "policy, representation, aut…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/js/JSPolicyProviderFactory.java",
+          "line": 24,
+          "end_line": 67
+        }
+      ]
+    },
+    {
+      "id": "t_AggregatePolicyProviderFactory",
+      "label": "AggregatePolicyProviderFactory",
+      "kind": "class",
+      "sublabel": "authorization.policy.provider.aggregated",
+      "row": 7,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "provider",
+          "type": "AggregatePolicyProvider",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "PolicyProvider",
+          "visibility": "public",
+          "parameters": "authorization"
+        },
+        {
+          "name": "onCreate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "policy, representation, aut…"
+        },
+        {
+          "name": "onUpdate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "policy, representation, aut…"
+        },
+        {
+          "name": "onImport",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "policy, representation, aut…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/aggregated/AggregatePolicyProviderFactory.java",
+          "line": 36,
+          "end_line": 73
+        }
+      ]
+    },
+    {
+      "id": "t_GroupPolicyProviderFactory",
+      "label": "GroupPolicyProviderFactory",
+      "kind": "class",
+      "sublabel": "authorization.policy.provider.group",
+      "row": 7,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "provider",
+          "type": "GroupPolicyProvider",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "PolicyProvider",
+          "visibility": "public",
+          "parameters": "authorization"
+        },
+        {
+          "name": "toRepresentation",
+          "returns": "GroupPolicyRepresentation",
+          "visibility": "public",
+          "parameters": "policy, authorization"
+        },
+        {
+          "name": "onCreate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "policy, representation, aut…"
+        },
+        {
+          "name": "onUpdate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "policy, representation, aut…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/group/GroupPolicyProviderFactory.java",
+          "line": 50,
+          "end_line": 106
+        }
+      ]
+    },
+    {
+      "id": "t_RolePolicyProviderFactory",
+      "label": "RolePolicyProviderFactory",
+      "kind": "class",
+      "sublabel": "authorization.policy.provider.role",
+      "row": 5,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "provider",
+          "type": "RolePolicyProvider",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "PolicyProvider",
+          "visibility": "public",
+          "parameters": "authorization"
+        },
+        {
+          "name": "toRepresentation",
+          "returns": "RolePolicyRepresentation",
+          "visibility": "public",
+          "parameters": "policy, authorization"
+        },
+        {
+          "name": "onCreate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "policy, representation, aut…"
+        },
+        {
+          "name": "onUpdate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "policy, representation, aut…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/role/RolePolicyProviderFactory.java",
+          "line": 51,
+          "end_line": 103
+        }
+      ]
+    },
+    {
+      "id": "t_UserPolicyProviderFactory",
+      "label": "UserPolicyProviderFactory",
+      "kind": "class",
+      "sublabel": "authorization.policy.provider.user",
+      "row": 5,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "provider",
+          "type": "UserPolicyProvider",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "create",
+          "returns": "PolicyProvider",
+          "visibility": "public",
+          "parameters": "authorization"
+        },
+        {
+          "name": "toRepresentation",
+          "returns": "UserPolicyRepresentation",
+          "visibility": "public",
+          "parameters": "policy, authorization"
+        },
+        {
+          "name": "onCreate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "policy, representation, aut…"
+        },
+        {
+          "name": "onUpdate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "policy, representation, aut…"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/user/UserPolicyProviderFactory.java",
+          "line": 47,
+          "end_line": 105
+        }
+      ]
+    },
+    {
+      "id": "t_AggregatePolicyProvider",
+      "label": "AggregatePolicyProvider",
+      "kind": "class",
+      "sublabel": "authorization.policy.provider.aggregated",
+      "row": 1,
+      "col": 3,
+      "methods": [
+        {
+          "name": "evaluate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "evaluation"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "supports",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "policy"
+        },
+        {
+          "name": "evaluateOutcome",
+          "returns": "Outcome",
+          "visibility": "public",
+          "parameters": "session, policy, subject"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/aggregated/AggregatePolicyProvider.java",
+          "line": 51,
+          "end_line": 125
+        }
+      ]
+    },
+    {
+      "id": "t_GroupPolicyProvider",
+      "label": "GroupPolicyProvider",
+      "kind": "class",
+      "sublabel": "authorization.policy.provider.group",
+      "row": 4,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "representationFunction",
+          "type": "BiFunction",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "evaluate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "evaluation"
+        },
+        {
+          "name": "evaluateOutcome",
+          "returns": "Outcome",
+          "visibility": "public",
+          "parameters": "session, policy, subject"
+        },
+        {
+          "name": "supports",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "policy"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/group/GroupPolicyProvider.java",
+          "line": 61,
+          "end_line": 187
+        }
+      ]
+    },
+    {
+      "id": "t_RolePolicyProvider",
+      "label": "RolePolicyProvider",
+      "kind": "class",
+      "sublabel": "authorization.policy.provider.role",
+      "row": 4,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "representationFunction",
+          "type": "BiFunction",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "evaluate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "evaluation"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "getPermissions",
+          "returns": "Stream<Policy>",
+          "visibility": "public",
+          "parameters": "session, resourceType, grou…"
+        },
+        {
+          "name": "supports",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "policy"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/role/RolePolicyProvider.java",
+          "line": 53,
+          "end_line": 158
+        }
+      ]
+    },
+    {
+      "id": "t_UserPolicyProvider",
+      "label": "UserPolicyProvider",
+      "kind": "class",
+      "sublabel": "authorization.policy.provider.user",
+      "row": 4,
+      "col": 2,
+      "attributes": [
+        {
+          "name": "representationFunction",
+          "type": "BiFunction",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "evaluate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "evaluation"
+        },
+        {
+          "name": "getPermissions",
+          "returns": "Stream<Policy>",
+          "visibility": "public",
+          "parameters": "session, resourceType, grou…"
+        },
+        {
+          "name": "supports",
+          "returns": "boolean",
+          "visibility": "public",
+          "parameters": "policy"
+        },
+        {
+          "name": "close",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/user/UserPolicyProvider.java",
+          "line": 43,
+          "end_line": 89
+        }
+      ]
+    },
+    {
+      "id": "t_ScriptCache",
+      "label": "ScriptCache",
+      "kind": "class",
+      "sublabel": "authorization.policy.provider.js",
+      "row": 6,
+      "col": 3,
+      "attributes": [
+        {
+          "name": "cache",
+          "type": "Map<String,CacheEntry>",
+          "visibility": "private"
+        },
+        {
+          "name": "writing",
+          "type": "AtomicBoolean",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "computeIfAbsent",
+          "returns": "EvaluatableScriptAdapter",
+          "visibility": "public",
+          "parameters": "id, Function<String, functi…"
+        },
+        {
+          "name": "remove",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "key"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/js/ScriptCache.java",
+          "line": 31,
+          "end_line": 93
+        }
+      ]
+    },
+    {
+      "id": "t_ResourcePolicyProvider",
+      "label": "ResourcePolicyProvider",
+      "kind": "class",
+      "sublabel": "authorization.policy.provider.permission",
+      "row": 2,
+      "col": 0,
+      "methods": [
+        {
+          "name": "evaluate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "evaluation"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/permission/ResourcePolicyProvider.java",
+          "line": 33,
+          "end_line": 38
+        }
+      ]
+    },
+    {
+      "id": "t_ScopePolicyProvider",
+      "label": "ScopePolicyProvider",
+      "kind": "class",
+      "sublabel": "authorization.policy.provider.permission",
+      "row": 2,
+      "col": 1,
+      "methods": [
+        {
+          "name": "evaluate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "evaluation"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/permission/ScopePolicyProvider.java",
+          "line": 33,
+          "end_line": 38
+        }
+      ]
+    },
+    {
+      "id": "t_UMAPolicyProvider",
+      "label": "UMAPolicyProvider",
+      "kind": "class",
+      "sublabel": "authorization.policy.provider.permission",
+      "row": 2,
+      "col": 2,
+      "methods": [
+        {
+          "name": "evaluate",
+          "returns": "void",
+          "visibility": "public",
+          "parameters": "evaluation"
+        }
+      ],
+      "sources": [
+        {
+          "path": "authz/policy/common/src/main/java/org/keycloak/authorization/policy/provider/permission/UMAPolicyProvider.java",
+          "line": 29,
+          "end_line": 34
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0_ResourcePolicyProvider_AbstractPermissionProvider",
+      "from": "t_ResourcePolicyProvider",
+      "to": "t_AbstractPermissionProvider",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r1_ScopePolicyProvider_AbstractPermissionProvider",
+      "from": "t_ScopePolicyProvider",
+      "to": "t_AbstractPermissionProvider",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r2_UMAPolicyProvider_AbstractPermissionProvider",
+      "from": "t_UMAPolicyProvider",
+      "to": "t_AbstractPermissionProvider",
+      "kind": "inheritance"
+    },
+    {
+      "id": "r3_AbstractPermissionProvider_PolicyProvider",
+      "from": "t_AbstractPermissionProvider",
+      "to": "t_PolicyProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r4_JSPolicyProviderFactory_PolicyProviderFactory",
+      "from": "t_JSPolicyProviderFactory",
+      "to": "t_PolicyProviderFactory",
+      "kind": "realization"
+    },
+    {
+      "id": "r5_AggregatePolicyProviderFactory_PolicyProviderFactory",
+      "from": "t_AggregatePolicyProviderFactory",
+      "to": "t_PolicyProviderFactory",
+      "kind": "realization"
+    },
+    {
+      "id": "r6_GroupPolicyProviderFactory_PolicyProviderFactory",
+      "from": "t_GroupPolicyProviderFactory",
+      "to": "t_PolicyProviderFactory",
+      "kind": "realization"
+    },
+    {
+      "id": "r7_AggregatePolicyProvider_PolicyProvider",
+      "from": "t_AggregatePolicyProvider",
+      "to": "t_PolicyProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r8_GroupPolicyProvider_PartialEvaluationPolicyProvider",
+      "from": "t_GroupPolicyProvider",
+      "to": "t_PartialEvaluationPolicyProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r9_RolePolicyProvider_PartialEvaluationPolicyProvider",
+      "from": "t_RolePolicyProvider",
+      "to": "t_PartialEvaluationPolicyProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r10_UserPolicyProvider_PartialEvaluationPolicyProvider",
+      "from": "t_UserPolicyProvider",
+      "to": "t_PartialEvaluationPolicyProvider",
+      "kind": "realization"
+    },
+    {
+      "id": "r11_RolePolicyProviderFactory_RolePolicyProvider",
+      "from": "t_RolePolicyProviderFactory",
+      "to": "t_RolePolicyProvider",
+      "kind": "association"
+    },
+    {
+      "id": "r12_UserPolicyProviderFactory_UserPolicyProvider",
+      "from": "t_UserPolicyProviderFactory",
+      "to": "t_UserPolicyProvider",
+      "kind": "association"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Scope",
+      "items": [
+        "Module authz/policy/ (keycloak-authz-provider-parent): 27 public types, 14 shown",
+        "Types chosen by how often other files in the module reference them; members are a selection",
+        "PolicyProvider, PolicyProviderFactory, PartialEvaluationPolicyProvider: supertypes from other modules (sublabel \"from …\")"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Main packages",
+      "items": [
+        "authorization.policy.provider.permission (7)",
+        "authorization.policy.provider.js (3)",
+        "authorization.policy.provider.aggregated (2)",
+        "authorization.policy.provider.client (2)",
+        "authorization.policy.provider.clientscope (2)"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Other relationships (not drawn)",
+      "items": [
+        "RolePolicyProviderFactory implements PolicyProviderFactory",
+        "UserPolicyProviderFactory implements PolicyProviderFactory",
+        "AggregatePolicyProvider implements PartialEvaluationPolicyProvider",
+        "GroupPolicyProvider implements PolicyProvider",
+        "RolePolicyProvider implements PolicyProvider",
+        "UserPolicyProvider implements PolicyProvider",
+        "JSPolicyProviderFactory has a ScriptCache",
+        "AggregatePolicyProviderFactory has a AggregatePolicyProvider",
+        "GroupPolicyProviderFactory has a GroupPolicyProvider",
+        "JSPolicyProviderFactory uses PolicyProvider",
+        "…and 5 more"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Next most-referenced (not drawn)",
+      "items": [
+        "UMAPolicyProviderFactory, ClientPolicyProviderFactory, ClientScopePolicyProviderFactory, TimePolicyProviderFactory, ClientScopePolicyProvider, RegexPolicyProviderFactory, ResourcePolicyProviderFactory, ScopePolicyProviderFactory"
+      ]
+    }
+  ]
+}

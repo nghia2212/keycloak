@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "e9b47d07-a011-4f11-bf7a-58eb4158ee97",
+  "status": "current",
+  "command": "deliver",
+  "type": "class",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\crypto-elytron.class.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\class-diagram\\crypto-elytron.class.html",
+  "specification": {
+    "sha256": "3f8f49c4f49642a2e34fae961630693609a362423137fbfe1d2f5a25bc3fb8c6",
+    "bytes": 11174
+  },
+  "artifact": {
+    "sha256": "f10f26d9ae508fb77602fa1cecfcd1263782e20258f7f2fee0576f2c8fa8723b",
+    "bytes": 871200
+  }
+}

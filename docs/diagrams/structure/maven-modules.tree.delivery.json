@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "a9c3c1a6-9a88-4820-87a3-a6dba017acf0",
+  "status": "current",
+  "command": "deliver",
+  "type": "tree",
+  "input": "D:\\workspace1\\keycloak\\docs\\diagrams\\structure\\maven-modules.tree.json",
+  "output": "D:\\workspace1\\keycloak\\docs\\diagrams\\structure\\maven-modules.tree.html",
+  "specification": {
+    "sha256": "aa1d61675ee3eeeb8f14a5f7959bfb5b9f6d3fa838032b63a8a3ba05e8723533",
+    "bytes": 25537
+  },
+  "artifact": {
+    "sha256": "a2b0747def0be55eb7070aac6782544c8b4ae2098b9119eeeba11e4f59033392",
+    "bytes": 1067716
+  }
+}

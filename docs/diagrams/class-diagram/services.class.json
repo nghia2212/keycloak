@@ -1,0 +1,641 @@
+{
+  "schema_version": 1,
+  "diagram_type": "class",
+  "meta": {
+    "title": "services module types",
+    "output": "docs/diagrams/class-diagram/services.class.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/keycloak/keycloak.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "018953feeaca97732f400fcc0e0c286d70aa1bb7"
+    }
+  },
+  "layout": {
+    "mode": "grid"
+  },
+  "types": [
+    {
+      "id": "realms_resource",
+      "label": "RealmsResource",
+      "kind": "class",
+      "sublabel": "JAX-RS root /realms/{realm}",
+      "row": 0,
+      "col": 1,
+      "methods": [
+        {
+          "name": "getProtocol",
+          "parameters": "realm, protocol",
+          "returns": "Object",
+          "visibility": "public"
+        },
+        {
+          "name": "getLoginActionsService",
+          "parameters": "realm",
+          "returns": "LoginActionsService",
+          "visibility": "public"
+        },
+        {
+          "name": "getBrokerService",
+          "parameters": "realm",
+          "returns": "IdentityBrokerService",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/services/resources/RealmsResource.java",
+          "line": 69,
+          "end_line": 211
+        }
+      ]
+    },
+    {
+      "id": "admin_root",
+      "label": "AdminRoot",
+      "kind": "class",
+      "sublabel": "JAX-RS root /admin",
+      "row": 4,
+      "col": 0,
+      "methods": [
+        {
+          "name": "authenticateRealmAdminRequest",
+          "parameters": "session",
+          "returns": "AdminAuth",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "getRealmsAdmin",
+          "returns": "RealmsAdminResource",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/services/resources/admin/AdminRoot.java",
+          "line": 70,
+          "end_line": 261
+        }
+      ]
+    },
+    {
+      "id": "oidc_service",
+      "label": "OIDCLoginProtocolService",
+      "kind": "class",
+      "sublabel": "…/protocol/openid-connect",
+      "row": 1,
+      "col": 0.5,
+      "methods": [
+        {
+          "name": "auth",
+          "returns": "Object",
+          "visibility": "public"
+        },
+        {
+          "name": "token",
+          "returns": "Object",
+          "visibility": "public"
+        },
+        {
+          "name": "certs",
+          "returns": "Response",
+          "visibility": "public"
+        },
+        {
+          "name": "logout",
+          "returns": "Object",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/protocol/oidc/OIDCLoginProtocolService.java",
+          "line": 66,
+          "end_line": 226
+        }
+      ]
+    },
+    {
+      "id": "login_actions",
+      "label": "LoginActionsService",
+      "kind": "class",
+      "sublabel": "…/login-actions (form posts)",
+      "row": 1,
+      "col": 2,
+      "methods": [
+        {
+          "name": "authenticate",
+          "parameters": "authSessionId, …",
+          "returns": "Response",
+          "visibility": "public"
+        },
+        {
+          "name": "processFlow",
+          "parameters": "action, execution, …",
+          "returns": "Response",
+          "visibility": "protected"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/services/resources/LoginActionsService.java",
+          "line": 128,
+          "end_line": 358
+        }
+      ]
+    },
+    {
+      "id": "realms_admin",
+      "label": "RealmsAdminResource",
+      "kind": "class",
+      "sublabel": "Admin REST for realms",
+      "row": 5,
+      "col": 0,
+      "methods": [
+        {
+          "name": "importRealm",
+          "parameters": "requestBody",
+          "returns": "Response",
+          "visibility": "public"
+        },
+        {
+          "name": "getRealmAdmin",
+          "parameters": "name",
+          "returns": "RealmAdminResource",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/services/resources/admin/RealmsAdminResource.java",
+          "line": 84,
+          "end_line": 220
+        }
+      ]
+    },
+    {
+      "id": "token_endpoint",
+      "label": "TokenEndpoint",
+      "kind": "class",
+      "sublabel": "POST /token, dispatches grants",
+      "row": 2,
+      "col": 0,
+      "attributes": [
+        {
+          "name": "tokenManager",
+          "type": "TokenManager",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "processGrantRequest",
+          "returns": "Response",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/protocol/oidc/endpoints/TokenEndpoint.java",
+          "line": 86,
+          "end_line": 130
+        }
+      ]
+    },
+    {
+      "id": "authz_endpoint",
+      "label": "AuthorizationEndpoint",
+      "kind": "class",
+      "sublabel": "GET/POST /auth",
+      "row": 2,
+      "col": 1,
+      "methods": [
+        {
+          "name": "buildGet",
+          "returns": "Response",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/protocol/oidc/endpoints/AuthorizationEndpoint.java",
+          "line": 80,
+          "end_line": 138
+        },
+        {
+          "path": "services/src/main/java/org/keycloak/protocol/oidc/endpoints/AuthorizationEndpoint.java",
+          "line": 437,
+          "end_line": 451,
+          "label": "start browser flow"
+        },
+        {
+          "path": "services/src/main/java/org/keycloak/protocol/AuthorizationEndpointBase.java",
+          "line": 174,
+          "end_line": 181,
+          "label": "createAuthenticationSession"
+        }
+      ]
+    },
+    {
+      "id": "auth_processor",
+      "label": "AuthenticationProcessor",
+      "kind": "class",
+      "sublabel": "Runs an authentication flow",
+      "row": 2,
+      "col": 2,
+      "methods": [
+        {
+          "name": "authenticate",
+          "returns": "Response",
+          "visibility": "public"
+        },
+        {
+          "name": "authenticationAction",
+          "parameters": "execution",
+          "returns": "Response",
+          "visibility": "public"
+        },
+        {
+          "name": "attachSession",
+          "returns": "ClientSessionContext",
+          "visibility": "public"
+        },
+        {
+          "name": "finishAuthentication",
+          "parameters": "protocol",
+          "returns": "Response",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/authentication/AuthenticationProcessor.java",
+          "line": 91,
+          "end_line": 1225
+        }
+      ]
+    },
+    {
+      "id": "token_manager",
+      "label": "TokenManager",
+      "kind": "class",
+      "sublabel": "Builds and validates tokens",
+      "row": 3,
+      "col": 0,
+      "methods": [
+        {
+          "name": "validateToken",
+          "parameters": "session, uriInfo, …",
+          "returns": "TokenValidation",
+          "visibility": "public"
+        },
+        {
+          "name": "createClientAccessToken",
+          "parameters": "session, realm, …",
+          "returns": "AccessToken",
+          "visibility": "public"
+        },
+        {
+          "name": "responseBuilder",
+          "parameters": "realm, client, …",
+          "returns": "AccessTokenResponseBuilder",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/protocol/oidc/TokenManager.java",
+          "line": 163,
+          "end_line": 1206
+        }
+      ]
+    },
+    {
+      "id": "auth_session_manager",
+      "label": "AuthenticationSessionManager",
+      "kind": "class",
+      "sublabel": "Login-in-progress sessions",
+      "row": 3,
+      "col": 1,
+      "methods": [
+        {
+          "name": "createAuthenticationSession",
+          "parameters": "realm, browserCookie",
+          "returns": "RootAuthenticationSessionModel",
+          "visibility": "public"
+        },
+        {
+          "name": "getCurrentAuthenticationSession",
+          "parameters": "realm, client, tabId",
+          "returns": "AuthenticationSessionModel",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/services/managers/AuthenticationSessionManager.java",
+          "line": 52,
+          "end_line": 92
+        }
+      ]
+    },
+    {
+      "id": "auth_manager",
+      "label": "AuthenticationManager",
+      "kind": "class",
+      "sublabel": "Cookies, required actions, redirects",
+      "row": 3,
+      "col": 2,
+      "methods": [
+        {
+          "name": "createLoginCookie",
+          "parameters": "session, realm, …",
+          "returns": "void",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "authenticateIdentityCookie",
+          "parameters": "session, realm, …",
+          "returns": "AuthResult",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "redirectAfterSuccessfulFlow",
+          "parameters": "session, realm, …",
+          "returns": "Response",
+          "visibility": "public",
+          "static": true
+        },
+        {
+          "name": "nextRequiredAction",
+          "parameters": "session, authSession, …",
+          "returns": "String",
+          "visibility": "public",
+          "static": true
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/services/managers/AuthenticationManager.java",
+          "line": 143,
+          "end_line": 1150
+        }
+      ]
+    },
+    {
+      "id": "app",
+      "label": "KeycloakApplication",
+      "kind": "abstract",
+      "sublabel": "JAX-RS Application, bootstrap",
+      "row": 4,
+      "col": 1,
+      "methods": [
+        {
+          "name": "createSessionFactory",
+          "returns": "DefaultKeycloakSessionFactory",
+          "visibility": "protected",
+          "abstract": true
+        },
+        {
+          "name": "bootstrap",
+          "parameters": "session",
+          "returns": "ExportImportManager",
+          "visibility": "protected"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/services/resources/KeycloakApplication.java",
+          "line": 48,
+          "end_line": 167
+        }
+      ]
+    },
+    {
+      "id": "oidc_protocol",
+      "label": "OIDCLoginProtocol",
+      "kind": "class",
+      "sublabel": "LoginProtocol for OIDC",
+      "row": 4,
+      "col": 2,
+      "methods": [
+        {
+          "name": "authenticated",
+          "parameters": "authSession, userSession, …",
+          "returns": "Response",
+          "visibility": "public"
+        },
+        {
+          "name": "sendError",
+          "parameters": "authSession, error, …",
+          "returns": "Response",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/protocol/oidc/OIDCLoginProtocol.java",
+          "line": 86,
+          "end_line": 402
+        }
+      ]
+    },
+    {
+      "id": "session_factory",
+      "label": "DefaultKeycloakSessionFactory",
+      "kind": "abstract",
+      "sublabel": "Loads and holds ProviderFactories",
+      "row": 5,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "factoriesMap",
+          "type": "Map<Class, Map<String, ProviderFactory>>",
+          "visibility": "protected"
+        }
+      ],
+      "methods": [
+        {
+          "name": "init",
+          "returns": "void",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/services/DefaultKeycloakSessionFactory.java",
+          "line": 58,
+          "end_line": 98
+        }
+      ]
+    },
+    {
+      "id": "session",
+      "label": "DefaultKeycloakSession",
+      "kind": "abstract",
+      "sublabel": "KeycloakSession implementation",
+      "row": 6,
+      "col": 1,
+      "attributes": [
+        {
+          "name": "factory",
+          "type": "DefaultKeycloakSessionFactory",
+          "visibility": "private"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getContext",
+          "returns": "KeycloakContext",
+          "visibility": "public"
+        },
+        {
+          "name": "getProvider",
+          "parameters": "clazz",
+          "returns": "T",
+          "visibility": "public"
+        },
+        {
+          "name": "realms",
+          "returns": "RealmProvider",
+          "visibility": "public"
+        }
+      ],
+      "sources": [
+        {
+          "path": "services/src/main/java/org/keycloak/services/DefaultKeycloakSession.java",
+          "line": 76,
+          "end_line": 285
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r_realms_oidc",
+      "from": "realms_resource",
+      "to": "oidc_service",
+      "kind": "dependency",
+      "label": "getProtocol()"
+    },
+    {
+      "id": "r_realms_login",
+      "from": "realms_resource",
+      "to": "login_actions",
+      "kind": "dependency",
+      "label": "login-actions"
+    },
+    {
+      "id": "r_admin_realms",
+      "from": "admin_root",
+      "to": "realms_admin",
+      "kind": "dependency",
+      "label": "getRealmsAdmin()"
+    },
+    {
+      "id": "r_oidc_token",
+      "from": "oidc_service",
+      "to": "token_endpoint",
+      "kind": "dependency",
+      "label": "token()"
+    },
+    {
+      "id": "r_oidc_auth",
+      "from": "oidc_service",
+      "to": "authz_endpoint",
+      "kind": "dependency",
+      "label": "auth()"
+    },
+    {
+      "id": "r_login_processor",
+      "from": "login_actions",
+      "to": "auth_processor",
+      "kind": "dependency",
+      "label": "processFlow()"
+    },
+    {
+      "id": "r_auth_processor",
+      "from": "authz_endpoint",
+      "to": "auth_processor",
+      "kind": "dependency",
+      "label": "createProcessor()"
+    },
+    {
+      "id": "r_token_manager",
+      "from": "token_endpoint",
+      "to": "token_manager",
+      "kind": "association",
+      "label": "tokenManager"
+    },
+    {
+      "id": "r_auth_session",
+      "from": "authz_endpoint",
+      "to": "auth_session_manager",
+      "kind": "dependency",
+      "label": "createAuthenticationSession()"
+    },
+    {
+      "id": "r_processor_manager",
+      "from": "auth_processor",
+      "to": "auth_manager",
+      "kind": "dependency",
+      "label": "finishAuthentication()"
+    },
+    {
+      "id": "r_manager_protocol",
+      "from": "auth_manager",
+      "to": "oidc_protocol",
+      "kind": "dependency",
+      "label": "protocol.authenticated()"
+    },
+    {
+      "id": "r_app_factory",
+      "from": "app",
+      "to": "session_factory",
+      "kind": "dependency",
+      "label": "createSessionFactory()"
+    },
+    {
+      "id": "r_session_factory",
+      "from": "session",
+      "to": "session_factory",
+      "kind": "association",
+      "label": "factory"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Browser login path",
+      "items": [
+        "RealmsResource → OIDCLoginProtocolService.auth() → AuthorizationEndpoint creates an auth session and an AuthenticationProcessor",
+        "Login forms post to LoginActionsService, which resumes the same processor",
+        "On success finishAuthentication() → AuthenticationManager.redirectAfterSuccessfulFlow() → OIDCLoginProtocol.authenticated() redirects with a code",
+        "The client then calls token(): TokenEndpoint dispatches the grant, which uses TokenManager"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Implemented SPIs",
+      "items": [
+        "OIDCLoginProtocol implements LoginProtocol (server-spi-private)",
+        "DefaultKeycloakSession(Factory) implement KeycloakSession(Factory) (server-spi); the Quarkus runtime subclasses both",
+        "AuthorizationEndpoint extends AuthorizationEndpointBase, which owns createAuthenticationSession()"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Not drawn",
+      "items": [
+        "IdentityBrokerService (external IdP login), SAML protocol, account and admin sub-resources",
+        "Built-in authenticators, required actions, client policies, OAuth2 grant types",
+        "~1,600 main classes in total: this diagram covers the request entry points and the login flow"
+      ]
+    }
+  ]
+}
